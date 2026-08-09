@@ -1,1 +1,12 @@
-{}
+{
+  "skipButton": "Skip",
+  "titleIntro1": "Easily Scan Any Vehicle Type for Details",
+  "descriptionIntro1": "Supports sedans, hatchbacks, trucks, and more. Get information on any vehicle type easily.",
+  "titleIntro2": "Enter VIN by Camera, Image, or Manually",
+  "descriptionIntro2": "Quickly get information about any vehicle by entering the VIN manually, scanning an image, or tacking a photo.",
+  "titleIntro3": "Get Detailed and Accurate Vehicle Information",
+  "descriptionIntro3": "Retrieve comprehensive details about any vehicle, including make, models, year, and specifications.",
+  "backButton": "Back",
+  "nextButton": "Next",
+  "getStartedButton": "Get Started"
+}

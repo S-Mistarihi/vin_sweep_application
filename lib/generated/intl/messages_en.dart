@@ -21,5 +21,28 @@ class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'en';
 
   final messages = _notInlinedMessages(_notInlinedMessages);
-  static Map<String, Function> _notInlinedMessages(_) => <String, Function>{};
+  static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+    "backButton": MessageLookupByLibrary.simpleMessage("Back"),
+    "descriptionIntro1": MessageLookupByLibrary.simpleMessage(
+      "Supports sedans, hatchbacks, trucks, and more. Get information on any vehicle type easily.",
+    ),
+    "descriptionIntro2": MessageLookupByLibrary.simpleMessage(
+      "Quickly get information about any vehicle by entering the VIN manually, scanning an image, or tacking a photo.",
+    ),
+    "descriptionIntro3": MessageLookupByLibrary.simpleMessage(
+      "Retrieve comprehensive details about any vehicle, including make, models, year, and specifications.",
+    ),
+    "getStartedButton": MessageLookupByLibrary.simpleMessage("Get Started"),
+    "nextButton": MessageLookupByLibrary.simpleMessage("Next"),
+    "skipButton": MessageLookupByLibrary.simpleMessage("Skip"),
+    "titleIntro1": MessageLookupByLibrary.simpleMessage(
+      "Easily Scan Any Vehicle Type for Details",
+    ),
+    "titleIntro2": MessageLookupByLibrary.simpleMessage(
+      "Enter VIN by Camera, Image, or Manually",
+    ),
+    "titleIntro3": MessageLookupByLibrary.simpleMessage(
+      "Get Detailed and Accurate Vehicle Information",
+    ),
+  };
 }

@@ -36,7 +36,7 @@ dependencies:
   smooth_page_indicator: 2.0.1
   pin_code_fields: 9.4.0
   shared_preferences: 2.5.5
-  flutter_secure_storage: 11.0.0
+  #flutter_secure_storage: 11.0.0
   persistent_bottom_nav_bar: 6.2.1
   adaptive_action_sheet: 2.0.4
   image_picker: 1.2.3

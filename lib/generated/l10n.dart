@@ -53,6 +53,91 @@ class S {
   static S? maybeOf(BuildContext context) {
     return Localizations.of<S>(context, S);
   }
+
+  /// `Skip`
+  String get skipButton {
+    return Intl.message('Skip', name: 'skipButton', desc: '', args: []);
+  }
+
+  /// `Easily Scan Any Vehicle Type for Details`
+  String get titleIntro1 {
+    return Intl.message(
+      'Easily Scan Any Vehicle Type for Details',
+      name: 'titleIntro1',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Supports sedans, hatchbacks, trucks, and more. Get information on any vehicle type easily.`
+  String get descriptionIntro1 {
+    return Intl.message(
+      'Supports sedans, hatchbacks, trucks, and more. Get information on any vehicle type easily.',
+      name: 'descriptionIntro1',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter VIN by Camera, Image, or Manually`
+  String get titleIntro2 {
+    return Intl.message(
+      'Enter VIN by Camera, Image, or Manually',
+      name: 'titleIntro2',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Quickly get information about any vehicle by entering the VIN manually, scanning an image, or tacking a photo.`
+  String get descriptionIntro2 {
+    return Intl.message(
+      'Quickly get information about any vehicle by entering the VIN manually, scanning an image, or tacking a photo.',
+      name: 'descriptionIntro2',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Get Detailed and Accurate Vehicle Information`
+  String get titleIntro3 {
+    return Intl.message(
+      'Get Detailed and Accurate Vehicle Information',
+      name: 'titleIntro3',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Retrieve comprehensive details about any vehicle, including make, models, year, and specifications.`
+  String get descriptionIntro3 {
+    return Intl.message(
+      'Retrieve comprehensive details about any vehicle, including make, models, year, and specifications.',
+      name: 'descriptionIntro3',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Back`
+  String get backButton {
+    return Intl.message('Back', name: 'backButton', desc: '', args: []);
+  }
+
+  /// `Next`
+  String get nextButton {
+    return Intl.message('Next', name: 'nextButton', desc: '', args: []);
+  }
+
+  /// `Get Started`
+  String get getStartedButton {
+    return Intl.message(
+      'Get Started',
+      name: 'getStartedButton',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
