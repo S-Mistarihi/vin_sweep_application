@@ -7,7 +7,8 @@ plugins {
 
 android {
     namespace = "com.sara.vinsweepapplication.vin_sweep_application"
-    compileSdk = flutter.compileSdkVersion
+    //compileSdk = flutter.compileSdkVersion
+    compileSdk = 37
     ndkVersion = flutter.ndkVersion
 
     compileOptions {

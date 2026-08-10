@@ -37,6 +37,12 @@ class MessageLookup extends MessageLookupByLibrary {
       "Retrieve comprehensive details about any vehicle, including make, models, year, and specifications.",
     ),
     "emailLabel": MessageLookupByLibrary.simpleMessage("البريد الالكتروني"),
+    "errorDescriptionDialog": MessageLookupByLibrary.simpleMessage(
+      "Please Re-enter the OTP value received again",
+    ),
+    "errorTitleDialog": MessageLookupByLibrary.simpleMessage(
+      "Invalid OTP Value",
+    ),
     "fogotPasswordButton": MessageLookupByLibrary.simpleMessage(
       "نسيت كلمة المرور",
     ),
@@ -50,13 +56,40 @@ class MessageLookup extends MessageLookupByLibrary {
       "يرجى إدخال بياناتك أدناه",
     ),
     "loginSwitcher": MessageLookupByLibrary.simpleMessage("تسجيل الدخول"),
+    "nameLabel": MessageLookupByLibrary.simpleMessage("اسم المستخدم"),
     "nextButton": MessageLookupByLibrary.simpleMessage("التالي"),
+    "oneTimePinIsRequired": MessageLookupByLibrary.simpleMessage(
+      "رمز التحقق مطلوب",
+    ),
+    "otpCodeLabel": MessageLookupByLibrary.simpleMessage("OTP Code"),
+    "otpHeaderMainText": MessageLookupByLibrary.simpleMessage("Enter OTP"),
+    "otpHeaderSubText": MessageLookupByLibrary.simpleMessage(
+      "Enter the OTP code sent to the registered email address.",
+    ),
+    "otpResentSuccessfully": MessageLookupByLibrary.simpleMessage(
+      "تم إعادة إرسال الرمز بنجاح",
+    ),
     "passwordLabel": MessageLookupByLibrary.simpleMessage("كلمة المرور"),
+    "passwordMustBeAtLeast6Character": MessageLookupByLibrary.simpleMessage(
+      "يجب أن تكون كلمة المرور 6 أحرف على الأقل",
+    ),
+    "pleaseEnterCorrectName": MessageLookupByLibrary.simpleMessage(
+      "يرجى إدخال اسم صحيح",
+    ),
     "pleaseEnterValidEmail": MessageLookupByLibrary.simpleMessage(
       "يرجى إدخال بريد إلكتروني صحيح",
     ),
+    "pleaseFillCorrectZipcode": MessageLookupByLibrary.simpleMessage(
+      "يرجى إدخال رمز بريدي صحيح",
+    ),
+    "pleaseFillYourCountryZipcode": MessageLookupByLibrary.simpleMessage(
+      "يرجى إدخال الرمز البريدي",
+    ),
     "pleaseFillYourEmail": MessageLookupByLibrary.simpleMessage(
       "يرجى إدخال البريد الإلكتروني",
+    ),
+    "pleaseFillYourName": MessageLookupByLibrary.simpleMessage(
+      "يرجى إدخال الاسم الكامل",
     ),
     "pleaseFillYourPassword": MessageLookupByLibrary.simpleMessage(
       "يرجى إدخال كلمة المرور",
@@ -69,7 +102,15 @@ class MessageLookup extends MessageLookupByLibrary {
       "يرجى إدخال معلوماتك أدناه",
     ),
     "rememberMeCheckbox": MessageLookupByLibrary.simpleMessage("تذكرني!"),
+    "resendCode": MessageLookupByLibrary.simpleMessage("Resend Code"),
     "skipButton": MessageLookupByLibrary.simpleMessage("تخطي"),
+    "submitOtpButton": MessageLookupByLibrary.simpleMessage("Submit"),
+    "successDescriptionDialog": MessageLookupByLibrary.simpleMessage(
+      "You created an account successfully.",
+    ),
+    "successTitleDialog": MessageLookupByLibrary.simpleMessage(
+      "OTP verified successfully",
+    ),
     "sysConfigEndpointWasNotFound": MessageLookupByLibrary.simpleMessage(
       "sys config endpoint was not found",
     ),
@@ -100,5 +141,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "youAreNotAuthorizedToAccessThisData": MessageLookupByLibrary.simpleMessage(
       "you are not authorized to access this data",
     ),
+    "youCreatedAnAccountSuccessfully": MessageLookupByLibrary.simpleMessage(
+      "تم إنشاء الحساب بنجاح",
+    ),
+    "zipCodeLabel": MessageLookupByLibrary.simpleMessage("الرمز البريدي"),
   };
 }

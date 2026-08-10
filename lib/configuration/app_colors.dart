@@ -29,8 +29,8 @@ class AppColors {
   Color textFieldLabelColor = const Color(0xff959595);
   Color smallTextColor = const Color(0xff0093FF);
   Color rememberTextColor = const Color(0xff9F9F9F);
-  Color rememberBorderColor = const Color(0xff78A1BB);
-  Color rememberCheckedColor = const Color(0xff0F8AD8);
+  Color rememberBorderColor = const Color(0xff959595);
+  Color rememberCheckedColor = const Color(0xffFFFFFF);
 
   Color resendTextColor = const Color(0xff0F8AD8);
 
@@ -38,4 +38,7 @@ class AppColors {
   Color successDialogColor = const Color(0xff3DC179);
   Color closeIconDialogBackgroundColor = const Color(0xff1D416F);
   Color closeIconDialogColor = const Color(0xffEBF5FA);
+
+  Color firstPersistantBottomNavBarColor = const Color(0xff1D416F);
+  Color secondPersistantBottomNavBarColor = const Color(0xff0F2138);
 }

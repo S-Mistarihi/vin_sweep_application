@@ -239,6 +239,66 @@ class S {
     );
   }
 
+  /// `Please fill your full name`
+  String get pleaseFillYourName {
+    return Intl.message(
+      'Please fill your full name',
+      name: 'pleaseFillYourName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter a correct name`
+  String get pleaseEnterCorrectName {
+    return Intl.message(
+      'Please enter a correct name',
+      name: 'pleaseEnterCorrectName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Password must be at least 6 characters`
+  String get passwordMustBeAtLeast6Character {
+    return Intl.message(
+      'Password must be at least 6 characters',
+      name: 'passwordMustBeAtLeast6Character',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please fill your ZIP code`
+  String get pleaseFillYourCountryZipcode {
+    return Intl.message(
+      'Please fill your ZIP code',
+      name: 'pleaseFillYourCountryZipcode',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter a correct ZIP code`
+  String get pleaseFillCorrectZipcode {
+    return Intl.message(
+      'Please enter a correct ZIP code',
+      name: 'pleaseFillCorrectZipcode',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You created an account successfully`
+  String get youCreatedAnAccountSuccessfully {
+    return Intl.message(
+      'You created an account successfully',
+      name: 'youCreatedAnAccountSuccessfully',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Please enter a valid email`
   String get pleaseEnterValidEmail {
     return Intl.message(
@@ -332,6 +392,111 @@ class S {
   /// `Password`
   String get passwordLabel {
     return Intl.message('Password', name: 'passwordLabel', desc: '', args: []);
+  }
+
+  /// `Name`
+  String get nameLabel {
+    return Intl.message('Name', name: 'nameLabel', desc: '', args: []);
+  }
+
+  /// `Zip Code`
+  String get zipCodeLabel {
+    return Intl.message('Zip Code', name: 'zipCodeLabel', desc: '', args: []);
+  }
+
+  /// `Enter OTP`
+  String get otpHeaderMainText {
+    return Intl.message(
+      'Enter OTP',
+      name: 'otpHeaderMainText',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter the OTP code sent to the registered email address.`
+  String get otpHeaderSubText {
+    return Intl.message(
+      'Enter the OTP code sent to the registered email address.',
+      name: 'otpHeaderSubText',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `One time pin is required`
+  String get oneTimePinIsRequired {
+    return Intl.message(
+      'One time pin is required',
+      name: 'oneTimePinIsRequired',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `OTP resent successfully`
+  String get otpResentSuccessfully {
+    return Intl.message(
+      'OTP resent successfully',
+      name: 'otpResentSuccessfully',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `OTP Code`
+  String get otpCodeLabel {
+    return Intl.message('OTP Code', name: 'otpCodeLabel', desc: '', args: []);
+  }
+
+  /// `Submit`
+  String get submitOtpButton {
+    return Intl.message('Submit', name: 'submitOtpButton', desc: '', args: []);
+  }
+
+  /// `Resend Code`
+  String get resendCode {
+    return Intl.message('Resend Code', name: 'resendCode', desc: '', args: []);
+  }
+
+  /// `Invalid OTP Value`
+  String get errorTitleDialog {
+    return Intl.message(
+      'Invalid OTP Value',
+      name: 'errorTitleDialog',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please Re-enter the OTP value received again`
+  String get errorDescriptionDialog {
+    return Intl.message(
+      'Please Re-enter the OTP value received again',
+      name: 'errorDescriptionDialog',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `OTP verified successfully`
+  String get successTitleDialog {
+    return Intl.message(
+      'OTP verified successfully',
+      name: 'successTitleDialog',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You created an account successfully.`
+  String get successDescriptionDialog {
+    return Intl.message(
+      'You created an account successfully.',
+      name: 'successDescriptionDialog',
+      desc: '',
+      args: [],
+    );
   }
 }
 

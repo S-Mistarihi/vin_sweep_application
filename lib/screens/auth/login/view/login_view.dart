@@ -83,7 +83,7 @@ class LoginView extends StatelessWidget {
                       controller.changeRememberMeChecked(value ?? false);
                     },
                     checkColor: AppColors().rememberCheckedColor,
-                    activeColor: AppColors().rememberCheckedColor,
+                    activeColor: AppColors().rememberBorderColor,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(4),
                     ),

@@ -4,6 +4,8 @@ import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 import 'package:sizer/sizer.dart';
 
+import '../../configuration/app_assets.dart';
+
 //import '../../configuration/app_colors.dart';
 
 class ProgressHud {
@@ -50,7 +52,7 @@ class ProgressHud {
         : Container(
       margin: EdgeInsets.only(right: 20.w),
       child: Lottie.asset(
-        'images/home/loading.json',
+        AppAssets().loadingSplashLogo,
         repeat: true,
         width: 60.w,
       ),

@@ -42,7 +42,7 @@ class AuthController extends GetxController {
       backgroundColor: AppColors().successDialogColor,
       colorText: AppColors().baseColor,
       margin: const EdgeInsets.all(12),
-      duration: const Duration(seconds: 3),
+      duration: const Duration(seconds: 10),
     );
   }
 
@@ -54,15 +54,9 @@ class AuthController extends GetxController {
       backgroundColor: AppColors().errorDialogColor,
       colorText: AppColors().baseColor,
       margin: const EdgeInsets.all(12),
-      duration: const Duration(seconds: 3),
+      duration: const Duration(seconds: 10),
     );
-    // Get.defaultDialog(
-    //   title: 'Warning',
-    //   middleText: message,
-    //   textConfirm: 'OK',
-    //   confirmTextColor: Colors.white,
-    //   buttonColor: const Color(0xFF1D416F),
-    //   onConfirm: () => Get.back(),
-    // );
   }
+
+
 }

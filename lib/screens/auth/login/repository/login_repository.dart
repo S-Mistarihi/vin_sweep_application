@@ -30,6 +30,7 @@ class ApiLoginRepository extends LoginRepository {
     final result = await HttpWrapper(
       url: ApiEndPoints.login,
       context: context,
+      showLoading: showLoading,
       postParameters: {"email": email, "password": password},
     ).post();
 
@@ -65,7 +66,11 @@ class ApiLoginRepository extends LoginRepository {
       );
     } on FormatException catch (error, stackTrace) {
       return Failure(
-        ParsingException(S.of(context).theServerReturnedAnInvalidFormat),
+        ParsingException(
+          S.of(context).theServerReturnedAnInvalidFormat,
+          cause: error,
+          stackTrace: stackTrace,
+        ),
       );
     } catch (error, stackTrace) {
       return Failure(

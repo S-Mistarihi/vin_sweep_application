@@ -37,6 +37,12 @@ class MessageLookup extends MessageLookupByLibrary {
       "Retrieve comprehensive details about any vehicle, including make, models, year, and specifications.",
     ),
     "emailLabel": MessageLookupByLibrary.simpleMessage("Email"),
+    "errorDescriptionDialog": MessageLookupByLibrary.simpleMessage(
+      "Please Re-enter the OTP value received again",
+    ),
+    "errorTitleDialog": MessageLookupByLibrary.simpleMessage(
+      "Invalid OTP Value",
+    ),
     "fogotPasswordButton": MessageLookupByLibrary.simpleMessage(
       "Fogot Password",
     ),
@@ -50,13 +56,40 @@ class MessageLookup extends MessageLookupByLibrary {
       "Please enter your credentials below",
     ),
     "loginSwitcher": MessageLookupByLibrary.simpleMessage("Sign In"),
+    "nameLabel": MessageLookupByLibrary.simpleMessage("Name"),
     "nextButton": MessageLookupByLibrary.simpleMessage("Next"),
+    "oneTimePinIsRequired": MessageLookupByLibrary.simpleMessage(
+      "One time pin is required",
+    ),
+    "otpCodeLabel": MessageLookupByLibrary.simpleMessage("OTP Code"),
+    "otpHeaderMainText": MessageLookupByLibrary.simpleMessage("Enter OTP"),
+    "otpHeaderSubText": MessageLookupByLibrary.simpleMessage(
+      "Enter the OTP code sent to the registered email address.",
+    ),
+    "otpResentSuccessfully": MessageLookupByLibrary.simpleMessage(
+      "OTP resent successfully",
+    ),
     "passwordLabel": MessageLookupByLibrary.simpleMessage("Password"),
+    "passwordMustBeAtLeast6Character": MessageLookupByLibrary.simpleMessage(
+      "Password must be at least 6 characters",
+    ),
+    "pleaseEnterCorrectName": MessageLookupByLibrary.simpleMessage(
+      "Please enter a correct name",
+    ),
     "pleaseEnterValidEmail": MessageLookupByLibrary.simpleMessage(
       "Please enter a valid email",
     ),
+    "pleaseFillCorrectZipcode": MessageLookupByLibrary.simpleMessage(
+      "Please enter a correct ZIP code",
+    ),
+    "pleaseFillYourCountryZipcode": MessageLookupByLibrary.simpleMessage(
+      "Please fill your ZIP code",
+    ),
     "pleaseFillYourEmail": MessageLookupByLibrary.simpleMessage(
       "Please fill your email",
+    ),
+    "pleaseFillYourName": MessageLookupByLibrary.simpleMessage(
+      "Please fill your full name",
     ),
     "pleaseFillYourPassword": MessageLookupByLibrary.simpleMessage(
       "Please fill your password",
@@ -69,7 +102,15 @@ class MessageLookup extends MessageLookupByLibrary {
       "Please fill your information below",
     ),
     "rememberMeCheckbox": MessageLookupByLibrary.simpleMessage("Remember me!"),
+    "resendCode": MessageLookupByLibrary.simpleMessage("Resend Code"),
     "skipButton": MessageLookupByLibrary.simpleMessage("Skip"),
+    "submitOtpButton": MessageLookupByLibrary.simpleMessage("Submit"),
+    "successDescriptionDialog": MessageLookupByLibrary.simpleMessage(
+      "You created an account successfully.",
+    ),
+    "successTitleDialog": MessageLookupByLibrary.simpleMessage(
+      "OTP verified successfully",
+    ),
     "sysConfigEndpointWasNotFound": MessageLookupByLibrary.simpleMessage(
       "sys config endpoint was not found",
     ),
@@ -100,5 +141,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "youAreNotAuthorizedToAccessThisData": MessageLookupByLibrary.simpleMessage(
       "you are not authorized to access this data",
     ),
+    "youCreatedAnAccountSuccessfully": MessageLookupByLibrary.simpleMessage(
+      "You created an account successfully",
+    ),
+    "zipCodeLabel": MessageLookupByLibrary.simpleMessage("Zip Code"),
   };
 }
