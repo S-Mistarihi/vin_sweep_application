@@ -22,6 +22,10 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+    "anUnexpectedErrorOccuredPleaseTryAgain":
+        MessageLookupByLibrary.simpleMessage(
+          "an unexpected error occured , please try again",
+        ),
     "backButton": MessageLookupByLibrary.simpleMessage("Back"),
     "descriptionIntro1": MessageLookupByLibrary.simpleMessage(
       "Supports sedans, hatchbacks, trucks, and more. Get information on any vehicle type easily.",
@@ -33,8 +37,21 @@ class MessageLookup extends MessageLookupByLibrary {
       "Retrieve comprehensive details about any vehicle, including make, models, year, and specifications.",
     ),
     "getStartedButton": MessageLookupByLibrary.simpleMessage("Get Started"),
+    "invalidRequestSentToTheServer": MessageLookupByLibrary.simpleMessage(
+      "Invalid request sent to the server.",
+    ),
     "nextButton": MessageLookupByLibrary.simpleMessage("Next"),
     "skipButton": MessageLookupByLibrary.simpleMessage("Skip"),
+    "sysConfigEndpointWasNotFound": MessageLookupByLibrary.simpleMessage(
+      "sys config endpoint was not found",
+    ),
+    "theRequestTimedOutPleaseTryAgainLater":
+        MessageLookupByLibrary.simpleMessage(
+          "the request timed out please try again later",
+        ),
+    "theServerReturnedAnInvalidFormat": MessageLookupByLibrary.simpleMessage(
+      "the server returned an invalid format",
+    ),
     "titleIntro1": MessageLookupByLibrary.simpleMessage(
       "Easily Scan Any Vehicle Type for Details",
     ),
@@ -43,6 +60,13 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "titleIntro3": MessageLookupByLibrary.simpleMessage(
       "Get Detailed and Accurate Vehicle Information",
+    ),
+    "unableToConnectToTheServerPleaseCheckYourInternet":
+        MessageLookupByLibrary.simpleMessage(
+          "Unable to connect to the server , please check your internet exception",
+        ),
+    "youAreNotAuthorizedToAccessThisData": MessageLookupByLibrary.simpleMessage(
+      "you are not authorized to access this data",
     ),
   };
 }

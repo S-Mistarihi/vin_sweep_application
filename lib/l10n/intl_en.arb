@@ -8,5 +8,12 @@
   "descriptionIntro3": "Retrieve comprehensive details about any vehicle, including make, models, year, and specifications.",
   "backButton": "Back",
   "nextButton": "Next",
-  "getStartedButton": "Get Started"
+  "getStartedButton": "Get Started",
+  "theServerReturnedAnInvalidFormat": "the server returned an invalid format",
+  "unableToConnectToTheServerPleaseCheckYourInternet": "Unable to connect to the server , please check your internet exception",
+  "theRequestTimedOutPleaseTryAgainLater": "the request timed out please try again later",
+  "anUnexpectedErrorOccuredPleaseTryAgain": "an unexpected error occured , please try again",
+  "invalidRequestSentToTheServer": "Invalid request sent to the server.",
+  "youAreNotAuthorizedToAccessThisData": "you are not authorized to access this data",
+  "sysConfigEndpointWasNotFound": "sys config endpoint was not found"
 }

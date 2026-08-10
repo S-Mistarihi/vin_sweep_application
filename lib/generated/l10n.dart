@@ -138,6 +138,76 @@ class S {
       args: [],
     );
   }
+
+  /// `the server returned an invalid format`
+  String get theServerReturnedAnInvalidFormat {
+    return Intl.message(
+      'the server returned an invalid format',
+      name: 'theServerReturnedAnInvalidFormat',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Unable to connect to the server , please check your internet exception`
+  String get unableToConnectToTheServerPleaseCheckYourInternet {
+    return Intl.message(
+      'Unable to connect to the server , please check your internet exception',
+      name: 'unableToConnectToTheServerPleaseCheckYourInternet',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `the request timed out please try again later`
+  String get theRequestTimedOutPleaseTryAgainLater {
+    return Intl.message(
+      'the request timed out please try again later',
+      name: 'theRequestTimedOutPleaseTryAgainLater',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `an unexpected error occured , please try again`
+  String get anUnexpectedErrorOccuredPleaseTryAgain {
+    return Intl.message(
+      'an unexpected error occured , please try again',
+      name: 'anUnexpectedErrorOccuredPleaseTryAgain',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Invalid request sent to the server.`
+  String get invalidRequestSentToTheServer {
+    return Intl.message(
+      'Invalid request sent to the server.',
+      name: 'invalidRequestSentToTheServer',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `you are not authorized to access this data`
+  String get youAreNotAuthorizedToAccessThisData {
+    return Intl.message(
+      'you are not authorized to access this data',
+      name: 'youAreNotAuthorizedToAccessThisData',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `sys config endpoint was not found`
+  String get sysConfigEndpointWasNotFound {
+    return Intl.message(
+      'sys config endpoint was not found',
+      name: 'sysConfigEndpointWasNotFound',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
