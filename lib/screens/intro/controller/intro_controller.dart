@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:vin_sweep_application/configuration/app_assets.dart';
-import 'package:vin_sweep_application/screens/auth/auth_screen.dart';
+import 'package:vin_sweep_application/screens/auth/auth_view.dart';
 import '../../../generated/l10n.dart';
 import '../model/intro_model.dart';
 
@@ -82,7 +82,7 @@ class IntroController extends GetxController {
   Future<void> goToAuth() async {
     await _saveOnboardingScreenStatus();
 
-    Get.off(() => AuthScreen());
+    Get.off(() => AuthView());
   }
 
   @override

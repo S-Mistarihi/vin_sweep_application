@@ -15,5 +15,20 @@
   "anUnexpectedErrorOccuredPleaseTryAgain": "an unexpected error occured , please try again",
   "invalidRequestSentToTheServer": "Invalid request sent to the server.",
   "youAreNotAuthorizedToAccessThisData": "you are not authorized to access this data",
-  "sysConfigEndpointWasNotFound": "sys config endpoint was not found"
+  "sysConfigEndpointWasNotFound": "sys config endpoint was not found",
+  "theServerReturnedAnUnsuccessfulResponse": "the server returned an unsuccessful response",
+  "pleaseFillYourEmail": "Please fill your email",
+  "pleaseFillYourPassword": "Please fill your password",
+  "pleaseEnterValidEmail": "Please enter a valid email",
+  "loginHeaderMainText": "Login",
+  "registerHeaderMainText": "Create your Account",
+  "loginHeaderSubText": "Please enter your credentials below",
+  "registerHeaderSubText": "Please fill your information below",
+  "loginSwitcher": "Sign In",
+  "registerButton": "Register",
+  "rememberMeCheckbox": "Remember me!",
+  "fogotPasswordButton": "Fogot Password",
+  "loginButton": "Login",
+  "emailLabel": "Email",
+  "passwordLabel": "Password"
 }

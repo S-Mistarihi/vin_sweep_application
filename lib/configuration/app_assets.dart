@@ -14,6 +14,8 @@ class AppAssets {
   String passwordIconTextField = 'assets/text_field_icons/ic_pass.svg';
   String zipIconTextField = 'assets/text_field_icons/ic_zip.svg';
   String otpIconTextField = 'assets/text_field_icons/ic_otp.svg';
+  String eyeIconTextField = 'assets/text_field_icons/ic-unhide.svg';
+  String eyeHideIconTextField = 'assets/text_field_icons/ic-hide.svg';
 
   String closeIcon = 'assets/common/ic_close.svg';
   String copyRightIcon = 'assets/common/copy-rights.svg';

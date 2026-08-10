@@ -26,7 +26,7 @@ class MessageLookup extends MessageLookupByLibrary {
         MessageLookupByLibrary.simpleMessage(
           "an unexpected error occured , please try again",
         ),
-    "backButton": MessageLookupByLibrary.simpleMessage("Back"),
+    "backButton": MessageLookupByLibrary.simpleMessage("الرجوع"),
     "descriptionIntro1": MessageLookupByLibrary.simpleMessage(
       "Supports sedans, hatchbacks, trucks, and more. Get information on any vehicle type easily.",
     ),
@@ -36,12 +36,40 @@ class MessageLookup extends MessageLookupByLibrary {
     "descriptionIntro3": MessageLookupByLibrary.simpleMessage(
       "Retrieve comprehensive details about any vehicle, including make, models, year, and specifications.",
     ),
-    "getStartedButton": MessageLookupByLibrary.simpleMessage("Get Started"),
+    "emailLabel": MessageLookupByLibrary.simpleMessage("البريد الالكتروني"),
+    "fogotPasswordButton": MessageLookupByLibrary.simpleMessage(
+      "نسيت كلمة المرور",
+    ),
+    "getStartedButton": MessageLookupByLibrary.simpleMessage("ابدأ الان"),
     "invalidRequestSentToTheServer": MessageLookupByLibrary.simpleMessage(
       "Invalid request sent to the server.",
     ),
-    "nextButton": MessageLookupByLibrary.simpleMessage("Next"),
-    "skipButton": MessageLookupByLibrary.simpleMessage("Skip"),
+    "loginButton": MessageLookupByLibrary.simpleMessage("تسجيل الدخول"),
+    "loginHeaderMainText": MessageLookupByLibrary.simpleMessage("تسجيل الدخول"),
+    "loginHeaderSubText": MessageLookupByLibrary.simpleMessage(
+      "يرجى إدخال بياناتك أدناه",
+    ),
+    "loginSwitcher": MessageLookupByLibrary.simpleMessage("تسجيل الدخول"),
+    "nextButton": MessageLookupByLibrary.simpleMessage("التالي"),
+    "passwordLabel": MessageLookupByLibrary.simpleMessage("كلمة المرور"),
+    "pleaseEnterValidEmail": MessageLookupByLibrary.simpleMessage(
+      "يرجى إدخال بريد إلكتروني صحيح",
+    ),
+    "pleaseFillYourEmail": MessageLookupByLibrary.simpleMessage(
+      "يرجى إدخال البريد الإلكتروني",
+    ),
+    "pleaseFillYourPassword": MessageLookupByLibrary.simpleMessage(
+      "يرجى إدخال كلمة المرور",
+    ),
+    "registerButton": MessageLookupByLibrary.simpleMessage("إنشاء حساب"),
+    "registerHeaderMainText": MessageLookupByLibrary.simpleMessage(
+      "إنشاء حسابك",
+    ),
+    "registerHeaderSubText": MessageLookupByLibrary.simpleMessage(
+      "يرجى إدخال معلوماتك أدناه",
+    ),
+    "rememberMeCheckbox": MessageLookupByLibrary.simpleMessage("تذكرني!"),
+    "skipButton": MessageLookupByLibrary.simpleMessage("تخطي"),
     "sysConfigEndpointWasNotFound": MessageLookupByLibrary.simpleMessage(
       "sys config endpoint was not found",
     ),
@@ -52,6 +80,10 @@ class MessageLookup extends MessageLookupByLibrary {
     "theServerReturnedAnInvalidFormat": MessageLookupByLibrary.simpleMessage(
       "the server returned an invalid format",
     ),
+    "theServerReturnedAnUnsuccessfulResponse":
+        MessageLookupByLibrary.simpleMessage(
+          "the server returned an unsuccessful response",
+        ),
     "titleIntro1": MessageLookupByLibrary.simpleMessage(
       "Easily Scan Any Vehicle Type for Details",
     ),

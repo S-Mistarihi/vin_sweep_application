@@ -16,8 +16,8 @@ class CustomTextFormField {
     required TextInputType keyboardType,
     required TextInputAction textInputAction,
     required List<TextInputFormatter> inputFormatters,
-    required String? Function(String?) validator,
     bool obscureText = false,
+    Widget? suffixIcon,
   }) {
     return TextFormField(
       controller: controller,
@@ -29,7 +29,6 @@ class CustomTextFormField {
       keyboardType: keyboardType,
       textInputAction: textInputAction,
       inputFormatters: inputFormatters,
-      validator: validator,
       obscureText: obscureText,
       obscuringCharacter: '*',
       autofocus: false,
@@ -43,6 +42,7 @@ class CustomTextFormField {
         filled: true,
         fillColor: AppColors().textFieldBackgroundColor,
         contentPadding: EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+        suffixIcon: suffixIcon,
         border: _buildTextFormFieldBorder(),
         enabledBorder: _buildTextFormFieldBorder(),
         focusedBorder: _buildTextFormFieldBorder(),

@@ -36,11 +36,39 @@ class MessageLookup extends MessageLookupByLibrary {
     "descriptionIntro3": MessageLookupByLibrary.simpleMessage(
       "Retrieve comprehensive details about any vehicle, including make, models, year, and specifications.",
     ),
+    "emailLabel": MessageLookupByLibrary.simpleMessage("Email"),
+    "fogotPasswordButton": MessageLookupByLibrary.simpleMessage(
+      "Fogot Password",
+    ),
     "getStartedButton": MessageLookupByLibrary.simpleMessage("Get Started"),
     "invalidRequestSentToTheServer": MessageLookupByLibrary.simpleMessage(
       "Invalid request sent to the server.",
     ),
+    "loginButton": MessageLookupByLibrary.simpleMessage("Login"),
+    "loginHeaderMainText": MessageLookupByLibrary.simpleMessage("Login"),
+    "loginHeaderSubText": MessageLookupByLibrary.simpleMessage(
+      "Please enter your credentials below",
+    ),
+    "loginSwitcher": MessageLookupByLibrary.simpleMessage("Sign In"),
     "nextButton": MessageLookupByLibrary.simpleMessage("Next"),
+    "passwordLabel": MessageLookupByLibrary.simpleMessage("Password"),
+    "pleaseEnterValidEmail": MessageLookupByLibrary.simpleMessage(
+      "Please enter a valid email",
+    ),
+    "pleaseFillYourEmail": MessageLookupByLibrary.simpleMessage(
+      "Please fill your email",
+    ),
+    "pleaseFillYourPassword": MessageLookupByLibrary.simpleMessage(
+      "Please fill your password",
+    ),
+    "registerButton": MessageLookupByLibrary.simpleMessage("Register"),
+    "registerHeaderMainText": MessageLookupByLibrary.simpleMessage(
+      "Create your Account",
+    ),
+    "registerHeaderSubText": MessageLookupByLibrary.simpleMessage(
+      "Please fill your information below",
+    ),
+    "rememberMeCheckbox": MessageLookupByLibrary.simpleMessage("Remember me!"),
     "skipButton": MessageLookupByLibrary.simpleMessage("Skip"),
     "sysConfigEndpointWasNotFound": MessageLookupByLibrary.simpleMessage(
       "sys config endpoint was not found",
@@ -52,6 +80,10 @@ class MessageLookup extends MessageLookupByLibrary {
     "theServerReturnedAnInvalidFormat": MessageLookupByLibrary.simpleMessage(
       "the server returned an invalid format",
     ),
+    "theServerReturnedAnUnsuccessfulResponse":
+        MessageLookupByLibrary.simpleMessage(
+          "the server returned an unsuccessful response",
+        ),
     "titleIntro1": MessageLookupByLibrary.simpleMessage(
       "Easily Scan Any Vehicle Type for Details",
     ),

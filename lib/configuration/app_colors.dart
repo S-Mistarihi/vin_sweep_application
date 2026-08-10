@@ -30,7 +30,7 @@ class AppColors {
   Color smallTextColor = const Color(0xff0093FF);
   Color rememberTextColor = const Color(0xff9F9F9F);
   Color rememberBorderColor = const Color(0xff78A1BB);
-  Color rememberCheckedColor = const Color(0xff78A1BB);
+  Color rememberCheckedColor = const Color(0xff0F8AD8);
 
   Color resendTextColor = const Color(0xff0F8AD8);
 

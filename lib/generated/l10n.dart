@@ -208,6 +208,131 @@ class S {
       args: [],
     );
   }
+
+  /// `the server returned an unsuccessful response`
+  String get theServerReturnedAnUnsuccessfulResponse {
+    return Intl.message(
+      'the server returned an unsuccessful response',
+      name: 'theServerReturnedAnUnsuccessfulResponse',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please fill your email`
+  String get pleaseFillYourEmail {
+    return Intl.message(
+      'Please fill your email',
+      name: 'pleaseFillYourEmail',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please fill your password`
+  String get pleaseFillYourPassword {
+    return Intl.message(
+      'Please fill your password',
+      name: 'pleaseFillYourPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter a valid email`
+  String get pleaseEnterValidEmail {
+    return Intl.message(
+      'Please enter a valid email',
+      name: 'pleaseEnterValidEmail',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Login`
+  String get loginHeaderMainText {
+    return Intl.message(
+      'Login',
+      name: 'loginHeaderMainText',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Create your Account`
+  String get registerHeaderMainText {
+    return Intl.message(
+      'Create your Account',
+      name: 'registerHeaderMainText',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter your credentials below`
+  String get loginHeaderSubText {
+    return Intl.message(
+      'Please enter your credentials below',
+      name: 'loginHeaderSubText',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please fill your information below`
+  String get registerHeaderSubText {
+    return Intl.message(
+      'Please fill your information below',
+      name: 'registerHeaderSubText',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sign In`
+  String get loginSwitcher {
+    return Intl.message('Sign In', name: 'loginSwitcher', desc: '', args: []);
+  }
+
+  /// `Register`
+  String get registerButton {
+    return Intl.message('Register', name: 'registerButton', desc: '', args: []);
+  }
+
+  /// `Remember me!`
+  String get rememberMeCheckbox {
+    return Intl.message(
+      'Remember me!',
+      name: 'rememberMeCheckbox',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Fogot Password`
+  String get fogotPasswordButton {
+    return Intl.message(
+      'Fogot Password',
+      name: 'fogotPasswordButton',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Login`
+  String get loginButton {
+    return Intl.message('Login', name: 'loginButton', desc: '', args: []);
+  }
+
+  /// `Email`
+  String get emailLabel {
+    return Intl.message('Email', name: 'emailLabel', desc: '', args: []);
+  }
+
+  /// `Password`
+  String get passwordLabel {
+    return Intl.message('Password', name: 'passwordLabel', desc: '', args: []);
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
