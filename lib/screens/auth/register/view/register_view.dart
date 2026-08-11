@@ -24,6 +24,7 @@ class RegisterView extends StatelessWidget {
       children: [
         Form(
           key: _registerKey,
+          autovalidateMode: AutovalidateMode.onUserInteraction,
           child: Column(
             children: [
               CustomFieldLabel(
@@ -34,6 +35,7 @@ class RegisterView extends StatelessWidget {
               CustomTextFormField().buildCustomTextFormField(
                 controller: controller.nameController,
                 focusNode: controller.nameFocusNode,
+                errorText: controller.nameError.value,
                 onFieldSubmitted: (value) =>
                     controller.emailFocusNode.requestFocus(),
                 keyboardType: TextInputType.text,
@@ -49,6 +51,7 @@ class RegisterView extends StatelessWidget {
               CustomTextFormField().buildCustomTextFormField(
                 controller: controller.emailController,
                 focusNode: controller.emailFocusNode,
+                errorText: controller.emailError.value,
                 onFieldSubmitted: (value) =>
                     controller.passwordFocusNode.requestFocus(),
                 keyboardType: TextInputType.emailAddress,
@@ -65,6 +68,7 @@ class RegisterView extends StatelessWidget {
                 () => CustomTextFormField().buildCustomTextFormField(
                   controller: controller.passwordController,
                   focusNode: controller.passwordFocusNode,
+                  errorText: controller.passwordError.value,
                   onFieldSubmitted: (value) =>
                       controller.zipCodeFocusNode.requestFocus(),
                   keyboardType: TextInputType.text,
@@ -75,8 +79,8 @@ class RegisterView extends StatelessWidget {
                     onPressed: controller.changePasswordVisibility,
                     icon: SvgPicture.asset(
                       controller.isPasswordObscured.value
-                          ? AppAssets().eyeIconTextField
-                          : AppAssets().eyeHideIconTextField,
+                          ? AppAssets().eyeHideIconTextField
+                          : AppAssets().eyeIconTextField,
                       width: 20,
                       height: 20,
                     ),
@@ -92,6 +96,7 @@ class RegisterView extends StatelessWidget {
               CustomTextFormField().buildCustomTextFormField(
                 controller: controller.zipCodeController,
                 focusNode: controller.zipCodeFocusNode,
+                errorText: controller.zipCodeError.value,
                 onFieldSubmitted: (value) => FocusScope.of(context).unfocus(),
                 keyboardType: TextInputType.number,
                 textInputAction: TextInputAction.done,
@@ -100,9 +105,8 @@ class RegisterView extends StatelessWidget {
             ],
           ),
         ),
-        SizedBox(height: 5.h),
+        SizedBox(height: 4.h),
         CustomButton(
-
           onPressed: () {
             if (_registerKey.currentState!.validate()) {
               controller.onRegisterPressed();
@@ -116,8 +120,9 @@ class RegisterView extends StatelessWidget {
           horizontalPadding: 143,
           verticalPadding: 12,
         ),
-        SizedBox(height: 3.h),
+        SizedBox(height: 1.5.h),
         SvgPicture.asset(AppAssets().copyRightIcon, width: 212, height: 12),
+        SizedBox(height: 20,)
       ],
     );
   }

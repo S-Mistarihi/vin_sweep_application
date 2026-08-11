@@ -5,6 +5,7 @@ import 'package:lottie/lottie.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../configuration/app_assets.dart';
+import '../../configuration/app_colors.dart';
 
 //import '../../configuration/app_colors.dart';
 
@@ -20,7 +21,7 @@ class ProgressHud {
     return Stack(
       children: <Widget>[
         getCircularProgressIndicator(
-          //color: color ?? AppColors.primaryColor,
+          color: color ?? AppColors().closeIconDialogBackgroundColor,
           size: size,
           isLoadMore: isLoadMore,
         ),
@@ -35,7 +36,7 @@ class ProgressHud {
         return DecoratedBox(
           decoration: BoxDecoration(
             borderRadius: const BorderRadius.all(Radius.circular(15)),
-            //color: AppColors.primaryColor,
+            color: AppColors().closeIconDialogBackgroundColor,
           ),
         );
       },

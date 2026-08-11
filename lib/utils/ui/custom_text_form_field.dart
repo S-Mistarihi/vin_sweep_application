@@ -12,6 +12,7 @@ class CustomTextFormField {
   Widget buildCustomTextFormField({
     required TextEditingController controller,
     required FocusNode focusNode,
+    required String? errorText,
     required void Function(String) onFieldSubmitted,
     required TextInputType keyboardType,
     required TextInputAction textInputAction,
@@ -39,6 +40,8 @@ class CustomTextFormField {
       style: TextStyle(color: AppColors().accentColor, fontSize: 14),
       scrollPadding: EdgeInsets.all(30),
       decoration: InputDecoration(
+        errorText: errorText,
+        errorStyle: TextStyle(color: AppColors().errorText, fontSize: 14),
         filled: true,
         fillColor: AppColors().textFieldBackgroundColor,
         contentPadding: EdgeInsets.symmetric(horizontal: 24, vertical: 16),
@@ -46,6 +49,9 @@ class CustomTextFormField {
         border: _buildTextFormFieldBorder(),
         enabledBorder: _buildTextFormFieldBorder(),
         focusedBorder: _buildTextFormFieldBorder(),
+        errorBorder: _buildTextFormFieldBorder(),
+        focusedErrorBorder: _buildTextFormFieldBorder(),
+
       ),
     );
   }

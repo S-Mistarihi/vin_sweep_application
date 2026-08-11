@@ -4,6 +4,7 @@ import 'package:lottie/lottie.dart';
 import 'package:sizer/sizer.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:vin_sweep_application/configuration/app_colors.dart';
+import 'package:vin_sweep_application/configuration/current_session.dart';
 import 'package:vin_sweep_application/generated/l10n.dart';
 import 'package:vin_sweep_application/screens/intro/controller/intro_controller.dart';
 import 'package:vin_sweep_application/utils/ui/custom_button.dart';
@@ -17,7 +18,6 @@ class IntroScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    controller.fillData(context);
     return Scaffold(
       backgroundColor: AppColors().baseColor,
       body: SafeArea(
@@ -30,7 +30,7 @@ class IntroScreen extends StatelessWidget {
               Align(
                 alignment: Alignment.topRight,
                 child: InkWell(
-                  onTap: controller.skip,
+                  onTap: controller.skipIntro,
                   child: Text(
                     S.of(context).skipButton,
                     style: TextStyle(
@@ -46,9 +46,9 @@ class IntroScreen extends StatelessWidget {
               Expanded(
                 child: PageView.builder(
                   itemBuilder: (context, index) {
-                    return _getIntroData(model: controller.screens[index]);
+                    return _getIntroData(model: CurrentSession().intro[index]);
                   },
-                  itemCount: controller.screens.length,
+                  itemCount: CurrentSession().intro.length,
                   controller: controller.controller,
                   onPageChanged: controller.onPageChanged,
                 ),
@@ -60,7 +60,7 @@ class IntroScreen extends StatelessWidget {
                 alignment: Alignment.topLeft,
                 child: SmoothPageIndicator(
                   controller: controller.controller,
-                  count: controller.screens.length,
+                  count: CurrentSession().intro.length,
                   effect: ExpandingDotsEffect(
                     dotWidth: 12,
                     dotHeight: 6,
@@ -109,11 +109,9 @@ class IntroScreen extends StatelessWidget {
                       Expanded(
                         child: CustomButton(
                           onPressed: controller.nextPage,
-                          text:
-                              controller.page.value <
-                                  controller.screens.length - 1
-                              ? S.of(context).nextButton
-                              : S.of(context).getStartedButton,
+                          text: controller.isLastPage
+                              ? S.of(context).getStartedButton
+                              : S.of(context).nextButton,
                           backgroundColor: AppColors().buttonWithBackground,
                           foregroundColor: AppColors().buttonWithBackgroundText,
                           textSize: 16,

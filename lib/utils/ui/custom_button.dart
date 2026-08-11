@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:vin_sweep_application/configuration/app_colors.dart';
 
 class CustomButton extends StatelessWidget {
   const CustomButton({

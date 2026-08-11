@@ -27,6 +27,7 @@ class AppColors {
   Color textFieldBackgroundColor = const Color(0xffF8FAFC);
   Color textFieldBorderColor = const Color(0xffF2F6F8);
   Color textFieldLabelColor = const Color(0xff959595);
+  Color errorText = const Color(0xffB31E3C);
   Color smallTextColor = const Color(0xff0093FF);
   Color rememberTextColor = const Color(0xff9F9F9F);
   Color rememberBorderColor = const Color(0xff959595);

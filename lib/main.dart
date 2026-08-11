@@ -6,7 +6,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sizer/sizer.dart';
 import 'package:vin_sweep_application/generated/l10n.dart';
 import 'package:vin_sweep_application/l10n/app_locale.dart';
-import 'package:vin_sweep_application/screens/auth/auth_view.dart';
 import 'package:vin_sweep_application/screens/intro/view/intro_screen.dart';
 
 void main() async {
@@ -40,7 +39,7 @@ class MyApp extends StatelessWidget {
             builder: (_, w, appLocale) {
               return GetMaterialApp(
                 debugShowCheckedModeBanner: false,
-                home: AuthView(),
+                home: IntroScreen(),
                 locale: AppLocale().locale,
                 localizationsDelegates: [
                   S.delegate,

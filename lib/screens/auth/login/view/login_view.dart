@@ -24,6 +24,7 @@ class LoginView extends StatelessWidget {
       children: [
         Form(
           key: _loginKey,
+          autovalidateMode: AutovalidateMode.onUserInteraction,
           child: Column(
             children: [
               CustomFieldLabel(
@@ -34,6 +35,7 @@ class LoginView extends StatelessWidget {
               CustomTextFormField().buildCustomTextFormField(
                 controller: controller.emailController,
                 focusNode: controller.emailFocusNode,
+                errorText: controller.emailError.value,
                 onFieldSubmitted: (value) =>
                     controller.passwordFocusNode.requestFocus(),
                 keyboardType: TextInputType.emailAddress,
@@ -50,6 +52,7 @@ class LoginView extends StatelessWidget {
                 () => CustomTextFormField().buildCustomTextFormField(
                   controller: controller.passwordController,
                   focusNode: controller.passwordFocusNode,
+                  errorText: controller.passwordError.value,
                   onFieldSubmitted: (value) => FocusScope.of(context).unfocus(),
                   keyboardType: TextInputType.text,
                   textInputAction: TextInputAction.done,
@@ -59,8 +62,8 @@ class LoginView extends StatelessWidget {
                     onPressed: controller.changePasswordVisibility,
                     icon: SvgPicture.asset(
                       controller.isPasswordObscured.value
-                          ? AppAssets().eyeIconTextField
-                          : AppAssets().eyeHideIconTextField,
+                          ? AppAssets().eyeHideIconTextField
+                          : AppAssets().eyeIconTextField,
                       width: 20,
                       height: 20,
                     ),
