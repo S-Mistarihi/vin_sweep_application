@@ -42,6 +42,7 @@ class ApiLoginRepository extends LoginRepository {
     }
   }
 
+  //decode
   RepositoryResult<UserModel> _parse(String body, BuildContext context) {
     try {
       if (body.trim().isEmpty) {

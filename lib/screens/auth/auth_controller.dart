@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
 import 'package:vin_sweep_application/configuration/app_colors.dart';
+import 'package:vin_sweep_application/screens/auth/register/controller/register_controller.dart';
+
+import 'login/controller/login_controller.dart';
 
 enum AuthMode { login, register }
 
@@ -14,6 +17,14 @@ class AuthController extends GetxController {
 
   void switchAuthMode(AuthMode mode) {
     if (authMode.value == mode) return;
+
+    if (Get.isRegistered<LoginController>()) {
+      Get.find<LoginController>().clearForm();
+    }
+
+    if (Get.isRegistered<RegisterController>()) {
+      Get.find<RegisterController>().clearForm();
+    }
 
     authMode.value = mode;
   }
@@ -46,10 +57,10 @@ class AuthController extends GetxController {
     );
   }
 
-  void showErrorToast(String message) {
+  void showErrorToast([String? message]) {
     Get.snackbar(
-      'Warning',
-      message,
+      'Loging Failed',
+      message?.isNotEmpty == true ? message! : 'Incorrect email or password',
       snackPosition: SnackPosition.TOP,
       backgroundColor: AppColors().errorDialogColor,
       colorText: AppColors().baseColor,
@@ -57,6 +68,4 @@ class AuthController extends GetxController {
       duration: const Duration(seconds: 10),
     );
   }
-
-
 }

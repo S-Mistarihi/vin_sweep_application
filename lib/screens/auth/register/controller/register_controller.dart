@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
+import 'package:vin_sweep_application/screens/auth/auth_view.dart';
 import 'package:vin_sweep_application/screens/auth/otp/view/otp_view.dart';
 
 import '../../../../generated/l10n.dart';
@@ -30,6 +31,23 @@ class RegisterController extends GetxController {
 
   void changePasswordVisibility() {
     isPasswordObscured.value = !isPasswordObscured.value;
+  }
+
+  void clearForm() {
+    nameController.clear();
+    emailController.clear();
+    passwordController.clear();
+    zipCodeController.clear();
+
+    nameFocusNode.unfocus();
+    emailFocusNode.unfocus();
+    passwordFocusNode.unfocus();
+    zipCodeFocusNode.unfocus();
+
+    nameError.value = '';
+    emailError.value = '';
+    passwordError.value = '';
+    zipCodeError.value = '';
   }
 
   void _clearErrors() {
@@ -131,17 +149,18 @@ class RegisterController extends GetxController {
     }
   }
 
-  void _onRegisterSuccess() {
+  void _onRegisterSuccess() async {
     nameController.clear();
     emailController.clear();
     passwordController.clear();
     zipCodeController.clear();
-    Get.back();
-    //Get.find<AuthController>().changeIndex(0);
-    Get.find<AuthController>().switchToLogin();
-    // Get.find<AuthController>().showSuccessToast(
-    //   S.of(Get.context!).youCreatedAnAccountSuccessfully,
-    // );
+
+    await CustomDialog.showSuccessDialog(
+      title: S.of(Get.context!).successTitleDialog,
+      description: S.of(Get.context!).successDescriptionDialog,
+    );
+
+    Get.offAll(() => AuthView());
   }
 
   @override

@@ -32,15 +32,17 @@ class RegisterView extends StatelessWidget {
                 text: S.of(context).nameLabel,
               ),
               const SizedBox(height: 8),
-              CustomTextFormField().buildCustomTextFormField(
-                controller: controller.nameController,
-                focusNode: controller.nameFocusNode,
-                errorText: controller.nameError.value,
-                onFieldSubmitted: (value) =>
-                    controller.emailFocusNode.requestFocus(),
-                keyboardType: TextInputType.text,
-                textInputAction: TextInputAction.next,
-                inputFormatters: [LengthLimitingTextInputFormatter(50)],
+              Obx(
+                () => CustomTextFormField().buildCustomTextFormField(
+                  controller: controller.nameController,
+                  focusNode: controller.nameFocusNode,
+                  errorText: controller.nameError.value,
+                  onFieldSubmitted: (value) =>
+                      controller.emailFocusNode.requestFocus(),
+                  keyboardType: TextInputType.text,
+                  textInputAction: TextInputAction.next,
+                  inputFormatters: [LengthLimitingTextInputFormatter(50)],
+                ),
               ),
               const SizedBox(height: 24),
               CustomFieldLabel(
@@ -48,15 +50,17 @@ class RegisterView extends StatelessWidget {
                 text: S.of(context).emailLabel,
               ),
               const SizedBox(height: 8),
-              CustomTextFormField().buildCustomTextFormField(
-                controller: controller.emailController,
-                focusNode: controller.emailFocusNode,
-                errorText: controller.emailError.value,
-                onFieldSubmitted: (value) =>
-                    controller.passwordFocusNode.requestFocus(),
-                keyboardType: TextInputType.emailAddress,
-                textInputAction: TextInputAction.next,
-                inputFormatters: [LengthLimitingTextInputFormatter(50)],
+              Obx(
+                () => CustomTextFormField().buildCustomTextFormField(
+                  controller: controller.emailController,
+                  focusNode: controller.emailFocusNode,
+                  errorText: controller.emailError.value,
+                  onFieldSubmitted: (value) =>
+                      controller.passwordFocusNode.requestFocus(),
+                  keyboardType: TextInputType.emailAddress,
+                  textInputAction: TextInputAction.next,
+                  inputFormatters: [LengthLimitingTextInputFormatter(50)],
+                ),
               ),
               const SizedBox(height: 24),
               CustomFieldLabel(
@@ -93,14 +97,16 @@ class RegisterView extends StatelessWidget {
                 text: S.of(context).zipCodeLabel,
               ),
               const SizedBox(height: 8),
-              CustomTextFormField().buildCustomTextFormField(
-                controller: controller.zipCodeController,
-                focusNode: controller.zipCodeFocusNode,
-                errorText: controller.zipCodeError.value,
-                onFieldSubmitted: (value) => FocusScope.of(context).unfocus(),
-                keyboardType: TextInputType.number,
-                textInputAction: TextInputAction.done,
-                inputFormatters: [LengthLimitingTextInputFormatter(5)],
+              Obx(
+                () => CustomTextFormField().buildCustomTextFormField(
+                  controller: controller.zipCodeController,
+                  focusNode: controller.zipCodeFocusNode,
+                  errorText: controller.zipCodeError.value,
+                  onFieldSubmitted: (value) => FocusScope.of(context).unfocus(),
+                  keyboardType: TextInputType.number,
+                  textInputAction: TextInputAction.done,
+                  inputFormatters: [LengthLimitingTextInputFormatter(5)],
+                ),
               ),
             ],
           ),
@@ -122,7 +128,7 @@ class RegisterView extends StatelessWidget {
         ),
         SizedBox(height: 1.5.h),
         SvgPicture.asset(AppAssets().copyRightIcon, width: 212, height: 12),
-        SizedBox(height: 20,)
+        SizedBox(height: 20),
       ],
     );
   }

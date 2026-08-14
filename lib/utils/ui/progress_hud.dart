@@ -7,8 +7,6 @@ import 'package:sizer/sizer.dart';
 import '../../configuration/app_assets.dart';
 import '../../configuration/app_colors.dart';
 
-//import '../../configuration/app_colors.dart';
-
 class ProgressHud {
   static ProgressHud shared = ProgressHud(); // singleton
   BuildContext? context;
@@ -29,19 +27,19 @@ class ProgressHud {
     );
   }
 
-  Widget spinKitThreeInOut({double size = 50.0}) {
-    return SpinKitFadingCircle(
-      size: size,
-      itemBuilder: (BuildContext context, int index) {
-        return DecoratedBox(
-          decoration: BoxDecoration(
-            borderRadius: const BorderRadius.all(Radius.circular(15)),
-            color: AppColors().closeIconDialogBackgroundColor,
-          ),
-        );
-      },
-    );
-  }
+  // Widget spinKitThreeInOut({double size = 50.0}) {
+  //   return SpinKitFadingCircle(
+  //     size: size,
+  //     itemBuilder: (BuildContext context, int index) {
+  //       return DecoratedBox(
+  //         decoration: BoxDecoration(
+  //           borderRadius: const BorderRadius.all(Radius.circular(15)),
+  //           color: AppColors().closeIconDialogBackgroundColor,
+  //         ),
+  //       );
+  //     },
+  //   );
+  // }
 
   Widget getCircularProgressIndicator({
     Color? color,
@@ -51,13 +49,13 @@ class ProgressHud {
     child: isLoadMore
         ? SpinKitRipple(color: color, size: size)
         : Container(
-      margin: EdgeInsets.only(right: 20.w),
-      child: Lottie.asset(
-        AppAssets().loadingSplashLogo,
-        repeat: true,
-        width: 60.w,
-      ),
-    ),
+            margin: EdgeInsets.only(right: 20.w),
+            child: Lottie.asset(
+              AppAssets().loadingSplashLogo,
+              repeat: true,
+              width: 60.w,
+            ),
+          ),
   );
 
   void startLoading(BuildContext context, {bool useScanLoading = false}) {

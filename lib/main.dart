@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sizer/sizer.dart';
+import 'package:vin_sweep_application/configuration/cache_keys.dart';
 import 'package:vin_sweep_application/generated/l10n.dart';
 import 'package:vin_sweep_application/l10n/app_locale.dart';
 import 'package:vin_sweep_application/screens/intro/view/intro_screen.dart';
@@ -19,7 +20,7 @@ void main() async {
   Get.put<SharedPreferences>(prefs);
 
   String savedLanguageCode =
-      prefs.getString('currentLanguage') ?? defaultLanguageCode;
+      prefs.getString(CacheKeys.currentLanguage) ?? defaultLanguageCode;
 
   AppLocale().changeLanguage(languageCode: savedLanguageCode);
 

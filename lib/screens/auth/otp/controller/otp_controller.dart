@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:vin_sweep_application/configuration/app_colors.dart';
-import 'package:vin_sweep_application/screens/auth/otp/view/otp_view.dart';
 
 import '../../../../generated/l10n.dart';
 import '../../../../utils/helpers/common/repository_result.dart';
@@ -21,6 +20,7 @@ class OtpController extends GetxController {
   // State
   final RxInt remainingTime = initialTime.obs;
   final RxString otpValue = ''.obs;
+  final RxBool isVerifying = false.obs;
 
   // Controller
   final PinInputController otpTextController = PinInputController();
@@ -49,6 +49,8 @@ class OtpController extends GetxController {
     required OtpType type,
     required ValueChanged<String> onSuccess,
   }) async {
+    if (isVerifying.value) return;
+
     if (otpValue.value.length < otpLength) {
       Get.find<AuthController>().showErrorToast(
         S.of(Get.context!).oneTimePinIsRequired,
@@ -56,32 +58,37 @@ class OtpController extends GetxController {
       return;
     }
 
-    final result = await createOtpRepository().verifyOtp(
-      context: Get.context!,
-      email: email,
-      type: type,
-      otpCode: otpValue.value,
-    );
+    isVerifying.value = true;
 
-    switch (result) {
-      case Failure(:final exception):
-        //Get.find<AuthController>().showErrorToast(exception.message);
-        CustomDialog.showErrorDialog(
-          title: S.of(Get.context!).errorTitleDialog,
-          description: S.of(Get.context!).errorDescriptionDialog,
-        );
-        clearOtpField();
+    try {
+      final result = await createOtpRepository().verifyOtp(
+        context: Get.context!,
+        email: email,
+        type: type,
+        otpCode: otpValue.value,
+      );
 
-      case Success(:final data):
-        final response = data as VerifyOtpResponse;
-        CustomDialog.showSuccessDialog(
-          title: S.of(Get.context!).successTitleDialog,
-          description: S.of(Get.context!).successDescriptionDialog,
-        );
+      switch (result) {
+        case Failure(:final exception):
+          //Get.find<AuthController>().showErrorToast(exception.message);
+          clearOtpField();
 
-        //Get.back();
+          await CustomDialog.showErrorDialog(
+            title: S.of(Get.context!).errorTitleDialog,
+            description: S.of(Get.context!).errorDescriptionDialog,
+          );
 
-        onSuccess(response.result?.token ?? '');
+        case Success(:final data):
+          final response = data as VerifyOtpResponse;
+          await CustomDialog.showSuccessDialog(
+            title: S.of(Get.context!).successTitleDialog,
+            description: S.of(Get.context!).successDescriptionDialog,
+          );
+
+          onSuccess(response.result?.token ?? '');
+      }
+    } finally {
+      isVerifying.value = false;
     }
   }
 

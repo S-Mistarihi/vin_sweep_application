@@ -45,6 +45,23 @@ class LoginController extends GetxController {
     isPasswordObscured.value = !isPasswordObscured.value;
   }
 
+  void clearForm() async {
+    if (isRememberMeChecked.value) {
+      final savedEmail = await _secureStorage.read(key: CacheKeys.email);
+
+      emailController.text = savedEmail ?? '';
+    } else {
+      emailController.clear();
+    }
+    passwordController.clear();
+
+    emailFocusNode.unfocus();
+    passwordFocusNode.unfocus();
+
+    emailError.value = '';
+    passwordError.value = '';
+  }
+
   void _clearErrors() {
     emailError.value = '';
     passwordError.value = '';
@@ -75,8 +92,8 @@ class LoginController extends GetxController {
     );
 
     switch (result) {
-      case Failure(:final exception):
-        Get.find<AuthController>().showErrorToast(exception.message);
+      case Failure():
+        Get.find<AuthController>().showErrorToast();
       case Success(:final data):
         if (isRememberMeChecked.value) {
           await _saveCredentials();
@@ -84,8 +101,8 @@ class LoginController extends GetxController {
           await _secureStorage.delete(key: CacheKeys.email);
           await _secureStorage.delete(key: CacheKeys.password);
         }
-        CurrentSession().userModel = data; //
-        Get.offAll(() => const HomeView()); // home
+        CurrentSession().userModel = data;
+        Get.offAll(() => const HomeView());
     }
   }
 
@@ -93,7 +110,7 @@ class LoginController extends GetxController {
     await _secureStorage.write(
       key: CacheKeys.email,
       value: emailController.text.trim(),
-    ); // silent login
+    );
     await _secureStorage.write(
       key: CacheKeys.password,
       value: passwordController.text,

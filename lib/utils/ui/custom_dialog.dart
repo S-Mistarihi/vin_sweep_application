@@ -10,12 +10,12 @@ import 'custom_button.dart';
 class CustomDialog {
   CustomDialog._();
 
-  static void showErrorDialog({
+  static Future<void> showErrorDialog({
     required String title,
     required String description,
-  }) {
+  }) async {
     debugPrint(description);
-    Get.dialog(
+    await Get.dialog(
       barrierDismissible: true,
       Dialog(
         backgroundColor: AppColors().baseColor,
@@ -99,7 +99,7 @@ class CustomDialog {
     required String description,
     Duration duration = const Duration(seconds: 10),
   }) async {
-    Get.dialog(
+    final dialogFuture = Get.dialog(
       barrierDismissible: true,
       Dialog(
         backgroundColor: AppColors().baseColor,
@@ -164,10 +164,12 @@ class CustomDialog {
         ),
       ),
     );
-    await Future.delayed(duration);
+    Future.delayed(duration, () {
+      if (Get.isDialogOpen ?? false) {
+        Get.back();
+      }
+    });
 
-    if (Get.isDialogOpen ?? false) {
-      Get.back();
-    }
+    await dialogFuture;
   }
 }

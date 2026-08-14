@@ -32,15 +32,17 @@ class LoginView extends StatelessWidget {
                 text: S.of(context).emailLabel,
               ),
               const SizedBox(height: 8),
-              CustomTextFormField().buildCustomTextFormField(
-                controller: controller.emailController,
-                focusNode: controller.emailFocusNode,
-                errorText: controller.emailError.value,
-                onFieldSubmitted: (value) =>
-                    controller.passwordFocusNode.requestFocus(),
-                keyboardType: TextInputType.emailAddress,
-                textInputAction: TextInputAction.next,
-                inputFormatters: [LengthLimitingTextInputFormatter(50)],
+              Obx(
+                () => CustomTextFormField().buildCustomTextFormField(
+                  controller: controller.emailController,
+                  focusNode: controller.emailFocusNode,
+                  errorText: controller.emailError.value,
+                  onFieldSubmitted: (value) =>
+                      controller.passwordFocusNode.requestFocus(),
+                  keyboardType: TextInputType.emailAddress,
+                  textInputAction: TextInputAction.next,
+                  inputFormatters: [LengthLimitingTextInputFormatter(50)],
+                ),
               ),
               const SizedBox(height: 24),
               CustomFieldLabel(
