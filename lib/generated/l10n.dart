@@ -54,6 +54,36 @@ class S {
     return Localizations.of<S>(context, S);
   }
 
+  /// `the sys config data is missing`
+  String get theSysConfigDataIsMissing {
+    return Intl.message(
+      'the sys config data is missing',
+      name: 'theSysConfigDataIsMissing',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Failed to parse sys config response`
+  String get failedToParseSysConfigResponse {
+    return Intl.message(
+      'Failed to parse sys config response',
+      name: 'failedToParseSysConfigResponse',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `the sys config response dows not match the expected model`
+  String get theSysConfigResponseDowsNotMatchTheExpectedModel {
+    return Intl.message(
+      'the sys config response dows not match the expected model',
+      name: 'theSysConfigResponseDowsNotMatchTheExpectedModel',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Skip`
   String get skipButton {
     return Intl.message('Skip', name: 'skipButton', desc: '', args: []);

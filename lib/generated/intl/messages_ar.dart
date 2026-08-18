@@ -43,6 +43,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "errorTitleDialog": MessageLookupByLibrary.simpleMessage(
       "Invalid OTP Value",
     ),
+    "failedToParseSysConfigResponse": MessageLookupByLibrary.simpleMessage(
+      "Failed to parse sys config response",
+    ),
     "fogotPasswordButton": MessageLookupByLibrary.simpleMessage(
       "نسيت كلمة المرور",
     ),
@@ -124,6 +127,13 @@ class MessageLookup extends MessageLookupByLibrary {
     "theServerReturnedAnUnsuccessfulResponse":
         MessageLookupByLibrary.simpleMessage(
           "the server returned an unsuccessful response",
+        ),
+    "theSysConfigDataIsMissing": MessageLookupByLibrary.simpleMessage(
+      "the sys config data is missing",
+    ),
+    "theSysConfigResponseDowsNotMatchTheExpectedModel":
+        MessageLookupByLibrary.simpleMessage(
+          "the sys config response dows not match the expected model",
         ),
     "titleIntro1": MessageLookupByLibrary.simpleMessage(
       "Easily Scan Any Vehicle Type for Details",

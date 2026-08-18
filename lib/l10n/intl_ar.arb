@@ -1,4 +1,7 @@
 {
+  "theSysConfigDataIsMissing": "the sys config data is missing",
+  "failedToParseSysConfigResponse": "Failed to parse sys config response",
+  "theSysConfigResponseDowsNotMatchTheExpectedModel": "the sys config response dows not match the expected model",
   "skipButton": "تخطي",
   "titleIntro1": "Easily Scan Any Vehicle Type for Details",
   "descriptionIntro1": "Supports sedans, hatchbacks, trucks, and more. Get information on any vehicle type easily.",

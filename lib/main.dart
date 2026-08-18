@@ -7,7 +7,7 @@ import 'package:sizer/sizer.dart';
 import 'package:vin_sweep_application/configuration/cache_keys.dart';
 import 'package:vin_sweep_application/generated/l10n.dart';
 import 'package:vin_sweep_application/l10n/app_locale.dart';
-import 'package:vin_sweep_application/screens/intro/view/intro_screen.dart';
+import 'package:vin_sweep_application/screens/splash/splash_screen.dart';
 
 void main() async {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
@@ -40,7 +40,7 @@ class MyApp extends StatelessWidget {
             builder: (_, w, appLocale) {
               return GetMaterialApp(
                 debugShowCheckedModeBanner: false,
-                home: IntroScreen(),
+                home: SplashScreen(),
                 locale: AppLocale().locale,
                 localizationsDelegates: [
                   S.delegate,
