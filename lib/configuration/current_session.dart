@@ -2,9 +2,9 @@ import '../screens/auth/login/model/login_response.dart';
 import '../screens/intro/model/intro_model.dart';
 
 class CurrentSession {
-  CurrentSession._();
+  CurrentSession._private();
 
-  static final CurrentSession _shared = CurrentSession._();
+  static final CurrentSession _shared = CurrentSession._private();
 
   factory CurrentSession() => _shared;
 
@@ -16,11 +16,15 @@ class CurrentSession {
 
   List<IntroModel> get intro => _intro;
 
-  UserModel? userModel;
+  UserModel? _userModel;
 
-  UserModel? getUser() => userModel;
+  set userModel(UserModel? value) {
+    _userModel = value;
+  }
+
+  UserModel? getUser() => _userModel;
 
   void clear() {
-    userModel = null;
+    _userModel = null;
   }
 }
