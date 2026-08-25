@@ -19,11 +19,33 @@ class AppAssets {
 
   String closeIcon = 'assets/common/ic_close.svg';
   String copyRightIcon = 'assets/common/copy-rights.svg';
+  String arrowIcon = 'assets/common/ic-arrow.svg';
+  String backIcon = 'assets/common/ic-back.svg';
 
   String emailBottomSheet = 'assets/dialogs/check_email.svg';
   String successDialog = 'assets/dialogs/success-dialog.json';
   String errorDialog = 'assets/dialogs/error_dialog.svg';
 
   String scanQrCodeAction = 'assets/home_icons/scan_qr_code_action.svg';
+  String scanQrCodeWithAnimation = 'assets/home_icons/scan_qr_code_with_animation.svg';
   String loadingSplashLogo = 'assets/home_icons/loading.json';
+  String blueFileIcon = 'assets/home_icons/blue_file_ic.svg';
+  String purpleFileIcon = 'assets/home_icons/purple_file_ic.svg';
+  String carTotalSweep = 'assets/home_icons/car_total_sweep.svg';
+  String emptyHomeScreen = 'assets/home_icons/empty_home.svg';
+  String searchIcon = 'assets/home_icons/ic-search.svg';
+
+  String contactUsIcon = 'assets/menu_icons/ic -contact us.svg';
+  String aboutUsIcon = 'assets/menu_icons/ic-about us.svg';
+  String linkIcon = 'assets/menu_icons/ic-link.svg';
+  String logoutIcon = 'assets/menu_icons/ic-logout.svg';
+  String paymentIcon = 'assets/menu_icons/ic-payment.svg';
+  String plansIcon = 'assets/menu_icons/ic-plans.svg';
+  String privacyIcon = 'assets/menu_icons/ic-privacy.svg';
+  String profileIcon = 'assets/menu_icons/ic-profile.svg';
+  String refundIcon = 'assets/menu_icons/ic-refund.svg';
+  String scanHistoryIcon = 'assets/menu_icons/ic-scan history.svg';
+  String termsIcon = 'assets/menu_icons/ic-terms.svg';
+  String passwordMenuIcon = 'assets/menu_icons/ic-pass.svg';
+  String seperator = 'assets/menu_icons/Seperator.svg';
 }

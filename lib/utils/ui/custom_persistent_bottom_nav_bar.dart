@@ -3,8 +3,8 @@ import 'package:flutter_svg/svg.dart';
 import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 import 'package:vin_sweep_application/configuration/app_assets.dart';
 import 'package:vin_sweep_application/configuration/app_colors.dart';
-import 'package:vin_sweep_application/screens/home/view/home_api.dart';
-import 'package:vin_sweep_application/screens/home/view/menu_api.dart';
+import 'package:vin_sweep_application/screens/home/tabs/home/home_view.dart';
+import 'package:vin_sweep_application/screens/home/tabs/menu/menu_view.dart';
 
 class CustomPersistentBottomNavBar extends StatelessWidget {
 
@@ -14,6 +14,7 @@ class CustomPersistentBottomNavBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return  SafeArea(
       bottom: false,
+      top: false,
       child: Stack(
         children: [
           PersistentTabView(
@@ -42,7 +43,7 @@ class CustomPersistentBottomNavBar extends StatelessWidget {
                 duration: Duration(microseconds: 200),
               ),
             ),
-            screens: [HomeApi(), MenuApi()],
+            screens: [HomeView(), MenuView()],
             items: [
               PersistentBottomNavBarItem(
                 icon: Container(
@@ -73,9 +74,9 @@ class CustomPersistentBottomNavBar extends StatelessWidget {
           Positioned(
             left: 0,
             right: 0,
-            bottom: 5,
+            bottom: -32,
             //bottom: -30,
-            child: SvgPicture.asset(AppAssets().scanQrCodeAction, width: 160),
+            child: SvgPicture.asset(AppAssets().scanQrCodeWithAnimation, width: 210),
           ),
         ],
       ),

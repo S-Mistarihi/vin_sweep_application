@@ -22,11 +22,14 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+    "aboutUs": MessageLookupByLibrary.simpleMessage("نبذة عنا"),
     "anUnexpectedErrorOccuredPleaseTryAgain":
         MessageLookupByLibrary.simpleMessage(
           "an unexpected error occured , please try again",
         ),
     "backButton": MessageLookupByLibrary.simpleMessage("الرجوع"),
+    "changePassword": MessageLookupByLibrary.simpleMessage("تغيير كلمة المرور"),
+    "contactUs": MessageLookupByLibrary.simpleMessage("اتصل بنا"),
     "descriptionIntro1": MessageLookupByLibrary.simpleMessage(
       "Supports sedans, hatchbacks, trucks, and more. Get information on any vehicle type easily.",
     ),
@@ -38,10 +41,10 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "emailLabel": MessageLookupByLibrary.simpleMessage("البريد الالكتروني"),
     "errorDescriptionDialog": MessageLookupByLibrary.simpleMessage(
-      "Please Re-enter the OTP value received again",
+      "يرجى إعادة إدخال قيمة رمز التحقق التي استلمتها",
     ),
     "errorTitleDialog": MessageLookupByLibrary.simpleMessage(
-      "Invalid OTP Value",
+      "قيمة رمز التحقق غير صالحة",
     ),
     "failedToParseSysConfigResponse": MessageLookupByLibrary.simpleMessage(
       "Failed to parse sys config response",
@@ -59,15 +62,20 @@ class MessageLookup extends MessageLookupByLibrary {
       "يرجى إدخال بياناتك أدناه",
     ),
     "loginSwitcher": MessageLookupByLibrary.simpleMessage("تسجيل الدخول"),
+    "logoutButton": MessageLookupByLibrary.simpleMessage("تسجيل الخروج"),
+    "menu": MessageLookupByLibrary.simpleMessage("القائمة"),
+    "myPlans": MessageLookupByLibrary.simpleMessage("خططي"),
     "nameLabel": MessageLookupByLibrary.simpleMessage("اسم المستخدم"),
     "nextButton": MessageLookupByLibrary.simpleMessage("التالي"),
     "oneTimePinIsRequired": MessageLookupByLibrary.simpleMessage(
       "رمز التحقق مطلوب",
     ),
-    "otpCodeLabel": MessageLookupByLibrary.simpleMessage("OTP Code"),
-    "otpHeaderMainText": MessageLookupByLibrary.simpleMessage("Enter OTP"),
+    "otpCodeLabel": MessageLookupByLibrary.simpleMessage("رمز التحقق"),
+    "otpHeaderMainText": MessageLookupByLibrary.simpleMessage(
+      "أدخل رمز التحقق",
+    ),
     "otpHeaderSubText": MessageLookupByLibrary.simpleMessage(
-      "Enter the OTP code sent to the registered email address.",
+      "أدخل رمز التحقق (OTP) المرسل إلى عنوان البريد الإلكتروني المسجل",
     ),
     "otpResentSuccessfully": MessageLookupByLibrary.simpleMessage(
       "تم إعادة إرسال الرمز بنجاح",
@@ -76,6 +84,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "passwordMustBeAtLeast6Character": MessageLookupByLibrary.simpleMessage(
       "يجب أن تكون كلمة المرور 6 أحرف على الأقل",
     ),
+    "paymentsInfo": MessageLookupByLibrary.simpleMessage("معلومات الدفع"),
     "pleaseEnterCorrectName": MessageLookupByLibrary.simpleMessage(
       "يرجى إدخال اسم صحيح",
     ),
@@ -97,6 +106,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "pleaseFillYourPassword": MessageLookupByLibrary.simpleMessage(
       "يرجى إدخال كلمة المرور",
     ),
+    "privacyPolicy": MessageLookupByLibrary.simpleMessage("سياسة الخصوصية"),
+    "profile": MessageLookupByLibrary.simpleMessage("الملف الشخصي"),
+    "refundPolicy": MessageLookupByLibrary.simpleMessage("سياسة الاسترداد"),
     "registerButton": MessageLookupByLibrary.simpleMessage("إنشاء حساب"),
     "registerHeaderMainText": MessageLookupByLibrary.simpleMessage(
       "إنشاء حسابك",
@@ -105,18 +117,22 @@ class MessageLookup extends MessageLookupByLibrary {
       "يرجى إدخال معلوماتك أدناه",
     ),
     "rememberMeCheckbox": MessageLookupByLibrary.simpleMessage("تذكرني!"),
-    "resendCode": MessageLookupByLibrary.simpleMessage("Resend Code"),
+    "resendCode": MessageLookupByLibrary.simpleMessage("إعادة إرسال الرمز"),
+    "scansHistory": MessageLookupByLibrary.simpleMessage(
+      "سجل عمليات المسح الضوئي",
+    ),
     "skipButton": MessageLookupByLibrary.simpleMessage("تخطي"),
-    "submitOtpButton": MessageLookupByLibrary.simpleMessage("Submit"),
+    "submitOtpButton": MessageLookupByLibrary.simpleMessage("إرسال"),
     "successDescriptionDialog": MessageLookupByLibrary.simpleMessage(
-      "You created an account successfully.",
+      "لقد أنشأت حسابًا بنجاح",
     ),
     "successTitleDialog": MessageLookupByLibrary.simpleMessage(
-      "OTP verified successfully",
+      "تم التحقق من رمز بنجاح",
     ),
     "sysConfigEndpointWasNotFound": MessageLookupByLibrary.simpleMessage(
       "sys config endpoint was not found",
     ),
+    "termsConditions": MessageLookupByLibrary.simpleMessage("الشروط والأحكام"),
     "theRequestTimedOutPleaseTryAgainLater":
         MessageLookupByLibrary.simpleMessage(
           "the request timed out please try again later",

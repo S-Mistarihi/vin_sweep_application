@@ -36,7 +36,6 @@ class ApiRegisterRepository extends RegisterRepository {
       url: ApiEndPoints.signup,
       context: context,
       showLoading: showLoading,
-      useAuthorization: false,
       postParameters: {
         'email': email,
         'password': password,

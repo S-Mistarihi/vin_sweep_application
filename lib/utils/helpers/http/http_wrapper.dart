@@ -6,6 +6,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/io_client.dart';
+import 'package:vin_sweep_application/configuration/current_session.dart';
 
 import '../../../generated/l10n.dart';
 import '../../../l10n/app_locale.dart';
@@ -23,9 +24,6 @@ class HttpWrapper {
   final Map<String, String>? files;
   final Map<String, List<String>>? filesList;
   final Map<String, String>? headers;
-  final String? token;
-  final String? tokenType;
-  final bool useAuthorization;
   final bool showLoading;
   final bool unFocusPrimary;
   final Duration timeout;
@@ -39,9 +37,6 @@ class HttpWrapper {
     this.files,
     this.filesList,
     this.headers,
-    this.token,
-    this.tokenType,
-    this.useAuthorization = true,
     this.showLoading = false,
     this.unFocusPrimary = true,
     this.timeout = const Duration(seconds: 60),
@@ -59,9 +54,10 @@ class HttpWrapper {
           },
     );
 
-    if (useAuthorization && token != null && token!.trim().isNotEmpty) {
-      final type = (tokenType ?? 'Bearer').trim();
-      _headers['Authorization'] = '$type ${token!.trim()}';
+    if (CurrentSession().getUser() != null &&
+        CurrentSession().getUser()?.accessToken != null) {
+      _headers['Authorization'] =
+          '${CurrentSession().getUser()!.tokenType} ${CurrentSession().getUser()!.accessToken}';
     }
   }
 

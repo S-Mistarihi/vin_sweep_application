@@ -22,11 +22,14 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+    "aboutUs": MessageLookupByLibrary.simpleMessage("About Us"),
     "anUnexpectedErrorOccuredPleaseTryAgain":
         MessageLookupByLibrary.simpleMessage(
           "an unexpected error occured , please try again",
         ),
     "backButton": MessageLookupByLibrary.simpleMessage("Back"),
+    "changePassword": MessageLookupByLibrary.simpleMessage("Change Password"),
+    "contactUs": MessageLookupByLibrary.simpleMessage("Contact Us"),
     "descriptionIntro1": MessageLookupByLibrary.simpleMessage(
       "Supports sedans, hatchbacks, trucks, and more. Get information on any vehicle type easily.",
     ),
@@ -59,6 +62,9 @@ class MessageLookup extends MessageLookupByLibrary {
       "Please enter your credentials below",
     ),
     "loginSwitcher": MessageLookupByLibrary.simpleMessage("Sign In"),
+    "logoutButton": MessageLookupByLibrary.simpleMessage("Logout"),
+    "menu": MessageLookupByLibrary.simpleMessage("Menu"),
+    "myPlans": MessageLookupByLibrary.simpleMessage("My Plans"),
     "nameLabel": MessageLookupByLibrary.simpleMessage("Name"),
     "nextButton": MessageLookupByLibrary.simpleMessage("Next"),
     "oneTimePinIsRequired": MessageLookupByLibrary.simpleMessage(
@@ -76,6 +82,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "passwordMustBeAtLeast6Character": MessageLookupByLibrary.simpleMessage(
       "Password must be at least 6 characters",
     ),
+    "paymentsInfo": MessageLookupByLibrary.simpleMessage("Payments Info"),
     "pleaseEnterCorrectName": MessageLookupByLibrary.simpleMessage(
       "Please enter a correct name",
     ),
@@ -97,6 +104,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "pleaseFillYourPassword": MessageLookupByLibrary.simpleMessage(
       "Please fill your password",
     ),
+    "privacyPolicy": MessageLookupByLibrary.simpleMessage("Privacy Policy"),
+    "profile": MessageLookupByLibrary.simpleMessage("Profile"),
+    "refundPolicy": MessageLookupByLibrary.simpleMessage("Refund Policy"),
     "registerButton": MessageLookupByLibrary.simpleMessage("Register"),
     "registerHeaderMainText": MessageLookupByLibrary.simpleMessage(
       "Create your Account",
@@ -106,6 +116,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "rememberMeCheckbox": MessageLookupByLibrary.simpleMessage("Remember me!"),
     "resendCode": MessageLookupByLibrary.simpleMessage("Resend Code"),
+    "scansHistory": MessageLookupByLibrary.simpleMessage("Scans History"),
     "skipButton": MessageLookupByLibrary.simpleMessage("Skip"),
     "submitOtpButton": MessageLookupByLibrary.simpleMessage("Submit"),
     "successDescriptionDialog": MessageLookupByLibrary.simpleMessage(
@@ -116,6 +127,9 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "sysConfigEndpointWasNotFound": MessageLookupByLibrary.simpleMessage(
       "sys config endpoint was not found",
+    ),
+    "termsConditions": MessageLookupByLibrary.simpleMessage(
+      "Terms & Conditions",
     ),
     "theRequestTimedOutPleaseTryAgainLater":
         MessageLookupByLibrary.simpleMessage(

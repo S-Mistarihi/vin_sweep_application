@@ -42,4 +42,10 @@ class AppColors {
 
   Color firstPersistantBottomNavBarColor = const Color(0xff1D416F);
   Color secondPersistantBottomNavBarColor = const Color(0xff0F2138);
+
+  Color menuDividerColor = const Color(0xffD0E1EA);
+  Color logoutButton = const Color(0xffCE2829);
+
+  Color cardPlanShadow = const Color(0xffC4C4C429);
+  Color mainColorWithNoScans = const Color(0xff1D416F);
 }

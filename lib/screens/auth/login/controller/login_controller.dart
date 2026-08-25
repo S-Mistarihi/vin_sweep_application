@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get/get.dart';
 import 'package:vin_sweep_application/configuration/cache_keys.dart';
-import 'package:vin_sweep_application/screens/home/view/home_view.dart';
+import 'package:vin_sweep_application/screens/home/bottom_view.dart';
 
 import '../../../../configuration/current_session.dart';
 import '../../../../generated/l10n.dart';
@@ -101,7 +101,7 @@ class LoginController extends GetxController {
           await _secureStorage.delete(key: CacheKeys.password);
         }
         CurrentSession().userModel = data;
-        Get.offAll(() => const HomeView());
+        Get.offAll(() => const BottomView());
     }
   }
 

@@ -32,8 +32,6 @@ class ApiSystemConfigRepository extends SystemConfigRepository {
     final result = await HttpWrapper(
       url: url,
       context: context,
-      token: token,
-      useAuthorization: token != null,
       timeout: timeout,
       showLoading: false,
     ).get();

@@ -528,6 +528,96 @@ class S {
       args: [],
     );
   }
+
+  /// `Menu`
+  String get menu {
+    return Intl.message('Menu', name: 'menu', desc: '', args: []);
+  }
+
+  /// `Profile`
+  String get profile {
+    return Intl.message('Profile', name: 'profile', desc: '', args: []);
+  }
+
+  /// `My Plans`
+  String get myPlans {
+    return Intl.message('My Plans', name: 'myPlans', desc: '', args: []);
+  }
+
+  /// `Payments Info`
+  String get paymentsInfo {
+    return Intl.message(
+      'Payments Info',
+      name: 'paymentsInfo',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Scans History`
+  String get scansHistory {
+    return Intl.message(
+      'Scans History',
+      name: 'scansHistory',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Contact Us`
+  String get contactUs {
+    return Intl.message('Contact Us', name: 'contactUs', desc: '', args: []);
+  }
+
+  /// `Change Password`
+  String get changePassword {
+    return Intl.message(
+      'Change Password',
+      name: 'changePassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `About Us`
+  String get aboutUs {
+    return Intl.message('About Us', name: 'aboutUs', desc: '', args: []);
+  }
+
+  /// `Refund Policy`
+  String get refundPolicy {
+    return Intl.message(
+      'Refund Policy',
+      name: 'refundPolicy',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Terms & Conditions`
+  String get termsConditions {
+    return Intl.message(
+      'Terms & Conditions',
+      name: 'termsConditions',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Privacy Policy`
+  String get privacyPolicy {
+    return Intl.message(
+      'Privacy Policy',
+      name: 'privacyPolicy',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Logout`
+  String get logoutButton {
+    return Intl.message('Logout', name: 'logoutButton', desc: '', args: []);
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

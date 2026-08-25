@@ -40,7 +40,6 @@ class ApiOtpRepository extends OtpRepository {
       url: ApiEndPoints.generateOtp,
       context: context,
       showLoading: showLoading,
-      useAuthorization: false,
       postParameters: {'email': email, 'otpType': type.apiValue},
     ).post();
 
@@ -96,7 +95,6 @@ class ApiOtpRepository extends OtpRepository {
       url: ApiEndPoints.verifyOtp,
       context: context,
       showLoading: showLoading,
-      useAuthorization: false,
       postParameters: {
         'email': email,
         'otpType': type.apiValue,

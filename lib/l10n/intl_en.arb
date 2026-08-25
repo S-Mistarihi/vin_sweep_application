@@ -52,5 +52,17 @@
   "errorTitleDialog": "Invalid OTP Value",
   "errorDescriptionDialog": "Please Re-enter the OTP value received again",
   "successTitleDialog": "OTP verified successfully",
-  "successDescriptionDialog": "You created an account successfully."
+  "successDescriptionDialog": "You created an account successfully.",
+  "menu": "Menu",
+  "profile": "Profile",
+  "myPlans": "My Plans",
+  "paymentsInfo": "Payments Info",
+  "scansHistory": "Scans History",
+  "contactUs": "Contact Us",
+  "changePassword": "Change Password",
+  "aboutUs": "About Us",
+  "refundPolicy": "Refund Policy",
+  "termsConditions": "Terms & Conditions",
+  "privacyPolicy": "Privacy Policy",
+  "logoutButton": "Logout"
 }
