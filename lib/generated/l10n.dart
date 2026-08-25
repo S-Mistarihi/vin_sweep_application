@@ -618,6 +618,26 @@ class S {
   String get logoutButton {
     return Intl.message('Logout', name: 'logoutButton', desc: '', args: []);
   }
+
+  /// `Password and confirm password do not match`
+  String get passwordsDoNotMatch {
+    return Intl.message(
+      'Password and confirm password do not match',
+      name: 'passwordsDoNotMatch',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `New password must be different from the current password`
+  String get newPasswordMustBeDifferent {
+    return Intl.message(
+      'New password must be different from the current password',
+      name: 'newPasswordMustBeDifferent',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

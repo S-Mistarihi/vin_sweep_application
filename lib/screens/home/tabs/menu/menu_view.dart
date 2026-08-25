@@ -5,6 +5,12 @@ import 'package:sizer/sizer.dart';
 import 'package:vin_sweep_application/configuration/app_assets.dart';
 import 'package:vin_sweep_application/configuration/app_colors.dart';
 import 'package:vin_sweep_application/screens/auth/auth_view.dart';
+import 'package:vin_sweep_application/screens/home/tabs/menu/change_password/view/change_password_view.dart';
+import 'package:vin_sweep_application/screens/home/tabs/menu/contact_us/view/contact_us_view.dart';
+import 'package:vin_sweep_application/screens/home/tabs/menu/payment/view/payment_view.dart';
+import 'package:vin_sweep_application/screens/home/tabs/menu/plans/view/plans_view.dart';
+import 'package:vin_sweep_application/screens/home/tabs/menu/profile/view/profile_view.dart';
+import 'package:vin_sweep_application/screens/home/tabs/menu/scan_history/view/scan_history_view.dart';
 
 import '../../../../generated/l10n.dart';
 
@@ -19,7 +25,7 @@ class MenuView extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 24.0),
         child: Column(
           children: [
-            SizedBox(height: 5.h,),
+            SizedBox(height: 5.h),
             Align(
               alignment: Alignment.center,
               child: Text(
@@ -36,37 +42,55 @@ class MenuView extends StatelessWidget {
               context: context,
               icon: AppAssets().profileIcon,
               name: S.of(context).profile,
-              onTap: () {},
+              onTap: () => Get.to(
+                ProfileView(),
+                transition: Transition.rightToLeft,
+              ),
             ),
             _buildMenuItem(
               context: context,
               icon: AppAssets().plansIcon,
               name: S.of(context).myPlans,
-              onTap: () {},
+              onTap: () => Get.to(
+                PlansView(),
+                transition: Transition.rightToLeft,
+              ),
             ),
             _buildMenuItem(
               context: context,
               icon: AppAssets().paymentIcon,
               name: S.of(context).paymentsInfo,
-              onTap: () {},
+              onTap: () => Get.to(
+                PaymentView(),
+                transition: Transition.rightToLeft,
+              ),
             ),
             _buildMenuItem(
               context: context,
               icon: AppAssets().scanHistoryIcon,
               name: S.of(context).scansHistory,
-              onTap: () {},
+              onTap: () => Get.to(
+                ScanHistoryView(),
+                transition: Transition.rightToLeft,
+              ),
             ),
             _buildMenuItem(
               context: context,
               icon: AppAssets().contactUsIcon,
               name: S.of(context).contactUs,
-              onTap: () {},
+              onTap: () => Get.to(
+                ContactUsView(),
+                transition: Transition.rightToLeft,
+              ),
             ),
             _buildMenuItem(
               context: context,
               icon: AppAssets().passwordMenuIcon,
               name: S.of(context).changePassword,
-              onTap: () {},
+              onTap: () => Get.to(
+                ChangePasswordView(),
+                transition: Transition.rightToLeft,
+              ),
             ),
             _buildMenuItem(
               context: context,

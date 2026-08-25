@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:sizer/sizer.dart';
 import 'package:vin_sweep_application/configuration/app_colors.dart';
-import 'package:vin_sweep_application/utils/ui/common/custom_header_with_close_button.dart';
+import 'package:vin_sweep_application/utils/ui/common/custom_main_sub_header.dart';
 import 'package:vin_sweep_application/utils/ui/custom_button.dart';
 import '../../../../configuration/app_assets.dart';
 import '../../../../generated/l10n.dart';
@@ -32,7 +32,12 @@ class OtpView extends StatelessWidget {
     return Scaffold(
       body: Stack(
         children: [
-          CustomHeaderWithCloseButton(headerSpace: 25),
+          CustomMainSubHeader(
+            headerSpace: 25,
+            headerMainText: S.of(context).otpHeaderMainText,
+            headerSubText: S.of(context).otpHeaderSubText,
+            leftIcon: AppAssets().closeIcon,
+          ),
           Positioned(
             top: 25.h,
             right: 0,

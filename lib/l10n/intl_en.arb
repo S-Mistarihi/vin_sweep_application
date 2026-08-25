@@ -64,5 +64,7 @@
   "refundPolicy": "Refund Policy",
   "termsConditions": "Terms & Conditions",
   "privacyPolicy": "Privacy Policy",
-  "logoutButton": "Logout"
+  "logoutButton": "Logout",
+  "passwordsDoNotMatch": "Password and confirm password do not match",
+  "newPasswordMustBeDifferent": "New password must be different from the current password"
 }

@@ -66,6 +66,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "menu": MessageLookupByLibrary.simpleMessage("القائمة"),
     "myPlans": MessageLookupByLibrary.simpleMessage("خططي"),
     "nameLabel": MessageLookupByLibrary.simpleMessage("اسم المستخدم"),
+    "newPasswordMustBeDifferent": MessageLookupByLibrary.simpleMessage(
+      "New password must be different from the current password",
+    ),
     "nextButton": MessageLookupByLibrary.simpleMessage("التالي"),
     "oneTimePinIsRequired": MessageLookupByLibrary.simpleMessage(
       "رمز التحقق مطلوب",
@@ -83,6 +86,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "passwordLabel": MessageLookupByLibrary.simpleMessage("كلمة المرور"),
     "passwordMustBeAtLeast6Character": MessageLookupByLibrary.simpleMessage(
       "يجب أن تكون كلمة المرور 6 أحرف على الأقل",
+    ),
+    "passwordsDoNotMatch": MessageLookupByLibrary.simpleMessage(
+      "Password and confirm password do not match",
     ),
     "paymentsInfo": MessageLookupByLibrary.simpleMessage("معلومات الدفع"),
     "pleaseEnterCorrectName": MessageLookupByLibrary.simpleMessage(

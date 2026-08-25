@@ -66,6 +66,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "menu": MessageLookupByLibrary.simpleMessage("Menu"),
     "myPlans": MessageLookupByLibrary.simpleMessage("My Plans"),
     "nameLabel": MessageLookupByLibrary.simpleMessage("Name"),
+    "newPasswordMustBeDifferent": MessageLookupByLibrary.simpleMessage(
+      "New password must be different from the current password",
+    ),
     "nextButton": MessageLookupByLibrary.simpleMessage("Next"),
     "oneTimePinIsRequired": MessageLookupByLibrary.simpleMessage(
       "One time pin is required",
@@ -81,6 +84,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "passwordLabel": MessageLookupByLibrary.simpleMessage("Password"),
     "passwordMustBeAtLeast6Character": MessageLookupByLibrary.simpleMessage(
       "Password must be at least 6 characters",
+    ),
+    "passwordsDoNotMatch": MessageLookupByLibrary.simpleMessage(
+      "Password and confirm password do not match",
     ),
     "paymentsInfo": MessageLookupByLibrary.simpleMessage("Payments Info"),
     "pleaseEnterCorrectName": MessageLookupByLibrary.simpleMessage(

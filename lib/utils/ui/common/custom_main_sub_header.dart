@@ -6,10 +6,19 @@ import 'package:vin_sweep_application/configuration/app_assets.dart';
 import '../../../configuration/app_colors.dart';
 import '../../../generated/l10n.dart';
 
-class CustomHeaderWithCloseButton extends StatelessWidget {
+class CustomMainSubHeader extends StatelessWidget {
   final double headerSpace;
+  final String headerMainText;
+  final String headerSubText;
+  final String leftIcon;
 
-  const CustomHeaderWithCloseButton({super.key, required this.headerSpace});
+  const CustomMainSubHeader({
+    super.key,
+    required this.headerSpace,
+    required this.headerMainText,
+    required this.headerSubText,
+    required this.leftIcon,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +43,7 @@ class CustomHeaderWithCloseButton extends StatelessWidget {
                 Navigator.of(context).pop();
               },
               child: SvgPicture.asset(
-                AppAssets().closeIcon,
+                leftIcon,
                 width: 24,
                 height: 24,
                 colorFilter: ColorFilter.mode(
@@ -45,7 +54,7 @@ class CustomHeaderWithCloseButton extends StatelessWidget {
             ),
             SizedBox(height: 6.h),
             Text(
-              S.of(context).otpHeaderMainText,
+              headerMainText,
               style: TextStyle(
                 color: AppColors().baseColor,
                 fontSize: 22,
@@ -54,7 +63,7 @@ class CustomHeaderWithCloseButton extends StatelessWidget {
             ),
             SizedBox(height: 11),
             Text(
-              S.of(context).otpHeaderSubText,
+              headerSubText,
               style: TextStyle(
                 color: AppColors().baseColor,
                 fontSize: 16,

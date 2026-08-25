@@ -64,5 +64,7 @@
   "refundPolicy": "سياسة الاسترداد",
   "termsConditions": "الشروط والأحكام",
   "privacyPolicy": "سياسة الخصوصية",
-  "logoutButton": "تسجيل الخروج"
+  "logoutButton": "تسجيل الخروج",
+  "passwordsDoNotMatch": "Password and confirm password do not match",
+  "newPasswordMustBeDifferent": "New password must be different from the current password"
 }
