@@ -58,8 +58,7 @@ class LoginController extends GetxController {
     emailFocusNode.unfocus();
     passwordFocusNode.unfocus();
 
-    emailError.value = '';
-    passwordError.value = '';
+    _clearErrors();
   }
 
   void _clearErrors() {

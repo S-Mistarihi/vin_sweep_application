@@ -44,10 +44,7 @@ class RegisterController extends GetxController {
     passwordFocusNode.unfocus();
     zipCodeFocusNode.unfocus();
 
-    nameError.value = '';
-    emailError.value = '';
-    passwordError.value = '';
-    zipCodeError.value = '';
+    _clearErrors();
   }
 
   void _clearErrors() {
