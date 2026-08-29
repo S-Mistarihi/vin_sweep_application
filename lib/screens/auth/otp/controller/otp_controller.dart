@@ -13,16 +13,13 @@ import '../model/verify_otp_response.dart';
 import '../repository/otp_repository.dart';
 
 class OtpController extends GetxController {
-  // Configuration
-  static const int initialTime = 120;
+  static const int initialTime = 120; //120 second == 2 minutes
   static const int otpLength = 6;
 
-  // State
   final RxInt remainingTime = initialTime.obs;
   final RxString otpValue = ''.obs;
   final RxBool isVerifying = false.obs;
 
-  // Controller
   final PinInputController otpTextController = PinInputController();
   Timer? _timer;
 
@@ -32,19 +29,16 @@ class OtpController extends GetxController {
     startTimer();
   }
 
-  // OTP Changed
-  void changeOtpValue(String value) {
-    otpValue.value = value;
-  }
-
-  // Clear OTP
   void clearOtpField() {
     otpTextController.clear();
     otpValue.value = '';
   }
 
-  // Verify OTP
-  Future<void> verifyOtp({
+  void changeOtpValue(String value) {
+    otpValue.value = value;
+  }
+
+  Future<void> verifyOtpPressed({
     required String email,
     required OtpType type,
     required ValueChanged<String> onSuccess,
@@ -69,7 +63,7 @@ class OtpController extends GetxController {
       );
 
       switch (result) {
-        case Failure(:final exception):
+        case Failure():
           //Get.find<AuthController>().showErrorToast(exception.message);
           clearOtpField();
 
@@ -77,28 +71,30 @@ class OtpController extends GetxController {
             title: S.of(Get.context!).errorTitleDialog,
             description: S.of(Get.context!).errorDescriptionDialog,
           );
+          break;
 
         case Success(:final data):
-          final response = data as VerifyOtpResponse;
-          await CustomDialog.showSuccessDialog(
-            title: S.of(Get.context!).successTitleDialog,
-            description: S.of(Get.context!).successDescriptionDialog,
-          );
+          //final response = data ;
+          //final response = data as VerifyOtpResponse;
+          // await CustomDialog.showSuccessDialog(
+          //   title: S.of(Get.context!).successTitleDialog,
+          //   description: S.of(Get.context!).successDescriptionDialog,
+          // );
 
-          onSuccess(response.result?.token ?? '');
+          onSuccess(data.result?.token ?? '');
+          break;
       }
     } finally {
       isVerifying.value = false;
     }
   }
 
-  // Resend OTP
   Future<void> resendOtp(String email, OtpType type) async {
     if (remainingTime.value > 0) {
       return;
     }
 
-    final result = await createOtpRepository().requestOtp(
+    final result = await createOtpRepository().generateOtp(
       context: Get.context!,
       email: email,
       type: type,
@@ -121,7 +117,6 @@ class OtpController extends GetxController {
     }
   }
 
-  // Timer
   void startTimer() {
     _timer?.cancel();
     remainingTime.value = initialTime;

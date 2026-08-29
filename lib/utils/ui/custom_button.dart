@@ -14,7 +14,7 @@ class CustomButton extends StatelessWidget {
     this.borderColor = const Color(0xff1D416F),
   });
 
-  final void Function() onPressed;
+  final void Function()? onPressed;
   final String text;
   final Color backgroundColor;
   final Color foregroundColor;

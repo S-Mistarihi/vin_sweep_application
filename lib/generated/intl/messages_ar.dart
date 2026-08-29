@@ -29,6 +29,13 @@ class MessageLookup extends MessageLookupByLibrary {
         ),
     "backButton": MessageLookupByLibrary.simpleMessage("الرجوع"),
     "changePassword": MessageLookupByLibrary.simpleMessage("تغيير كلمة المرور"),
+    "confirmEmailLabel": MessageLookupByLibrary.simpleMessage("Confirm Email"),
+    "confirmPasswordDoesNotMatch": MessageLookupByLibrary.simpleMessage(
+      "Confirm password does not match",
+    ),
+    "confirmPasswordLabel": MessageLookupByLibrary.simpleMessage(
+      "Confirm Password",
+    ),
     "contactUs": MessageLookupByLibrary.simpleMessage("اتصل بنا"),
     "descriptionIntro1": MessageLookupByLibrary.simpleMessage(
       "Supports sedans, hatchbacks, trucks, and more. Get information on any vehicle type easily.",
@@ -66,6 +73,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "menu": MessageLookupByLibrary.simpleMessage("القائمة"),
     "myPlans": MessageLookupByLibrary.simpleMessage("خططي"),
     "nameLabel": MessageLookupByLibrary.simpleMessage("اسم المستخدم"),
+    "newPasswordLabel": MessageLookupByLibrary.simpleMessage("New Password"),
     "newPasswordMustBeDifferent": MessageLookupByLibrary.simpleMessage(
       "New password must be different from the current password",
     ),
@@ -175,6 +183,9 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "youCreatedAnAccountSuccessfully": MessageLookupByLibrary.simpleMessage(
       "تم إنشاء الحساب بنجاح",
+    ),
+    "yourPasswordResetSuccessfull": MessageLookupByLibrary.simpleMessage(
+      "Your password reset successfull",
     ),
     "zipCodeLabel": MessageLookupByLibrary.simpleMessage("الرمز البريدي"),
   };

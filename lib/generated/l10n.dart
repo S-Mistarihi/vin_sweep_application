@@ -454,10 +454,10 @@ class S {
     );
   }
 
-  /// `One time pin is required`
+  /// `OTP pin is required`
   String get oneTimePinIsRequired {
     return Intl.message(
-      'One time pin is required',
+      'OTP pin is required',
       name: 'oneTimePinIsRequired',
       desc: '',
       args: [],
@@ -634,6 +634,56 @@ class S {
     return Intl.message(
       'New password must be different from the current password',
       name: 'newPasswordMustBeDifferent',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Confirm Email`
+  String get confirmEmailLabel {
+    return Intl.message(
+      'Confirm Email',
+      name: 'confirmEmailLabel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Confirm Password`
+  String get confirmPasswordLabel {
+    return Intl.message(
+      'Confirm Password',
+      name: 'confirmPasswordLabel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `New Password`
+  String get newPasswordLabel {
+    return Intl.message(
+      'New Password',
+      name: 'newPasswordLabel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Confirm password does not match`
+  String get confirmPasswordDoesNotMatch {
+    return Intl.message(
+      'Confirm password does not match',
+      name: 'confirmPasswordDoesNotMatch',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your password reset successfull`
+  String get yourPasswordResetSuccessfull {
+    return Intl.message(
+      'Your password reset successfull',
+      name: 'yourPasswordResetSuccessfull',
       desc: '',
       args: [],
     );

@@ -62,7 +62,7 @@ class ApiRegisterRepository extends RegisterRepository {
       }
       final json = jsonDecode(body);
       if (json is! Map<String, dynamic>) {
-        return Failure(MappingException('Unexpected login response structure'));
+        return Failure(MappingException('Unexpected register response structure'));
       }
       final response = GenericResponse.fromJson(json);
       if (response.success && response.code == 200) {

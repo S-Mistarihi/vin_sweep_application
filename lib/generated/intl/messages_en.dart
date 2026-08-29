@@ -29,6 +29,13 @@ class MessageLookup extends MessageLookupByLibrary {
         ),
     "backButton": MessageLookupByLibrary.simpleMessage("Back"),
     "changePassword": MessageLookupByLibrary.simpleMessage("Change Password"),
+    "confirmEmailLabel": MessageLookupByLibrary.simpleMessage("Confirm Email"),
+    "confirmPasswordDoesNotMatch": MessageLookupByLibrary.simpleMessage(
+      "Confirm password does not match",
+    ),
+    "confirmPasswordLabel": MessageLookupByLibrary.simpleMessage(
+      "Confirm Password",
+    ),
     "contactUs": MessageLookupByLibrary.simpleMessage("Contact Us"),
     "descriptionIntro1": MessageLookupByLibrary.simpleMessage(
       "Supports sedans, hatchbacks, trucks, and more. Get information on any vehicle type easily.",
@@ -66,12 +73,13 @@ class MessageLookup extends MessageLookupByLibrary {
     "menu": MessageLookupByLibrary.simpleMessage("Menu"),
     "myPlans": MessageLookupByLibrary.simpleMessage("My Plans"),
     "nameLabel": MessageLookupByLibrary.simpleMessage("Name"),
+    "newPasswordLabel": MessageLookupByLibrary.simpleMessage("New Password"),
     "newPasswordMustBeDifferent": MessageLookupByLibrary.simpleMessage(
       "New password must be different from the current password",
     ),
     "nextButton": MessageLookupByLibrary.simpleMessage("Next"),
     "oneTimePinIsRequired": MessageLookupByLibrary.simpleMessage(
-      "One time pin is required",
+      "OTP pin is required",
     ),
     "otpCodeLabel": MessageLookupByLibrary.simpleMessage("OTP Code"),
     "otpHeaderMainText": MessageLookupByLibrary.simpleMessage("Enter OTP"),
@@ -173,6 +181,9 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "youCreatedAnAccountSuccessfully": MessageLookupByLibrary.simpleMessage(
       "You created an account successfully",
+    ),
+    "yourPasswordResetSuccessfull": MessageLookupByLibrary.simpleMessage(
+      "Your password reset successfull",
     ),
     "zipCodeLabel": MessageLookupByLibrary.simpleMessage("Zip Code"),
   };

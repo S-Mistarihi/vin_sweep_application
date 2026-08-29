@@ -132,21 +132,27 @@ class OtpView extends StatelessWidget {
                     );
                   }),
                   const Spacer(),
-                  CustomButton(
-                    onPressed: () {
-                      controller.verifyOtp(
-                        email: email,
-                        type: type,
-                        onSuccess: onSuccess,
-                      );
-                    },
-                    text: S.of(context).submitOtpButton,
-                    backgroundColor: AppColors().buttonWithBackground,
-                    foregroundColor: AppColors().buttonWithBackgroundText,
-                    textSize: 20,
-                    fontWeight: FontWeight.bold,
-                    horizontalPadding: 148,
-                    verticalPadding: 12,
+                  Obx(
+                    () => CustomButton(
+                      onPressed: controller.isVerifying.value
+                          ? null
+                          : () {
+                              controller.verifyOtpPressed(
+                                email: email,
+                                type: type,
+                                onSuccess: onSuccess,
+                              );
+                            },
+                      text: controller.isVerifying.value
+                          ? 'Verifing ...'
+                          : S.of(context).submitOtpButton,
+                      backgroundColor: AppColors().buttonWithBackground,
+                      foregroundColor: AppColors().buttonWithBackgroundText,
+                      textSize: 20,
+                      fontWeight: FontWeight.bold,
+                      horizontalPadding: 148,
+                      verticalPadding: 12,
+                    ),
                   ),
                   SizedBox(height: 2.5.h),
                   SvgPicture.asset(

@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
@@ -99,6 +101,7 @@ class CustomDialog {
     required String description,
     Duration duration = const Duration(seconds: 10),
   }) async {
+    Timer? autoCloseTimer;
     final dialogFuture = Get.dialog(
       barrierDismissible: true,
       Dialog(
@@ -164,12 +167,13 @@ class CustomDialog {
         ),
       ),
     );
-    Future.delayed(duration, () {
+    autoCloseTimer = Timer(duration, () {
       if (Get.isDialogOpen ?? false) {
         Get.back();
       }
     });
 
     await dialogFuture;
+    autoCloseTimer.cancel();
   }
 }

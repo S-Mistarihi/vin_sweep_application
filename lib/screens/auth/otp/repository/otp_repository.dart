@@ -12,7 +12,8 @@ import '../../register/model/generic_response.dart';
 import '../model/verify_otp_response.dart';
 
 abstract class OtpRepository {
-  Future<RepositoryResult<GenericResponse>> requestOtp({
+  //endPoint prototype
+  Future<RepositoryResult<GenericResponse>> generateOtp({
     required BuildContext context,
     required String email,
     required OtpType type,
@@ -29,8 +30,10 @@ abstract class OtpRepository {
 }
 
 class ApiOtpRepository extends OtpRepository {
+  //Method 1
+  //***************************************************************************
   @override
-  Future<RepositoryResult<GenericResponse>> requestOtp({
+  Future<RepositoryResult<GenericResponse>> generateOtp({
     required BuildContext context,
     required String email,
     required OtpType type,
@@ -83,6 +86,8 @@ class ApiOtpRepository extends OtpRepository {
     }
   }
 
+  //Method 2
+  //***************************************************************************
   @override
   Future<RepositoryResult<VerifyOtpResponse>> verifyOtp({
     required BuildContext context,
@@ -147,7 +152,7 @@ class ApiOtpRepository extends OtpRepository {
 
 class DemoOtpRepository extends OtpRepository {
   @override
-  Future<RepositoryResult<GenericResponse>> requestOtp({
+  Future<RepositoryResult<GenericResponse>> generateOtp({
     required BuildContext context,
     required String email,
     required OtpType type,

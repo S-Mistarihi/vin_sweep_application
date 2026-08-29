@@ -44,7 +44,7 @@
   "zipCodeLabel": "Zip Code",
   "otpHeaderMainText": "Enter OTP",
   "otpHeaderSubText": "Enter the OTP code sent to the registered email address.",
-  "oneTimePinIsRequired": "One time pin is required",
+  "oneTimePinIsRequired": "OTP pin is required",
   "otpResentSuccessfully": "OTP resent successfully",
   "otpCodeLabel": "OTP Code",
   "submitOtpButton": "Submit",
@@ -66,5 +66,10 @@
   "privacyPolicy": "Privacy Policy",
   "logoutButton": "Logout",
   "passwordsDoNotMatch": "Password and confirm password do not match",
-  "newPasswordMustBeDifferent": "New password must be different from the current password"
+  "newPasswordMustBeDifferent": "New password must be different from the current password",
+  "confirmEmailLabel": "Confirm Email",
+  "confirmPasswordLabel": "Confirm Password",
+  "newPasswordLabel": "New Password",
+  "confirmPasswordDoesNotMatch": "Confirm password does not match",
+  "yourPasswordResetSuccessfull": "Your password reset successfull"
 }

@@ -45,6 +45,11 @@ class LoginController extends GetxController {
     isPasswordObscured.value = !isPasswordObscured.value;
   }
 
+  void _clearErrors() {
+    emailError.value = '';
+    passwordError.value = '';
+  }
+
   void clearForm() async {
     if (isRememberMeChecked.value) {
       final savedEmail = await _secureStorage.read(key: CacheKeys.email);
@@ -61,16 +66,14 @@ class LoginController extends GetxController {
     _clearErrors();
   }
 
-  void _clearErrors() {
-    emailError.value = '';
-    passwordError.value = '';
-  }
+
 
   Future<void> onLoginPressed() async {
     _clearErrors();
     final context = Get.context!;
     final s = S.of(context);
 
+    //Validation for email & password field
     if (emailController.text.trim().isEmpty) {
       emailError.value = s.pleaseFillYourEmail;
       return;

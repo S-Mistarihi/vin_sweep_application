@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
 import 'package:vin_sweep_application/configuration/app_assets.dart';
 import 'package:vin_sweep_application/configuration/app_colors.dart';
+import 'package:vin_sweep_application/screens/auth/forgot_password/view/forgot_password_view.dart';
 import 'package:vin_sweep_application/utils/ui/custom_button.dart';
 import 'package:vin_sweep_application/utils/ui/custom_field_label.dart';
 import 'package:vin_sweep_application/utils/ui/custom_text_form_field.dart';
@@ -76,13 +77,13 @@ class LoginView extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 16),
-        Obx(
-          () => Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Row(
-                children: [
-                  Checkbox(
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Row(
+              children: [
+                Obx(
+                  () => Checkbox(
                     value: controller.isRememberMeChecked.value,
                     onChanged: (value) {
                       controller.changeRememberMeChecked(value ?? false);
@@ -97,27 +98,28 @@ class LoginView extends StatelessWidget {
                       width: 1,
                     ),
                   ),
-                  Text(
-                    S.of(context).rememberMeCheckbox,
-                    style: TextStyle(
-                      color: AppColors().rememberTextColor,
-                      fontSize: 16,
-                    ),
-                  ),
-                ],
-              ),
-              InkWell(
-                onTap: () {},
-                child: Text(
-                  S.of(context).fogotPasswordButton,
+                ),
+                Text(
+                  S.of(context).rememberMeCheckbox,
                   style: TextStyle(
-                    color: AppColors().smallTextColor,
+                    color: AppColors().rememberTextColor,
                     fontSize: 16,
                   ),
                 ),
+              ],
+            ),
+            InkWell(
+              onTap: () =>
+                  Get.to(ForgotPasswordView(), transition: Transition.downToUp),
+              child: Text(
+                S.of(context).fogotPasswordButton,
+                style: TextStyle(
+                  color: AppColors().smallTextColor,
+                  fontSize: 16,
+                ),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
         SizedBox(height: 12.h),
         CustomButton(

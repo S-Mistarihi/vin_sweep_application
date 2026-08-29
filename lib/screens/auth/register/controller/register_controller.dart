@@ -23,14 +23,21 @@ class RegisterController extends GetxController {
   final FocusNode passwordFocusNode = FocusNode();
   final FocusNode zipCodeFocusNode = FocusNode();
 
-  RxBool isPasswordObscured = true.obs;
   final RxString nameError = ''.obs;
   final RxString emailError = ''.obs;
   final RxString passwordError = ''.obs;
   final RxString zipCodeError = ''.obs;
+  RxBool isPasswordObscured = true.obs;
 
   void changePasswordVisibility() {
     isPasswordObscured.value = !isPasswordObscured.value;
+  }
+
+  void _clearErrors() {
+    nameError.value = '';
+    emailError.value = '';
+    passwordError.value = '';
+    zipCodeError.value = '';
   }
 
   void clearForm() {
@@ -47,13 +54,6 @@ class RegisterController extends GetxController {
     _clearErrors();
   }
 
-  void _clearErrors() {
-    nameError.value = '';
-    emailError.value = '';
-    passwordError.value = '';
-    zipCodeError.value = '';
-  }
-
   Future<void> onRegisterPressed() async {
     _clearErrors();
     final context = Get.context!;
@@ -67,8 +67,8 @@ class RegisterController extends GetxController {
       nameError.value = s.pleaseEnterCorrectName;
       return;
     }
-    final parts = nameController.text.trim().split(' ');
-    if (parts.length < 2 || parts[1].isEmpty) {
+    final parts = nameController.text.trim().split(RegExp(r'\s+'));
+    if (parts.length < 4) {
       nameError.value = s.pleaseFillYourName;
       return;
     }
@@ -84,7 +84,7 @@ class RegisterController extends GetxController {
       passwordError.value = s.pleaseFillYourPassword;
       return;
     }
-    if (passwordController.text.length < 6) {
+    if (passwordController.text.trim().length < 6) {
       passwordError.value = s.passwordMustBeAtLeast6Character;
       return;
     }
@@ -98,7 +98,7 @@ class RegisterController extends GetxController {
       return;
     }
 
-    final otpResult = await createOtpRepository().requestOtp(
+    final otpResult = await createOtpRepository().generateOtp(
       context: context,
       email: emailController.text.trim(),
       type: OtpType.emailVerification,
@@ -106,11 +106,8 @@ class RegisterController extends GetxController {
 
     switch (otpResult) {
       case Failure(:final exception):
-        //Get.find<AuthController>().showErrorDialog(exception.message);
-        CustomDialog.showErrorDialog(
-          title: 'Invalid OTP Value',
-          description: exception.message,
-        );
+        clearForm();
+        Get.find<AuthController>().showErrorToast(exception.message);
 
       case Success():
         if (Get.isRegistered<OtpController>()) {
@@ -139,14 +136,15 @@ class RegisterController extends GetxController {
     );
 
     switch (result) {
-      case Failure(:final exception):
+      case Failure(:final exception): //email already exist & network error
         Get.find<AuthController>().showErrorToast(exception.message);
       case Success():
-        _onRegisterSuccess();
+        await _onRegisterSuccess();
+        break;
     }
   }
 
-  void _onRegisterSuccess() async {
+  Future<void> _onRegisterSuccess() async {
     nameController.clear();
     emailController.clear();
     passwordController.clear();

@@ -66,5 +66,10 @@
   "privacyPolicy": "سياسة الخصوصية",
   "logoutButton": "تسجيل الخروج",
   "passwordsDoNotMatch": "Password and confirm password do not match",
-  "newPasswordMustBeDifferent": "New password must be different from the current password"
+  "newPasswordMustBeDifferent": "New password must be different from the current password",
+  "confirmEmailLabel": "Confirm Email",
+  "confirmPasswordLabel": "Confirm Password",
+  "newPasswordLabel": "New Password",
+  "confirmPasswordDoesNotMatch": "Confirm password does not match",
+  "yourPasswordResetSuccessfull": "Your password reset successfull"
 }
