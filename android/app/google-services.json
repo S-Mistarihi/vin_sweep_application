@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "236937052742",
+    "project_id": "vin-sweep-app",
+    "storage_bucket": "vin-sweep-app.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:236937052742:android:7b94436b52f03c0518c047",
+        "android_client_info": {
+          "package_name": "com.sara.vinsweepapplication.vin_sweep_application"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBwcbiQ9C0wk-j2804xikcplB2P0ozn3Xg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

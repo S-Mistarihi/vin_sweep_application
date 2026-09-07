@@ -1,4 +1,6 @@
 import 'dart:convert';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:vin_sweep_application/configuration/api_end_points.dart';
 import 'package:vin_sweep_application/screens/auth/register/model/generic_response.dart';
@@ -62,7 +64,9 @@ class ApiRegisterRepository extends RegisterRepository {
       }
       final json = jsonDecode(body);
       if (json is! Map<String, dynamic>) {
-        return Failure(MappingException('Unexpected register response structure'));
+        return Failure(
+          MappingException('Unexpected register response structure'),
+        );
       }
       final response = GenericResponse.fromJson(json);
       if (response.success && response.code == 200) {
@@ -89,6 +93,64 @@ class ApiRegisterRepository extends RegisterRepository {
           S.of(context).anUnexpectedErrorOccuredPleaseTryAgain,
           cause: error,
           stackTrace: stackTrace,
+        ),
+      );
+    }
+  }
+}
+
+class FirebaseRegisterRepository extends RegisterRepository {
+  @override
+  Future<RepositoryResult<GenericResponse>> register({
+    required BuildContext context,
+    required String name,
+    required String email,
+    required String password,
+    required String zipCode,
+    required String otpToken,
+    bool showLoading = true,
+  }) async {
+    final FirebaseAuth auth = FirebaseAuth.instance;
+    final FirebaseFirestore firestore = FirebaseFirestore.instance;
+    try {
+      final UserCredential result = await auth.createUserWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+      if (result.user != null) {
+        //register using firebase auth
+        //one step more
+        //save the info in the cloud firestroe
+        await firestore.collection('users').doc(result.user!.uid).set({
+          'uid': result.user!.uid,
+          'email': email,
+          'name': name,
+          'zipCode': zipCode,
+          'createdAt': FieldValue.serverTimestamp(),
+        });
+        return Success(
+          GenericResponse(
+            code: 200,
+            success: true,
+            message: 'User created successfully',
+          ),
+        );
+      }
+      return Failure(
+        UnknownException(
+          S.of(context).anUnexpectedErrorOccuredPleaseTryAgain,
+          errorCode: '25',
+        ),
+      );
+    } on FirebaseAuthException catch (e, cause) {
+      return Failure(FirebaseAuthRegisteration(e.message ?? '', cause: cause));
+    } on FirebaseException catch (e, cause) {
+      return Failure(FirebaseAuthRegisteration(e.message ?? '', cause: cause));
+    } catch (expection) {
+      return Failure(
+        UnknownException(
+          S.of(context).anUnexpectedErrorOccuredPleaseTryAgain,
+          errorCode: '25',
         ),
       );
     }

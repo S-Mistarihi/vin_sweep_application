@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get/get.dart';
@@ -5,12 +6,15 @@ import 'package:scoped_model/scoped_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sizer/sizer.dart';
 import 'package:vin_sweep_application/configuration/cache_keys.dart';
+import 'package:vin_sweep_application/firebase_options.dart';
 import 'package:vin_sweep_application/generated/l10n.dart';
 import 'package:vin_sweep_application/l10n/app_locale.dart';
 import 'package:vin_sweep_application/screens/splash/splash_screen.dart';
 
 void main() async {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
   Locale deviceLocale = widgetsBinding.platformDispatcher.locale;
   String defaultLanguageCode = deviceLocale.languageCode;

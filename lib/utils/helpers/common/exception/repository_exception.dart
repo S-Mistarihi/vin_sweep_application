@@ -73,3 +73,12 @@ final class UnknownException extends RepositoryException {
     super.stackTrace,
   });
 }
+
+final class FirebaseAuthRegisteration extends RepositoryException {
+  const FirebaseAuthRegisteration(
+    super.message, {
+    super.cause,
+    super.errorCode,
+    super.stackTrace,
+  });
+}

@@ -1,11 +1,14 @@
 import 'dart:convert';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart' hide User;
 import 'package:flutter/widgets.dart';
 import 'package:vin_sweep_application/configuration/api_end_points.dart';
 import 'package:vin_sweep_application/generated/l10n.dart';
 import 'package:vin_sweep_application/utils/helpers/common/exception/repository_exception.dart';
 import 'package:vin_sweep_application/utils/helpers/common/repository_result.dart';
 import 'package:vin_sweep_application/utils/helpers/http/http_wrapper.dart';
+import 'package:vin_sweep_application/utils/ui/progress_hud.dart';
 
 import '../../../../configuration/app_config.dart';
 import '../model/login_response.dart';
@@ -79,6 +82,64 @@ class ApiLoginRepository extends LoginRepository {
           S.of(context).anUnexpectedErrorOccuredPleaseTryAgain,
           cause: error,
           stackTrace: stackTrace,
+        ),
+      );
+    }
+  }
+}
+
+class FirebaseLoginRepository extends LoginRepository {
+  @override
+  Future<RepositoryResult<UserModel>> login({
+    required BuildContext context,
+    required String email,
+    required String password,
+    bool showLoading = true,
+  }) async {
+    final FirebaseAuth auth = FirebaseAuth.instance;
+    final FirebaseFirestore firestore = FirebaseFirestore.instance;
+    try {
+      ProgressHud.shared.startLoading(context);
+      final UserCredential result = await auth.signInWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+      if (result.user != null) {
+        final doc = await firestore
+            .collection('users')
+            .doc(result.user!.uid)
+            .get();
+        final data = doc.data();
+        ProgressHud.shared.stopLoading();
+        return Success(
+          UserModel(
+            user: User(
+              email: email,
+              fullName: data?['name'] ?? '',
+              id: 1,
+              zipCode: int.tryParse(data?['zipCode']) ?? 0,
+            ),
+          ),
+        );
+      }
+      return Failure(
+        UnknownException(
+          S.of(context).anUnexpectedErrorOccuredPleaseTryAgain,
+          errorCode: '25',
+        ),
+      );
+    } on FirebaseAuthException catch (e, cause) {
+      ProgressHud.shared.stopLoading();
+      return Failure(FirebaseAuthRegisteration(e.message ?? '', cause: cause));
+    } on FirebaseException catch (e, cause) {
+      ProgressHud.shared.stopLoading();
+      return Failure(FirebaseAuthRegisteration(e.message ?? '', cause: cause));
+    } catch (expection) {
+      ProgressHud.shared.stopLoading();
+      return Failure(
+        UnknownException(
+          S.of(context).anUnexpectedErrorOccuredPleaseTryAgain,
+          errorCode: '25',
         ),
       );
     }
