@@ -9,7 +9,7 @@ import 'package:vin_sweep_application/configuration/cache_keys.dart';
 import 'package:vin_sweep_application/firebase_options.dart';
 import 'package:vin_sweep_application/generated/l10n.dart';
 import 'package:vin_sweep_application/l10n/app_locale.dart';
-import 'package:vin_sweep_application/screens/splash/splash_screen.dart';
+import 'package:vin_sweep_application/features/splash/splash_screen.dart';
 
 void main() async {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();

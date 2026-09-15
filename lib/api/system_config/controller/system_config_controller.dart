@@ -3,8 +3,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:vin_sweep_application/api/system_config/model/system_config_response.dart';
 import 'package:vin_sweep_application/configuration/api_end_points.dart';
 import 'package:vin_sweep_application/configuration/cache_keys.dart';
-import 'package:vin_sweep_application/screens/auth/auth_view.dart';
-import 'package:vin_sweep_application/screens/intro/view/intro_screen.dart';
+import 'package:vin_sweep_application/features/auth/auth_view.dart';
+import 'package:vin_sweep_application/features/intro/view/intro_screen.dart';
 
 import '../../../configuration/app_config.dart';
 import '../../../utils/helpers/common/repository_result.dart';

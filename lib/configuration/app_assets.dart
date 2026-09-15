@@ -27,7 +27,8 @@ class AppAssets {
   String errorDialog = 'assets/dialogs/error_dialog.svg';
 
   String scanQrCodeAction = 'assets/home_icons/scan_qr_code_action.svg';
-  String scanQrCodeWithAnimation = 'assets/home_icons/scan_qr_code_with_animation.svg';
+  String scanQrCodeWithAnimation =
+      'assets/home_icons/scan_qr_code_with_animation.svg';
   String loadingSplashLogo = 'assets/home_icons/loading.json';
   String blueFileIcon = 'assets/home_icons/blue_file_ic.svg';
   String purpleFileIcon = 'assets/home_icons/purple_file_ic.svg';
@@ -48,4 +49,14 @@ class AppAssets {
   String termsIcon = 'assets/menu_icons/ic-terms.svg';
   String passwordMenuIcon = 'assets/menu_icons/ic-pass.svg';
   String seperator = 'assets/menu_icons/Seperator.svg';
+
+  String icPhone = 'assets/contact-us/ic - phone.svg';
+  String icMail = 'assets/contact-us/ic-mail.svg';
+  String icWhats = 'assets/contact-us/ic - whatsapp.svg';
+  String icWebsite = 'assets/contact-us/ic-website.svg';
+  String facebook = 'assets/contact-us/facebook.svg';
+  String instagram = 'assets/contact-us/instagram.svg';
+  String tiktok = 'assets/contact-us/tiktok.svg';
+  String x = 'assets/contact-us/x.svg';
+  String youtube = 'assets/contact-us/youtube.svg';
 }

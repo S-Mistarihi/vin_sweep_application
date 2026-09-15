@@ -3,8 +3,8 @@ import 'package:flutter_svg/svg.dart';
 import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 import 'package:vin_sweep_application/configuration/app_assets.dart';
 import 'package:vin_sweep_application/configuration/app_colors.dart';
-import 'package:vin_sweep_application/screens/home/tabs/home/home_view.dart';
-import 'package:vin_sweep_application/screens/home/tabs/menu/menu_view.dart';
+import 'package:vin_sweep_application/features/home/tabs/home/view/home_view.dart';
+import 'package:vin_sweep_application/features/home/tabs/menu/menu_view.dart';
 
 class CustomPersistentBottomNavBar extends StatelessWidget {
 

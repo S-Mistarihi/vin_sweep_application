@@ -1,5 +1,7 @@
-import '../screens/auth/login/model/login_response.dart';
-import '../screens/intro/model/intro_model.dart';
+import 'package:vin_sweep_application/features/home/tabs/menu/contact_us/model/contact_info_model.dart';
+
+import '../features/auth/login/model/login_response.dart';
+import '../features/intro/model/intro_model.dart';
 
 class CurrentSession {
   CurrentSession._private();
@@ -27,4 +29,6 @@ class CurrentSession {
   void clear() {
     _userModel = null;
   }
+
+  ContactInfoModel? infoModel;
 }
