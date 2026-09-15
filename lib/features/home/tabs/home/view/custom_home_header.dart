@@ -50,7 +50,7 @@ class CustomHomeHeader extends StatelessWidget {
                           'Welcome ${CurrentSession().getUser()!.user!.fullName!.split(' ').first},',
                           style: TextStyle(
                             color: AppColors().baseColor,
-                            fontSize: 22,
+                            fontSize: 24,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
@@ -59,16 +59,22 @@ class CustomHomeHeader extends StatelessWidget {
                           'Last Login: ${DateTimeHelper.formateLastLogin(CurrentSession().getUser()?.user?.lastLogin)}',
                           style: TextStyle(
                             color: AppColors().baseColor,
-                            fontSize: 12,
+                            fontSize: 13,
                           ),
                         ),
                       ],
                     ),
                     Spacer(),
-                    SvgPicture.asset(
-                      AppAssets().carTotalSweep,
-                      width: 50,
-                      height: 53,
+                    Transform.scale(
+                      scale: 1.5,
+                      child: Padding(
+                        padding: const EdgeInsets.only(top: 15.0),
+                        child: SvgPicture.asset(
+                          AppAssets().carTotalSweep,
+                          width: 50,
+                          height: 53,
+                        ),
+                      ),
                     ),
                     SizedBox(width: 8),
                     Text(
@@ -87,7 +93,7 @@ class CustomHomeHeader extends StatelessWidget {
                     'Total Sweeps',
                     style: TextStyle(
                       color: AppColors().baseColor,
-                      fontSize: 16,
+                      fontSize: 15,
                     ),
                   ),
                 ),

@@ -7,12 +7,11 @@ import 'package:vin_sweep_application/features/home/tabs/home/view/home_view.dar
 import 'package:vin_sweep_application/features/home/tabs/menu/menu_view.dart';
 
 class CustomPersistentBottomNavBar extends StatelessWidget {
-
-  const CustomPersistentBottomNavBar({super.key, });
+  const CustomPersistentBottomNavBar({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return  SafeArea(
+    return SafeArea(
       bottom: false,
       top: false,
       child: Stack(
@@ -48,7 +47,10 @@ class CustomPersistentBottomNavBar extends StatelessWidget {
               PersistentBottomNavBarItem(
                 icon: Container(
                   padding: EdgeInsets.only(top: 20),
-                  child: Icon(Icons.home_outlined),
+                  child: Transform.scale(
+                    scale: .8,
+                    child: SvgPicture.asset(AppAssets().homeIcon),
+                  ),
                 ),
                 title: 'Home',
                 activeColorPrimary: AppColors().baseColor,
@@ -57,7 +59,10 @@ class CustomPersistentBottomNavBar extends StatelessWidget {
               PersistentBottomNavBarItem(
                 icon: Container(
                   padding: EdgeInsets.only(top: 20),
-                  child: Icon(Icons.more_vert),
+                  child: Transform.scale(
+                    scale: 2.2,
+                    child: SvgPicture.asset(AppAssets().menuIcon),
+                  ),
                 ),
                 title: 'Menu',
                 activeColorPrimary: AppColors().baseColor,
@@ -76,7 +81,10 @@ class CustomPersistentBottomNavBar extends StatelessWidget {
             right: 0,
             bottom: -32,
             //bottom: -30,
-            child: SvgPicture.asset(AppAssets().scanQrCodeWithAnimation, width: 210),
+            child: SvgPicture.asset(
+              AppAssets().scanQrCodeWithAnimation,
+              width: 210,
+            ),
           ),
         ],
       ),

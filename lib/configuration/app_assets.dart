@@ -35,6 +35,8 @@ class AppAssets {
   String carTotalSweep = 'assets/home_icons/car_total_sweep.svg';
   String emptyHomeScreen = 'assets/home_icons/empty_home.svg';
   String searchIcon = 'assets/home_icons/ic-search.svg';
+  String homeIcon = 'assets/home_icons/Ic-Home.svg';
+  String menuIcon = 'assets/home_icons/ic-menu.svg';
 
   String contactUsIcon = 'assets/menu_icons/ic -contact us.svg';
   String aboutUsIcon = 'assets/menu_icons/ic-about us.svg';
