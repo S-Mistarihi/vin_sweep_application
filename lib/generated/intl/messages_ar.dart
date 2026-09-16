@@ -99,6 +99,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Password and confirm password do not match",
     ),
     "paymentsInfo": MessageLookupByLibrary.simpleMessage("معلومات الدفع"),
+    "phoneLabel": MessageLookupByLibrary.simpleMessage("Phone"),
     "pleaseEnterCorrectName": MessageLookupByLibrary.simpleMessage(
       "يرجى إدخال اسم صحيح",
     ),

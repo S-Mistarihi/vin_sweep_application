@@ -10,6 +10,7 @@ import 'package:vin_sweep_application/features/home/tabs/menu/contact_us/control
 import 'package:vin_sweep_application/features/home/tabs/menu/contact_us/view/contact_us_view.dart';
 import 'package:vin_sweep_application/features/home/tabs/menu/payment/view/payment_view.dart';
 import 'package:vin_sweep_application/features/home/tabs/menu/plans/view/plans_view.dart';
+import 'package:vin_sweep_application/features/home/tabs/menu/profile/controller/profile_controller.dart';
 import 'package:vin_sweep_application/features/home/tabs/menu/profile/view/profile_view.dart';
 import 'package:vin_sweep_application/features/home/tabs/menu/scan_history/view/scan_history_view.dart';
 
@@ -43,8 +44,10 @@ class MenuView extends StatelessWidget {
               context: context,
               icon: AppAssets().profileIcon,
               name: S.of(context).profile,
-              onTap: () =>
-                  Get.to(ProfileView(), transition: Transition.rightToLeft),
+              onTap: () {
+                ProfileController controller = Get.put(ProfileController());
+                Get.to(ProfileView(), transition: Transition.rightToLeft);
+              },
             ),
             _buildMenuItem(
               context: context,

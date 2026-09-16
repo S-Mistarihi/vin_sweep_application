@@ -688,6 +688,11 @@ class S {
       args: [],
     );
   }
+
+  /// `Phone`
+  String get phoneLabel {
+    return Intl.message('Phone', name: 'phoneLabel', desc: '', args: []);
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

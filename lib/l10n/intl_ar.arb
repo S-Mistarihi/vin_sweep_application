@@ -71,5 +71,6 @@
   "confirmPasswordLabel": "Confirm Password",
   "newPasswordLabel": "New Password",
   "confirmPasswordDoesNotMatch": "Confirm password does not match",
-  "yourPasswordResetSuccessfull": "Your password reset successfull"
+  "yourPasswordResetSuccessfull": "Your password reset successfull",
+  "phoneLabel": "Phone"
 }

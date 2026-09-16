@@ -12,13 +12,15 @@ class CustomTextFormField {
   Widget buildCustomTextFormField({
     required TextEditingController controller,
     required FocusNode focusNode,
-    required String? errorText,
+    String? errorText,
     required void Function(String) onFieldSubmitted,
     required TextInputType keyboardType,
     required TextInputAction textInputAction,
     required List<TextInputFormatter> inputFormatters,
     bool obscureText = false,
     Widget? suffixIcon,
+    bool readOnly = false,
+    String? initialValue
   }) {
     return TextFormField(
       controller: controller,
@@ -37,6 +39,8 @@ class CustomTextFormField {
       autocorrect: true,
       enableSuggestions: false,
       enableInteractiveSelection: false,
+      readOnly: readOnly,
+      initialValue: initialValue,
       style: TextStyle(color: AppColors().accentColor, fontSize: 14),
       scrollPadding: EdgeInsets.all(30),
       decoration: InputDecoration(

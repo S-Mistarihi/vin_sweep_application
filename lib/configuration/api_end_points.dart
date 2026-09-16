@@ -14,4 +14,5 @@ class ApiEndPoints {
   static final String resetPassword = '$baseUrl${version}auth/reset-password';
   static final String contactUsInfo =
       '$baseUrl${version}setting-config/contact-us-info';
+  static final String updateUser = '$baseUrl${version}users/update';
 }
