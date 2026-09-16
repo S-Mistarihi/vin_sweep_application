@@ -48,4 +48,10 @@ class AppColors {
 
   Color cardPlanShadow = const Color(0xffC4C4C4);
   Color mainColorWithNoScans = const Color(0xff1D416F);
+
+  Color cardPlanBorder = const Color(0xffE2E7F5);
+  Color cardPlanText = const Color(0xff1D416F);
+  Color cardPlanCheck = const Color(0xff40A204);
+  Color inactiveTrackSwitchColor = const Color(0xffF2F2F2);
+  Color cardPopularBack = const Color(0xffBA68C8);
 }

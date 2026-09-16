@@ -10,9 +10,12 @@ class ApiEndPoints {
   static final String verifyOtp = '$baseUrl${version}auth/verify-otp';
   static final String signup = '$baseUrl${version}auth/signup';
   static final String login = '$baseUrl${version}auth/login';
-  static final String changePassword = '$baseUrl${version}auth/change-password';
   static final String resetPassword = '$baseUrl${version}auth/reset-password';
+
+  //menu api
+  static final String changePassword = '$baseUrl${version}auth/change-password';
   static final String contactUsInfo =
       '$baseUrl${version}setting-config/contact-us-info';
   static final String updateUser = '$baseUrl${version}users/update';
+  static final String getPlans = '$baseUrl${version}plans';
 }
