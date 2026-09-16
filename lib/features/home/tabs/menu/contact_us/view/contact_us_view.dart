@@ -11,7 +11,7 @@ import '../../../../../../utils/ui/common/custom_main_sub_header.dart';
 class ContactUsView extends StatelessWidget {
   ContactUsView({super.key});
 
-  final ContactInfoController controller = Get.put(ContactInfoController());
+  final ContactInfoController controller = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -46,31 +46,56 @@ class ContactUsView extends StatelessWidget {
                   _buildContactCard(
                     svgImage: AppAssets().icPhone,
                     text: 'Call Us',
+                    onTap: () => controller.callUs,
                   ),
                   SizedBox(height: 12),
                   _buildContactCard(
                     svgImage: AppAssets().icWhats,
                     text: 'Whatsapp',
+                    onTap: () => controller.openWhatsapp(),
                   ),
                   SizedBox(height: 12),
                   _buildContactCard(
                     svgImage: AppAssets().icMail,
                     text: 'Email',
+                    onTap: () => controller.sendEmail(),
                   ),
                   SizedBox(height: 12),
                   _buildContactCard(
                     svgImage: AppAssets().icWebsite,
                     text: 'Website',
+                    onTap: () => controller.openWebsite(),
                   ),
                   SizedBox(height: 8.h),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      SvgPicture.asset(AppAssets().instagram, width: 58),
-                      SvgPicture.asset(AppAssets().tiktok, width: 58),
-                      SvgPicture.asset(AppAssets().x, width: 58),
-                      SvgPicture.asset(AppAssets().facebook, width: 58),
-                      SvgPicture.asset(AppAssets().youtube, width: 58),
+                      GestureDetector(
+                        onTap: () => controller.openInstagram(),
+                        child: SvgPicture.asset(
+                          AppAssets().instagram,
+                          width: 58,
+                        ),
+                      ),
+                      GestureDetector(
+                        onTap: () => controller.openTikTok(),
+                        child: SvgPicture.asset(AppAssets().tiktok, width: 58),
+                      ),
+                      GestureDetector(
+                        onTap: () => controller.openTwitter(),
+                        child: SvgPicture.asset(AppAssets().x, width: 58),
+                      ),
+                      GestureDetector(
+                        onTap: () => controller.openFacebook(),
+                        child: SvgPicture.asset(
+                          AppAssets().facebook,
+                          width: 58,
+                        ),
+                      ),
+                      GestureDetector(
+                        onTap: () => controller.openYoutube(),
+                        child: SvgPicture.asset(AppAssets().youtube, width: 58),
+                      ),
                     ],
                   ),
                 ],
@@ -85,10 +110,10 @@ class ContactUsView extends StatelessWidget {
   Widget _buildContactCard({
     required String svgImage,
     required String text,
-    //required void Function() onTap
+    required void Function() onTap,
   }) {
     return InkWell(
-      //onTap: onTap,
+      onTap: onTap,
       child: Container(
         padding: EdgeInsets.all(18),
         decoration: BoxDecoration(

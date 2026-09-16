@@ -42,7 +42,7 @@ class ApiContactInfoRepository extends ContactInfoRepository {
         return Failure(MappingException('Unexpected Contact info response'));
       }
       final response = ContactInfoModel.fromJson(json);
-      if (response.success! && response.result != null) {
+      if (response.success == true && response.result != null) {
         return Success(response);
       }
       return Failure(
@@ -70,7 +70,7 @@ class DemoContactInfoRepository extends ContactInfoRepository {
     required BuildContext context,
     bool showLoading = false,
   }) async {
-    await Future.delayed(Duration(seconds: 2));
+    await Future.delayed(const Duration(seconds: 2));
     return Success(
       ContactInfoModel(
         success: true,

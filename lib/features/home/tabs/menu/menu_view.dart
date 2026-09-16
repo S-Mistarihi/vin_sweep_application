@@ -6,6 +6,7 @@ import 'package:vin_sweep_application/configuration/app_assets.dart';
 import 'package:vin_sweep_application/configuration/app_colors.dart';
 import 'package:vin_sweep_application/features/auth/auth_view.dart';
 import 'package:vin_sweep_application/features/home/tabs/menu/change_password/view/change_password_view.dart';
+import 'package:vin_sweep_application/features/home/tabs/menu/contact_us/controller/contact_info_controller.dart';
 import 'package:vin_sweep_application/features/home/tabs/menu/contact_us/view/contact_us_view.dart';
 import 'package:vin_sweep_application/features/home/tabs/menu/payment/view/payment_view.dart';
 import 'package:vin_sweep_application/features/home/tabs/menu/plans/view/plans_view.dart';
@@ -42,46 +43,40 @@ class MenuView extends StatelessWidget {
               context: context,
               icon: AppAssets().profileIcon,
               name: S.of(context).profile,
-              onTap: () => Get.to(
-                ProfileView(),
-                transition: Transition.rightToLeft,
-              ),
+              onTap: () =>
+                  Get.to(ProfileView(), transition: Transition.rightToLeft),
             ),
             _buildMenuItem(
               context: context,
               icon: AppAssets().plansIcon,
               name: S.of(context).myPlans,
-              onTap: () => Get.to(
-                PlansView(),
-                transition: Transition.rightToLeft,
-              ),
+              onTap: () =>
+                  Get.to(PlansView(), transition: Transition.rightToLeft),
             ),
             _buildMenuItem(
               context: context,
               icon: AppAssets().paymentIcon,
               name: S.of(context).paymentsInfo,
-              onTap: () => Get.to(
-                PaymentView(),
-                transition: Transition.rightToLeft,
-              ),
+              onTap: () =>
+                  Get.to(PaymentView(), transition: Transition.rightToLeft),
             ),
             _buildMenuItem(
               context: context,
               icon: AppAssets().scanHistoryIcon,
               name: S.of(context).scansHistory,
-              onTap: () => Get.to(
-                ScanHistoryView(),
-                transition: Transition.rightToLeft,
-              ),
+              onTap: () =>
+                  Get.to(ScanHistoryView(), transition: Transition.rightToLeft),
             ),
             _buildMenuItem(
               context: context,
               icon: AppAssets().contactUsIcon,
               name: S.of(context).contactUs,
-              onTap: () => Get.to(
-                ContactUsView(),
-                transition: Transition.rightToLeft,
-              ),
+              onTap: () {
+                ContactInfoController controller = Get.put(
+                  ContactInfoController(),
+                );
+                Get.to(ContactUsView(), transition: Transition.rightToLeft);
+              },
             ),
             _buildMenuItem(
               context: context,
