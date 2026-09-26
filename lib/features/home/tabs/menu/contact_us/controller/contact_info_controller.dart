@@ -99,10 +99,7 @@ class ContactInfoController extends GetxController {
     final uri = Uri.parse('mailto:$email');
 
     try {
-      await launchUrl(
-        uri,
-        mode: LaunchMode.externalApplication,
-      );
+      await launchUrl(uri, mode: LaunchMode.externalApplication);
     } catch (e) {
       showErrorToast('Could not open email');
     }

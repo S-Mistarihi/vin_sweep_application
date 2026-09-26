@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="173.137" height="173.137" viewBox="0 0 173.137 173.137">
+  <defs>
+    <filter id="Button_BG" x="0" y="0" width="173.137" height="173.137" filterUnits="userSpaceOnUse">
+      <feOffset dy="10" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="10" result="blur"/>
+      <feFlood flood-color="#a8c8dc" flood-opacity="0.4"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <clipPath id="clip-path">
+      <path id="Path_84592" data-name="Path 84592" d="M13.053,46.5C8.63,46.5,5,42.622,5,37.862a8.4,8.4,0,0,1,7.678-8.637l-1.168,1.19c.376-5.552,4.715-9.915,9.931-9.915a9.944,9.944,0,0,1,9.18,6.566l-1.127.529L29.2,26.273A6.109,6.109,0,0,1,31,26.008a7.189,7.189,0,0,1,6.927,7.4v.308l-1.21-.044L36.88,32.4A6.967,6.967,0,0,1,42.555,39.4,6.863,6.863,0,0,1,35.962,46.5h-9.43V43.855h9.43A4.479,4.479,0,0,0,36.546,35l-1.127-.176.042-1.19v-.176A4.652,4.652,0,0,0,31,28.652a3.423,3.423,0,0,0-1.168.176l-1.043.308-.417-1.058a7.555,7.555,0,0,0-6.927-4.935,7.757,7.757,0,0,0-7.511,7.491l-.042,1.1-1.085.044a5.875,5.875,0,0,0-5.341,6.037A5.824,5.824,0,0,0,13.1,43.855h7.97V46.5ZM24.07,33.279a.99.99,0,0,0-.584,0l-.584-.617h1.711Zm.918,1.63V45.178a1.286,1.286,0,0,1-1.21,1.322,1.258,1.258,0,0,1-1.21-1.322V34.91l-2.921,3.129a1.121,1.121,0,0,1-1.711,0,1.416,1.416,0,0,1,0-1.851l5.007-5.376.876-.925.876.925L29.7,36.188a1.416,1.416,0,0,1,0,1.851,1.121,1.121,0,0,1-1.711,0Z" transform="translate(-5 -20.5)" fill="#fff"/>
+    </clipPath>
+  </defs>
+  <g id="upload" transform="translate(-12.931 -625.431)">
+    <g transform="matrix(1, 0, 0, 1, 12.93, 625.43)" filter="url(#Button_BG)">
+      <circle id="Button_BG-2" data-name="Button BG" cx="40" cy="40" r="40" transform="translate(86.57 20) rotate(45)" fill="#a8c8dc"/>
+    </g>
+    <g id="ic-upload" transform="translate(75.723 668.5)">
+      <g id="Group_162509" data-name="Group 162509" transform="translate(5 20.5)">
+        <g id="Group_162508" data-name="Group 162508" transform="translate(0)" clip-path="url(#clip-path)">
+          <rect id="Rectangle_140248" data-name="Rectangle 140248" width="41.824" height="30.918" transform="translate(-2.135 -2.459)" fill="#fff"/>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

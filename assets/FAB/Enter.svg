@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="173.137" height="173.137" viewBox="0 0 173.137 173.137">
+  <defs>
+    <filter id="Button_BG" x="0" y="0" width="173.137" height="173.137" filterUnits="userSpaceOnUse">
+      <feOffset dy="10" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="10" result="blur"/>
+      <feFlood flood-color="#538db2" flood-opacity="0.4"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="Enter" transform="translate(-236.462 -625.431)">
+    <g transform="matrix(1, 0, 0, 1, 236.46, 625.43)" filter="url(#Button_BG)">
+      <circle id="Button_BG-2" data-name="Button BG" cx="40" cy="40" r="40" transform="translate(86.57 20) rotate(45)" fill="#538db2"/>
+    </g>
+    <g id="ic-number" transform="translate(301.548 683.561)">
+      <g id="Group_162507" data-name="Group 162507" transform="translate(8.2 2.5)">
+        <path id="Path_84587" data-name="Path 84587" d="M49.212,50.716A2.416,2.416,0,0,0,46.768,48.3a2.292,2.292,0,0,0-1.158.289,2.439,2.439,0,0,0-2.155-1.286A2.292,2.292,0,0,0,42.3,47.6a2.439,2.439,0,0,0-2.155-1.286,2.79,2.79,0,0,0-.9.161V41.744a2.543,2.543,0,0,0-.707-1.737A2.57,2.57,0,0,0,36.8,39.3a2.416,2.416,0,0,0-2.412,2.444V52.581l-1.158-1.158a2.478,2.478,0,0,0-3.119-.289,2.43,2.43,0,0,0-1.061,1.672,2.494,2.494,0,0,0,.547,1.929l2.54,2.991a.779.779,0,0,0,.579.289.709.709,0,0,0,.482-.193.8.8,0,0,0,.1-1.093l-2.54-2.991a.921.921,0,0,1-.193-.707.794.794,0,0,1,.386-.611.924.924,0,0,1,1.158.1l1.833,1.8a1.144,1.144,0,0,0,1.962-.8V41.744a.9.9,0,0,1,.9-.9,1.021,1.021,0,0,1,.643.257.9.9,0,0,1,.257.643v8.072a.772.772,0,1,0,1.544,0V48.722a.9.9,0,0,1,1.8,0v2.09a.772.772,0,1,0,1.544,0V49.719a.9.9,0,1,1,1.8,0v2.09a.772.772,0,0,0,1.544,0V50.684a.865.865,0,0,1,.868-.868.893.893,0,0,1,.9.868v6.528a.772.772,0,0,0,1.544,0Z" transform="translate(-22.679 -26.138)" fill="#fff"/>
+        <circle id="Ellipse_1834" data-name="Ellipse 1834" cx="2.251" cy="2.251" r="2.251" transform="translate(0 0)" fill="#fff"/>
+        <circle id="Ellipse_1835" data-name="Ellipse 1835" cx="2.251" cy="2.251" r="2.251" transform="translate(6.046 0)" fill="#fff"/>
+        <circle id="Ellipse_1836" data-name="Ellipse 1836" cx="2.251" cy="2.251" r="2.251" transform="translate(0 6.421)" fill="#fff"/>
+        <circle id="Ellipse_1837" data-name="Ellipse 1837" cx="2.251" cy="2.251" r="2.251" transform="translate(6.046 6.421)" fill="#fff"/>
+        <circle id="Ellipse_1838" data-name="Ellipse 1838" cx="2.251" cy="2.251" r="2.251" transform="translate(0 12.877)" fill="#fff"/>
+        <circle id="Ellipse_1839" data-name="Ellipse 1839" cx="2.251" cy="2.251" r="2.251" transform="translate(6.046 12.877)" fill="#fff"/>
+        <circle id="Ellipse_1840" data-name="Ellipse 1840" cx="2.251" cy="2.251" r="2.251" transform="translate(12.06 0)" fill="#fff"/>
+        <circle id="Ellipse_1841" data-name="Ellipse 1841" cx="2.251" cy="2.251" r="2.251" transform="translate(12.06 6.421)" fill="#fff"/>
+      </g>
+    </g>
+  </g>
+</svg>

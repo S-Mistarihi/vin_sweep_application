@@ -29,7 +29,11 @@ class AppAssets {
   String scanQrCodeAction = 'assets/home_icons/scan_qr_code_action.svg';
   String scanQrCodeWithAnimation =
       'assets/home_icons/scan_qr_code_with_animation.svg';
+  String closeScanQrCodeAction = 'assets/FAB/close_scan_qr_code_action.svg';
   String loadingSplashLogo = 'assets/home_icons/loading.json';
+  String scanFab = 'assets/FAB/scan.svg';
+  String enterFab = 'assets/FAB/Enter.svg';
+  String uploadFab = 'assets/FAB/upload.svg';
   String blueFileIcon = 'assets/home_icons/blue_file_ic.svg';
   String purpleFileIcon = 'assets/home_icons/purple_file_ic.svg';
   String carTotalSweep = 'assets/home_icons/car_total_sweep.svg';
