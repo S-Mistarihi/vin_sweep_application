@@ -54,4 +54,7 @@ class AppColors {
   Color cardPlanCheck = const Color(0xff40A204);
   Color inactiveTrackSwitchColor = const Color(0xffF2F2F2);
   Color cardPopularBack = const Color(0xffBA68C8);
+
+  Color generalInfoContainerBackground = const Color(0xffEBF5FA);
+  Color generalInfoContainerBorder = const Color(0xffA8C8DC);
 }

@@ -22,6 +22,9 @@ class AppAssets {
   String arrowIcon = 'assets/common/ic-arrow.svg';
   String backIcon = 'assets/common/ic-back.svg';
 
+  String searchJsonIcon = 'assets/scan-vin/search.json';
+  String noReport = 'assets/scan-vin/no_report.svg';
+
   String emailBottomSheet = 'assets/dialogs/check_email.svg';
   String successDialog = 'assets/dialogs/success-dialog.json';
   String errorDialog = 'assets/dialogs/error_dialog.svg';

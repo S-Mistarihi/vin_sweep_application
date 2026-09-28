@@ -72,5 +72,19 @@
   "newPasswordLabel": "New Password",
   "confirmPasswordDoesNotMatch": "Confirm password does not match",
   "yourPasswordResetSuccessfull": "Your password reset successfull",
-  "phoneLabel": "Phone"
+  "phoneLabel": "Phone",
+  "pleaseEnterVinNumber": "Please enter VIN number",
+  "vinMustContain17Characters": "VIN must contain 17 characters",
+  "pleaseEnterAValidVinNumber": "Please enter a valid VIN number",
+  "vinNumberLabel": "VIN Number",
+  "searchLabel": "Search",
+  "warning": "Warning",
+  "generalInfoSwitcher": "General Info",
+  "reportsSwitcher": "Reports",
+  "buyReportButton": "Buy Report",
+  "searchingForInfo": "Searching for Info",
+  "thisSectionIncludesFreeDataLikeMakeModelEngineType": "This section includes free data like make, model, engine type, and body style.",
+  "collapse": "˄ Collapse",
+  "expanded": "˅ Expanded",
+  "informationNotAvailableForThisDetail": "Information not available for this detail"
 }

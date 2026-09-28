@@ -28,7 +28,9 @@ class MessageLookup extends MessageLookupByLibrary {
           "an unexpected error occured , please try again",
         ),
     "backButton": MessageLookupByLibrary.simpleMessage("الرجوع"),
+    "buyReportButton": MessageLookupByLibrary.simpleMessage("Buy Report"),
     "changePassword": MessageLookupByLibrary.simpleMessage("تغيير كلمة المرور"),
+    "collapse": MessageLookupByLibrary.simpleMessage("˄ Collapse"),
     "confirmEmailLabel": MessageLookupByLibrary.simpleMessage("Confirm Email"),
     "confirmPasswordDoesNotMatch": MessageLookupByLibrary.simpleMessage(
       "Confirm password does not match",
@@ -53,13 +55,19 @@ class MessageLookup extends MessageLookupByLibrary {
     "errorTitleDialog": MessageLookupByLibrary.simpleMessage(
       "قيمة رمز التحقق غير صالحة",
     ),
+    "expanded": MessageLookupByLibrary.simpleMessage("˅ Expanded"),
     "failedToParseSysConfigResponse": MessageLookupByLibrary.simpleMessage(
       "Failed to parse sys config response",
     ),
     "fogotPasswordButton": MessageLookupByLibrary.simpleMessage(
       "نسيت كلمة المرور",
     ),
+    "generalInfoSwitcher": MessageLookupByLibrary.simpleMessage("General Info"),
     "getStartedButton": MessageLookupByLibrary.simpleMessage("ابدأ الان"),
+    "informationNotAvailableForThisDetail":
+        MessageLookupByLibrary.simpleMessage(
+          "Information not available for this detail",
+        ),
     "invalidRequestSentToTheServer": MessageLookupByLibrary.simpleMessage(
       "Invalid request sent to the server.",
     ),
@@ -100,11 +108,17 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "paymentsInfo": MessageLookupByLibrary.simpleMessage("معلومات الدفع"),
     "phoneLabel": MessageLookupByLibrary.simpleMessage("Phone"),
+    "pleaseEnterAValidVinNumber": MessageLookupByLibrary.simpleMessage(
+      "Please enter a valid VIN number",
+    ),
     "pleaseEnterCorrectName": MessageLookupByLibrary.simpleMessage(
       "يرجى إدخال اسم صحيح",
     ),
     "pleaseEnterValidEmail": MessageLookupByLibrary.simpleMessage(
       "يرجى إدخال بريد إلكتروني صحيح",
+    ),
+    "pleaseEnterVinNumber": MessageLookupByLibrary.simpleMessage(
+      "Please enter VIN number",
     ),
     "pleaseFillCorrectZipcode": MessageLookupByLibrary.simpleMessage(
       "يرجى إدخال رمز بريدي صحيح",
@@ -132,9 +146,14 @@ class MessageLookup extends MessageLookupByLibrary {
       "يرجى إدخال معلوماتك أدناه",
     ),
     "rememberMeCheckbox": MessageLookupByLibrary.simpleMessage("تذكرني!"),
+    "reportsSwitcher": MessageLookupByLibrary.simpleMessage("Reports"),
     "resendCode": MessageLookupByLibrary.simpleMessage("إعادة إرسال الرمز"),
     "scansHistory": MessageLookupByLibrary.simpleMessage(
       "سجل عمليات المسح الضوئي",
+    ),
+    "searchLabel": MessageLookupByLibrary.simpleMessage("Search"),
+    "searchingForInfo": MessageLookupByLibrary.simpleMessage(
+      "Searching for Info",
     ),
     "skipButton": MessageLookupByLibrary.simpleMessage("تخطي"),
     "submitOtpButton": MessageLookupByLibrary.simpleMessage("إرسال"),
@@ -166,6 +185,10 @@ class MessageLookup extends MessageLookupByLibrary {
         MessageLookupByLibrary.simpleMessage(
           "the sys config response dows not match the expected model",
         ),
+    "thisSectionIncludesFreeDataLikeMakeModelEngineType":
+        MessageLookupByLibrary.simpleMessage(
+          "This section includes free data like make, model, engine type, and body style.",
+        ),
     "titleIntro1": MessageLookupByLibrary.simpleMessage(
       "Easily Scan Any Vehicle Type for Details",
     ),
@@ -179,6 +202,11 @@ class MessageLookup extends MessageLookupByLibrary {
         MessageLookupByLibrary.simpleMessage(
           "Unable to connect to the server , please check your internet exception",
         ),
+    "vinMustContain17Characters": MessageLookupByLibrary.simpleMessage(
+      "VIN must contain 17 characters",
+    ),
+    "vinNumberLabel": MessageLookupByLibrary.simpleMessage("VIN Number"),
+    "warning": MessageLookupByLibrary.simpleMessage("Warning"),
     "youAreNotAuthorizedToAccessThisData": MessageLookupByLibrary.simpleMessage(
       "you are not authorized to access this data",
     ),

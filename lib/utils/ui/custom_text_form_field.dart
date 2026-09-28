@@ -20,12 +20,17 @@ class CustomTextFormField {
     bool obscureText = false,
     Widget? suffixIcon,
     bool readOnly = false,
-    String? initialValue
+    String? initialValue,
+    String? Function(String?)? validator,
+    TextCapitalization textCapitalization = TextCapitalization.none,
+    String? hintText,
   }) {
     return TextFormField(
       controller: controller,
       focusNode: focusNode,
       onFieldSubmitted: onFieldSubmitted,
+      validator: validator,
+      textCapitalization: textCapitalization,
       onTapOutside: (_) {
         FocusManager.instance.primaryFocus?.unfocus();
       },
@@ -45,7 +50,9 @@ class CustomTextFormField {
       scrollPadding: EdgeInsets.all(30),
       decoration: InputDecoration(
         errorText: errorText,
+        hintText: hintText,
         errorStyle: TextStyle(color: AppColors().errorText, fontSize: 14),
+        hintStyle: TextStyle(color: AppColors().textFieldLabelColor, fontSize: 14),
         filled: true,
         fillColor: AppColors().textFieldBackgroundColor,
         contentPadding: EdgeInsets.symmetric(horizontal: 24, vertical: 16),
@@ -55,7 +62,6 @@ class CustomTextFormField {
         focusedBorder: _buildTextFormFieldBorder(),
         errorBorder: _buildTextFormFieldBorder(),
         focusedErrorBorder: _buildTextFormFieldBorder(),
-
       ),
     );
   }

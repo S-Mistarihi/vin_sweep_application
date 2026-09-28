@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 import 'package:vin_sweep_application/configuration/app_assets.dart';
 import 'package:vin_sweep_application/configuration/app_colors.dart';
+import 'package:vin_sweep_application/features/home-fab/enter-vin/view/enter_vin_view.dart';
 import 'package:vin_sweep_application/features/home/FAB/controller/fab_controller.dart';
 import 'package:vin_sweep_application/features/home/FAB/fab_menu_view.dart';
 import 'package:vin_sweep_application/features/home/FAB/model/fab_model.dart';
@@ -18,7 +19,12 @@ class CustomPersistentBottomNavBar extends StatelessWidget {
   List<FabModel> get _fabActions => [
     FabModel(assetPath: AppAssets().uploadFab, onTap: () {}),
     FabModel(assetPath: AppAssets().scanFab, onTap: () {}),
-    FabModel(assetPath: AppAssets().enterFab, onTap: () {}),
+    FabModel(
+      assetPath: AppAssets().enterFab,
+      onTap: () {
+        Get.to(() => EnterVinView(), transition: Transition.downToUp);
+      },
+    ),
   ];
 
   @override

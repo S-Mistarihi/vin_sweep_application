@@ -693,6 +693,121 @@ class S {
   String get phoneLabel {
     return Intl.message('Phone', name: 'phoneLabel', desc: '', args: []);
   }
+
+  /// `Please enter VIN number`
+  String get pleaseEnterVinNumber {
+    return Intl.message(
+      'Please enter VIN number',
+      name: 'pleaseEnterVinNumber',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `VIN must contain 17 characters`
+  String get vinMustContain17Characters {
+    return Intl.message(
+      'VIN must contain 17 characters',
+      name: 'vinMustContain17Characters',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter a valid VIN number`
+  String get pleaseEnterAValidVinNumber {
+    return Intl.message(
+      'Please enter a valid VIN number',
+      name: 'pleaseEnterAValidVinNumber',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `VIN Number`
+  String get vinNumberLabel {
+    return Intl.message(
+      'VIN Number',
+      name: 'vinNumberLabel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Search`
+  String get searchLabel {
+    return Intl.message('Search', name: 'searchLabel', desc: '', args: []);
+  }
+
+  /// `Warning`
+  String get warning {
+    return Intl.message('Warning', name: 'warning', desc: '', args: []);
+  }
+
+  /// `General Info`
+  String get generalInfoSwitcher {
+    return Intl.message(
+      'General Info',
+      name: 'generalInfoSwitcher',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Reports`
+  String get reportsSwitcher {
+    return Intl.message('Reports', name: 'reportsSwitcher', desc: '', args: []);
+  }
+
+  /// `Buy Report`
+  String get buyReportButton {
+    return Intl.message(
+      'Buy Report',
+      name: 'buyReportButton',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Searching for Info`
+  String get searchingForInfo {
+    return Intl.message(
+      'Searching for Info',
+      name: 'searchingForInfo',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `This section includes free data like make, model, engine type, and body style.`
+  String get thisSectionIncludesFreeDataLikeMakeModelEngineType {
+    return Intl.message(
+      'This section includes free data like make, model, engine type, and body style.',
+      name: 'thisSectionIncludesFreeDataLikeMakeModelEngineType',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `˄ Collapse`
+  String get collapse {
+    return Intl.message('˄ Collapse', name: 'collapse', desc: '', args: []);
+  }
+
+  /// `˅ Expanded`
+  String get expanded {
+    return Intl.message('˅ Expanded', name: 'expanded', desc: '', args: []);
+  }
+
+  /// `Information not available for this detail`
+  String get informationNotAvailableForThisDetail {
+    return Intl.message(
+      'Information not available for this detail',
+      name: 'informationNotAvailableForThisDetail',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

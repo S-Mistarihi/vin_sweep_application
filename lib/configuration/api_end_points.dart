@@ -18,4 +18,7 @@ class ApiEndPoints {
       '$baseUrl${version}setting-config/contact-us-info';
   static final String updateUser = '$baseUrl${version}users/update';
   static final String getPlans = '$baseUrl${version}plans';
+
+  //home FAB
+  static final String scanVin = '$baseUrl${version}vehicle';
 }
