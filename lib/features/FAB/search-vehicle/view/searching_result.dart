@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
-import 'package:vin_sweep_application/configuration/app_assets.dart';
-import 'package:vin_sweep_application/features/home-fab/search-vin/controller/search_vin_controller.dart';
-import 'package:vin_sweep_application/features/home-fab/search-vin/view/general-info/view/general_info_view.dart';
-import 'package:vin_sweep_application/features/home-fab/search-vin/view/reports/view/reports_view.dart';
-import 'package:vin_sweep_application/utils/ui/common/custom_scan_vin_number_header.dart';
-import 'package:vin_sweep_application/utils/ui/custom_button.dart';
+import 'package:vin_sweep_application/features/FAB/search-vehicle/controller/searching_mode_controller.dart';
+import 'package:vin_sweep_application/features/FAB/search-vehicle/view/switcher/general-info/view/general_info_view.dart';
+import 'package:vin_sweep_application/features/FAB/search-vehicle/view/switcher/reports/view/report_view.dart';
 
+import '../../../../configuration/app_assets.dart';
 import '../../../../configuration/app_colors.dart';
 import '../../../../generated/l10n.dart';
-import '../../enter-vin/model/vehicle_response.dart';
+import '../../../../utils/ui/common/custom_scan_vin_number_header.dart';
+import '../../../../utils/ui/custom_button.dart';
+import '../model/vehicle_response.dart';
 
-class SearchVinResultView extends StatelessWidget {
-  const SearchVinResultView({
+class SearchingResult extends StatelessWidget {
+  SearchingResult({
     super.key,
     required this.vinNumber,
     required this.vehicleData,
@@ -26,12 +26,12 @@ class SearchVinResultView extends StatelessWidget {
   final String vehicleName;
   final String? vehicleType;
 
+  final SearchingModeController modeController = Get.put(
+    SearchingModeController(),
+  );
+
   @override
   Widget build(BuildContext context) {
-    final SearchVinController controller = Get.put(
-      SearchVinController(vinNumber: vinNumber),
-    );
-
     return Scaffold(
       body: Obx(
         () => Stack(
@@ -40,9 +40,7 @@ class SearchVinResultView extends StatelessWidget {
               headerSpace: 25,
               vinNumber: vinNumber,
               headerMainText: vehicleName,
-              headerSubText: vehicleType != null && vehicleType!.isNotEmpty
-                  ? vehicleType!
-                  : '',
+              headerSubText: vehicleType ?? '',
               leftIcon: AppAssets().closeIcon,
             ),
             Positioned(
@@ -57,20 +55,16 @@ class SearchVinResultView extends StatelessWidget {
                   color: AppColors().baseColor,
                   borderRadius: const BorderRadius.only(
                     topLeft: Radius.circular(40),
-                    topRight: Radius.circular(40),
                   ),
                 ),
                 child: SingleChildScrollView(
                   child: Column(
                     children: [
                       const SizedBox(height: 30),
-                      _buildAuthSwitcher(context, controller),
-                      controller.isInfo
-                          ? GeneralInfoView(
-                              categories: vehicleData,
-                              controller: controller,
-                            )
-                          : ReportsView(),
+                      _buildAuthSwitcher(context, modeController),
+                      modeController.isInfo
+                          ? GeneralInfoView(vehicleData: vehicleData)
+                          : ReportView(),
                     ],
                   ),
                 ),
@@ -100,7 +94,7 @@ class SearchVinResultView extends StatelessWidget {
 
   Widget _buildAuthSwitcher(
     BuildContext context,
-    SearchVinController controller,
+    SearchingModeController controller,
   ) {
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 9),

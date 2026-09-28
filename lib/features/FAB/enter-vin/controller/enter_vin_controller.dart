@@ -1,8 +1,8 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:vin_sweep_application/generated/l10n.dart';
+import 'package:vin_sweep_application/features/FAB/search-vehicle/view/searching_view.dart';
 
-import '../../search-vin/view/search_vin_view.dart';
+import '../../../../generated/l10n.dart';
 
 class EnterVinController extends GetxController {
   final TextEditingController vinNumberController = TextEditingController();
@@ -45,6 +45,6 @@ class EnterVinController extends GetxController {
         .replaceAll(RegExp(r'[\s-]'), '')
         .toUpperCase();
 
-    Get.to(() => SearchVinView(vinNumber: vin));
+    Get.to(() => SearchingView(vinNumber: vin));
   }
 }

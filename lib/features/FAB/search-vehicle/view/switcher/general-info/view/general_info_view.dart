@@ -1,27 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
-import 'package:vin_sweep_application/configuration/app_colors.dart';
-import 'package:vin_sweep_application/features/home-fab/search-vin/view/general-info/view/vehicle_category_section.dart';
 
-import '../../../../../../generated/l10n.dart';
-import '../../../../enter-vin/model/vehicle_response.dart';
-import '../../../controller/search_vin_controller.dart';
+import '../../../../../../../configuration/app_colors.dart';
+import '../../../../model/vehicle_response.dart';
+import '../controller/general_info_controller.dart';
+import 'vehicle_category_section.dart';
 
 class GeneralInfoView extends StatelessWidget {
-  const GeneralInfoView({
-    super.key,
-    required this.categories,
-    required this.controller,
-  });
+  const GeneralInfoView({super.key, required this.vehicleData});
 
-  final List<VehicleDatum> categories;
-  final SearchVinController controller;
+  final List<VehicleDatum> vehicleData;
 
   @override
   Widget build(BuildContext context) {
-    final engine = controller.getCategoryFromData(categories, 'Engine');
-    final general = controller.getCategoryFromData(categories, 'General');
+    final GeneralInfoController controller = Get.put(GeneralInfoController());
+
+    final engine = controller.getCategory(vehicleData, 'Engine');
+
+    final general = controller.getCategory(vehicleData, 'General');
+
     return Obx(
       () => Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -29,6 +27,7 @@ class GeneralInfoView extends StatelessWidget {
           const SizedBox(height: 20),
 
           Container(
+            width: double.infinity,
             padding: const EdgeInsets.symmetric(vertical: 9, horizontal: 16),
             decoration: BoxDecoration(
               color: AppColors().generalInfoContainerBackground,
@@ -39,7 +38,7 @@ class GeneralInfoView extends StatelessWidget {
               ),
             ),
             child: Text(
-              S.of(context).thisSectionIncludesFreeDataLikeMakeModelEngineType,
+              'This section includes free data like make, model, engine type, and body style.',
               style: TextStyle(color: AppColors().accentColor, fontSize: 15),
             ),
           ),
@@ -48,7 +47,7 @@ class GeneralInfoView extends StatelessWidget {
 
           if (engine != null) VehicleCategorySection(category: engine),
 
-          const SizedBox(height: 8),
+          const SizedBox(height: 14),
 
           if (controller.isGeneralExpanded.value && general != null) ...[
             VehicleCategorySection(category: general),
@@ -60,16 +59,17 @@ class GeneralInfoView extends StatelessWidget {
               onTap: controller.toggleGeneralExpansion,
               child: Text(
                 controller.isGeneralExpanded.value
-                    ? S.of(context).collapse
-                    : S.of(context).expanded,
+                    ? '˄  Collapse'
+                    : '˅  Expanded',
                 style: TextStyle(
-                  color: AppColors().buttonWithBackground,
+                  color: AppColors().smallTextColor,
                   fontSize: 22,
                   fontWeight: FontWeight.bold,
                 ),
               ),
             ),
           ),
+
           SizedBox(height: 20.h),
         ],
       ),

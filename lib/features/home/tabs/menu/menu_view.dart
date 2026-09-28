@@ -8,7 +8,7 @@ import 'package:vin_sweep_application/features/auth/auth_view.dart';
 import 'package:vin_sweep_application/features/home/tabs/menu/change_password/view/change_password_view.dart';
 import 'package:vin_sweep_application/features/home/tabs/menu/contact_us/controller/contact_info_controller.dart';
 import 'package:vin_sweep_application/features/home/tabs/menu/contact_us/view/contact_us_view.dart';
-import 'package:vin_sweep_application/features/home/tabs/menu/payment/view/payment_view.dart';
+import 'package:vin_sweep_application/features/home/tabs/menu/payment/payment_view.dart';
 import 'package:vin_sweep_application/features/home/tabs/menu/plans/controller/plans_controller.dart';
 import 'package:vin_sweep_application/features/home/tabs/menu/plans/view/plans_view.dart';
 import 'package:vin_sweep_application/features/home/tabs/menu/profile/controller/profile_controller.dart';

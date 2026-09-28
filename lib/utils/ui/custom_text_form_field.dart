@@ -43,7 +43,7 @@ class CustomTextFormField {
       maxLines: 1,
       autocorrect: true,
       enableSuggestions: false,
-      enableInteractiveSelection: false,
+      enableInteractiveSelection: true,
       readOnly: readOnly,
       initialValue: initialValue,
       style: TextStyle(color: AppColors().accentColor, fontSize: 14),

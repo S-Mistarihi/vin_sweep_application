@@ -3,14 +3,14 @@ import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:vin_sweep_application/configuration/api_end_points.dart';
 import 'package:vin_sweep_application/configuration/app_config.dart';
-import 'package:vin_sweep_application/features/home-fab/enter-vin/model/vehicle_response.dart';
 import 'package:vin_sweep_application/utils/helpers/common/repository_result.dart';
 import 'package:vin_sweep_application/utils/helpers/http/http_wrapper.dart';
 
 import '../../../../generated/l10n.dart';
 import '../../../../utils/helpers/common/exception/repository_exception.dart';
+import '../model/vehicle_response.dart';
 
-abstract class EnterVinRepository {
+abstract class VehicleRepository {
   Future<RepositoryResult<List<VehicleDatum>>> scanVin({
     required BuildContext context,
     required String vinNumber,
@@ -18,7 +18,7 @@ abstract class EnterVinRepository {
   });
 }
 
-class ApiEnterVinRepository extends EnterVinRepository {
+class ApiVehicleRepository extends VehicleRepository {
   @override
   Future<RepositoryResult<List<VehicleDatum>>> scanVin({
     required BuildContext context,
@@ -77,7 +77,7 @@ class ApiEnterVinRepository extends EnterVinRepository {
   }
 }
 
-class DemoEnterVinRepository extends EnterVinRepository {
+class DemoVehicleRepository extends VehicleRepository {
   @override
   Future<RepositoryResult<List<VehicleDatum>>> scanVin({
     required BuildContext context,
@@ -106,8 +106,6 @@ class DemoEnterVinRepository extends EnterVinRepository {
   }
 }
 
-EnterVinRepository createEnterVinRepository() {
-  return AppConfig().isDemo
-      ? DemoEnterVinRepository()
-      : ApiEnterVinRepository();
+VehicleRepository createVehicleRepository() {
+  return AppConfig().isDemo ? DemoVehicleRepository() : ApiVehicleRepository();
 }

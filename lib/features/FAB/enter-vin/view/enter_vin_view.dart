@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
-import 'package:vin_sweep_application/configuration/app_assets.dart';
-import 'package:vin_sweep_application/features/home-fab/enter-vin/controller/enter_vin_controller.dart';
-import 'package:vin_sweep_application/utils/ui/common/custom_main_sub_header.dart';
-import 'package:vin_sweep_application/utils/ui/custom_button.dart';
-import 'package:vin_sweep_application/utils/ui/custom_text_form_field.dart';
+import 'package:vin_sweep_application/features/FAB/enter-vin/controller/enter_vin_controller.dart';
 
+import '../../../../configuration/app_assets.dart';
 import '../../../../configuration/app_colors.dart';
 import '../../../../generated/l10n.dart';
+import '../../../../utils/ui/common/custom_main_sub_header.dart';
+import '../../../../utils/ui/custom_button.dart';
+import '../../../../utils/ui/custom_text_form_field.dart';
 
 class EnterVinView extends StatelessWidget {
   EnterVinView({super.key});

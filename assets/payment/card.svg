@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="46" height="46" viewBox="0 0 46 46">
+  <g id="Card_with_circle" data-name="Card with circle" transform="translate(-48 -462)">
+    <circle id="Ellipse_3340" data-name="Ellipse 3340" cx="23" cy="23" r="23" transform="translate(48 462)" fill="#cbe2ff"/>
+    <g id="noun-card-7899237" transform="translate(47 455.699)">
+      <path id="Path_90681" data-name="Path 90681" d="M13,51.988a2.422,2.422,0,0,0,2.408,2.454H32.591A2.422,2.422,0,0,0,35,51.988V43.9H13Zm8.383-2h2.943a.7.7,0,0,1,0,1.394H21.383a.7.7,0,0,1,0-1.394Zm-5.38,0h2.943a.7.7,0,0,1,0,1.394H16a.679.679,0,0,1-.684-.7A.7.7,0,0,1,16,49.988Z" transform="translate(0 -16.141)"/>
+      <path id="Path_90682" data-name="Path 90682" d="M32.59,21.3H15.408A2.422,2.422,0,0,0,13,23.755v2.969H35V23.755A2.421,2.421,0,0,0,32.59,21.3Z"/>
+    </g>
+  </g>
+</svg>

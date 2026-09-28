@@ -68,4 +68,7 @@ class AppAssets {
   String tiktok = 'assets/contact-us/tiktok.svg';
   String x = 'assets/contact-us/x.svg';
   String youtube = 'assets/contact-us/youtube.svg';
+
+  String payCard = 'assets/payment/card.svg';
+  String payMenuIcon = 'assets/payment/ic-menu.svg';
 }

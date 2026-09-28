@@ -70,7 +70,7 @@ class VehicleDatum {
 
 class CategoryValue {
   final String key;
-  final String value;
+  final String? value;
 
   CategoryValue({required this.key, required this.value});
 
