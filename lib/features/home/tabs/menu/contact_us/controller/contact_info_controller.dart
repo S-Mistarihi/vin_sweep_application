@@ -44,20 +44,27 @@ class ContactInfoController extends GetxController {
     );
   }
 
-  Future<void> openUrl(String? url) async {
-    if (url == null || url.isEmpty) {
-      showErrorToast('This contact option is not available');
+  Future<void> openUrl(String? url, {String? unavailableMessage}) async {
+    if (url == null || url.trim().isEmpty) {
+      showErrorToast(
+        unavailableMessage ?? 'This contact option is not available',
+      );
       return;
     }
 
-    final uri = Uri.tryParse(url);
+    var link = url.trim();
+    if (!link.contains('://')) link = 'https://$link';
 
-    if (uri == null) {
+    final uri = Uri.tryParse(link);
+    if (uri == null || uri.host.isEmpty) {
       showErrorToast('Invalid link');
       return;
     }
 
-    if (!await launchUrl(uri, mode: LaunchMode.externalApplication)) {
+    try {
+      final opened = await launchUrl(uri, mode: LaunchMode.externalApplication);
+      if (!opened) showErrorToast('Could not open this link');
+    } catch (_) {
       showErrorToast('Could not open this link');
     }
   }
@@ -65,69 +72,97 @@ class ContactInfoController extends GetxController {
   Future<void> callUs() async {
     final phone = CurrentSession().infoModel?.result?.phoneNumber;
 
-    if (phone == null || phone.isEmpty) {
+    if (phone == null || phone.trim().isEmpty) {
       showErrorToast('Phone number is not available');
       return;
     }
 
-    final uri = Uri(scheme: 'tel', path: phone);
+    final cleaned = phone.replaceAll(RegExp(r'[^\d+]'), '');
+    final withCode = cleaned.startsWith('+') ? cleaned : '+1$cleaned';
+    final uri = Uri(scheme: 'tel', path: withCode);
 
-    if (!await launchUrl(uri)) {
+    try {
+      final opened = await launchUrl(uri);
+      if (!opened) showErrorToast('Could not open phone');
+    } catch (_) {
       showErrorToast('Could not open phone');
     }
   }
 
   Future<void> openWhatsapp() async {
-    final whatsapp = CurrentSession().infoModel?.result?.whatsapp;
+    final whatsapp = CurrentSession().infoModel?.result?.whatsapp?.trim();
 
     if (whatsapp == null || whatsapp.isEmpty) {
       showErrorToast('Whatsapp is not available');
       return;
     }
 
-    await openUrl(whatsapp);
+    final isNumber = RegExp(r'^\+?[\d\s\-()]+$').hasMatch(whatsapp);
+    if (isNumber) {
+      final digits = whatsapp.replaceAll(RegExp(r'\D'), '');
+      await openUrl('https://wa.me/$digits');
+    } else {
+      await openUrl(whatsapp);
+    }
   }
 
   Future<void> sendEmail() async {
-    final email = CurrentSession().infoModel?.result?.email;
+    final email = CurrentSession().infoModel?.result?.email?.trim();
 
     if (email == null || email.isEmpty) {
       showErrorToast('Email is not available');
       return;
     }
 
-    final uri = Uri.parse('mailto:$email');
+    final uri = Uri(scheme: 'mailto', path: email);
 
     try {
-      await launchUrl(uri, mode: LaunchMode.externalApplication);
-    } catch (e) {
+      final opened = await launchUrl(uri, mode: LaunchMode.externalApplication);
+      if (!opened) showErrorToast('Could not open email');
+    } catch (_) {
       showErrorToast('Could not open email');
     }
   }
 
   Future<void> openWebsite() async {
-    final website = CurrentSession().infoModel?.result?.websiteUrl;
-
-    await openUrl(website);
+    await openUrl(
+      CurrentSession().infoModel?.result?.websiteUrl,
+      unavailableMessage: 'Website is not available',
+    );
   }
 
   Future<void> openInstagram() async {
-    await openUrl(CurrentSession().infoModel?.result?.instagram);
+    await openUrl(
+      CurrentSession().infoModel?.result?.instagram,
+      unavailableMessage: 'Instagram is not available',
+    );
   }
 
   Future<void> openTikTok() async {
-    await openUrl(CurrentSession().infoModel?.result?.tiktok);
+    await openUrl(
+      CurrentSession().infoModel?.result?.tiktok,
+      unavailableMessage: 'TikTok is not available',
+    );
   }
 
   Future<void> openTwitter() async {
-    await openUrl(CurrentSession().infoModel?.result?.twitter);
+    await openUrl(
+      CurrentSession().infoModel?.result?.twitter,
+      unavailableMessage: 'Twitter is not available',
+    );
   }
 
   Future<void> openFacebook() async {
-    await openUrl(CurrentSession().infoModel?.result?.facebook);
+    await openUrl(
+      CurrentSession().infoModel?.result?.facebook,
+      unavailableMessage: 'Facebook is not available',
+    );
   }
 
   Future<void> openYoutube() async {
-    await openUrl(CurrentSession().infoModel?.result?.youtube);
+    await openUrl(
+      CurrentSession().infoModel?.result?.youtube,
+      unavailableMessage: 'YouTube is not available',
+    );
   }
 }
