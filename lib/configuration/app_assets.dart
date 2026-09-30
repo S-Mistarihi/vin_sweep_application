@@ -37,6 +37,7 @@ class AppAssets {
   String scanFab = 'assets/FAB/scan.svg';
   String enterFab = 'assets/FAB/Enter.svg';
   String uploadFab = 'assets/FAB/upload.svg';
+  String rescanIcon = 'assets/scan-vin/ic-scan.svg';
   String blueFileIcon = 'assets/home_icons/blue_file_ic.svg';
   String purpleFileIcon = 'assets/home_icons/purple_file_ic.svg';
   String carTotalSweep = 'assets/home_icons/car_total_sweep.svg';

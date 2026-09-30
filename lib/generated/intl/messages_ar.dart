@@ -29,7 +29,12 @@ class MessageLookup extends MessageLookupByLibrary {
         ),
     "backButton": MessageLookupByLibrary.simpleMessage("الرجوع"),
     "buyReportButton": MessageLookupByLibrary.simpleMessage("Buy Report"),
+    "cameraPermissionDeniedPleaseEnableItFromSettings":
+        MessageLookupByLibrary.simpleMessage(
+          "Camera permission denied. Please enable it from Settings.",
+        ),
     "changePassword": MessageLookupByLibrary.simpleMessage("تغيير كلمة المرور"),
+    "close": MessageLookupByLibrary.simpleMessage("Close"),
     "collapse": MessageLookupByLibrary.simpleMessage("˄ Collapse"),
     "confirmEmailLabel": MessageLookupByLibrary.simpleMessage("Confirm Email"),
     "confirmPasswordDoesNotMatch": MessageLookupByLibrary.simpleMessage(
@@ -86,6 +91,9 @@ class MessageLookup extends MessageLookupByLibrary {
       "New password must be different from the current password",
     ),
     "nextButton": MessageLookupByLibrary.simpleMessage("التالي"),
+    "noCameraWasFound": MessageLookupByLibrary.simpleMessage(
+      "No camera was found.",
+    ),
     "oneTimePinIsRequired": MessageLookupByLibrary.simpleMessage(
       "رمز التحقق مطلوب",
     ),
@@ -147,7 +155,22 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "rememberMeCheckbox": MessageLookupByLibrary.simpleMessage("تذكرني!"),
     "reportsSwitcher": MessageLookupByLibrary.simpleMessage("Reports"),
+    "rescanButton": MessageLookupByLibrary.simpleMessage("Re-Scan"),
     "resendCode": MessageLookupByLibrary.simpleMessage("إعادة إرسال الرمز"),
+    "scanTheVinNumberOfYourCar": MessageLookupByLibrary.simpleMessage(
+      "Scan the VIN number of your car",
+    ),
+    "scanVehicleVinNumber": MessageLookupByLibrary.simpleMessage(
+      "Scan Vehicle VIN Number",
+    ),
+    "scanYourVehicleVinNumberThroughTheCamera":
+        MessageLookupByLibrary.simpleMessage(
+          "Scan your vehicle VIN number through the camera",
+        ),
+    "scannedVinNumberLabel": MessageLookupByLibrary.simpleMessage(
+      "Scanned VIN Number",
+    ),
+    "scanning": MessageLookupByLibrary.simpleMessage("Scanning..."),
     "scansHistory": MessageLookupByLibrary.simpleMessage(
       "سجل عمليات المسح الضوئي",
     ),
@@ -156,6 +179,10 @@ class MessageLookup extends MessageLookupByLibrary {
       "Searching for Info",
     ),
     "skipButton": MessageLookupByLibrary.simpleMessage("تخطي"),
+    "somethingWentWrongWhileOpeningTheCamera":
+        MessageLookupByLibrary.simpleMessage(
+          "Something went wrong while opening the camera.",
+        ),
     "submitOtpButton": MessageLookupByLibrary.simpleMessage("إرسال"),
     "successDescriptionDialog": MessageLookupByLibrary.simpleMessage(
       "لقد أنشأت حسابًا بنجاح",
@@ -198,10 +225,18 @@ class MessageLookup extends MessageLookupByLibrary {
     "titleIntro3": MessageLookupByLibrary.simpleMessage(
       "Get Detailed and Accurate Vehicle Information",
     ),
+    "tryAgain": MessageLookupByLibrary.simpleMessage("Try again"),
     "unableToConnectToTheServerPleaseCheckYourInternet":
         MessageLookupByLibrary.simpleMessage(
           "Unable to connect to the server , please check your internet exception",
         ),
+    "unableToInitializeCamera": MessageLookupByLibrary.simpleMessage(
+      "Unable to initialize camera.",
+    ),
+    "vinDetected": MessageLookupByLibrary.simpleMessage("VIN detected ✓"),
+    "vinMustBeExactly17Characters": MessageLookupByLibrary.simpleMessage(
+      "VIN must be exactly 17 characters.",
+    ),
     "vinMustContain17Characters": MessageLookupByLibrary.simpleMessage(
       "VIN must contain 17 characters",
     ),

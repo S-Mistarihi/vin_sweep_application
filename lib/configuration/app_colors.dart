@@ -57,4 +57,5 @@ class AppColors {
 
   Color generalInfoContainerBackground = const Color(0xffEBF5FA);
   Color generalInfoContainerBorder = const Color(0xffA8C8DC);
+  Color scanningLine = const Color(0xffEB2A2A);
 }

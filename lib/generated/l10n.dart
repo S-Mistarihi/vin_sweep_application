@@ -808,6 +808,126 @@ class S {
       args: [],
     );
   }
+
+  /// `Scan Vehicle VIN Number`
+  String get scanVehicleVinNumber {
+    return Intl.message(
+      'Scan Vehicle VIN Number',
+      name: 'scanVehicleVinNumber',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Scan your vehicle VIN number through the camera`
+  String get scanYourVehicleVinNumberThroughTheCamera {
+    return Intl.message(
+      'Scan your vehicle VIN number through the camera',
+      name: 'scanYourVehicleVinNumberThroughTheCamera',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Scanned VIN Number`
+  String get scannedVinNumberLabel {
+    return Intl.message(
+      'Scanned VIN Number',
+      name: 'scannedVinNumberLabel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Re-Scan`
+  String get rescanButton {
+    return Intl.message('Re-Scan', name: 'rescanButton', desc: '', args: []);
+  }
+
+  /// `Try again`
+  String get tryAgain {
+    return Intl.message('Try again', name: 'tryAgain', desc: '', args: []);
+  }
+
+  /// `Close`
+  String get close {
+    return Intl.message('Close', name: 'close', desc: '', args: []);
+  }
+
+  /// `Scan the VIN number of your car`
+  String get scanTheVinNumberOfYourCar {
+    return Intl.message(
+      'Scan the VIN number of your car',
+      name: 'scanTheVinNumberOfYourCar',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `VIN detected ✓`
+  String get vinDetected {
+    return Intl.message(
+      'VIN detected ✓',
+      name: 'vinDetected',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Scanning...`
+  String get scanning {
+    return Intl.message('Scanning...', name: 'scanning', desc: '', args: []);
+  }
+
+  /// `No camera was found.`
+  String get noCameraWasFound {
+    return Intl.message(
+      'No camera was found.',
+      name: 'noCameraWasFound',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Camera permission denied. Please enable it from Settings.`
+  String get cameraPermissionDeniedPleaseEnableItFromSettings {
+    return Intl.message(
+      'Camera permission denied. Please enable it from Settings.',
+      name: 'cameraPermissionDeniedPleaseEnableItFromSettings',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Something went wrong while opening the camera.`
+  String get somethingWentWrongWhileOpeningTheCamera {
+    return Intl.message(
+      'Something went wrong while opening the camera.',
+      name: 'somethingWentWrongWhileOpeningTheCamera',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Unable to initialize camera.`
+  String get unableToInitializeCamera {
+    return Intl.message(
+      'Unable to initialize camera.',
+      name: 'unableToInitializeCamera',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `VIN must be exactly 17 characters.`
+  String get vinMustBeExactly17Characters {
+    return Intl.message(
+      'VIN must be exactly 17 characters.',
+      name: 'vinMustBeExactly17Characters',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

@@ -5,11 +5,14 @@ import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 import 'package:vin_sweep_application/configuration/app_assets.dart';
 import 'package:vin_sweep_application/configuration/app_colors.dart';
 import 'package:vin_sweep_application/features/FAB/enter-vin/view/enter_vin_view.dart';
+import 'package:vin_sweep_application/features/FAB/scan-vin/view/scan_vin_view.dart';
 import 'package:vin_sweep_application/features/home/FAB/controller/fab_controller.dart';
 import 'package:vin_sweep_application/features/home/FAB/fab_menu_view.dart';
 import 'package:vin_sweep_application/features/home/FAB/model/fab_model.dart';
 import 'package:vin_sweep_application/features/home/tabs/home/view/home_view.dart';
 import 'package:vin_sweep_application/features/home/tabs/menu/menu_view.dart';
+
+import '../../features/FAB/live-scan/view/live_scan_view.dart';
 
 class CustomPersistentBottomNavBar extends StatelessWidget {
   CustomPersistentBottomNavBar({super.key});
@@ -18,7 +21,21 @@ class CustomPersistentBottomNavBar extends StatelessWidget {
 
   List<FabModel> get _fabActions => [
     FabModel(assetPath: AppAssets().uploadFab, onTap: () {}),
-    FabModel(assetPath: AppAssets().scanFab, onTap: () {}),
+    FabModel(
+      assetPath: AppAssets().scanFab,
+      onTap: () async {
+        // 1) افتح الكاميرا واستنى الـ VIN
+        final String? vin = await Get.to<String>(
+          () => const LiveScanView(),
+          transition: Transition.downToUp,
+        );
+
+        // 2) إذا انقرأ VIN افتح صفحة النتيجة (الحقل + Re-scan + Search)
+        if (vin != null && vin.isNotEmpty) {
+          Get.to(() => ScanVinView(initialVin: vin));
+        }
+      },
+    ),
     FabModel(
       assetPath: AppAssets().enterFab,
       onTap: () {

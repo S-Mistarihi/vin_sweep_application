@@ -86,5 +86,19 @@
   "thisSectionIncludesFreeDataLikeMakeModelEngineType": "This section includes free data like make, model, engine type, and body style.",
   "collapse": "˄ Collapse",
   "expanded": "˅ Expanded",
-  "informationNotAvailableForThisDetail": "Information not available for this detail"
+  "informationNotAvailableForThisDetail": "Information not available for this detail",
+  "scanVehicleVinNumber": "Scan Vehicle VIN Number",
+  "scanYourVehicleVinNumberThroughTheCamera": "Scan your vehicle VIN number through the camera",
+  "scannedVinNumberLabel": "Scanned VIN Number",
+  "rescanButton": "Re-Scan",
+  "tryAgain": "Try again",
+  "close": "Close",
+  "scanTheVinNumberOfYourCar": "Scan the VIN number of your car",
+  "vinDetected": "VIN detected ✓",
+  "scanning": "Scanning...",
+  "noCameraWasFound": "No camera was found.",
+  "cameraPermissionDeniedPleaseEnableItFromSettings": "Camera permission denied. Please enable it from Settings.",
+  "somethingWentWrongWhileOpeningTheCamera": "Something went wrong while opening the camera.",
+  "unableToInitializeCamera": "Unable to initialize camera.",
+  "vinMustBeExactly17Characters": "VIN must be exactly 17 characters."
 }
