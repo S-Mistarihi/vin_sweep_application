@@ -17,8 +17,24 @@ class PlansController extends GetxController {
     getPlans();
   }
 
-  void changeAutoRenew(bool value) {
+  Future<void> changeAutoRenew(bool value) async{
+    final context = Get.context!;
+
+    final previous = isAutoRenew.value;
     isAutoRenew.value = value;
+
+    final result = await createPlansRepository().setAutoRenew(
+      context: context,
+      autoRenew: value,
+    );
+
+    switch (result) {
+      case Success():
+        break;
+      case Failure(:final exception):
+        isAutoRenew.value = previous;
+        showErrorToast(exception.message);
+    }
   }
 
   Future<void> getPlans() async {

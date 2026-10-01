@@ -125,7 +125,7 @@ class CustomCard extends StatelessWidget {
               SizedBox(height: 6),
               Text(
                 plan.headlineSecondary ?? '',
-                style: TextStyle(color: AppColors().cardPlanText, fontSize: 16),
+                style: TextStyle(color: AppColors().cardPlanText, fontSize: 14),
               ),
             ],
           ),

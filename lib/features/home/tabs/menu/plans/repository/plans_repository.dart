@@ -9,9 +9,17 @@ import 'package:vin_sweep_application/utils/helpers/common/exception/repository_
 import 'package:vin_sweep_application/utils/helpers/common/repository_result.dart';
 import 'package:vin_sweep_application/utils/helpers/http/http_wrapper.dart';
 
+import '../../../../../auth/register/model/generic_response.dart';
+
 abstract class PlansRepository {
   Future<RepositoryResult<PlansResponse>> getPlans({
     required BuildContext context,
+    bool showLoading = false,
+  });
+
+  Future<RepositoryResult<GenericResponse>> setAutoRenew({
+    required BuildContext context,
+    required bool autoRenew,
     bool showLoading = false,
   });
 }
@@ -36,6 +44,26 @@ class ApiPlansRepository extends PlansRepository {
     }
   }
 
+  @override
+  Future<RepositoryResult<GenericResponse>> setAutoRenew({
+    required BuildContext context,
+    required bool autoRenew,
+    bool showLoading = false,
+  }) async {
+    final result = await HttpWrapper(
+      url: ApiEndPoints.setAutoRenew(autoRenew),
+      context: context,
+      showLoading: showLoading,
+    ).post();
+
+    switch (result) {
+      case Failure(:final exception):
+        return Failure(exception);
+      case Success(:final data):
+        return _parseAutoRenew(data.stringBody ?? '', context);
+    }
+  }
+
   RepositoryResult<PlansResponse> _parse(String body, BuildContext context) {
     try {
       if (body.trim().isEmpty) {
@@ -56,6 +84,40 @@ class ApiPlansRepository extends PlansRepository {
           response.message?.isNotEmpty == true
               ? response.message!
               : S.of(context).theServerReturnedAnUnsuccessfulResponse,
+        ),
+      );
+    } catch (error, stackTrace) {
+      return Failure(
+        UnknownException(
+          S.of(context).anUnexpectedErrorOccuredPleaseTryAgain,
+          cause: error,
+          stackTrace: stackTrace,
+        ),
+      );
+    }
+  }
+
+  RepositoryResult<GenericResponse> _parseAutoRenew(
+    String body,
+    BuildContext context,
+  ) {
+    try {
+      final json = jsonDecode(body);
+      if (json is! Map<String, dynamic>) {
+        return Failure(MappingException('Unexpected response structure'));
+      }
+
+      final response = GenericResponse.fromJson(json);
+      if (response.success) {
+        return Success(response);
+      }
+
+      return Failure(
+        MappingException(
+          response.message.isNotEmpty
+              ? response.message
+              : S.of(context).theServerReturnedAnUnsuccessfulResponse,
+          errorCode: response.code.toString(),
         ),
       );
     } catch (error, stackTrace) {
@@ -127,6 +189,18 @@ class DemoPlansRepository extends PlansRepository {
           ),
         ],
       ),
+    );
+  }
+
+  @override
+  Future<RepositoryResult<GenericResponse>> setAutoRenew({
+    required BuildContext context,
+    required bool autoRenew,
+    bool showLoading = false,
+  }) async {
+    await Future.delayed(const Duration(milliseconds: 500));
+    return Success(
+      GenericResponse(success: true, code: 200, message: 'Auto renew updated'),
     );
   }
 }

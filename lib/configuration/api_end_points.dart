@@ -18,6 +18,8 @@ class ApiEndPoints {
       '$baseUrl${version}setting-config/contact-us-info';
   static final String updateUser = '$baseUrl${version}users/update';
   static final String getPlans = '$baseUrl${version}plans';
+  static String setAutoRenew(bool autoRenew) =>
+      '$baseUrl${version}plans/auto-renew?autoRenew=$autoRenew';
   static final String getPaymentMethod =
       '$baseUrl${version}payment/my-payment-methods?forceRefresh=false';
   static final String setDefaultPaymentMethod =
