@@ -108,5 +108,6 @@
   "cancelButton": "Cancel",
   "deleteButton": "Delete",
   "moreActions": "More Actions",
-  "makeDefault": "Make Default"
+  "makeDefault": "Make Default",
+  "noPaymentHistory": "No payment history"
 }

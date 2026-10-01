@@ -988,6 +988,16 @@ class S {
       args: [],
     );
   }
+
+  /// `No payment history`
+  String get noPaymentHistory {
+    return Intl.message(
+      'No payment history',
+      name: 'noPaymentHistory',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

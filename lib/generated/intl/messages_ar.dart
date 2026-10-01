@@ -102,6 +102,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "noCameraWasFound": MessageLookupByLibrary.simpleMessage(
       "No camera was found.",
     ),
+    "noPaymentHistory": MessageLookupByLibrary.simpleMessage(
+      "No payment history",
+    ),
     "noPaymentMethods": MessageLookupByLibrary.simpleMessage(
       "No payment methods",
     ),

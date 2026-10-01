@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
-import 'package:vin_sweep_application/features/home/tabs/menu/payment/pay-history/view/payment_history.dart';
+import 'package:vin_sweep_application/features/home/tabs/menu/payment/pay-history/view/payment_history_view.dart';
 import 'package:vin_sweep_application/features/home/tabs/menu/payment/pay-method/view/payment_method_view.dart';
 import 'package:vin_sweep_application/features/home/tabs/menu/payment/payment_mode_controller.dart';
 import 'package:vin_sweep_application/utils/ui/common/custom_main_header.dart';
@@ -49,7 +49,7 @@ class PaymentView extends StatelessWidget {
                       _buildAuthSwitcher(context, controller),
                       controller.isPayMethod
                           ? PaymentMethod()
-                          : PaymentHistory(),
+                          : PaymentHistoryView(),
                     ],
                   ),
                 ),
