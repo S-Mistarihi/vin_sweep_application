@@ -43,9 +43,6 @@ class ApiPlansRepository extends PlansRepository {
           ParsingException(S.of(context).theServerReturnedAnInvalidFormat),
         );
       }
-      debugPrint('========== PLANS API RESPONSE ==========');
-      debugPrint(body);
-      debugPrint('=========================================');
       final json = jsonDecode(body);
       if (json is! Map<String, dynamic>) {
         return Failure(MappingException('Unexpected plan response structure'));
@@ -62,10 +59,6 @@ class ApiPlansRepository extends PlansRepository {
         ),
       );
     } catch (error, stackTrace) {
-      debugPrint('========== PLANS PARSING ERROR ==========');
-      debugPrint('ERROR: $error');
-      debugPrint('STACK TRACE: $stackTrace');
-      debugPrint('==========================================');
       return Failure(
         UnknownException(
           S.of(context).anUnexpectedErrorOccuredPleaseTryAgain,
@@ -92,13 +85,45 @@ class DemoPlansRepository extends PlansRepository {
         plans: [
           PlanModel(
             id: 1,
-            name: 'Plan 1',
-            title: 'Free Version',
-            price: 8,
+            name: 'Basic Plan',
+            planType: 'BASIC',
+            price: 10,
+            reportPrice: 10,
+            reportsCount: 1,
+            validityDays: 0,
+            mostPopular: false,
+            active: true,
+            headlinePrimary: 'Basic Plan',
+            headlineSecondary: 'Unlimited Reports',
+            priceLabel: '\$10',
+            priceSublabel: 'Per Report',
+            features: [
+              'No Monthly Subscription',
+              'Full report content',
+              'VIN must be entered manually',
+              'VIN must be entered manually',
+            ],
+          ),
+          PlanModel(
+            id: 2,
+            name: 'Starter Plan',
+            planType: 'STARTER',
+            price: 25,
             reportPrice: 5,
+            reportsCount: 5,
             validityDays: 30,
             mostPopular: true,
             active: true,
+            headlinePrimary: 'Starter Plan',
+            headlineSecondary: '5 Reports',
+            priceLabel: '\$25',
+            priceSublabel: '0 Per Report',
+            features: [
+              'Expires in 30 days',
+              'Saved \$25',
+              'VIN must be entered manually or by scan',
+              'Access to report history after viewing.',
+            ],
           ),
         ],
       ),

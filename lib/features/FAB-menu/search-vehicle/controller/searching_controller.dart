@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:vin_sweep_application/features/FAB/search-vehicle/view/searching_result.dart';
 
 import '../../../../configuration/app_colors.dart';
 import '../../../../generated/l10n.dart';
 import '../../../../utils/helpers/common/repository_result.dart';
 import '../model/vehicle_response.dart';
 import '../repository/vehicle_repository.dart';
+import '../view/searching_result.dart';
 
 class SearchingController extends GetxController {
   final String vinNumber;

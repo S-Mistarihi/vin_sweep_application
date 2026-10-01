@@ -998,6 +998,56 @@ class S {
       args: [],
     );
   }
+
+  /// `My Plans`
+  String get myPlansTitle {
+    return Intl.message('My Plans', name: 'myPlansTitle', desc: '', args: []);
+  }
+
+  /// `No plans available`
+  String get noPlansAvailable {
+    return Intl.message(
+      'No plans available',
+      name: 'noPlansAvailable',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Cancel Plan`
+  String get cancelPlanButton {
+    return Intl.message(
+      'Cancel Plan',
+      name: 'cancelPlanButton',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Upgrade`
+  String get upgradeButton {
+    return Intl.message('Upgrade', name: 'upgradeButton', desc: '', args: []);
+  }
+
+  /// `Auto Renwe`
+  String get autoRenweSwitch {
+    return Intl.message(
+      'Auto Renwe',
+      name: 'autoRenweSwitch',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Most Popular`
+  String get mostPopularPart {
+    return Intl.message(
+      'Most Popular',
+      name: 'mostPopularPart',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

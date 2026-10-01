@@ -109,5 +109,11 @@
   "deleteButton": "Delete",
   "moreActions": "More Actions",
   "makeDefault": "Make Default",
-  "noPaymentHistory": "No payment history"
+  "noPaymentHistory": "No payment history",
+  "myPlansTitle": "My Plans",
+  "noPlansAvailable": "No plans available",
+  "cancelPlanButton": "Cancel Plan",
+  "upgradeButton": "Upgrade",
+  "autoRenweSwitch": "Auto Renwe",
+  "mostPopularPart": "Most Popular"
 }

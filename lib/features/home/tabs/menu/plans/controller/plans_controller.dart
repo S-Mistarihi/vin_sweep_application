@@ -8,6 +8,7 @@ import '../../../../../../configuration/app_colors.dart';
 
 class PlansController extends GetxController {
   final RxBool isAutoRenew = false.obs;
+  final RxBool isLoading = false.obs;
   final RxList<PlanModel> plans = <PlanModel>[].obs;
 
   @override
@@ -23,6 +24,8 @@ class PlansController extends GetxController {
   Future<void> getPlans() async {
     final context = Get.context!;
 
+    isLoading.value = true;
+
     final result = await createPlansRepository().getPlans(context: context);
 
     switch (result) {
@@ -33,6 +36,7 @@ class PlansController extends GetxController {
         plans.assignAll(data.plans ?? []);
         break;
     }
+    isLoading.value = false;
   }
 
   void showErrorToast([String? message]) {

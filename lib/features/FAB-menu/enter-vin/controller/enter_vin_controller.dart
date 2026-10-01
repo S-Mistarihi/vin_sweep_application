@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:vin_sweep_application/features/FAB/search-vehicle/view/searching_view.dart';
 
 import '../../../../generated/l10n.dart';
+import '../../search-vehicle/view/searching_view.dart';
 
 class EnterVinController extends GetxController {
   final TextEditingController vinNumberController = TextEditingController();

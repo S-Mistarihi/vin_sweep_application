@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
-import 'package:vin_sweep_application/features/FAB/search-vehicle/controller/searching_mode_controller.dart';
-import 'package:vin_sweep_application/features/FAB/search-vehicle/view/switcher/general-info/view/general_info_view.dart';
-import 'package:vin_sweep_application/features/FAB/search-vehicle/view/switcher/reports/view/report_view.dart';
+import 'package:vin_sweep_application/features/FAB-menu/search-vehicle/view/switcher/general-info/view/general_info_view.dart';
+import 'package:vin_sweep_application/features/FAB-menu/search-vehicle/view/switcher/reports/view/report_view.dart';
 
 import '../../../../configuration/app_assets.dart';
 import '../../../../configuration/app_colors.dart';
 import '../../../../generated/l10n.dart';
 import '../../../../utils/ui/common/custom_scan_vin_number_header.dart';
 import '../../../../utils/ui/custom_button.dart';
+import '../controller/searching_mode_controller.dart';
 import '../model/vehicle_response.dart';
 
 class SearchingResult extends StatelessWidget {

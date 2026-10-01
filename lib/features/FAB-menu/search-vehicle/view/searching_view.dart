@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
-import 'package:vin_sweep_application/features/FAB/search-vehicle/controller/searching_controller.dart';
 
 import '../../../../configuration/app_assets.dart';
 import '../../../../configuration/app_colors.dart';
 import '../../../../generated/l10n.dart';
+import '../controller/searching_controller.dart';
 
 class SearchingView extends StatelessWidget {
   const SearchingView({super.key, required this.vinNumber});

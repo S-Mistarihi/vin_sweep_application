@@ -27,6 +27,7 @@ class MessageLookup extends MessageLookupByLibrary {
         MessageLookupByLibrary.simpleMessage(
           "an unexpected error occured , please try again",
         ),
+    "autoRenweSwitch": MessageLookupByLibrary.simpleMessage("Auto Renwe"),
     "backButton": MessageLookupByLibrary.simpleMessage("Back"),
     "buyReportButton": MessageLookupByLibrary.simpleMessage("Buy Report"),
     "cameraPermissionDeniedPleaseEnableItFromSettings":
@@ -34,6 +35,7 @@ class MessageLookup extends MessageLookupByLibrary {
           "Camera permission denied. Please enable it from Settings.",
         ),
     "cancelButton": MessageLookupByLibrary.simpleMessage("Cancel"),
+    "cancelPlanButton": MessageLookupByLibrary.simpleMessage("Cancel Plan"),
     "changePassword": MessageLookupByLibrary.simpleMessage("Change Password"),
     "close": MessageLookupByLibrary.simpleMessage("Close"),
     "collapse": MessageLookupByLibrary.simpleMessage("˄ Collapse"),
@@ -92,7 +94,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "makeDefault": MessageLookupByLibrary.simpleMessage("Make Default"),
     "menu": MessageLookupByLibrary.simpleMessage("Menu"),
     "moreActions": MessageLookupByLibrary.simpleMessage("More Actions"),
+    "mostPopularPart": MessageLookupByLibrary.simpleMessage("Most Popular"),
     "myPlans": MessageLookupByLibrary.simpleMessage("My Plans"),
+    "myPlansTitle": MessageLookupByLibrary.simpleMessage("My Plans"),
     "nameLabel": MessageLookupByLibrary.simpleMessage("Name"),
     "newPasswordLabel": MessageLookupByLibrary.simpleMessage("New Password"),
     "newPasswordMustBeDifferent": MessageLookupByLibrary.simpleMessage(
@@ -107,6 +111,9 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "noPaymentMethods": MessageLookupByLibrary.simpleMessage(
       "No payment methods",
+    ),
+    "noPlansAvailable": MessageLookupByLibrary.simpleMessage(
+      "No plans available",
     ),
     "oneTimePinIsRequired": MessageLookupByLibrary.simpleMessage(
       "OTP pin is required",
@@ -246,6 +253,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "unableToInitializeCamera": MessageLookupByLibrary.simpleMessage(
       "Unable to initialize camera.",
     ),
+    "upgradeButton": MessageLookupByLibrary.simpleMessage("Upgrade"),
     "vinDetected": MessageLookupByLibrary.simpleMessage("VIN detected ✓"),
     "vinMustBeExactly17Characters": MessageLookupByLibrary.simpleMessage(
       "VIN must be exactly 17 characters.",
