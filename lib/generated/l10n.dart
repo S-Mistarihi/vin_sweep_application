@@ -928,6 +928,66 @@ class S {
       args: [],
     );
   }
+
+  /// `Retry`
+  String get retryButton {
+    return Intl.message('Retry', name: 'retryButton', desc: '', args: []);
+  }
+
+  /// `No payment methods`
+  String get noPaymentMethods {
+    return Intl.message(
+      'No payment methods',
+      name: 'noPaymentMethods',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Default`
+  String get defaultLabel {
+    return Intl.message('Default', name: 'defaultLabel', desc: '', args: []);
+  }
+
+  /// `Delete Payment Method`
+  String get deletePaymentMethod {
+    return Intl.message(
+      'Delete Payment Method',
+      name: 'deletePaymentMethod',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Cancel`
+  String get cancelButton {
+    return Intl.message('Cancel', name: 'cancelButton', desc: '', args: []);
+  }
+
+  /// `Delete`
+  String get deleteButton {
+    return Intl.message('Delete', name: 'deleteButton', desc: '', args: []);
+  }
+
+  /// `More Actions`
+  String get moreActions {
+    return Intl.message(
+      'More Actions',
+      name: 'moreActions',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Make Default`
+  String get makeDefault {
+    return Intl.message(
+      'Make Default',
+      name: 'makeDefault',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

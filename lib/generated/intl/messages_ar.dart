@@ -33,6 +33,7 @@ class MessageLookup extends MessageLookupByLibrary {
         MessageLookupByLibrary.simpleMessage(
           "Camera permission denied. Please enable it from Settings.",
         ),
+    "cancelButton": MessageLookupByLibrary.simpleMessage("Cancel"),
     "changePassword": MessageLookupByLibrary.simpleMessage("تغيير كلمة المرور"),
     "close": MessageLookupByLibrary.simpleMessage("Close"),
     "collapse": MessageLookupByLibrary.simpleMessage("˄ Collapse"),
@@ -44,6 +45,11 @@ class MessageLookup extends MessageLookupByLibrary {
       "Confirm Password",
     ),
     "contactUs": MessageLookupByLibrary.simpleMessage("اتصل بنا"),
+    "defaultLabel": MessageLookupByLibrary.simpleMessage("Default"),
+    "deleteButton": MessageLookupByLibrary.simpleMessage("Delete"),
+    "deletePaymentMethod": MessageLookupByLibrary.simpleMessage(
+      "Delete Payment Method",
+    ),
     "descriptionIntro1": MessageLookupByLibrary.simpleMessage(
       "Supports sedans, hatchbacks, trucks, and more. Get information on any vehicle type easily.",
     ),
@@ -83,7 +89,9 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "loginSwitcher": MessageLookupByLibrary.simpleMessage("تسجيل الدخول"),
     "logoutButton": MessageLookupByLibrary.simpleMessage("تسجيل الخروج"),
+    "makeDefault": MessageLookupByLibrary.simpleMessage("Make Default"),
     "menu": MessageLookupByLibrary.simpleMessage("القائمة"),
+    "moreActions": MessageLookupByLibrary.simpleMessage("More Actions"),
     "myPlans": MessageLookupByLibrary.simpleMessage("خططي"),
     "nameLabel": MessageLookupByLibrary.simpleMessage("اسم المستخدم"),
     "newPasswordLabel": MessageLookupByLibrary.simpleMessage("New Password"),
@@ -93,6 +101,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "nextButton": MessageLookupByLibrary.simpleMessage("التالي"),
     "noCameraWasFound": MessageLookupByLibrary.simpleMessage(
       "No camera was found.",
+    ),
+    "noPaymentMethods": MessageLookupByLibrary.simpleMessage(
+      "No payment methods",
     ),
     "oneTimePinIsRequired": MessageLookupByLibrary.simpleMessage(
       "رمز التحقق مطلوب",
@@ -157,6 +168,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "reportsSwitcher": MessageLookupByLibrary.simpleMessage("Reports"),
     "rescanButton": MessageLookupByLibrary.simpleMessage("Re-Scan"),
     "resendCode": MessageLookupByLibrary.simpleMessage("إعادة إرسال الرمز"),
+    "retryButton": MessageLookupByLibrary.simpleMessage("Retry"),
     "scanTheVinNumberOfYourCar": MessageLookupByLibrary.simpleMessage(
       "Scan the VIN number of your car",
     ),

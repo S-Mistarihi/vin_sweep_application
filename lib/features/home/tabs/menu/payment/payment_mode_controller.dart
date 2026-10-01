@@ -2,7 +2,7 @@ import 'package:get/get.dart';
 
 enum PaymentMode { payMethod, payHistory }
 
-class PaymentController extends GetxController{
+class PaymentModeController extends GetxController {
   final Rx<PaymentMode> payMode = PaymentMode.payMethod.obs;
 
   bool get isPayMethod => payMode.value == PaymentMode.payMethod;
@@ -22,5 +22,4 @@ class PaymentController extends GetxController{
   void switchToHistory() {
     switchSearchMode(PaymentMode.payHistory);
   }
-
 }

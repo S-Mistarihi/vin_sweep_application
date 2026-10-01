@@ -100,5 +100,13 @@
   "cameraPermissionDeniedPleaseEnableItFromSettings": "Camera permission denied. Please enable it from Settings.",
   "somethingWentWrongWhileOpeningTheCamera": "Something went wrong while opening the camera.",
   "unableToInitializeCamera": "Unable to initialize camera.",
-  "vinMustBeExactly17Characters": "VIN must be exactly 17 characters."
+  "vinMustBeExactly17Characters": "VIN must be exactly 17 characters.",
+  "retryButton": "Retry",
+  "noPaymentMethods": "No payment methods",
+  "defaultLabel": "Default",
+  "deletePaymentMethod": "Delete Payment Method",
+  "cancelButton": "Cancel",
+  "deleteButton": "Delete",
+  "moreActions": "More Actions",
+  "makeDefault": "Make Default"
 }

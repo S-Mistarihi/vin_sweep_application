@@ -18,6 +18,14 @@ class ApiEndPoints {
       '$baseUrl${version}setting-config/contact-us-info';
   static final String updateUser = '$baseUrl${version}users/update';
   static final String getPlans = '$baseUrl${version}plans';
+  static final String getPaymentMethod =
+      '$baseUrl${version}payment/my-payment-methods?forceRefresh=false';
+  static final String setDefaultPaymentMethod =
+      '$baseUrl${version}payment/set-default-payment-method';
+  static final String deletePaymentMethod =
+      '$baseUrl${version}payment/delete-payment-method';
+  static final String getPaymentHistory =
+      '$baseUrl${version}payment/my-payment-history';
 
   //home FAB
   static final String scanVin = '$baseUrl${version}vehicle';
