@@ -13,6 +13,11 @@ import '../../../../../auth/register/model/generic_response.dart';
 import '../model/user_plan_response.dart';
 
 abstract class PlansRepository {
+  Future<RepositoryResult<UserPlanResponse?>> getCurrentUserPlan({
+    required BuildContext context,
+    bool showLoading = false,
+  });
+
   Future<RepositoryResult<PlansResponse>> getPlans({
     required BuildContext context,
     bool showLoading = false,
@@ -35,6 +40,26 @@ abstract class PlansRepository {
 }
 
 class ApiPlansRepository extends PlansRepository {
+  //
+  @override
+  Future<RepositoryResult<UserPlanResponse?>> getCurrentUserPlan({
+    required BuildContext context,
+    bool showLoading = false,
+  }) async {
+    final result = await HttpWrapper(
+      url: ApiEndPoints.getCurrentUserPlan,
+      context: context,
+      showLoading: showLoading,
+    ).get();
+
+    switch (result) {
+      case Failure(:final exception):
+        return Failure(exception);
+      case Success(:final data):
+        return _parseCurrentPlan(data.stringBody ?? '', context);
+    }
+  }
+
   //
   @override
   Future<RepositoryResult<PlansResponse>> getPlans({
@@ -103,6 +128,44 @@ class ApiPlansRepository extends PlansRepository {
         return Failure(exception);
       case Success(:final data):
         return _parseSubscription(data.stringBody ?? '', context);
+    }
+  }
+
+  RepositoryResult<UserPlanResponse?> _parseCurrentPlan(
+    String body,
+    BuildContext context,
+  ) {
+    try {
+      final json = jsonDecode(body);
+      if (json is! Map<String, dynamic>) {
+        return Failure(MappingException('Unexpected response structure'));
+      }
+
+      final response = GenericResponse.fromJson(json);
+      if (!response.success) {
+        return Failure(
+          MappingException(
+            response.message.isNotEmpty
+                ? response.message
+                : S.of(context).theServerReturnedAnUnsuccessfulResponse,
+            errorCode: response.code.toString(),
+          ),
+        );
+      }
+
+      final result = json["result"];
+      if (result is Map<String, dynamic> && result.isNotEmpty) {
+        return Success(UserPlanResponse.fromJson(result));
+      }
+      return Success(null);
+    } catch (error, stackTrace) {
+      return Failure(
+        UnknownException(
+          S.of(context).anUnexpectedErrorOccuredPleaseTryAgain,
+          cause: error,
+          stackTrace: stackTrace,
+        ),
+      );
     }
   }
 
@@ -210,6 +273,27 @@ class ApiPlansRepository extends PlansRepository {
 }
 
 class DemoPlansRepository extends PlansRepository {
+  @override
+  Future<RepositoryResult<UserPlanResponse?>> getCurrentUserPlan({
+    required BuildContext context,
+    bool showLoading = false,
+  }) async {
+    await Future.delayed(const Duration(milliseconds: 500));
+    return Success(
+      UserPlanResponse(
+        id: 1,
+        userId: 1,
+        plan: PlanModel(id: 2, name: 'Starter Plan', reportsCount: 5),
+        reportsRemaining: 2,
+        generatedReportsCount: 3,
+        status: 'ACTIVE',
+        autoRenew: true,
+        startsAt: DateTime.now(),
+        expiresAt: DateTime.now().add(const Duration(days: 30)),
+      ),
+    );
+  }
+
   @override
   Future<RepositoryResult<PlansResponse>> getPlans({
     required BuildContext context,

@@ -23,15 +23,27 @@ class _PlansViewState extends State<PlansView> with TickerProviderStateMixin {
   final PlansController controller = Get.find();
 
   late final PageController pageController;
+  late final Worker _loadingWorker;
 
   @override
   void initState() {
     super.initState();
     pageController = PageController(viewportFraction: 0.9);
+
+    _loadingWorker = ever(controller.isLoading, (loading) {
+      if (loading == false) {
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          if (mounted && pageController.hasClients) {
+            pageController.jumpToPage(controller.currentIndex);
+          }
+        });
+      }
+    });
   }
 
   @override
   void dispose() {
+    _loadingWorker.dispose();
     pageController.dispose();
     super.dispose();
   }
@@ -86,21 +98,16 @@ class _PlansViewState extends State<PlansView> with TickerProviderStateMixin {
                   final plan = controller.plans[index];
                   return CustomCard(
                     plan: plan,
-                    // current plan subscription
-                    isCurrentPlan:
-                        controller.currentSubscription.value?.plan?.id !=
-                            null &&
-                        controller.currentSubscription.value?.plan?.id ==
-                            plan.id,
+                    isCurrentPlan: controller.isCurrent(plan),
                     isAutoRenew: controller.isAutoRenew.value,
                     onAutoRenewChanged: controller.changeAutoRenew,
                     onCancel: () {
                       // TODO: Cancel Plan
                     },
-                    onUpgrade: () async{
+                    onUpgrade: () async {
                       // TODO: open Review & Confirmation screen and pass plan
                       final result = await Get.to<UserPlanResponse>(
-                            () => ReviewConfirmationView(plan: plan),
+                        () => ReviewConfirmationView(plan: plan),
                       );
                       if (result != null) controller.onSubscribed(result);
                     },

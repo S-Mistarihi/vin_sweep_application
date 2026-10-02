@@ -72,7 +72,10 @@ class _ReviewConfirmationViewState extends State<ReviewConfirmationView> {
                           const SizedBox(height: 30),
                           PlanSummaryCard(plan: widget.plan),
                           const SizedBox(height: 24),
-                          PaymentMethodsSection(controller: controller),
+                          PaymentMethodsSection(
+                            controller: controller,
+                            plan: widget.plan,
+                          ),
                           const SizedBox(height: 16),
                           _buildTerms(),
                           const SizedBox(height: 24),

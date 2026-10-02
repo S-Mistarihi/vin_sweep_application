@@ -18,6 +18,7 @@ class ApiEndPoints {
       '$baseUrl${version}setting-config/contact-us-info';
   static final String updateUser = '$baseUrl${version}users/update';
   static final String getPlans = '$baseUrl${version}plans';
+  static final String getCurrentUserPlan = '$baseUrl${version}users/current';
   static String setAutoRenew(bool autoRenew) =>
       '$baseUrl${version}plans/auto-renew?autoRenew=$autoRenew';
   static final String subscribePlan = '$baseUrl${version}plans/subscribe';

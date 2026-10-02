@@ -16,21 +16,67 @@ class PlansController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    getPlans();
+    loadData();
   }
 
-  bool isCurrent(PlanModel plan) =>
-      currentSubscription.value?.plan?.id != null &&
-          currentSubscription.value?.plan?.id == plan.id;
+  bool get hasActivePlan =>
+      currentSubscription.value != null &&
+      currentSubscription.value?.status == 'ACTIVE';
 
-  Future<void> changeAutoRenew(bool value) async{
-    final context = Get.context!;
+  bool isCurrent(PlanModel plan) =>
+      hasActivePlan && currentSubscription.value?.plan?.id == plan.id;
+
+  int get currentIndex {
+    final i = plans.indexWhere(isCurrent);
+    return i < 0 ? 0 : i;
+  }
+
+  Future<void> loadData() async {
+    isLoading.value = true;
+    await Future.wait([_fetchPlans(), _fetchCurrentPlan()]);
+    isLoading.value = false;
+  }
+
+  Future<void> _fetchPlans() async {
+    final result = await createPlansRepository().getPlans(
+      context: Get.context!,
+    );
+    switch (result) {
+      case Failure(:final exception):
+        _toast('Failed', exception.message, isError: true);
+      case Success(:final data):
+        plans.assignAll(data.plans ?? []);
+    }
+  }
+
+  Future<void> _fetchCurrentPlan() async {
+    final result = await createPlansRepository().getCurrentUserPlan(
+      context: Get.context!,
+    );
+    switch (result) {
+      case Failure(:final exception):
+        _toast('Failed', exception.message, isError: true);
+      case Success(:final data):
+        currentSubscription.value = data;
+        isAutoRenew.value = data?.autoRenew ?? false;
+    }
+  }
+
+  /// بعد الاشتراك نرجّع نجيب الخطة من السيرفر (مصدر الحقيقة)
+  Future<void> onSubscribed(UserPlanResponse subscription) async {
+    currentSubscription.value = subscription;
+    isAutoRenew.value = subscription.autoRenew ?? false;
+    await _fetchCurrentPlan();
+  }
+
+  Future<void> changeAutoRenew(bool value) async {
+    if (!hasActivePlan) return;
 
     final previous = isAutoRenew.value;
     isAutoRenew.value = value;
 
     final result = await createPlansRepository().setAutoRenew(
-      context: context,
+      context: Get.context!,
       autoRenew: value,
     );
 
@@ -39,48 +85,18 @@ class PlansController extends GetxController {
         break;
       case Failure(:final exception):
         isAutoRenew.value = previous;
-        showErrorToast(exception.message);
+        _toast('Failed', exception.message, isError: true);
     }
   }
 
-  void onSubscribed(UserPlanResponse subscription) {
-    currentSubscription.value = subscription;
-    isAutoRenew.value = subscription.autoRenew ?? false;
+  void _toast(String title, String? message, {bool isError = false}) {
     Get.snackbar(
-      'Success',
-      'You are now subscribed to ${subscription.plan?.name ?? 'the plan'}',
-      backgroundColor: AppColors().successDialogColor,
-      colorText: AppColors().baseColor,
+      title,
+      message?.isNotEmpty == true ? message! : 'Something went wrong',
       snackPosition: SnackPosition.TOP,
-      margin: const EdgeInsets.all(12),
-      duration: const Duration(seconds: 5),
-    );
-  }
-
-  Future<void> getPlans() async {
-    final context = Get.context!;
-
-    isLoading.value = true;
-
-    final result = await createPlansRepository().getPlans(context: context);
-
-    switch (result) {
-      case Failure(:final exception):
-        showErrorToast(exception.message);
-        break;
-      case Success(:final data):
-        plans.assignAll(data.plans ?? []);
-        break;
-    }
-    isLoading.value = false;
-  }
-
-  void showErrorToast([String? message]) {
-    Get.snackbar(
-      'Failed',
-      message?.isNotEmpty == true ? message! : 'Loading plans failed',
-      snackPosition: SnackPosition.TOP,
-      backgroundColor: AppColors().errorDialogColor,
+      backgroundColor: isError
+          ? AppColors().errorDialogColor
+          : AppColors().successDialogColor,
       colorText: AppColors().baseColor,
       margin: const EdgeInsets.all(12),
       duration: const Duration(seconds: 5),
