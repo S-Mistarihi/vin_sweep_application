@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40">
+  <g id="ic-call" transform="translate(-327 -536)">
+    <circle id="BG" cx="20" cy="20" r="20" transform="translate(327 536)" fill="#edf5ff"/>
+    <path id="Ic-Add" d="M25.91,16.875H19.125V10.09a1.125,1.125,0,0,0-2.25,0v6.785H10.09a1.125,1.125,0,0,0,0,2.25h6.785V25.91a1.125,1.125,0,0,0,2.25,0V19.125H25.91a1.125,1.125,0,0,0,0-2.25Z" transform="translate(329 538)" fill="#0a2342"/>
+  </g>
+</svg>

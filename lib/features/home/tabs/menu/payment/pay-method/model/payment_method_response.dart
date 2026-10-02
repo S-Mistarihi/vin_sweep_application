@@ -56,3 +56,16 @@ class PayMethod {
     resultDefault: json["default"],
   );
 }
+
+extension PayMethodX on PayMethod {
+  /// **** **** **** 1234
+  /// اسأل الباك وين آخر 4 أرقام: بالـ metadata ولا بالـ displayName
+  String get maskedNumber {
+    final source = metadata.isNotEmpty ? metadata : displayName;
+    final digits = source.replaceAll(RegExp(r'\D'), '');
+    final last4 = digits.length >= 4
+        ? digits.substring(digits.length - 4)
+        : digits;
+    return '**** **** **** $last4';
+  }
+}

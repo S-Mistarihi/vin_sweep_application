@@ -1048,6 +1048,56 @@ class S {
       args: [],
     );
   }
+
+  /// `Plan`
+  String get planCardLabel {
+    return Intl.message('Plan', name: 'planCardLabel', desc: '', args: []);
+  }
+
+  /// `Reports`
+  String get reportsCardLabel {
+    return Intl.message(
+      'Reports',
+      name: 'reportsCardLabel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add Card`
+  String get addCardButton {
+    return Intl.message('Add Card', name: 'addCardButton', desc: '', args: []);
+  }
+
+  /// `Payment Method`
+  String get paymentMethod {
+    return Intl.message(
+      'Payment Method',
+      name: 'paymentMethod',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Review & Confirmation`
+  String get reviewConfirmation {
+    return Intl.message(
+      'Review & Confirmation',
+      name: 'reviewConfirmation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Accept terms and conditions`
+  String get acceptTermsAndConditions {
+    return Intl.message(
+      'Accept terms and conditions',
+      name: 'acceptTermsAndConditions',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

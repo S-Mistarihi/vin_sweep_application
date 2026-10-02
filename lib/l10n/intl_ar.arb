@@ -115,5 +115,11 @@
   "cancelPlanButton": "Cancel Plan",
   "upgradeButton": "Upgrade",
   "autoRenweSwitch": "Auto Renwe",
-  "mostPopularPart": "Most Popular"
+  "mostPopularPart": "Most Popular",
+  "planCardLabel": "Plan",
+  "reportsCardLabel": "Reports",
+  "addCardButton": "Add Card",
+  "paymentMethod": "Payment Method",
+  "reviewConfirmation": "Review & Confirmation",
+  "acceptTermsAndConditions": "Accept terms and conditions"
 }

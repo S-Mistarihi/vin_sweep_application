@@ -23,6 +23,10 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
     "aboutUs": MessageLookupByLibrary.simpleMessage("نبذة عنا"),
+    "acceptTermsAndConditions": MessageLookupByLibrary.simpleMessage(
+      "Accept terms and conditions",
+    ),
+    "addCardButton": MessageLookupByLibrary.simpleMessage("Add Card"),
     "anUnexpectedErrorOccuredPleaseTryAgain":
         MessageLookupByLibrary.simpleMessage(
           "an unexpected error occured , please try again",
@@ -135,8 +139,10 @@ class MessageLookup extends MessageLookupByLibrary {
     "passwordsDoNotMatch": MessageLookupByLibrary.simpleMessage(
       "Password and confirm password do not match",
     ),
+    "paymentMethod": MessageLookupByLibrary.simpleMessage("Payment Method"),
     "paymentsInfo": MessageLookupByLibrary.simpleMessage("معلومات الدفع"),
     "phoneLabel": MessageLookupByLibrary.simpleMessage("Phone"),
+    "planCardLabel": MessageLookupByLibrary.simpleMessage("Plan"),
     "pleaseEnterAValidVinNumber": MessageLookupByLibrary.simpleMessage(
       "Please enter a valid VIN number",
     ),
@@ -175,10 +181,14 @@ class MessageLookup extends MessageLookupByLibrary {
       "يرجى إدخال معلوماتك أدناه",
     ),
     "rememberMeCheckbox": MessageLookupByLibrary.simpleMessage("تذكرني!"),
+    "reportsCardLabel": MessageLookupByLibrary.simpleMessage("Reports"),
     "reportsSwitcher": MessageLookupByLibrary.simpleMessage("Reports"),
     "rescanButton": MessageLookupByLibrary.simpleMessage("Re-Scan"),
     "resendCode": MessageLookupByLibrary.simpleMessage("إعادة إرسال الرمز"),
     "retryButton": MessageLookupByLibrary.simpleMessage("Retry"),
+    "reviewConfirmation": MessageLookupByLibrary.simpleMessage(
+      "Review & Confirmation",
+    ),
     "scanTheVinNumberOfYourCar": MessageLookupByLibrary.simpleMessage(
       "Scan the VIN number of your car",
     ),
