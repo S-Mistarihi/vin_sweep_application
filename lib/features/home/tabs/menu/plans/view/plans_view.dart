@@ -3,12 +3,14 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
 import 'package:vin_sweep_application/features/home/tabs/menu/plans/controller/plans_controller.dart';
+import 'package:vin_sweep_application/features/home/tabs/menu/plans/model/user_plan_response.dart';
 import 'package:vin_sweep_application/features/home/tabs/menu/plans/view/custom_card.dart';
 
 import '../../../../../../configuration/app_assets.dart';
 import '../../../../../../configuration/app_colors.dart';
 import '../../../../../../generated/l10n.dart';
 import '../../../../../../utils/ui/common/custom_main_header.dart';
+import '../../../../../plan-upgrade/review_confirmation/view/review_confirmation_view.dart';
 
 class PlansView extends StatefulWidget {
   const PlansView({super.key});
@@ -85,15 +87,22 @@ class _PlansViewState extends State<PlansView> with TickerProviderStateMixin {
                   return CustomCard(
                     plan: plan,
                     // current plan subscription
-                    //isCurrentPlan: plan.id == controller.currentPlanId.value,
-                    isCurrentPlan: index == 0,
+                    isCurrentPlan:
+                        controller.currentSubscription.value?.plan?.id !=
+                            null &&
+                        controller.currentSubscription.value?.plan?.id ==
+                            plan.id,
                     isAutoRenew: controller.isAutoRenew.value,
                     onAutoRenewChanged: controller.changeAutoRenew,
                     onCancel: () {
                       // TODO: Cancel Plan
                     },
-                    onUpgrade: () {
-                      // TODO: افتح شاشة Review & Confirmation ومرر plan
+                    onUpgrade: () async{
+                      // TODO: open Review & Confirmation screen and pass plan
+                      final result = await Get.to<UserPlanResponse>(
+                            () => ReviewConfirmationView(plan: plan),
+                      );
+                      if (result != null) controller.onSubscribed(result);
                     },
                   );
                 },

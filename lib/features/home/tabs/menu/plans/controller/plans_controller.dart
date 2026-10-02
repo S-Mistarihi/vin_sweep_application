@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:vin_sweep_application/features/home/tabs/menu/plans/model/plans_response.dart';
+import 'package:vin_sweep_application/features/home/tabs/menu/plans/model/user_plan_response.dart';
 import 'package:vin_sweep_application/features/home/tabs/menu/plans/repository/plans_repository.dart';
 import 'package:vin_sweep_application/utils/helpers/common/repository_result.dart';
 
@@ -10,12 +11,17 @@ class PlansController extends GetxController {
   final RxBool isAutoRenew = false.obs;
   final RxBool isLoading = false.obs;
   final RxList<PlanModel> plans = <PlanModel>[].obs;
+  final Rxn<UserPlanResponse> currentSubscription = Rxn<UserPlanResponse>();
 
   @override
   void onInit() {
     super.onInit();
     getPlans();
   }
+
+  bool isCurrent(PlanModel plan) =>
+      currentSubscription.value?.plan?.id != null &&
+          currentSubscription.value?.plan?.id == plan.id;
 
   Future<void> changeAutoRenew(bool value) async{
     final context = Get.context!;
@@ -35,6 +41,20 @@ class PlansController extends GetxController {
         isAutoRenew.value = previous;
         showErrorToast(exception.message);
     }
+  }
+
+  void onSubscribed(UserPlanResponse subscription) {
+    currentSubscription.value = subscription;
+    isAutoRenew.value = subscription.autoRenew ?? false;
+    Get.snackbar(
+      'Success',
+      'You are now subscribed to ${subscription.plan?.name ?? 'the plan'}',
+      backgroundColor: AppColors().successDialogColor,
+      colorText: AppColors().baseColor,
+      snackPosition: SnackPosition.TOP,
+      margin: const EdgeInsets.all(12),
+      duration: const Duration(seconds: 5),
+    );
   }
 
   Future<void> getPlans() async {
