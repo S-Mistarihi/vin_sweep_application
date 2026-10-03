@@ -77,4 +77,6 @@ class AppAssets {
   String payCard = 'assets/payment/card.svg';
   String payMenuIcon = 'assets/payment/ic-menu.svg';
   String addPayCard = 'assets/payment/ic-addCard.svg';
+
+  String pdfIcon = 'assets/report/pdf.svg';
 }

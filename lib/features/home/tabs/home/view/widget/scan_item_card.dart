@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:vin_sweep_application/configuration/app_assets.dart';
 import 'package:vin_sweep_application/configuration/app_colors.dart';
 import 'package:vin_sweep_application/features/home/tabs/home/model/scan_history_response.dart';
 
@@ -17,15 +19,8 @@ class ScanItemCard extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
         decoration: BoxDecoration(
           color: AppColors().baseColor,
-          borderRadius: BorderRadius.circular(16),
-          border: Border.all(color: AppColors().cardPlanBorder),
-          boxShadow: [
-            BoxShadow(
-              color: AppColors().cardPlanShadow.withOpacity(0.25),
-              blurRadius: 10,
-              offset: const Offset(0, 4),
-            ),
-          ],
+          borderRadius: BorderRadius.circular(23),
+          border: Border.all(color: AppColors().textFieldBorderColor),
         ),
         child: Row(
           children: [
@@ -33,25 +28,25 @@ class ScanItemCard extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  // ⚠️ "Passenger Car" بالتصميم: نوع المركبة مش موجود بـ search-history
                   Text(
                     item.title,
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(
                       color: AppColors().accentColor,
-                      fontSize: 17,
+                      fontSize: 18,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  const SizedBox(height: 4),
+                  const SizedBox(height: 8),
                   Text(
                     item.vin,
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(
                       color: AppColors().cardPlanText,
-                      fontSize: 14,
+                      fontSize: 16,
+                      fontWeight: FontWeight.normal,
                     ),
                   ),
                 ],
@@ -66,13 +61,12 @@ class ScanItemCard extends StatelessWidget {
                     width: 44,
                     height: 44,
                     decoration: BoxDecoration(
-                      color: const Color(0xff6A8CAF),
-                      borderRadius: BorderRadius.circular(10),
+                      color: AppColors().pdfBg,
+                      borderRadius: BorderRadius.circular(8),
                     ),
-                    // TODO: بدليها بأيقونة PDF من التصميم
-                    child: const Icon(
-                      Icons.picture_as_pdf,
-                      color: Colors.white,
+                    child: Transform.scale(
+                      scale: .6,
+                      child: SvgPicture.asset(AppAssets().pdfIcon),
                     ),
                   ),
                   const SizedBox(height: 4),
@@ -80,7 +74,8 @@ class ScanItemCard extends StatelessWidget {
                     item.reportsLabel,
                     style: TextStyle(
                       color: AppColors().textFieldLabelColor,
-                      fontSize: 11,
+                      fontSize: 12,
+                      fontWeight: FontWeight.normal,
                     ),
                   ),
                 ],

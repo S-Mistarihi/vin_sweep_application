@@ -7,8 +7,7 @@ import 'package:vin_sweep_application/configuration/app_colors.dart';
 import 'package:vin_sweep_application/features/home/tabs/home/controller/home_controller.dart';
 import 'package:vin_sweep_application/features/home/tabs/home/view/widget/scan_item_card.dart';
 
-/// قائمة الـ Scans مع حالات: تحميل / خطأ / فاضي / لا نتائج بحث / قائمة.
-/// limit: أقصى عدد بالـ Home عند عدم وجود بحث. null = الكل (Scans History).
+/// scans list with cases: load & error & empty & no found search & list found
 class ScansListView extends StatelessWidget {
   const ScansListView({super.key, this.limit, this.bottomPadding = 24});
 
@@ -47,11 +46,7 @@ class ScansListView extends StatelessWidget {
           SizedBox(height: 2.h),
           SvgPicture.asset(AppAssets().emptyHomeScreen, height: 26.h),
           SizedBox(height: 2.h),
-          _centerText(
-            'No Scans Yet',
-            AppColors().mainColorWithNoScans,
-            20,
-          ),
+          _centerText('No Scans Yet', AppColors().mainColorWithNoScans, 20),
           const SizedBox(height: 8),
           _centerText(
             'The list is currently empty',

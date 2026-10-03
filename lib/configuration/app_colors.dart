@@ -70,4 +70,5 @@ class AppColors {
   Color basicFileBg = const Color(0xffF2E2F7);
   Color businessFileBg = const Color(0xffE2F7ED);
   Color starterFileBg = const Color(0xffE2F0F7);
+  Color pdfBg = const Color(0xff78A1BB);
 }
