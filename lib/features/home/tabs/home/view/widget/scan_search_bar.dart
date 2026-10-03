@@ -4,12 +4,13 @@ import 'package:get/get.dart';
 import 'package:vin_sweep_application/configuration/app_assets.dart';
 import 'package:vin_sweep_application/configuration/app_colors.dart';
 import 'package:vin_sweep_application/features/home/tabs/home/controller/home_controller.dart';
+import 'package:vin_sweep_application/utils/ui/custom_text_field.dart';
 
-/// شريط البحث + زر الفلتر (مشترك بين Home و Scans History)
+/// search bar + filter button
+/// common between [Home] & [ScanHistory]
 class ScanSearchBar extends StatefulWidget {
   const ScanSearchBar({super.key, this.onFilterTap});
 
-  /// TODO: لسا ما انحدد شو بيفلتر (حسب التاريخ؟ بوجود تقارير؟)
   final VoidCallback? onFilterTap;
 
   @override
@@ -37,29 +38,11 @@ class _ScanSearchBarState extends State<ScanSearchBar> {
     return Row(
       children: [
         Expanded(
-          child: TextField(
+          child: CustomTextField().buildCustomTextField(
             controller: text,
             onChanged: (v) => c.query.value = v,
-            onTapOutside: (_) => FocusManager.instance.primaryFocus?.unfocus(),
-            style: TextStyle(color: AppColors().accentColor, fontSize: 14),
-            decoration: InputDecoration(
-              hintText: 'Search',
-              hintStyle: TextStyle(
-                color: AppColors().textFieldLabelColor,
-                fontSize: 14,
-              ),
-              filled: true,
-              fillColor: AppColors().switcherBackgroundColor,
-              contentPadding: const EdgeInsets.symmetric(vertical: 14),
-              prefixIcon: Padding(
-                padding: const EdgeInsets.all(14),
-                child: SvgPicture.asset(AppAssets().searchIcon),
-              ),
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(30),
-                borderSide: BorderSide.none,
-              ),
-            ),
+            hintText: 'Search',
+            iconNameAsset: AppAssets().searchIcon,
           ),
         ),
         const SizedBox(width: 12),
@@ -73,8 +56,7 @@ class _ScanSearchBarState extends State<ScanSearchBar> {
               color: AppColors().switcherBackgroundColor,
               borderRadius: BorderRadius.circular(16),
             ),
-            // TODO: بدليها بأيقونة الفلتر من التصميم
-            child: Icon(Icons.tune, color: AppColors().buttonWithBackground),
+            child: Icon(Icons.tune, color: AppColors().firstHeaderShadowColor),
           ),
         ),
       ],
