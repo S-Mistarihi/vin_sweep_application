@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:vin_sweep_application/features/home/tabs/home/controller/home_controller.dart';
 
 import '../../../../configuration/app_colors.dart';
 import '../../../../generated/l10n.dart';
@@ -12,8 +13,6 @@ class SearchingController extends GetxController {
   final String vinNumber;
 
   final RxBool isLoading = true.obs;
-
-  late final List<VehicleDatum> vehicleData;
 
   SearchingController({required this.vinNumber});
 
@@ -31,21 +30,26 @@ class SearchingController extends GetxController {
       vinNumber: vinNumber,
     );
 
+    isLoading.value = false;
+
     switch (result) {
       case Failure(:final exception):
-        isLoading.value = false;
+        Get.back(); // user backed to enterVinScreen
         _showError(exception.message);
 
       case Success(:final data):
-        vehicleData = data;
-        isLoading.value = false;
+        //search registered --> updated LatestScreen
+        if (Get.isRegistered<HomeController>()) {
+          Get.find<HomeController>().loadScans();
+        }
 
         Get.off(
           () => SearchingResult(
             vinNumber: vinNumber,
-            vehicleData: data,
-            vehicleName: _getVehicleName(data),
-            vehicleType: _getVehicleType(data),
+            vehicleData: data.vehicleData,
+            pdfReports: data.pdfReports,
+            vehicleName: _getVehicleName(data.vehicleData),
+            vehicleType: _getVehicleType(data.vehicleData),
           ),
           transition: Transition.downToUp,
         );

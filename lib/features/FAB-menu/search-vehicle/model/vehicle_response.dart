@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import '../../../reports/model/pdf_report_model.dart';
+
 class VehicleResponse {
   final bool success;
   final int code;
@@ -18,16 +20,18 @@ class VehicleResponse {
 
   factory VehicleResponse.fromJson(Map<String, dynamic> json) =>
       VehicleResponse(
-        success: json["success"],
-        code: json["code"],
-        message: json["message"],
-        result: VehicleResult.fromJson(json["result"]),
+        success: json["success"] ?? false,
+        code: json["code"] ?? 0,
+        message: json["message"] ?? 0,
+        result: VehicleResult.fromJson(
+          (json["result"] as Map<String, dynamic>?) ?? {},
+        ),
       );
 }
 
 class VehicleResult {
   final List<VehicleDatum> vehicleData;
-  final List<dynamic> pdfReports;
+  final List<PdfReportModel> pdfReports;
   final String vin;
   final String message;
 
@@ -42,12 +46,14 @@ class VehicleResult {
       VehicleResult.fromJson(json.decode(str));
 
   factory VehicleResult.fromJson(Map<String, dynamic> json) => VehicleResult(
-    vehicleData: List<VehicleDatum>.from(
-      json["vehicleData"].map((x) => VehicleDatum.fromJson(x)),
-    ),
-    pdfReports: List<dynamic>.from(json["pdfReports"].map((x) => x)),
-    vin: json["vin"],
-    message: json["message"],
+    vehicleData: (json["vehicleData"] as List? ?? [])
+        .map((x) => VehicleDatum.fromJson(x as Map<String, dynamic>))
+        .toList(),
+    pdfReports: (json["pdfReports"] as List? ?? [])
+        .map((x) => PdfReportModel.fromJson(x as Map<String, dynamic>))
+        .toList(),
+    vin: json["vin"] ?? '',
+    message: json["message"] ?? '',
   );
 }
 
@@ -61,10 +67,10 @@ class VehicleDatum {
       VehicleDatum.fromJson(json.decode(str));
 
   factory VehicleDatum.fromJson(Map<String, dynamic> json) => VehicleDatum(
-    category: json["category"],
-    values: List<CategoryValue>.from(
-      json["values"].map((x) => CategoryValue.fromJson(x)),
-    ),
+    category: json["category"] ?? '',
+    values: (json["values"] as List? ?? [])
+        .map((x) => CategoryValue.fromJson(x as Map<String, dynamic>))
+        .toList(),
   );
 }
 
@@ -78,5 +84,5 @@ class CategoryValue {
       CategoryValue.fromJson(json.decode(str));
 
   factory CategoryValue.fromJson(Map<String, dynamic> json) =>
-      CategoryValue(key: json["key"], value: json["value"]);
+      CategoryValue(key: json["key"] ?? '', value: json["value"] ?? '');
 }

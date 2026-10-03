@@ -1,17 +1,50 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:sizer/sizer.dart';
+import 'package:vin_sweep_application/features/FAB-menu/search-vehicle/view/switcher/reports/view/report_tile.dart';
+import 'package:vin_sweep_application/features/reports/model/pdf_report_model.dart';
 
 import '../../../../../../../configuration/app_assets.dart';
 import '../../../../../../../configuration/app_colors.dart';
 
 class ReportView extends StatelessWidget {
-  const ReportView({super.key});
+  const ReportView({super.key, this.reports = const []});
+
+  final List<PdfReportModel> reports;
 
   @override
   Widget build(BuildContext context) {
+    if (reports.isEmpty) return _contentWithNoReportBuy();
+
     return Column(
-        children: [_contentWithNoReportBuy()]
+      children: [
+        const SizedBox(height: 20),
+        Container(
+          width: double.infinity,
+          padding: const EdgeInsets.symmetric(vertical: 9, horizontal: 16),
+          decoration: BoxDecoration(
+            color: AppColors().generalInfoContainerBackground,
+            borderRadius: BorderRadius.circular(12),
+            border: Border.all(
+              color: AppColors().generalInfoContainerBorder,
+              width: 2,
+            ),
+          ),
+          child: Text(
+            'Bought reports include accident history, mileage records, previous ownership, and more.',
+            style: TextStyle(color: AppColors().accentColor, fontSize: 15),
+          ),
+        ),
+
+        ...reports.map(
+          (r) => Padding(
+            padding: const EdgeInsets.only(bottom: 14),
+            child: ReportTile(report: r),
+          ),
+        ),
+        // مسافة عشان زر Buy Report ما يغطي آخر تقرير
+        SizedBox(height: 14.h),
+      ],
     );
   }
 
@@ -20,7 +53,7 @@ class ReportView extends StatelessWidget {
       children: [
         SizedBox(height: 12.h),
         SvgPicture.asset(AppAssets().noReport),
-        SizedBox(height: 40),
+        const SizedBox(height: 40),
         Text(
           'No reports yet for this vehicle',
           style: TextStyle(
@@ -29,7 +62,7 @@ class ReportView extends StatelessWidget {
             color: AppColors().accentColor,
           ),
         ),
-        SizedBox(height: 16),
+        const SizedBox(height: 16),
         Text(
           'Reports include accident history, mileage verification, previous owners, and more.',
           textAlign: TextAlign.center,
@@ -38,5 +71,4 @@ class ReportView extends StatelessWidget {
       ],
     );
   }
-
 }

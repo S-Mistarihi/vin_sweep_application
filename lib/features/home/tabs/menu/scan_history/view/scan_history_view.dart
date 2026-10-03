@@ -64,6 +64,5 @@ class _ScanHistoryViewState extends State<ScanHistoryView> {
         ],
       ),
     );
-    ;
   }
 }

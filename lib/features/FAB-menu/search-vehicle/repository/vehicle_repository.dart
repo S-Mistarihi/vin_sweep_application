@@ -11,7 +11,7 @@ import '../../../../utils/helpers/common/exception/repository_exception.dart';
 import '../model/vehicle_response.dart';
 
 abstract class VehicleRepository {
-  Future<RepositoryResult<List<VehicleDatum>>> scanVin({
+  Future<RepositoryResult<VehicleResult>> scanVin({
     required BuildContext context,
     required String vinNumber,
     bool showLoading = false,
@@ -20,7 +20,7 @@ abstract class VehicleRepository {
 
 class ApiVehicleRepository extends VehicleRepository {
   @override
-  Future<RepositoryResult<List<VehicleDatum>>> scanVin({
+  Future<RepositoryResult<VehicleResult>> scanVin({
     required BuildContext context,
     required String vinNumber,
     bool showLoading = false,
@@ -40,10 +40,7 @@ class ApiVehicleRepository extends VehicleRepository {
     }
   }
 
-  RepositoryResult<List<VehicleDatum>> _parse(
-    String body,
-    BuildContext context,
-  ) {
+  RepositoryResult<VehicleResult> _parse(String body, BuildContext context) {
     try {
       final json = jsonDecode(body);
       if (json is! Map<String, dynamic>) {
@@ -54,7 +51,7 @@ class ApiVehicleRepository extends VehicleRepository {
 
       final response = VehicleResponse.fromJson(json);
       if (response.code == 200 && response.success) {
-        return Success(response.result.vehicleData);
+        return Success(response.result);
       }
 
       return Failure(
@@ -79,30 +76,37 @@ class ApiVehicleRepository extends VehicleRepository {
 
 class DemoVehicleRepository extends VehicleRepository {
   @override
-  Future<RepositoryResult<List<VehicleDatum>>> scanVin({
+  Future<RepositoryResult<VehicleResult>> scanVin({
     required BuildContext context,
     required String vinNumber,
     bool showLoading = false,
   }) async {
     await Future.delayed(const Duration(seconds: 1));
-    return Success([
-      VehicleDatum(
-        category: 'General',
-        values: [
-          CategoryValue(key: 'Model Year', value: '2020'),
-          CategoryValue(key: 'Make', value: 'Honda'),
-          CategoryValue(key: 'Model', value: 'Civic'),
-          CategoryValue(key: 'Vehicle Type', value: 'PASSENGER CAR'),
+    return Success(
+      VehicleResult(
+        vin: vinNumber,
+        message: '',
+        pdfReports: [],
+        vehicleData: [
+          VehicleDatum(
+            category: 'General',
+            values: [
+              CategoryValue(key: 'Model Year', value: '2020'),
+              CategoryValue(key: 'Make', value: 'Honda'),
+              CategoryValue(key: 'Model', value: 'Civic'),
+              CategoryValue(key: 'Vehicle Type', value: 'PASSENGER CAR'),
+            ],
+          ),
+          VehicleDatum(
+            category: 'Engine',
+            values: [
+              CategoryValue(key: 'Engine Number of Cylinders', value: '4'),
+              CategoryValue(key: 'Displacement (L)', value: '2.0'),
+            ],
+          ),
         ],
       ),
-      VehicleDatum(
-        category: 'Engine',
-        values: [
-          CategoryValue(key: 'Engine Number of Cylinders', value: '4'),
-          CategoryValue(key: 'Displacement (L)', value: '2.0'),
-        ],
-      ),
-    ]);
+    );
   }
 }
 

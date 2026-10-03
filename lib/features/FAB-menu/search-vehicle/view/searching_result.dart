@@ -9,6 +9,7 @@ import '../../../../configuration/app_colors.dart';
 import '../../../../generated/l10n.dart';
 import '../../../../utils/ui/common/custom_scan_vin_number_header.dart';
 import '../../../../utils/ui/custom_button.dart';
+import '../../../reports/model/pdf_report_model.dart';
 import '../controller/searching_mode_controller.dart';
 import '../model/vehicle_response.dart';
 
@@ -18,11 +19,12 @@ class SearchingResult extends StatelessWidget {
     required this.vinNumber,
     required this.vehicleData,
     required this.vehicleName,
-    this.vehicleType,
+    this.vehicleType, required this.pdfReports,
   });
 
   final String vinNumber;
   final List<VehicleDatum> vehicleData;
+  final List<PdfReportModel> pdfReports;
   final String vehicleName;
   final String? vehicleType;
 
@@ -64,7 +66,7 @@ class SearchingResult extends StatelessWidget {
                       _buildAuthSwitcher(context, modeController),
                       modeController.isInfo
                           ? GeneralInfoView(vehicleData: vehicleData)
-                          : ReportView(),
+                          : ReportView(reports: pdfReports),
                     ],
                   ),
                 ),
@@ -76,7 +78,9 @@ class SearchingResult extends StatelessWidget {
               left: 6.w,
               bottom: 5.h,
               child: CustomButton(
-                onPressed: () {},
+                onPressed: () {
+                  // TODO (الجزء 4): فلو شراء التقرير
+                },
                 text: S.of(context).buyReportButton,
                 backgroundColor: AppColors().buttonWithBackground,
                 foregroundColor: AppColors().buttonWithBackgroundText,
