@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_stripe/flutter_stripe.dart';
+import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../../../configuration/app_assets.dart';
 import '../../../../configuration/app_colors.dart';
 import '../../../../utils/ui/common/custom_main_header.dart';
-import '../../../home/tabs/menu/plans/model/plans_response.dart';
-import '../controller/add_cart_controller.dart';
+import '../../../../utils/ui/custom_button.dart';
+import '../controller/add_card_controller.dart';
 
 class AddCardView extends StatefulWidget {
-  const AddCardView({super.key, this.plan, required this.mode});
+  const AddCardView({super.key, required this.mode});
 
-  final PlanModel? plan;
   final AddCardMode mode;
 
   @override
@@ -18,6 +19,20 @@ class AddCardView extends StatefulWidget {
 }
 
 class _AddCardViewState extends State<AddCardView> {
+  late final AddCardController controller;
+
+  @override
+  void initState() {
+    super.initState();
+    controller = Get.put(AddCardController(widget.mode));
+  }
+
+  @override
+  void dispose() {
+    Get.delete<AddCardController>();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -44,11 +59,127 @@ class _AddCardViewState extends State<AddCardView> {
                   topRight: Radius.circular(40),
                 ),
               ),
-              child: Column(),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SizedBox(height: 24),
+                  Text(
+                    'Add Card information',
+                    style: TextStyle(
+                      color: AppColors().accentColor,
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  const SizedBox(height: 12),
+                  Text(
+                    'Card Info',
+                    style: TextStyle(
+                      color: AppColors().textFieldLabelColor,
+                      fontSize: 16,
+                      fontWeight: FontWeight.normal,
+                    ),
+                  ),
+                  const SizedBox(height: 8),
+                  CardField(
+                    onCardChanged: (details) => controller.cardComplete.value =
+                        details?.complete ?? false,
+                    decoration: InputDecoration(
+                      filled: true,
+                      fillColor: AppColors().textFieldBackgroundColor,
+                      contentPadding: const EdgeInsets.symmetric(
+                        horizontal: 12,
+                        vertical: 14,
+                      ),
+                      border: _buildOutlineInputBorder(),
+                      focusedBorder: _buildOutlineInputBorder(),
+                      enabledBorder: _buildOutlineInputBorder(),
+                      hintText: 'Card Number  /  CVV  /  Expiry Date  ',
+                      hintStyle: TextStyle(
+                        color: AppColors().textFieldLabelColor,
+                        fontSize: 14,
+                        fontWeight: FontWeight.normal,
+                      )
+                    ),
+                  ),
+                  const SizedBox(height: 12),
+                  if (widget.mode == AddCardMode.subscribe)
+                    Obx(
+                      () => Row(
+                        children: [
+                          Checkbox(
+                            value: controller.saveCard.value,
+                            activeColor: AppColors().firstHeaderShadowColor,
+                            onChanged: (v) =>
+                                controller.saveCard.value = v ?? false,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(5),
+                            ),
+                          ),
+                          Text(
+                            'Save card',
+                            style: TextStyle(color: AppColors().accentColor,fontSize: 16,
+                              fontWeight: FontWeight.normal,),
+                          ),
+                        ],
+                      ),
+                    ),
+                  const Spacer(),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: CustomButton(
+                          onPressed: () => Get.back(),
+                          text: 'Cancel',
+                          backgroundColor: Colors.transparent,
+                          foregroundColor: AppColors().accentColor,
+                          textSize: 16,
+                          fontWeight: FontWeight.bold,
+                          horizontalPadding: 0,
+                          verticalPadding: 12,
+                        ),
+                      ),
+                      const SizedBox(width: 12),
+                      Expanded(
+                        child: Obx(
+                          () => Opacity(
+                            opacity:
+                                controller.cardComplete.value &&
+                                    !controller.isLoading.value
+                                ? 1
+                                : 0.5,
+                            child: CustomButton(
+                              onPressed: controller.addCard,
+                              text: controller.isLoading.value
+                                  ? '...'
+                                  : 'Add Card',
+                              backgroundColor: AppColors().buttonWithBackground,
+                              foregroundColor:
+                                  AppColors().buttonWithBackgroundText,
+                              textSize: 16,
+                              fontWeight: FontWeight.bold,
+                              horizontalPadding: 0,
+                              verticalPadding: 12,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 5.h,),
+                ],
+              ),
             ),
           ),
         ],
       ),
+    );
+  }
+
+  OutlineInputBorder _buildOutlineInputBorder() {
+    return OutlineInputBorder(
+      borderRadius: BorderRadius.circular(24),
+      borderSide: BorderSide(color: AppColors().textFieldBorderColor),
     );
   }
 }

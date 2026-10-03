@@ -9,15 +9,9 @@ import 'package:vin_sweep_application/features/home/tabs/menu/payment/pay-histor
 import '../../../../../../../generated/l10n.dart';
 import '../../../../../../../utils/ui/custom_button.dart';
 
-class PaymentHistoryView extends StatefulWidget {
+class PaymentHistoryView extends StatelessWidget {
   const PaymentHistoryView({super.key});
 
-  @override
-  State<PaymentHistoryView> createState() => _PaymentHistoryViewState();
-}
-
-class _PaymentHistoryViewState extends State<PaymentHistoryView>
-    with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     final controller = Get.put(PaymentHistoryController());
@@ -30,10 +24,6 @@ class _PaymentHistoryViewState extends State<PaymentHistoryView>
             child: SpinKitSquareCircle(
               color: AppColors().buttonWithBackground,
               size: 50.0,
-              controller: AnimationController(
-                vsync: this,
-                duration: const Duration(milliseconds: 1200),
-              ),
             ),
           ),
         );

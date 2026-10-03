@@ -19,6 +19,7 @@ class PlansController extends GetxController {
     loadData();
   }
 
+  //verify that current plan is active (not expired)
   bool get hasActivePlan =>
       currentSubscription.value != null &&
       currentSubscription.value?.status == 'ACTIVE';
@@ -26,6 +27,7 @@ class PlansController extends GetxController {
   bool isCurrent(PlanModel plan) =>
       hasActivePlan && currentSubscription.value?.plan?.id == plan.id;
 
+  //arranging current cardPlan, so we can  start pageView from it
   int get currentIndex {
     final i = plans.indexWhere(isCurrent);
     return i < 0 ? 0 : i;
@@ -62,7 +64,7 @@ class PlansController extends GetxController {
     }
   }
 
-  /// بعد الاشتراك نرجّع نجيب الخطة من السيرفر (مصدر الحقيقة)
+  ///after subscribing, retrieve plan from server
   Future<void> onSubscribed(UserPlanResponse subscription) async {
     currentSubscription.value = subscription;
     isAutoRenew.value = subscription.autoRenew ?? false;

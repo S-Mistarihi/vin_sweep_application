@@ -1,12 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:get/get.dart';
 import 'package:vin_sweep_application/features/home/tabs/menu/payment/pay-method/repository/payment_method_repository.dart';
+import 'package:vin_sweep_application/features/home/tabs/menu/plans/model/plan_payment_intent_response.dart';
 import 'package:vin_sweep_application/features/home/tabs/menu/plans/repository/plans_repository.dart';
+import 'package:vin_sweep_application/features/plan-upgrade/add_card/model/saved_card_model.dart';
+import 'package:vin_sweep_application/utils/ui/custom_dialog.dart';
 
 import '../../../../configuration/app_colors.dart';
+import '../../../../utils/helpers/common/exception/repository_exception.dart';
 import '../../../../utils/helpers/common/repository_result.dart';
-import '../../../home/tabs/menu/payment/pay-method/model/payment_method_response.dart';
 import '../../../home/tabs/menu/plans/model/plans_response.dart';
+import '../../../home/tabs/menu/plans/model/user_plan_response.dart';
+import '../../add_card/controller/add_card_controller.dart';
+import '../../add_card/view/add_card_view.dart';
 
 class ReviewConfirmationController extends GetxController {
   ReviewConfirmationController(this.plan);
@@ -14,88 +21,163 @@ class ReviewConfirmationController extends GetxController {
   //ootion selected by user from PlansView
   final PlanModel plan;
 
-  final methods = <PayMethod>[].obs;
-  final selectedMethodId = RxnString();
-  final acceptTerms = false.obs;
-  final isLoading = false.obs;
-  final isSubmitting = false.obs;
-  final errorMessage = RxnString();
+  final RxList<SavedCardModel> cards = <SavedCardModel>[].obs;
+  final RxnString selectedCardId = RxnString();
+  final RxBool acceptedTerms = false.obs;
+  final RxBool isLoadingCards = false.obs;
+  final RxBool forceRefresh = false.obs;
+  final RxBool isSubmitting = false.obs;
 
-  bool get canConfirm =>
-      selectedMethodId.value != null &&
-      acceptTerms.value &&
-      !isSubmitting.value;
+  SavedCardModel? get selectedCard =>
+      cards.firstWhereOrNull((c) => c.id == selectedCardId.value);
 
   @override
-  void onReady() {
-    super.onReady();
-    loadMethods();
+  void onInit() {
+    super.onInit();
+    loadCards();
   }
 
-  Future<void> loadMethods() async {
-    final context = Get.context!;
-
-    isLoading.value = true;
-    errorMessage.value = null;
+  ///API saved card from PaymentInfoScreen
+  Future<void> loadCards() async {
+    isLoadingCards.value = true;
 
     final result = await createPaymentMethodRepository().getPaymentMethod(
-      context: context,
+      context: Get.context!,
+      forceRefresh: forceRefresh.value,
     );
+
     switch (result) {
-      case Success(:final data):
-        methods.assignAll(data);
-        final stillExists = methods.any(
-          (m) => m.paymentMethodId == selectedMethodId.value,
-        );
-        if (!stillExists) {
-          final fallback =
-              methods.where((m) => m.resultDefault).firstOrNull ??
-              methods.firstOrNull;
-          selectedMethodId.value = fallback?.paymentMethodId;
-        }
       case Failure(:final exception):
-        errorMessage.value = exception.message;
+        showAppSnackbar('Failed', exception.message, isError: true);
+      case Success(:final data):
+        final usable = data.where((m) => !m.expired).toList();
+        cards.assignAll(usable.map((m) => m.toSavedCard()));
+        final preferred =
+            usable.firstWhereOrNull((m) => m.resultDefault) ??
+            usable.firstOrNull;
+        selectedCardId.value = preferred?.paymentMethodId;
     }
 
-    isLoading.value = false;
+    isLoadingCards.value = false;
   }
 
-  void selectMethod(String id) => selectedMethodId.value = id;
+  void selectCard(SavedCardModel card) => selectedCardId.value = card.id;
 
-  void toggleTerms(bool? value) => acceptTerms.value = value ?? false;
+  Future<void> addCard() async {
+    final card = await Get.to<SavedCardModel>(
+      () => const AddCardView(mode: AddCardMode.subscribe),
+    );
+    if (card == null) return;
+    cards.insert(0, card);
+    selectedCardId.value = card.id;
+  }
 
   Future<void> confirm() async {
-    if (!canConfirm) return;
+    if (isSubmitting.value) return;
 
-    final context = Get.context!;
-    final planId = plan.id;
-    if (planId == null) return;
+    final card = selectedCard;
+    if (card == null) {
+      showAppSnackbar('Payment method', 'Please select a card', isError: true);
+      return;
+    }
+    if (!acceptedTerms.value) {
+      showAppSnackbar(
+        'Terms',
+        'Please accept the terms and conditions',
+        isError: true,
+      );
+      return;
+    }
+    if (plan.id == null) return;
 
     isSubmitting.value = true;
-
-    final result = await createPlansRepository().subscribe(
-      context: context,
-      planId: planId,
-      paymentMethodId: selectedMethodId.value!,
-      showLoading: false,
-    );
-
+    final result = card.isSaved
+        ? await _payWithSavedCard(card)
+        : await _payWithNewCard(card);
     isSubmitting.value = false;
 
     switch (result) {
-      case Success(:final data):
-        Get.back(result: data);
       case Failure(:final exception):
-        _showError(exception.message);
+        showAppSnackbar('Payment failed', exception.message, isError: true);
+      case Success(:final data):
+        await CustomDialog.showSuccessDialog(
+          title: 'Subscription successful',
+          description:
+              'You are now subscribed to ${plan.headlinePrimary ?? plan.name ?? 'the plan'}.',
+        );
+        Get.back(result: data);
     }
   }
 
-  void _showError(String? message) {
+  // pre-saved card
+  Future<RepositoryResult<UserPlanResponse>> _payWithSavedCard(
+    SavedCardModel card,
+  ) {
+    return createPlansRepository().subscribe(
+      context: Get.context!,
+      planId: plan.id!,
+      paymentMethodId: card.id,
+      saveCard: false,
+      autoRenew: false,
+      showLoading: false,
+    );
+  }
+
+  // new card
+  Future<RepositoryResult<UserPlanResponse>> _payWithNewCard(
+    SavedCardModel card,
+  ) async {
+    final context = Get.context!;
+
+    //1- backend creates PaymentIntent
+    final intentResult = await createPlansRepository().createPaymentIntent(
+      context: context,
+      planId: plan.id!,
+      saveCard: card.saveForFuture,
+      autoRenew: false,
+    );
+    final PaymentIntentData intent;
+    switch (intentResult) {
+      case Failure(:final exception):
+        return Failure(exception);
+      case Success(:final data):
+        intent = data;
+    }
+
+    //2- stripe confirms payment
+    try {
+      await Stripe.instance.confirmPayment(
+        paymentIntentClientSecret: intent.clientSecret,
+        data: PaymentMethodParams.cardFromMethodId(
+          paymentMethodData: PaymentMethodDataCardFromMethod(
+            paymentMethodId: card.id,
+          ),
+        ),
+      );
+    } on StripeException catch (e) {
+      return Failure(
+        MappingException(
+          e.error.localizedMessage ?? e.error.message ?? 'Payment failed',
+        ),
+      );
+    }
+
+    //3- backend activates subscription
+    return createPlansRepository().confirmPayment(
+      context: Get.context!,
+      paymentIntentId: intent.paymentIntentId,
+      description: 'Plan subscription',
+    );
+  }
+
+  void showAppSnackbar(String title, String? message, {bool isError = false}) {
     Get.snackbar(
-      'Failed',
-      message?.isNotEmpty == true ? message! : 'Subscription failed',
+      title,
+      message?.isNotEmpty == true ? message! : 'Something went wrong',
       snackPosition: SnackPosition.TOP,
-      backgroundColor: AppColors().errorDialogColor,
+      backgroundColor: isError
+          ? AppColors().errorDialogColor
+          : AppColors().successDialogColor,
       colorText: AppColors().baseColor,
       margin: const EdgeInsets.all(12),
       duration: const Duration(seconds: 5),

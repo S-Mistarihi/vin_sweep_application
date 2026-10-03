@@ -10,6 +10,7 @@ import 'package:vin_sweep_application/utils/helpers/common/repository_result.dar
 import 'package:vin_sweep_application/utils/helpers/http/http_wrapper.dart';
 
 import '../../../../../auth/register/model/generic_response.dart';
+import '../model/plan_payment_intent_response.dart';
 import '../model/user_plan_response.dart';
 
 abstract class PlansRepository {
@@ -29,6 +30,7 @@ abstract class PlansRepository {
     bool showLoading = false,
   });
 
+  //pay with saved card
   Future<RepositoryResult<UserPlanResponse>> subscribe({
     required BuildContext context,
     required int planId,
@@ -36,6 +38,22 @@ abstract class PlansRepository {
     bool saveCard = false,
     bool autoRenew = false,
     bool showLoading = true,
+  });
+
+  //pay with new card
+  Future<RepositoryResult<PaymentIntentData>> createPaymentIntent({
+    required BuildContext context,
+    required int planId,
+    bool saveCard = false,
+    bool autoRenew = false,
+    bool showLoading = false,
+  });
+
+  Future<RepositoryResult<UserPlanResponse>> confirmPayment({
+    required BuildContext context,
+    required String paymentIntentId,
+    String description = '',
+    bool showLoading = false,
   });
 }
 
@@ -131,6 +149,62 @@ class ApiPlansRepository extends PlansRepository {
     }
   }
 
+  //
+  @override
+  Future<RepositoryResult<PaymentIntentData>> createPaymentIntent({
+    required BuildContext context,
+    required int planId,
+    bool saveCard = false,
+    bool autoRenew = false,
+    bool showLoading = false,
+  }) async {
+    final result = await HttpWrapper(
+      url: ApiEndPoints.createSubscriptionPaymentIntent,
+      context: context,
+      showLoading: showLoading,
+      postParameters: {
+        "planId": planId,
+        "saveCard": saveCard,
+        "autoRenew": autoRenew,
+      },
+    ).post();
+
+    switch (result) {
+      case Failure(:final exception):
+        return Failure(exception);
+      case Success(:final data):
+        return _parsePaymentIntent(data.stringBody ?? '', context);
+    }
+  }
+
+  //
+  @override
+  Future<RepositoryResult<UserPlanResponse>> confirmPayment({
+    required BuildContext context,
+    required String paymentIntentId,
+    String description = '',
+    bool showLoading = false,
+  }) async {
+    final result = await HttpWrapper(
+      url: ApiEndPoints.confirmPlanPayment,
+      context: context,
+      showLoading: showLoading,
+      postParameters: {
+        "paymentIntentId": paymentIntentId,
+        "description": description,
+      },
+    ).post();
+
+    switch (result) {
+      case Failure(:final exception):
+        return Failure(exception);
+      case Success(:final data):
+        return _parseSubscription(data.stringBody ?? '', context);
+    }
+  }
+
+  ///------------------------------------------------------------------------
+  //
   RepositoryResult<UserPlanResponse?> _parseCurrentPlan(
     String body,
     BuildContext context,
@@ -270,6 +344,41 @@ class ApiPlansRepository extends PlansRepository {
       );
     }
   }
+
+  RepositoryResult<PaymentIntentData> _parsePaymentIntent(
+    String body,
+    BuildContext context,
+  ) {
+    try {
+      final json = jsonDecode(body);
+      if (json is! Map<String, dynamic>) {
+        return Failure(MappingException('Unexpected response structure'));
+      }
+
+      final response = PlanPaymentIntentResponse.fromJson(json);
+      if (response.success &&
+          response.result.clientSecret.isNotEmpty &&
+          response.result.paymentIntentId.isNotEmpty) {
+        return Success(response.result);
+      }
+      return Failure(
+        MappingException(
+          response.message.isNotEmpty
+              ? response.message
+              : S.of(context).theServerReturnedAnUnsuccessfulResponse,
+          errorCode: response.code.toString(),
+        ),
+      );
+    } catch (error, stackTrace) {
+      return Failure(
+        UnknownException(
+          S.of(context).anUnexpectedErrorOccuredPleaseTryAgain,
+          cause: error,
+          stackTrace: stackTrace,
+        ),
+      );
+    }
+  }
 }
 
 class DemoPlansRepository extends PlansRepository {
@@ -384,6 +493,47 @@ class DemoPlansRepository extends PlansRepository {
         generatedReportsCount: 0,
         status: 'ACTIVE',
         autoRenew: autoRenew,
+        startsAt: DateTime.now(),
+        expiresAt: DateTime.now().add(const Duration(days: 30)),
+      ),
+    );
+  }
+
+  @override
+  Future<RepositoryResult<PaymentIntentData>> createPaymentIntent({
+    required BuildContext context,
+    required int planId,
+    bool saveCard = false,
+    bool autoRenew = false,
+    bool showLoading = false,
+  }) async {
+    await Future.delayed(const Duration(milliseconds: 500));
+    return Success(
+      PaymentIntentData(
+        paymentIntentId: 'pi_demo',
+        clientSecret: 'pi_demo_secret',
+        message: '',
+      ),
+    );
+  }
+
+  @override
+  Future<RepositoryResult<UserPlanResponse>> confirmPayment({
+    required BuildContext context,
+    required String paymentIntentId,
+    String description = '',
+    bool showLoading = false,
+  }) async {
+    await Future.delayed(const Duration(seconds: 1));
+    return Success(
+      UserPlanResponse(
+        id: 1,
+        userId: 1,
+        plan: PlanModel(id: 1, name: 'Demo Plan', reportsCount: 5),
+        reportsRemaining: 5,
+        generatedReportsCount: 0,
+        status: 'ACTIVE',
+        autoRenew: true,
         startsAt: DateTime.now(),
         expiresAt: DateTime.now().add(const Duration(days: 30)),
       ),

@@ -1,27 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:vin_sweep_application/configuration/app_colors.dart';
-import 'package:vin_sweep_application/features/home/tabs/menu/payment/pay-method/model/payment_method_response.dart';
-import '../../controller/review_confirmation_controller.dart';
+import 'package:vin_sweep_application/features/plan-upgrade/add_card/model/saved_card_model.dart';
 
 class PaymentMethodTile extends StatelessWidget {
   const PaymentMethodTile({
     super.key,
-    required this.method,
-    required this.controller,
+    required this.card,
+    required this.selected,
+    required this.onTap,
   });
 
-  final PayMethod method;
-  final ReviewConfirmationController controller;
+  final SavedCardModel card;
+  final bool selected;
+  final VoidCallback onTap;
 
   @override
   Widget build(BuildContext context) {
-    final selected =
-        controller.selectedMethodId.value == method.paymentMethodId;
-
     return GestureDetector(
-      onTap: () {
-        controller.selectMethod(method.paymentMethodId);
-      },
+      onTap: onTap,
       behavior: HitTestBehavior.opaque,
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 18),
@@ -38,7 +34,7 @@ class PaymentMethodTile extends StatelessWidget {
 
             Expanded(
               child: Text(
-                method.maskedNumber,
+                card.masked,
                 style: TextStyle(
                   color: AppColors().accentColor,
                   fontSize: 16,

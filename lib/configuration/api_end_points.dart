@@ -19,18 +19,27 @@ class ApiEndPoints {
   static final String updateUser = '$baseUrl${version}users/update';
   static final String getPlans = '$baseUrl${version}plans';
   static final String getCurrentUserPlan = '$baseUrl${version}users/current';
+
   static String setAutoRenew(bool autoRenew) =>
       '$baseUrl${version}plans/auto-renew?autoRenew=$autoRenew';
-  static final String subscribePlan = '$baseUrl${version}plans/subscribe';
 
-  static final String getPaymentMethod =
-      '$baseUrl${version}payment/my-payment-methods?forceRefresh=false';
+  static final String subscribePlan = '$baseUrl${version}plans/subscribe';
+  static final String createSubscriptionPaymentIntent =
+      '$baseUrl${version}plans/subscribe/create-payment-intent';
+  static final String confirmPlanPayment =
+      '$baseUrl${version}plans/confirm-payment';
+
+  static String getPaymentMethod(bool forceRefresh) =>
+      '$baseUrl${version}payment/my-payment-methods?forceRefresh=$forceRefresh';
   static final String setDefaultPaymentMethod =
       '$baseUrl${version}payment/set-default-payment-method';
   static final String deletePaymentMethod =
       '$baseUrl${version}payment/delete-payment-method';
   static final String getPaymentHistory =
       '$baseUrl${version}payment/my-payment-history';
+  static final String setupIntent = '$baseUrl${version}payment/setup-intent';
+  static final String confirmSetupIntent =
+      '$baseUrl${version}payment/confirm-setup-intent';
 
   //home FAB
   static final String scanVin = '$baseUrl${version}vehicle';

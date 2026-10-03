@@ -21,18 +21,6 @@ class PaymentMethodCard extends StatelessWidget {
     required this.onDelete,
   });
 
-  /// اسأل الباك وين آخر 4 أرقام: بالـ metadata ولا بالـ displayName
-  String get _maskedNumber {
-    final source = (method.metadata.isNotEmpty
-        ? method.metadata
-        : method.displayName);
-    final digits = source.replaceAll(RegExp(r'\D'), '');
-    final last4 = digits.length >= 4
-        ? digits.substring(digits.length - 4)
-        : digits;
-    return '**** **** **** $last4';
-  }
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -61,7 +49,7 @@ class PaymentMethodCard extends StatelessWidget {
                 ),
                 const SizedBox(height: 5),
                 Text(
-                  _maskedNumber,
+                  method.maskedNumber,
                   style: TextStyle(
                     color: AppColors().accentColor,
                     fontSize: 18,
@@ -207,7 +195,7 @@ class PaymentMethodCard extends StatelessWidget {
   void _showDeleteDialog() {
     AppConfirmationDialog.show(
       title: S.of(Get.context!).deletePaymentMethod,
-      message: 'Are you sure you want to delete\n$_maskedNumber?',
+      message: 'Are you sure you want to delete\n${method.maskedNumber}?',
       confirmText: S.of(Get.context!).deleteButton,
       onConfirm: onDelete,
     );

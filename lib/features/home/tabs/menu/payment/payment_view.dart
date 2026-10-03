@@ -3,16 +3,32 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
 import 'package:vin_sweep_application/features/home/tabs/menu/payment/pay-history/view/payment_history_view.dart';
+import 'package:vin_sweep_application/features/home/tabs/menu/payment/pay-method/controller/payment_method_controller.dart';
 import 'package:vin_sweep_application/features/home/tabs/menu/payment/pay-method/view/payment_method_view.dart';
 import 'package:vin_sweep_application/features/home/tabs/menu/payment/payment_mode_controller.dart';
+import 'package:vin_sweep_application/features/plan-upgrade/add_card/model/saved_card_model.dart';
 import 'package:vin_sweep_application/utils/ui/common/custom_main_header.dart';
 
 import '../../../../../configuration/app_assets.dart';
 import '../../../../../configuration/app_colors.dart';
 import '../../../../../utils/ui/custom_button.dart';
+import '../../../../plan-upgrade/add_card/controller/add_card_controller.dart';
+import '../../../../plan-upgrade/add_card/view/add_card_view.dart';
 
 class PaymentView extends StatelessWidget {
   const PaymentView({super.key});
+
+  Future<void> _onAddPaymentMethod(PaymentModeController controller) async {
+    final card = await Get.to<SavedCardModel>(
+      () => const AddCardView(mode: AddCardMode.setup),
+    );
+    if (card == null) return;
+
+    controller.switchToMethod();
+    if (Get.isRegistered<PaymentMethodController>()) {
+      Get.find<PaymentMethodController>().loadMethods();
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -48,7 +64,7 @@ class PaymentView extends StatelessWidget {
                       const SizedBox(height: 30),
                       _buildAuthSwitcher(context, controller),
                       controller.isPayMethod
-                          ? PaymentMethod()
+                          ? PaymentMethodView()
                           : PaymentHistoryView(),
                     ],
                   ),
@@ -63,11 +79,7 @@ class PaymentView extends StatelessWidget {
               child: Column(
                 children: [
                   CustomButton(
-                    onPressed: () {
-                      // if (_key.currentState!.validate()) {
-                      //   controller.onChangePressed();
-                      // }
-                    },
+                    onPressed: () => _onAddPaymentMethod(controller),
                     text: 'Add Payment Method',
                     backgroundColor: AppColors().buttonWithBackground,
                     foregroundColor: AppColors().buttonWithBackgroundText,

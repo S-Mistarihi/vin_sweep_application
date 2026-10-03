@@ -9,15 +9,9 @@ import 'package:vin_sweep_application/utils/ui/custom_button.dart';
 
 import '../../../../../../../generated/l10n.dart';
 
-class PaymentMethod extends StatefulWidget {
-  const PaymentMethod({super.key});
+class PaymentMethodView extends StatelessWidget {
+  const PaymentMethodView({super.key});
 
-  @override
-  State<PaymentMethod> createState() => _PaymentMethodState();
-}
-
-class _PaymentMethodState extends State<PaymentMethod>
-    with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     final controller = Get.put(PaymentMethodController());
@@ -30,10 +24,6 @@ class _PaymentMethodState extends State<PaymentMethod>
             child: SpinKitSquareCircle(
               color: AppColors().buttonWithBackground,
               size: 50.0,
-              controller: AnimationController(
-                vsync: this,
-                duration: const Duration(milliseconds: 1200),
-              ),
             ),
           ),
         );

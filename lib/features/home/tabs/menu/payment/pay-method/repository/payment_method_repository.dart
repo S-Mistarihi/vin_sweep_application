@@ -14,6 +14,7 @@ import '../model/payment_method_response.dart';
 abstract class PaymentMethodRepository {
   Future<RepositoryResult<List<PayMethod>>> getPaymentMethod({
     required BuildContext context,
+    required bool forceRefresh,
     bool showLoading = false,
   });
 
@@ -35,10 +36,11 @@ class ApiPaymentMethodRepository extends PaymentMethodRepository {
   @override
   Future<RepositoryResult<List<PayMethod>>> getPaymentMethod({
     required BuildContext context,
+    required bool forceRefresh,
     bool showLoading = false,
   }) async {
     final result = await HttpWrapper(
-      url: ApiEndPoints.getPaymentMethod,
+      url: ApiEndPoints.getPaymentMethod(forceRefresh),
       context: context,
       showLoading: showLoading,
     ).get();
@@ -170,6 +172,7 @@ class DemoPaymentMethodRepository extends PaymentMethodRepository {
   @override
   Future<RepositoryResult<List<PayMethod>>> getPaymentMethod({
     required BuildContext context,
+    required bool forceRefresh,
     bool showLoading = false,
   }) async {
     await Future.delayed(const Duration(seconds: 1));

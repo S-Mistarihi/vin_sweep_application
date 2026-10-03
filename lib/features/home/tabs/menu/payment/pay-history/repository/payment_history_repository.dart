@@ -53,7 +53,7 @@ class ApiPaymentHistoryRepository extends PaymentHistoryRepository {
 
       return Failure(
         MappingException(
-          response.message!.isNotEmpty
+          response.message?.isNotEmpty == true
               ? response.message!
               : S.of(context).theServerReturnedAnUnsuccessfulResponse,
           errorCode: response.code.toString(),

@@ -9,6 +9,7 @@ import '../model/payment_method_response.dart';
 class PaymentMethodController extends GetxController {
   final methods = <PayMethod>[].obs;
   final isLoading = false.obs;
+  final RxBool forceRefresh = false.obs;
   final errorMessage = RxnString();
 
   @override
@@ -25,6 +26,7 @@ class PaymentMethodController extends GetxController {
 
     final result = await createPaymentMethodRepository().getPaymentMethod(
       context: context,
+      forceRefresh: forceRefresh.value
     );
     switch (result) {
       case Success(:final data):

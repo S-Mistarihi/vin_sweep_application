@@ -18,12 +18,12 @@ class PaymentMethodResponse {
 
   factory PaymentMethodResponse.fromJson(Map<String, dynamic> json) =>
       PaymentMethodResponse(
-        success: json["success"],
-        code: json["code"],
-        message: json["message"],
-        result: List<PayMethod>.from(
-          json["result"].map((x) => PayMethod.fromJson(x)),
-        ),
+        success: json["success"] ?? false,
+        code: json["code"] ?? 0,
+        message: json["message"] ?? '',
+        result: (json["result"] as List? ?? [])
+            .map((x) => PayMethod.fromJson(x as Map<String, dynamic>))
+            .toList(),
       );
 }
 
@@ -48,12 +48,12 @@ class PayMethod {
       PayMethod.fromJson(json.decode(str));
 
   factory PayMethod.fromJson(Map<String, dynamic> json) => PayMethod(
-    paymentMethodId: json["paymentMethodId"],
-    type: json["type"],
-    displayName: json["displayName"],
-    metadata: json["metadata"],
-    expired: json["expired"],
-    resultDefault: json["default"],
+    paymentMethodId: json["paymentMethodId"] ?? '',
+    type: json["type"] ?? '',
+    displayName: json["displayName"] ?? '',
+    metadata: json["metadata"] ?? '',
+    expired: json["expired"] ?? false,
+    resultDefault: json["default"] ?? false,
   );
 }
 

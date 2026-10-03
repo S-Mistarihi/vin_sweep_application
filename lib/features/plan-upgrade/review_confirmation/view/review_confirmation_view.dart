@@ -102,8 +102,8 @@ class _ReviewConfirmationViewState extends State<ReviewConfirmationView> {
             width: 24,
             height: 24,
             child: Checkbox(
-              value: controller.acceptTerms.value,
-              onChanged: controller.toggleTerms,
+              value: controller.acceptedTerms.value,
+              onChanged: (v) => controller.acceptedTerms.value = v ?? false,
               activeColor: AppColors().cardCheckedBox,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(7),
@@ -141,17 +141,15 @@ class _ReviewConfirmationViewState extends State<ReviewConfirmationView> {
         ),
         const SizedBox(width: 14),
         Expanded(
-          child: Obx(
-            () => CustomButton(
-              onPressed: controller.canConfirm ? controller.confirm : null,
-              text: 'Confirm',
-              backgroundColor: AppColors().buttonWithBackground,
-              foregroundColor: AppColors().buttonWithBackgroundText,
-              textSize: 20,
-              fontWeight: FontWeight.normal,
-              horizontalPadding: 60,
-              verticalPadding: 13,
-            ),
+          child: CustomButton(
+            onPressed: controller.confirm,
+            text: 'Confirm',
+            backgroundColor: AppColors().buttonWithBackground,
+            foregroundColor: AppColors().buttonWithBackgroundText,
+            textSize: 20,
+            fontWeight: FontWeight.normal,
+            horizontalPadding: 60,
+            verticalPadding: 13,
           ),
         ),
       ],

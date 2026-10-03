@@ -19,7 +19,7 @@ class PlansView extends StatefulWidget {
   State<PlansView> createState() => _PlansViewState();
 }
 
-class _PlansViewState extends State<PlansView> with TickerProviderStateMixin {
+class _PlansViewState extends State<PlansView> {
   final PlansController controller = Get.find();
 
   late final PageController pageController;
@@ -30,6 +30,7 @@ class _PlansViewState extends State<PlansView> with TickerProviderStateMixin {
     super.initState();
     pageController = PageController(viewportFraction: 0.9);
 
+    ///as soon as download finishes -> go to current plan card
     _loadingWorker = ever(controller.isLoading, (loading) {
       if (loading == false) {
         WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -70,10 +71,6 @@ class _PlansViewState extends State<PlansView> with TickerProviderStateMixin {
                   child: SpinKitSquareCircle(
                     color: AppColors().buttonWithBackground,
                     size: 50.0,
-                    controller: AnimationController(
-                      vsync: this,
-                      duration: const Duration(milliseconds: 1200),
-                    ),
                   ),
                 );
               }

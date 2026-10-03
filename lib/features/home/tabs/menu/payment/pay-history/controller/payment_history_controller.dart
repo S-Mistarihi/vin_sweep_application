@@ -36,7 +36,7 @@ class PaymentHistoryController extends GetxController {
           );
         history.assignAll(sorted);
       case Failure(:final exception):
-        errorMessage.value = exception.toString();
+        errorMessage.value = exception.message;
     }
 
     isLoading.value = false;
