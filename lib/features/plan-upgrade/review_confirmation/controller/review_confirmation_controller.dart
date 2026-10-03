@@ -27,6 +27,7 @@ class ReviewConfirmationController extends GetxController {
   final RxBool isLoadingCards = false.obs;
   final RxBool forceRefresh = false.obs;
   final RxBool isSubmitting = false.obs;
+  String? _paidIntentId;
 
   SavedCardModel? get selectedCard =>
       cards.firstWhereOrNull((c) => c.id == selectedCardId.value);
@@ -129,6 +130,10 @@ class ReviewConfirmationController extends GetxController {
   ) async {
     final context = Get.context!;
 
+    if (_paidIntentId != null) {
+      return _activate(_paidIntentId!);
+    }
+
     //1- backend creates PaymentIntent
     final intentResult = await createPlansRepository().createPaymentIntent(
       context: context,
@@ -146,7 +151,7 @@ class ReviewConfirmationController extends GetxController {
 
     //2- stripe confirms payment
     try {
-      await Stripe.instance.confirmPayment(
+      final pi = await Stripe.instance.confirmPayment(
         paymentIntentClientSecret: intent.clientSecret,
         data: PaymentMethodParams.cardFromMethodId(
           paymentMethodData: PaymentMethodDataCardFromMethod(
@@ -154,6 +159,10 @@ class ReviewConfirmationController extends GetxController {
           ),
         ),
       );
+
+      if (pi.status != PaymentIntentsStatus.Succeeded) {
+        return Failure(MappingException('Payment was not completed'));
+      }
     } on StripeException catch (e) {
       return Failure(
         MappingException(
@@ -162,12 +171,24 @@ class ReviewConfirmationController extends GetxController {
       );
     }
 
+    _paidIntentId = intent.paymentIntentId;
+
     //3- backend activates subscription
-    return createPlansRepository().confirmPayment(
+    return _activate(intent.paymentIntentId);
+  }
+
+  Future<RepositoryResult<UserPlanResponse>> _activate(
+    String paymentIntentId,
+  ) async {
+    final result = await createPlansRepository().confirmPayment(
       context: Get.context!,
-      paymentIntentId: intent.paymentIntentId,
+      paymentIntentId: paymentIntentId,
       description: 'Plan subscription',
     );
+
+    // نجح التفعيل: ما عاد في داعي للـ id المحفوظ
+    if (result is Success) _paidIntentId = null;
+    return result;
   }
 
   void showAppSnackbar(String title, String? message, {bool isError = false}) {

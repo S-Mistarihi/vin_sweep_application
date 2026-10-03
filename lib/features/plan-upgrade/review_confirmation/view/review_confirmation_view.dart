@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
 import 'package:vin_sweep_application/features/plan-upgrade/review_confirmation/view/widget/payment_methods_section.dart';
@@ -88,6 +89,22 @@ class _ReviewConfirmationViewState extends State<ReviewConfirmationView> {
                 ],
               ),
             ),
+          ),
+
+          Obx(
+            () => controller.isSubmitting.value
+                ? Container(
+                    width: double.infinity,
+                    height: double.infinity,
+                    color: Colors.black38,
+                    child: Center(
+                      child: SpinKitSquareCircle(
+                        color: AppColors().buttonWithBackground,
+                        size: 50.0,
+                      ),
+                    ),
+                  )
+                : const SizedBox.shrink(),
           ),
         ],
       ),
