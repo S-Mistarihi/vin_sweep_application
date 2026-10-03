@@ -42,5 +42,8 @@ class ApiEndPoints {
       '$baseUrl${version}payment/confirm-setup-intent';
 
   //home FAB
+  static final String getUserSearchHistory =
+      '$baseUrl${version}users/get-user-search-history';
+  static final String getUserPlanHistory = '$baseUrl${version}users/history';
   static final String scanVin = '$baseUrl${version}vehicle';
 }

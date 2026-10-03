@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:sizer/sizer.dart';
+import 'package:vin_sweep_application/features/home/tabs/home/view/widget/home_plan_card.dart';
 import 'package:vin_sweep_application/utils/helpers/date_time_helper.dart';
 
 import '../../../../../configuration/app_assets.dart';
@@ -8,10 +9,20 @@ import '../../../../../configuration/app_colors.dart';
 import '../../../../../configuration/current_session.dart';
 
 class CustomHomeHeader extends StatelessWidget {
-  const CustomHomeHeader({super.key});
+  const CustomHomeHeader({
+    super.key,
+    required this.totalSweeps,
+    required this.planCard,
+  });
+
+  final int totalSweeps;
+  final Widget planCard;
 
   @override
   Widget build(BuildContext context) {
+    final user = CurrentSession().getUser()?.user;
+    final firstName = user?.fullName?.trim().split(' ').first ?? '';
+
     return Container(
       width: 100.w,
       height: 30.2.h,
@@ -46,7 +57,7 @@ class CustomHomeHeader extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'Welcome ${CurrentSession().getUser()!.user!.fullName!.split(' ').first},',
+                          'Welcome $firstName,',
                           style: TextStyle(
                             color: AppColors().baseColor,
                             fontSize: 24,
@@ -55,7 +66,7 @@ class CustomHomeHeader extends StatelessWidget {
                         ),
                         SizedBox(height: 8),
                         Text(
-                          'Last Login: ${DateTimeHelper.formateLastLogin(CurrentSession().getUser()?.user?.lastLogin)}',
+                          'Last Login: ${DateTimeHelper.formateLastLogin(user?.lastLogin)}',
                           style: TextStyle(
                             color: AppColors().baseColor,
                             fontSize: 13,
@@ -77,7 +88,7 @@ class CustomHomeHeader extends StatelessWidget {
                     ),
                     SizedBox(width: 8),
                     Text(
-                      '120',
+                      '$totalSweeps',
                       style: TextStyle(
                         color: AppColors().baseColor,
                         fontSize: 39,
@@ -98,29 +109,10 @@ class CustomHomeHeader extends StatelessWidget {
                 ),
               ],
             ),
-            Positioned(top: 235, right: 0, left: 0, child: _buildCard()),
+            Positioned(top: 235, right: 0, left: 0, child: HomePlanCard()),
           ],
         ),
       ),
-    );
-  }
-
-  Widget _buildCard() {
-    return Container(
-      width: 95.w,
-      height: 16.h,
-      decoration: BoxDecoration(
-        color: AppColors().baseColor,
-        boxShadow: [
-          BoxShadow(
-            color: AppColors().cardPlanShadow,
-            blurRadius: 20,
-            offset: Offset(0, 10),
-          ),
-        ],
-        borderRadius: BorderRadius.circular(16),
-      ),
-      child: Stack(),
     );
   }
 }

@@ -40,6 +40,10 @@ class AppAssets {
   String rescanIcon = 'assets/scan-vin/ic-scan.svg';
   String blueFileIcon = 'assets/home_icons/blue_file_ic.svg';
   String purpleFileIcon = 'assets/home_icons/purple_file_ic.svg';
+  String greenFileIcon = 'assets/home_icons/green_file_ic.svg';
+  String holdPremiumIcon = 'assets/home_icons/hold__premium_home_ic.svg';
+  String subscribePremiumIcon =
+      'assets/home_icons/subscription_premium_home_ic.svg';
   String carTotalSweep = 'assets/home_icons/car_total_sweep.svg';
   String emptyHomeScreen = 'assets/home_icons/empty_home.svg';
   String searchIcon = 'assets/home_icons/ic-search.svg';

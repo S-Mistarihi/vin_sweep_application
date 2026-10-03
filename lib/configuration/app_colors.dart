@@ -62,4 +62,12 @@ class AppColors {
   Color scanningLine = const Color(0xffEB2A2A);
   Color defualtTextColor = const Color(0xff377E0B);
   Color payBottomSheetLine = const Color(0xffBEC1C3);
+
+  Color orangeSlider = const Color(0xffFFA500);
+  Color remainingSlider = const Color(0xffF0F3FD);
+  Color activePlanBg = const Color(0xffA0DB7C);
+  Color activePlanFg = const Color(0xff05132C);
+  Color basicFileBg = const Color(0xffF2E2F7);
+  Color businessFileBg = const Color(0xffE2F7ED);
+  Color starterFileBg = const Color(0xffE2F0F7);
 }
