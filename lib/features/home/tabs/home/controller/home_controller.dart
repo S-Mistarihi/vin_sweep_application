@@ -3,10 +3,9 @@ import 'package:vin_sweep_application/features/FAB-menu/search-vehicle/view/sear
 import 'package:vin_sweep_application/features/home/tabs/home/model/plan_card_info.dart';
 import 'package:vin_sweep_application/features/home/tabs/home/model/scan_history_response.dart';
 import 'package:vin_sweep_application/features/home/tabs/home/repository/home_repository.dart';
-import 'package:vin_sweep_application/features/home/tabs/menu/plans/controller/plans_controller.dart';
 import 'package:vin_sweep_application/features/home/tabs/menu/plans/model/user_plan_response.dart';
 import 'package:vin_sweep_application/features/home/tabs/menu/plans/repository/plans_repository.dart';
-import 'package:vin_sweep_application/features/home/tabs/menu/plans/view/plans_view.dart';
+import 'package:vin_sweep_application/features/home/tabs/menu/plans/plans_navigator.dart';
 import 'package:vin_sweep_application/utils/helpers/common/repository_result.dart';
 
 class HomeController extends GetxController {
@@ -45,9 +44,9 @@ class HomeController extends GetxController {
     return scans
         .where(
           (s) =>
-              s.title.toLowerCase().contains(q) ||
-              s.vin.toLowerCase().contains(q),
-        )
+      s.title.toLowerCase().contains(q) ||
+          s.vin.toLowerCase().contains(q),
+    )
         .toList();
   }
 
@@ -103,10 +102,10 @@ class HomeController extends GetxController {
       case Failure(:final exception):
         scansError.value = exception.message;
       case Success(:final data):
-        // newest first
+      // newest first
         final sorted = [...data]
           ..sort(
-            (a, b) => (b.searchTime ?? DateTime(0)).compareTo(
+                (a, b) => (b.searchTime ?? DateTime(0)).compareTo(
               a.searchTime ?? DateTime(0),
             ),
           );
@@ -118,14 +117,7 @@ class HomeController extends GetxController {
 
   void clearSearch() => query.value = '';
 
-  void openPlans() {
-    if (Get.isRegistered<PlansController>()) {
-      Get.find<PlansController>().loadData();
-    } else {
-      Get.put(PlansController());
-    }
-    Get.to(() => const PlansView());
-  }
+  void openPlans() => PlansNavigator.openMyPlans();
 
   void openScan(ScanHistoryItem item) {
     if (item.vin.isEmpty) return;

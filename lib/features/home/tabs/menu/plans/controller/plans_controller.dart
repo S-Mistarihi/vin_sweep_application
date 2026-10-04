@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:vin_sweep_application/features/home/tabs/home/controller/home_controller.dart';
 import 'package:vin_sweep_application/features/home/tabs/menu/plans/model/plans_response.dart';
 import 'package:vin_sweep_application/features/home/tabs/menu/plans/model/user_plan_response.dart';
 import 'package:vin_sweep_application/features/home/tabs/menu/plans/repository/plans_repository.dart';
@@ -22,7 +23,7 @@ class PlansController extends GetxController {
   //verify that current plan is active (not expired)
   bool get hasActivePlan =>
       currentSubscription.value != null &&
-      currentSubscription.value?.status == 'ACTIVE';
+          currentSubscription.value?.status == 'ACTIVE';
 
   bool isCurrent(PlanModel plan) =>
       hasActivePlan && currentSubscription.value?.plan?.id == plan.id;
@@ -69,6 +70,10 @@ class PlansController extends GetxController {
     currentSubscription.value = subscription;
     isAutoRenew.value = subscription.autoRenew ?? false;
     await _fetchCurrentPlan();
+
+    if (Get.isRegistered<HomeController>()) {
+      Get.find<HomeController>().loadPlan();
+    }
   }
 
   Future<void> changeAutoRenew(bool value) async {

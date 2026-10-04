@@ -9,8 +9,7 @@ import 'package:vin_sweep_application/features/home/tabs/menu/change_password/vi
 import 'package:vin_sweep_application/features/home/tabs/menu/contact_us/controller/contact_info_controller.dart';
 import 'package:vin_sweep_application/features/home/tabs/menu/contact_us/view/contact_us_view.dart';
 import 'package:vin_sweep_application/features/home/tabs/menu/payment/payment_view.dart';
-import 'package:vin_sweep_application/features/home/tabs/menu/plans/controller/plans_controller.dart';
-import 'package:vin_sweep_application/features/home/tabs/menu/plans/view/plans_view.dart';
+import 'package:vin_sweep_application/features/home/tabs/menu/plans/plans_navigator.dart';
 import 'package:vin_sweep_application/features/home/tabs/menu/profile/controller/profile_controller.dart';
 import 'package:vin_sweep_application/features/home/tabs/menu/profile/view/profile_view.dart';
 import 'package:vin_sweep_application/features/home/tabs/menu/scan_history/view/scan_history_view.dart';
@@ -54,10 +53,7 @@ class MenuView extends StatelessWidget {
               context: context,
               icon: AppAssets().plansIcon,
               name: S.of(context).myPlans,
-              onTap: () {
-                PlansController controller = Get.put(PlansController());
-                Get.to(PlansView(), transition: Transition.rightToLeft);
-              },
+              onTap: PlansNavigator.openMyPlans,
             ),
             _buildMenuItem(
               context: context,
@@ -148,9 +144,9 @@ class MenuView extends StatelessWidget {
               Spacer(),
               SvgPicture.asset(
                 name == S.of(context).aboutUs ||
-                        name == S.of(context).refundPolicy ||
-                        name == S.of(context).termsConditions ||
-                        name == S.of(context).privacyPolicy
+                    name == S.of(context).refundPolicy ||
+                    name == S.of(context).termsConditions ||
+                    name == S.of(context).privacyPolicy
                     ? AppAssets().linkIcon
                     : AppAssets().arrowIcon,
               ),

@@ -42,6 +42,11 @@ abstract class ReportRepository {
     required String vin,
     bool showLoading = false,
   });
+
+  Future<RepositoryResult<List<PdfReportDetails>>> getMyReports({
+    required BuildContext context,
+    bool showLoading = false,
+  });
 }
 
 class ApiReportRepository extends ReportRepository {
@@ -149,6 +154,26 @@ class ApiReportRepository extends ReportRepository {
     }
   }
 
+  //
+  @override
+  Future<RepositoryResult<List<PdfReportDetails>>> getMyReports({
+    required BuildContext context,
+    bool showLoading = false,
+  }) async {
+    final result = await HttpWrapper(
+      url: ApiEndPoints.getPdfReport,
+      context: context,
+      showLoading: showLoading,
+    ).get();
+
+    switch (result) {
+      case Failure(:final exception):
+        return Failure(exception);
+      case Success(:final data):
+        return _parseList(data.stringBody ?? '', context);
+    }
+  }
+
   RepositoryResult<ReportPaymentIntent> _parsePayIntent(
     String body,
     BuildContext context,
@@ -220,18 +245,19 @@ class ApiReportRepository extends ReportRepository {
         return Failure(MappingException('Unexpected response structure'));
       }
 
-      final response = PdfReportResponse.fromJson(json);
-      if (response.success == true) {
+      if (json['success'] == true) {
         return Success(
-          (response.result as List? ?? [])
+          (json['result'] as List? ?? [])
               .map((e) => PdfReportDetails.fromJson(e as Map<String, dynamic>))
               .toList(),
         );
       }
+
+      final message = (json['message'] ?? '').toString();
       return Failure(
         MappingException(
-          response.message.isNotEmpty == true
-              ? response.message
+          message.isNotEmpty
+              ? message
               : S.of(context).theServerReturnedAnUnsuccessfulResponse,
         ),
       );
@@ -322,6 +348,37 @@ class DemoReportRepository extends ReportRepository {
   }) async {
     await Future.delayed(const Duration(seconds: 2));
     return Success(<PdfReportDetails>[]);
+  }
+
+  @override
+  Future<RepositoryResult<List<PdfReportDetails>>> getMyReports({
+    required BuildContext context,
+    bool showLoading = false,
+  }) async {
+    await Future.delayed(const Duration(seconds: 2));
+    return Success([
+      PdfReportDetails(
+        reportId: 1,
+        vin: '4Y1SL65848Z411439',
+        fileName: 'report_4Y1SL65848Z411439.pdf',
+        downloadUrl: 'https://example.com/1.pdf',
+        generatedAt: DateTime(2025, 6, 20),
+      ),
+      PdfReportDetails(
+        reportId: 2,
+        vin: '5B2QW9022A3911911',
+        fileName: 'report_5B2QW9022A3911911.pdf',
+        downloadUrl: 'https://example.com/2.pdf',
+        generatedAt: DateTime(2025, 6, 20),
+      ),
+      PdfReportDetails(
+        reportId: 3,
+        vin: '5B2QW9022A3911912',
+        fileName: 'report_5B2QW9022A3911912.pdf',
+        downloadUrl: 'https://example.com/3.pdf',
+        generatedAt: DateTime(2025, 6, 12),
+      ),
+    ]);
   }
 }
 

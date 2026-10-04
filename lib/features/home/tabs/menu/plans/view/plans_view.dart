@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
 import 'package:vin_sweep_application/features/home/tabs/menu/plans/controller/plans_controller.dart';
 import 'package:vin_sweep_application/features/home/tabs/menu/plans/model/user_plan_response.dart';
-import 'package:vin_sweep_application/features/home/tabs/menu/plans/view/custom_card.dart';
+import 'package:vin_sweep_application/features/home/tabs/menu/plans/view/widget/custom_card.dart';
 
 import '../../../../../../configuration/app_assets.dart';
 import '../../../../../../configuration/app_colors.dart';

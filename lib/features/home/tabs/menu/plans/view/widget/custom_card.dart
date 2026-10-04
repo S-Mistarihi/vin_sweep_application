@@ -6,7 +6,7 @@ import 'package:vin_sweep_application/configuration/app_colors.dart';
 import 'package:vin_sweep_application/features/home/tabs/menu/plans/model/plans_response.dart';
 import 'package:vin_sweep_application/utils/ui/custom_button.dart';
 
-import '../../../../../../generated/l10n.dart';
+import '../../../../../../../generated/l10n.dart';
 
 class CustomCard extends StatelessWidget {
   const CustomCard({

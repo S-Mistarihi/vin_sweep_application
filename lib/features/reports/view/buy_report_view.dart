@@ -7,7 +7,7 @@ import 'package:vin_sweep_application/configuration/app_colors.dart';
 import 'package:vin_sweep_application/features/coupon/controller/coupon_controller.dart';
 import 'package:vin_sweep_application/features/plan-upgrade/review_confirmation/view/widget/payment_methods_section.dart';
 import 'package:vin_sweep_application/features/reports/controller/buy_report_controller.dart';
-import 'package:vin_sweep_application/features/reports/view/report_summary_card.dart';
+import 'package:vin_sweep_application/features/reports/view/widget/report_summary_card.dart';
 import 'package:vin_sweep_application/generated/l10n.dart';
 import 'package:vin_sweep_application/utils/ui/common/custom_main_header.dart';
 import 'package:vin_sweep_application/utils/ui/custom_button.dart';

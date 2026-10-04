@@ -54,9 +54,9 @@ class ApiEndPoints {
       '$baseUrl${version}vehicle/confirm-pdf-report-payment';
   static final String generatePdfReport =
       '$baseUrl${version}vehicle/generate-pdf-report';
-
   static String getPdfReportsByVin(String vin) =>
       '$baseUrl${version}pdf-reports/vin/$vin';
+  static final String getPdfReport = '$baseUrl${version}pdf-reports';
 
   //coupon
   static final String validateCoupon =
