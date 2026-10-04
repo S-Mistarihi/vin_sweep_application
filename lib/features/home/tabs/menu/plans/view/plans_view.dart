@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
+import 'package:vin_sweep_application/features/home/tabs/home/model/plan_card_info.dart';
 import 'package:vin_sweep_application/features/home/tabs/menu/plans/controller/plans_controller.dart';
 import 'package:vin_sweep_application/features/home/tabs/menu/plans/model/user_plan_response.dart';
+import 'package:vin_sweep_application/features/home/tabs/menu/plans/view/my_plans_view.dart';
 import 'package:vin_sweep_application/features/home/tabs/menu/plans/view/widget/custom_card.dart';
 
 import '../../../../../../configuration/app_assets.dart';
@@ -102,11 +104,22 @@ class _PlansViewState extends State<PlansView> {
                       // TODO: Cancel Plan
                     },
                     onUpgrade: () async {
-                      // TODO: open Review & Confirmation screen and pass plan
                       final result = await Get.to<UserPlanResponse>(
                         () => ReviewConfirmationView(plan: plan),
                       );
-                      if (result != null) controller.onSubscribed(result);
+                      if (result == null) return;
+
+                      controller.onSubscribed(result);
+
+                      final variant = PlanCardInfo.from(result).variant;
+                      if (variant == HomePlanVariant.starter ||
+                          variant == HomePlanVariant.business ||
+                          variant == HomePlanVariant.premium) {
+                        Get.off(
+                          () => const MyPlansView(),
+                          transition: Transition.rightToLeft,
+                        );
+                      }
                     },
                   );
                 },

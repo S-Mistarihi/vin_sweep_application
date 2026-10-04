@@ -71,4 +71,9 @@ class AppColors {
   Color businessFileBg = const Color(0xffE2F7ED);
   Color starterFileBg = const Color(0xffE2F0F7);
   Color pdfBg = const Color(0xff78A1BB);
+
+  Color allPlanBg = const Color(0xffF3F7FD);
+  Color firstColorActivePlan = const Color(0xff6873C8);
+  Color secondColorActivePlan = const Color(0xff343A64);
+  Color seeAllColor = const Color(0xff538DB2);
 }

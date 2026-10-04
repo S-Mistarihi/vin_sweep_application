@@ -51,10 +51,10 @@ class _MyPlansViewState extends State<MyPlansView> {
             headerSpace: 25,
             headerMainText: S.of(context).myPlansTitle,
             leftIcon: AppAssets().backIcon,
-            size: 110,
+            size: 100,
           ),
           Positioned(
-            top: 5.5.h,
+            top: 6.h,
             right: 20,
             child: GestureDetector(
               behavior: HitTestBehavior.opaque,
@@ -90,13 +90,13 @@ class _MyPlansViewState extends State<MyPlansView> {
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 24),
                     child: Obx(
-                          () => Row(
+                      () => Row(
                         children: [
                           Text(
                             'History',
                             style: TextStyle(
                               color: AppColors().accentColor,
-                              fontSize: 16,
+                              fontSize: 18,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
@@ -108,8 +108,8 @@ class _MyPlansViewState extends State<MyPlansView> {
                               child: Text(
                                 'See All',
                                 style: TextStyle(
-                                  color: AppColors().smallTextColor,
-                                  fontSize: 14,
+                                  color: AppColors().seeAllColor,
+                                  fontSize: 16,
                                 ),
                               ),
                             ),

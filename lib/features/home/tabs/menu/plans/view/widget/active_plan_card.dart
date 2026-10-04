@@ -1,17 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:sizer/sizer.dart';
 import 'package:vin_sweep_application/configuration/app_colors.dart';
 import 'package:vin_sweep_application/features/home/tabs/home/controller/home_controller.dart';
 import 'package:vin_sweep_application/features/home/tabs/home/model/plan_card_info.dart';
 import 'package:vin_sweep_application/features/home/tabs/menu/plans/plans_navigator.dart';
+import 'package:vin_sweep_application/utils/ui/custom_button.dart';
 
 class ActivePlanCard extends StatelessWidget {
   const ActivePlanCard({super.key});
-
-  // TODO: انقليهم لـ AppColors
-  static const Color _gradientStart = Color(0xff6A6FD6);
-  static const Color _gradientEnd = Color(0xff3C4BA0);
-  static const Color _orange = Color(0xffF5A300);
 
   @override
   Widget build(BuildContext context) {
@@ -21,37 +18,48 @@ class ActivePlanCard extends StatelessWidget {
       width: double.infinity,
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
-        gradient: const LinearGradient(
+        gradient: LinearGradient(
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
-          colors: [_gradientStart, _gradientEnd],
+          colors: [
+            AppColors().firstColorActivePlan,
+            AppColors().secondColorActivePlan,
+          ],
         ),
         borderRadius: BorderRadius.circular(24),
       ),
       child: Obx(() {
         if (c.isLoadingPlan.value && c.subscription.value == null) {
-          return const SizedBox(
+          return SizedBox(
             height: 110,
             child: Center(
-              child: CircularProgressIndicator(color: Colors.white),
+              child: CircularProgressIndicator(
+                color: AppColors().buttonWithBackground,
+              ),
             ),
           );
         }
         if (c.planError.value != null && c.subscription.value == null) {
           return Row(
             children: [
-              const Expanded(
+              Expanded(
                 child: Text(
                   "Couldn't load your plan",
-                  style: TextStyle(color: Colors.white),
+                  style: TextStyle(
+                    color: AppColors().textFieldLabelColor,
+                    fontSize: 18,
+                  ),
                 ),
               ),
-              TextButton(
+              CustomButton(
                 onPressed: c.loadPlan,
-                child: const Text(
-                  'Retry',
-                  style: TextStyle(color: Colors.white),
-                ),
+                text: 'Retry',
+                backgroundColor: AppColors().buttonWithBackground,
+                foregroundColor: AppColors().buttonWithBackgroundText,
+                textSize: 20,
+                fontWeight: FontWeight.bold,
+                horizontalPadding: 95,
+                verticalPadding: 12,
               ),
             ],
           );
@@ -64,12 +72,12 @@ class ActivePlanCard extends StatelessWidget {
   Widget _content(PlanCardInfo info) {
     final inactive =
         info.variant == HomePlanVariant.none ||
-            info.variant == HomePlanVariant.expired;
+        info.variant == HomePlanVariant.expired;
     final isStarter = info.variant == HomePlanVariant.starter;
     final showUpgrade =
         inactive ||
-            info.variant == HomePlanVariant.starter ||
-            info.variant == HomePlanVariant.basic;
+        info.variant == HomePlanVariant.starter ||
+        info.variant == HomePlanVariant.basic;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -83,8 +91,8 @@ class ActivePlanCard extends StatelessWidget {
                     : info.title,
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
-                style: const TextStyle(
-                  color: Colors.white,
+                style: TextStyle(
+                  color: AppColors().baseColor,
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
                 ),
@@ -111,8 +119,8 @@ class ActivePlanCard extends StatelessWidget {
             child: LinearProgressIndicator(
               value: info.progress,
               minHeight: 8,
-              backgroundColor: Colors.white24,
-              valueColor: const AlwaysStoppedAnimation(_orange),
+              backgroundColor: AppColors().remainingSlider,
+              valueColor: AlwaysStoppedAnimation(AppColors().orangeSlider),
             ),
           ),
           const SizedBox(height: 10),
@@ -123,13 +131,13 @@ class ActivePlanCard extends StatelessWidget {
         if (showUpgrade) ...[
           const SizedBox(height: 16),
           SizedBox(
-            width: double.infinity,
+            width: 100.w,
             height: 44,
             child: OutlinedButton(
               onPressed: PlansNavigator.openAllPlans,
               style: OutlinedButton.styleFrom(
-                foregroundColor: Colors.white,
-                side: const BorderSide(color: Colors.white54),
+                foregroundColor: AppColors().baseColor,
+                side: BorderSide(color: AppColors().baseColor, width: 2),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(24),
                 ),
@@ -140,7 +148,7 @@ class ActivePlanCard extends StatelessWidget {
                     : info.variant == HomePlanVariant.expired
                     ? 'Renew Plan'
                     : 'Upgrade',
-                style: const TextStyle(fontSize: 16),
+                style: TextStyle(fontSize: 16, color: AppColors().baseColor),
               ),
             ),
           ),
@@ -150,8 +158,8 @@ class ActivePlanCard extends StatelessWidget {
   }
 
   Widget _statRow(String label, String value) {
-    const style = TextStyle(
-      color: Colors.white,
+    var style = TextStyle(
+      color: AppColors().baseColor,
       fontSize: 15,
       fontWeight: FontWeight.bold,
     );
@@ -168,15 +176,13 @@ class ActivePlanCard extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 4),
       decoration: BoxDecoration(
-        color: expired
-            ? AppColors().errorDialogColor
-            : AppColors().successDialogColor.withOpacity(0.9),
+        color: expired ? AppColors().errorText : AppColors().activePlanBg,
         borderRadius: BorderRadius.circular(12),
       ),
       child: Text(
         text,
         style: TextStyle(
-          color: expired ? Colors.white : AppColors().defualtTextColor,
+          color: expired ? AppColors().baseColor : AppColors().activePlanFg,
           fontSize: 12,
           fontWeight: FontWeight.bold,
         ),

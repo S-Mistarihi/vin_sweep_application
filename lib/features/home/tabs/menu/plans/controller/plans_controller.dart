@@ -23,7 +23,7 @@ class PlansController extends GetxController {
   //verify that current plan is active (not expired)
   bool get hasActivePlan =>
       currentSubscription.value != null &&
-          currentSubscription.value?.status == 'ACTIVE';
+      currentSubscription.value?.status == 'ACTIVE';
 
   bool isCurrent(PlanModel plan) =>
       hasActivePlan && currentSubscription.value?.plan?.id == plan.id;
@@ -69,6 +69,11 @@ class PlansController extends GetxController {
   Future<void> onSubscribed(UserPlanResponse subscription) async {
     currentSubscription.value = subscription;
     isAutoRenew.value = subscription.autoRenew ?? false;
+
+    if (Get.isRegistered<HomeController>()) {
+      Get.find<HomeController>().subscription.value = subscription;
+    }
+
     await _fetchCurrentPlan();
 
     if (Get.isRegistered<HomeController>()) {
