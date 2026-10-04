@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:vin_sweep_application/configuration/app_assets.dart';
 import 'package:vin_sweep_application/configuration/app_colors.dart';
-import 'package:vin_sweep_application/features/reports/model/pdf_report_model.dart';
+import 'package:vin_sweep_application/features/reports/model/pdf_report_response.dart';
 
 class ReportTile extends StatelessWidget {
   const ReportTile({super.key, required this.report, this.onTap});
 
-  final PdfReportModel report;
+  final PdfReportDetails report;
   final VoidCallback? onTap;
 
   @override

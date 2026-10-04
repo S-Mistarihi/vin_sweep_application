@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import '../../../reports/model/pdf_report_model.dart';
+import '../../../reports/model/pdf_report_response.dart';
 
 class VehicleResponse {
   final bool success;
@@ -31,7 +31,7 @@ class VehicleResponse {
 
 class VehicleResult {
   final List<VehicleDatum> vehicleData;
-  final List<PdfReportModel> pdfReports;
+  final List<PdfReportDetails> pdfReports;
   final String vin;
   final String message;
 
@@ -50,7 +50,7 @@ class VehicleResult {
         .map((x) => VehicleDatum.fromJson(x as Map<String, dynamic>))
         .toList(),
     pdfReports: (json["pdfReports"] as List? ?? [])
-        .map((x) => PdfReportModel.fromJson(x as Map<String, dynamic>))
+        .map((x) => PdfReportDetails.fromJson(x as Map<String, dynamic>))
         .toList(),
     vin: json["vin"] ?? '',
     message: json["message"] ?? '',

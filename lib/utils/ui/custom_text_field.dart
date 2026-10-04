@@ -12,15 +12,20 @@ class CustomTextField {
 
   Widget buildCustomTextField({
     required TextEditingController controller,
-    required void Function(String)? onChanged,
+    void Function(String)? onChanged,
+    void Function(String)? onSubmitted,
     required String hintText,
-    required String iconNameAsset,
+    String? iconNameAsset,
+    TextCapitalization textCapitalization = TextCapitalization.none,
   }) {
     return TextField(
       controller: controller,
       onChanged: onChanged,
+      onSubmitted: onSubmitted,
       onTapOutside: (_) => FocusManager.instance.primaryFocus?.unfocus(),
       style: TextStyle(color: AppColors().accentColor, fontSize: 14),
+      textCapitalization: textCapitalization,
+      textInputAction: TextInputAction.done,
       decoration: InputDecoration(
         hintText: hintText,
         hintStyle: TextStyle(
@@ -30,10 +35,12 @@ class CustomTextField {
         filled: true,
         fillColor: AppColors().textFieldBackgroundColor,
         contentPadding: const EdgeInsets.symmetric(vertical: 14),
-        prefixIcon: Padding(
-          padding: const EdgeInsets.all(14),
-          child: SvgPicture.asset(iconNameAsset),
-        ),
+        prefixIcon: iconNameAsset != null
+            ? Padding(
+                padding: const EdgeInsets.all(14),
+                child: SvgPicture.asset(iconNameAsset),
+              )
+            : Icon(Icons.discount, color: AppColors().textFieldLabelColor),
         border: _buildTextFormFieldBorder(),
         enabledBorder: _buildTextFormFieldBorder(),
         focusedBorder: _buildTextFormFieldBorder(),

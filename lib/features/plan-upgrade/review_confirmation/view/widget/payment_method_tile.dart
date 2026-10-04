@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:vin_sweep_application/configuration/app_assets.dart';
 import 'package:vin_sweep_application/configuration/app_colors.dart';
 import 'package:vin_sweep_application/features/plan-upgrade/add_card/model/saved_card_model.dart';
 
@@ -28,17 +30,15 @@ class PaymentMethodTile extends StatelessWidget {
         ),
         child: Row(
           children: [
-            Icon(Icons.credit_card, size: 22, color: AppColors().accentColor),
-
+            SvgPicture.asset(AppAssets().payCard),
             const SizedBox(width: 16),
-
             Expanded(
               child: Text(
                 card.masked,
                 style: TextStyle(
                   color: AppColors().accentColor,
-                  fontSize: 16,
-                  fontWeight: FontWeight.w600,
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
                 ),
               ),
             ),

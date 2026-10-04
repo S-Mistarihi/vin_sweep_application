@@ -46,4 +46,19 @@ class ApiEndPoints {
       '$baseUrl${version}users/get-user-search-history';
   static final String getUserPlanHistory = '$baseUrl${version}users/history';
   static final String scanVin = '$baseUrl${version}vehicle';
+
+  //report
+  static final String createPdfPaymentIntent =
+      '$baseUrl${version}vehicle/create-pdf-report-payment-intent';
+  static final String confirmPdfPayment =
+      '$baseUrl${version}vehicle/confirm-pdf-report-payment';
+  static final String generatePdfReport =
+      '$baseUrl${version}vehicle/generate-pdf-report';
+
+  static String getPdfReportsByVin(String vin) =>
+      '$baseUrl${version}pdf-reports/vin/$vin';
+
+  //coupon
+  static final String validateCoupon =
+      '$baseUrl${version}payment/validate-discount-coupon';
 }

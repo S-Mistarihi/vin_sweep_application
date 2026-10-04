@@ -20,7 +20,7 @@ class ScanItemCard extends StatelessWidget {
         decoration: BoxDecoration(
           color: AppColors().baseColor,
           borderRadius: BorderRadius.circular(23),
-          border: Border.all(color: AppColors().textFieldBorderColor),
+          border: Border.all(color: AppColors().textFieldBorderColor, width: 2),
         ),
         child: Row(
           children: [

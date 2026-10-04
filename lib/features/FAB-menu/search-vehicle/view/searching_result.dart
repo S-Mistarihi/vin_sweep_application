@@ -9,28 +9,66 @@ import '../../../../configuration/app_colors.dart';
 import '../../../../generated/l10n.dart';
 import '../../../../utils/ui/common/custom_scan_vin_number_header.dart';
 import '../../../../utils/ui/custom_button.dart';
-import '../../../reports/model/pdf_report_model.dart';
+import '../../../reports/model/pdf_report_response.dart';
+import '../../../reports/view/buy_report_view.dart';
 import '../controller/searching_mode_controller.dart';
+import '../controller/vehicle_reports_controller.dart';
 import '../model/vehicle_response.dart';
 
-class SearchingResult extends StatelessWidget {
-  SearchingResult({
+class SearchingResult extends StatefulWidget {
+  const SearchingResult({
     super.key,
     required this.vinNumber,
     required this.vehicleData,
     required this.vehicleName,
-    this.vehicleType, required this.pdfReports,
+    this.vehicleType,
+    required this.pdfReports,
   });
 
   final String vinNumber;
   final List<VehicleDatum> vehicleData;
-  final List<PdfReportModel> pdfReports;
+  final List<PdfReportDetails> pdfReports;
   final String vehicleName;
   final String? vehicleType;
 
-  final SearchingModeController modeController = Get.put(
-    SearchingModeController(),
-  );
+  @override
+  State<SearchingResult> createState() => _SearchingResultState();
+}
+
+class _SearchingResultState extends State<SearchingResult> {
+  late final SearchingModeController modeController;
+  late final VehicleReportsController reportsController;
+
+  @override
+  void initState() {
+    super.initState();
+    modeController = Get.put(SearchingModeController());
+    reportsController = Get.put(
+      VehicleReportsController(
+        vin: widget.vinNumber,
+        initial: widget.pdfReports,
+      ),
+      tag: widget.vinNumber,
+    );
+  }
+
+  @override
+  void dispose() {
+    Get.delete<VehicleReportsController>(tag: widget.vinNumber);
+    super.dispose();
+  }
+
+  Future<void> _onBuyReport() async {
+    final report = await Get.to<PdfReportDetails>(
+      () =>
+          BuyReportView(vin: widget.vinNumber, vehicleName: widget.vehicleName),
+    );
+    if (report == null) return;
+
+    reportsController.addReport(report);
+    modeController.switchToReport();
+    reportsController.refreshReports();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -40,9 +78,9 @@ class SearchingResult extends StatelessWidget {
           children: [
             CustomScanVinNumberHeader(
               headerSpace: 25,
-              vinNumber: vinNumber,
-              headerMainText: vehicleName,
-              headerSubText: vehicleType ?? '',
+              vinNumber: widget.vinNumber,
+              headerMainText: widget.vehicleName,
+              headerSubText: widget.vehicleType ?? '',
               leftIcon: AppAssets().closeIcon,
             ),
             Positioned(
@@ -65,8 +103,8 @@ class SearchingResult extends StatelessWidget {
                       const SizedBox(height: 30),
                       _buildAuthSwitcher(context, modeController),
                       modeController.isInfo
-                          ? GeneralInfoView(vehicleData: vehicleData)
-                          : ReportView(reports: pdfReports),
+                          ? GeneralInfoView(vehicleData: widget.vehicleData)
+                          : ReportView(controller: reportsController),
                     ],
                   ),
                 ),
@@ -78,9 +116,7 @@ class SearchingResult extends StatelessWidget {
               left: 6.w,
               bottom: 5.h,
               child: CustomButton(
-                onPressed: () {
-                  // TODO (الجزء 4): فلو شراء التقرير
-                },
+                onPressed: _onBuyReport,
                 text: S.of(context).buyReportButton,
                 backgroundColor: AppColors().buttonWithBackground,
                 foregroundColor: AppColors().buttonWithBackgroundText,

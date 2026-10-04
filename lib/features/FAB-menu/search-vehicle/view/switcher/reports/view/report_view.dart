@@ -2,18 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:sizer/sizer.dart';
 import 'package:vin_sweep_application/features/FAB-menu/search-vehicle/view/switcher/reports/view/report_tile.dart';
-import 'package:vin_sweep_application/features/reports/model/pdf_report_model.dart';
 
 import '../../../../../../../configuration/app_assets.dart';
 import '../../../../../../../configuration/app_colors.dart';
+import '../../../../../../reports/service/report_opener.dart';
+import '../../../../controller/vehicle_reports_controller.dart';
 
 class ReportView extends StatelessWidget {
-  const ReportView({super.key, this.reports = const []});
+  const ReportView({super.key, required this.controller});
 
-  final List<PdfReportModel> reports;
+  final VehicleReportsController controller;
 
   @override
   Widget build(BuildContext context) {
+    final reports = controller.reports.toList();
     if (reports.isEmpty) return _contentWithNoReportBuy();
 
     return Column(
@@ -39,10 +41,9 @@ class ReportView extends StatelessWidget {
         ...reports.map(
           (r) => Padding(
             padding: const EdgeInsets.only(bottom: 14),
-            child: ReportTile(report: r),
+            child: ReportTile(report: r, onTap: () => ReportOpener.open(r)),
           ),
         ),
-        // مسافة عشان زر Buy Report ما يغطي آخر تقرير
         SizedBox(height: 14.h),
       ],
     );

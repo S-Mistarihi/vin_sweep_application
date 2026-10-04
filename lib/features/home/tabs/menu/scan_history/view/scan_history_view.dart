@@ -43,7 +43,6 @@ class _ScanHistoryViewState extends State<ScanHistoryView> {
             bottom: 0,
             child: Container(
               width: 100.w,
-              padding: const EdgeInsets.symmetric(horizontal: 24),
               decoration: BoxDecoration(
                 color: AppColors().baseColor,
                 borderRadius: const BorderRadius.only(
@@ -54,7 +53,10 @@ class _ScanHistoryViewState extends State<ScanHistoryView> {
               child: Column(
                 children: [
                   const SizedBox(height: 24),
-                  ScanSearchBar(),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                    child: ScanSearchBar(),
+                  ),
                   const SizedBox(height: 8),
                   const Expanded(child: ScansListView(bottomPadding: 24)),
                 ],
