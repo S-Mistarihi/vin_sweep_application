@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:vin_sweep_application/features/home/tabs/home/controller/home_controller.dart';
 import 'package:vin_sweep_application/features/home/tabs/menu/plans/model/plans_response.dart';
@@ -6,7 +5,7 @@ import 'package:vin_sweep_application/features/home/tabs/menu/plans/model/user_p
 import 'package:vin_sweep_application/features/home/tabs/menu/plans/repository/plans_repository.dart';
 import 'package:vin_sweep_application/utils/helpers/common/repository_result.dart';
 
-import '../../../../../../configuration/app_colors.dart';
+import '../../../../../../utils/ui/custom_snakbar.dart';
 
 class PlansController extends GetxController {
   final RxBool isAutoRenew = false.obs;
@@ -102,16 +101,6 @@ class PlansController extends GetxController {
   }
 
   void _toast(String title, String? message, {bool isError = false}) {
-    Get.snackbar(
-      title,
-      message?.isNotEmpty == true ? message! : 'Something went wrong',
-      snackPosition: SnackPosition.TOP,
-      backgroundColor: isError
-          ? AppColors().errorDialogColor
-          : AppColors().successDialogColor,
-      colorText: AppColors().baseColor,
-      margin: const EdgeInsets.all(12),
-      duration: const Duration(seconds: 5),
-    );
+    CustomSnakbar.show(title, message, isError: isError);
   }
 }

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
 import 'package:vin_sweep_application/features/home/tabs/menu/payment/pay-history/view/payment_history_view.dart';
@@ -11,7 +10,9 @@ import 'package:vin_sweep_application/utils/ui/common/custom_main_header.dart';
 
 import '../../../../../configuration/app_assets.dart';
 import '../../../../../configuration/app_colors.dart';
+import '../../../../../utils/ui/common/custom_copyright.dart';
 import '../../../../../utils/ui/custom_button.dart';
+import '../../../../../utils/ui/custom_tab_switcher.dart';
 import '../../../../plan-upgrade/add_card/controller/add_card_controller.dart';
 import '../../../../plan-upgrade/add_card/view/add_card_view.dart';
 
@@ -62,7 +63,13 @@ class PaymentView extends StatelessWidget {
                   child: Column(
                     children: [
                       const SizedBox(height: 30),
-                      _buildAuthSwitcher(context, controller),
+                      CustomTabSwitcher(
+                        isLeftSelected: controller.isPayMethod,
+                        leftLabel: 'Payment Methods',
+                        rightLabel: 'Payment History',
+                        onLeftTap: controller.switchToMethod,
+                        onRightTap: controller.switchToHistory,
+                      ),
                       controller.isPayMethod
                           ? PaymentMethodView()
                           : PaymentHistoryView(),
@@ -89,86 +96,12 @@ class PaymentView extends StatelessWidget {
                     verticalPadding: 12,
                   ),
                   SizedBox(height: 3.h),
-                  SvgPicture.asset(
-                    AppAssets().copyRightIcon,
-                    width: 212,
-                    height: 12,
-                  ),
+                  const CustomCopyright(),
                 ],
               ),
             ),
           ],
         ),
-      ),
-    );
-  }
-
-  Widget _buildAuthSwitcher(
-    BuildContext context,
-    PaymentModeController controller,
-  ) {
-    return Container(
-      padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 9),
-      decoration: BoxDecoration(
-        color: AppColors().switcherBackgroundColor,
-        borderRadius: BorderRadius.circular(30),
-      ),
-      child: Stack(
-        children: [
-          AnimatedAlign(
-            duration: const Duration(milliseconds: 250),
-            curve: Curves.easeInOut,
-            alignment: controller.isPayMethod
-                ? Alignment.centerLeft
-                : Alignment.centerRight,
-            child: Container(
-              width: 43.w,
-              height: 4.5.h,
-              decoration: BoxDecoration(
-                color: AppColors().baseColor,
-                borderRadius: BorderRadius.circular(30),
-              ),
-            ),
-          ),
-
-          Row(
-            children: [
-              Expanded(
-                child: GestureDetector(
-                  onTap: controller.switchToMethod,
-                  child: Container(
-                    height: 45,
-                    alignment: Alignment.center,
-                    child: Text(
-                      'Payment Methods',
-                      style: TextStyle(
-                        color: AppColors().accentColor,
-                        fontSize: 16,
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-
-              Expanded(
-                child: GestureDetector(
-                  onTap: controller.switchToHistory,
-                  child: Container(
-                    height: 45,
-                    alignment: Alignment.center,
-                    child: Text(
-                      'Payment History',
-                      style: TextStyle(
-                        color: AppColors().accentColor,
-                        fontSize: 16,
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ],
       ),
     );
   }

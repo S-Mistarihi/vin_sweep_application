@@ -121,5 +121,6 @@
   "addCardButton": "Add Card",
   "paymentMethod": "Payment Method",
   "reviewConfirmation": "Review & Confirmation",
-  "acceptTermsAndConditions": "Accept terms and conditions"
+  "acceptTermsAndConditions": "Accept terms and conditions",
+  "confirmButton": "Confirm"
 }

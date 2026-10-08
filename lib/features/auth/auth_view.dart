@@ -6,6 +6,7 @@ import 'package:vin_sweep_application/features/auth/register/view/register_view.
 
 import '../../generated/l10n.dart';
 import '../../utils/ui/custom_auth_header.dart';
+import '../../utils/ui/custom_tab_switcher.dart';
 import 'auth_controller.dart';
 import 'login/view/login_view.dart';
 
@@ -47,7 +48,13 @@ class AuthView extends StatelessWidget {
                     children: [
                       const SizedBox(height: 30),
 
-                      _buildAuthSwitcher(context),
+                      CustomTabSwitcher(
+                        isLeftSelected: controller.isLogin,
+                        leftLabel: S.of(context).loginSwitcher,
+                        rightLabel: S.of(context).registerButton,
+                        onLeftTap: controller.switchToLogin,
+                        onRightTap: controller.switchToRegister,
+                      ),
 
                       SizedBox(height: 5.h),
 
@@ -59,73 +66,6 @@ class AuthView extends StatelessWidget {
             ),
           ],
         ),
-      ),
-    );
-  }
-
-  Widget _buildAuthSwitcher(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 9),
-      decoration: BoxDecoration(
-        color: AppColors().switcherBackgroundColor,
-        borderRadius: BorderRadius.circular(30),
-      ),
-      child: Stack(
-        children: [
-          AnimatedAlign(
-            duration: const Duration(milliseconds: 250),
-            curve: Curves.easeInOut,
-            alignment: controller.isLogin
-                ? Alignment.centerLeft
-                : Alignment.centerRight,
-            child: Container(
-              width: 43.w,
-              height: 4.5.h,
-              decoration: BoxDecoration(
-                color: AppColors().baseColor,
-                borderRadius: BorderRadius.circular(30),
-              ),
-            ),
-          ),
-
-          Row(
-            children: [
-              Expanded(
-                child: GestureDetector(
-                  onTap: controller.switchToLogin,
-                  child: Container(
-                    height: 45,
-                    alignment: Alignment.center,
-                    child: Text(
-                      S.of(context).loginSwitcher,
-                      style: TextStyle(
-                        color: AppColors().accentColor,
-                        fontSize: 16,
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-
-              Expanded(
-                child: GestureDetector(
-                  onTap: controller.switchToRegister,
-                  child: Container(
-                    height: 45,
-                    alignment: Alignment.center,
-                    child: Text(
-                      S.of(context).registerButton,
-                      style: TextStyle(
-                        color: AppColors().accentColor,
-                        fontSize: 16,
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ],
       ),
     );
   }

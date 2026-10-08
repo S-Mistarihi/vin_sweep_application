@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
+import 'package:vin_sweep_application/generated/l10n.dart';
 
 import '../../../../configuration/app_assets.dart';
 import '../../../../configuration/app_colors.dart';
 import '../../../../utils/ui/common/custom_main_header.dart';
-import '../../../../utils/ui/custom_button.dart';
+import '../../../../utils/ui/custom_checkbox.dart';
+import '../../../../utils/ui/custom_dual_button.dart';
 import '../controller/add_card_controller.dart';
 
 class AddCardView extends StatefulWidget {
@@ -99,74 +101,44 @@ class _AddCardViewState extends State<AddCardView> {
                         color: AppColors().textFieldLabelColor,
                         fontSize: 14,
                         fontWeight: FontWeight.normal,
-                      )
+                      ),
                     ),
                   ),
                   const SizedBox(height: 12),
                   if (widget.mode == AddCardMode.subscribe)
                     Obx(
-                      () => Row(
-                        children: [
-                          Checkbox(
-                            value: controller.saveCard.value,
-                            activeColor: AppColors().firstHeaderShadowColor,
-                            onChanged: (v) =>
-                                controller.saveCard.value = v ?? false,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(5),
-                            ),
-                          ),
-                          Text(
-                            'Save card',
-                            style: TextStyle(color: AppColors().accentColor,fontSize: 16,
-                              fontWeight: FontWeight.normal,),
-                          ),
-                        ],
+                      () => CustomCheckbox(
+                        value: controller.saveCard.value,
+                        onChanged: (v) => controller.saveCard.value = v,
+                        label: 'Save card',
+                        activeColor: AppColors().firstHeaderShadowColor,
+                        borderRadius: 5,
+                        labelColor: AppColors().accentColor,
                       ),
                     ),
                   const Spacer(),
-                  Row(
-                    children: [
-                      Expanded(
-                        child: CustomButton(
-                          onPressed: () => Get.back(),
-                          text: 'Cancel',
-                          backgroundColor: Colors.transparent,
-                          foregroundColor: AppColors().accentColor,
-                          textSize: 18,
-                          fontWeight: FontWeight.bold,
-                          horizontalPadding: 60,
-                          verticalPadding: 13,
-                        ),
-                      ),
-                      const SizedBox(width: 8),
-                      Expanded(
-                        child: Obx(
-                          () => Opacity(
-                            opacity:
-                                controller.cardComplete.value &&
-                                    !controller.isLoading.value
-                                ? 1
-                                : 0.5,
-                            child: CustomButton(
-                              onPressed: controller.addCard,
-                              text: controller.isLoading.value
-                                  ? '...'
-                                  : 'Add Card',
-                              backgroundColor: AppColors().buttonWithBackground,
-                              foregroundColor:
-                                  AppColors().buttonWithBackgroundText,
-                              textSize: 18,
-                              fontWeight: FontWeight.bold,
-                              horizontalPadding: 60,
-                              verticalPadding: 13,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
+                  Obx(
+                    () => CustomDualButton(
+                      cancelText: S.of(context).cancelButton,
+                      confirmText: controller.isLoading.value
+                          ? '...'
+                          : S.of(context).addCardButton,
+                      onCancel: () => Get.back(),
+                      onConfirm: controller.addCard,
+                      cancelBackgroundColor: Colors.transparent,
+                      cancelForegroundColor:
+                          AppColors().buttonWithoutBackgroundText,
+                      textSize: 18,
+                      fontWeight: FontWeight.bold,
+                      spacing: 8,
+                      confirmOpacity:
+                          controller.cardComplete.value &&
+                              !controller.isLoading.value
+                          ? 1
+                          : 0.5,
+                    ),
                   ),
-                  SizedBox(height: 4.h,),
+                  SizedBox(height: 4.h),
                 ],
               ),
             ),

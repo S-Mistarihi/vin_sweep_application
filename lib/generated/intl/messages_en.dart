@@ -43,6 +43,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "changePassword": MessageLookupByLibrary.simpleMessage("Change Password"),
     "close": MessageLookupByLibrary.simpleMessage("Close"),
     "collapse": MessageLookupByLibrary.simpleMessage("˄ Collapse"),
+    "confirmButton": MessageLookupByLibrary.simpleMessage("Confirm"),
     "confirmEmailLabel": MessageLookupByLibrary.simpleMessage("Confirm Email"),
     "confirmPasswordDoesNotMatch": MessageLookupByLibrary.simpleMessage(
       "Confirm password does not match",

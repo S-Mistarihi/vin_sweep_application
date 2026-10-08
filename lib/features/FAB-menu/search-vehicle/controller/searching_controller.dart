@@ -1,10 +1,9 @@
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:vin_sweep_application/features/home/tabs/home/controller/home_controller.dart';
 
-import '../../../../configuration/app_colors.dart';
 import '../../../../generated/l10n.dart';
 import '../../../../utils/helpers/common/repository_result.dart';
+import '../../../../utils/ui/custom_snakbar.dart';
 import '../model/vehicle_response.dart';
 import '../repository/vehicle_repository.dart';
 import '../view/searching_result.dart';
@@ -57,14 +56,10 @@ class SearchingController extends GetxController {
   }
 
   void _showError(String? message) {
-    Get.snackbar(
+    CustomSnakbar.error(
       S.of(Get.context!).warning,
-      message?.isNotEmpty == true ? message! : 'Incorrect vin number',
-      snackPosition: SnackPosition.TOP,
-      backgroundColor: AppColors().errorDialogColor,
-      colorText: AppColors().baseColor,
-      margin: const EdgeInsets.all(12),
-      duration: const Duration(seconds: 10),
+      message,
+      fallback: 'Incorrect vin number',
     );
   }
 

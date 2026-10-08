@@ -1,12 +1,11 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:vin_sweep_application/configuration/current_session.dart';
 import 'package:vin_sweep_application/features/auth/login/model/login_response.dart';
 import 'package:vin_sweep_application/features/home/tabs/menu/profile/repository/profile_repository.dart';
-import 'package:vin_sweep_application/generated/l10n.dart';
 import 'package:vin_sweep_application/utils/helpers/common/repository_result.dart';
 
-import '../../../../../../configuration/app_colors.dart';
+import '../../../../../../utils/ui/custom_snakbar.dart';
 
 class ProfileController extends GetxController {
   final TextEditingController nameController = TextEditingController();
@@ -31,7 +30,6 @@ class ProfileController extends GetxController {
 
   Future<void> onSavePressed() async {
     final context = Get.context!;
-    final s = S.of(context);
 
     if (nameController.text.trim().isEmpty) {
       showErrorToast('Please enter your name');
@@ -59,13 +57,10 @@ class ProfileController extends GetxController {
         showErrorToast(exception.message);
       case Success(:final data):
         _updateCurrentSession(data);
-        Get.snackbar(
+        CustomSnakbar.success(
           'Success',
           'Profile updated successfully',
-          snackPosition: SnackPosition.TOP,
-          backgroundColor: AppColors().successDialogColor,
-          colorText: AppColors().baseColor,
-          margin: const EdgeInsets.all(12),
+          duration: const Duration(seconds: 4),
         );
         break;
     }
@@ -78,13 +73,10 @@ class ProfileController extends GetxController {
   }
 
   void showErrorToast([String? message]) {
-    Get.snackbar(
+    CustomSnakbar.error(
       'Failed',
-      message?.isNotEmpty == true ? message! : 'Something went wrong',
-      snackPosition: SnackPosition.TOP,
-      backgroundColor: AppColors().errorDialogColor,
-      colorText: AppColors().baseColor,
-      margin: const EdgeInsets.all(12),
+      message,
+      fallback: 'Something went wrong',
       duration: const Duration(seconds: 5),
     );
   }

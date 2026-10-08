@@ -7,6 +7,7 @@ import 'package:sizer/sizer.dart';
 import '../../../../configuration/app_assets.dart';
 import '../../../../configuration/app_colors.dart';
 import '../../../../generated/l10n.dart';
+import '../../../../utils/ui/common/custom_copyright.dart';
 import '../../../../utils/ui/common/custom_main_sub_header.dart';
 import '../../../../utils/ui/custom_button.dart';
 import '../../../../utils/ui/custom_field_label.dart';
@@ -135,11 +136,7 @@ class ChangePasswordView extends StatelessWidget {
                     verticalPadding: 12,
                   ),
                   SizedBox(height: 3.h),
-                  SvgPicture.asset(
-                    AppAssets().copyRightIcon,
-                    width: 212,
-                    height: 12,
-                  ),
+                  const CustomCopyright(),
                   SizedBox(height: 3.h),
                 ],
               ),

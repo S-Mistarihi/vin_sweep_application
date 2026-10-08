@@ -11,6 +11,8 @@ import 'package:vin_sweep_application/utils/ui/custom_field_label.dart';
 import 'package:vin_sweep_application/utils/ui/custom_text_form_field.dart';
 
 import '../../../../generated/l10n.dart';
+import '../../../../utils/ui/common/custom_copyright.dart';
+import '../../../../utils/ui/custom_checkbox.dart';
 import '../controller/login_controller.dart';
 
 class LoginView extends StatelessWidget {
@@ -80,33 +82,14 @@ class LoginView extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Row(
-              children: [
-                Obx(
-                  () => Checkbox(
-                    value: controller.isRememberMeChecked.value,
-                    onChanged: (value) {
-                      controller.changeRememberMeChecked(value ?? false);
-                    },
-                    checkColor: AppColors().rememberCheckedColor,
-                    activeColor: AppColors().rememberBorderColor,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(4),
-                    ),
-                    side: BorderSide(
-                      color: AppColors().rememberBorderColor,
-                      width: 1,
-                    ),
-                  ),
-                ),
-                Text(
-                  S.of(context).rememberMeCheckbox,
-                  style: TextStyle(
-                    color: AppColors().rememberTextColor,
-                    fontSize: 16,
-                  ),
-                ),
-              ],
+            Obx(
+              () => CustomCheckbox(
+                value: controller.isRememberMeChecked.value,
+                onChanged: controller.changeRememberMeChecked,
+                label: S.of(context).rememberMeCheckbox,
+                labelColor: AppColors().textFieldLabelColor,
+                borderColor: AppColors().pdfBg,
+              ),
             ),
             InkWell(
               onTap: () =>
@@ -137,7 +120,7 @@ class LoginView extends StatelessWidget {
           verticalPadding: 12,
         ),
         SizedBox(height: 3.h),
-        SvgPicture.asset(AppAssets().copyRightIcon, width: 212, height: 12),
+        const CustomCopyright(),
       ],
     );
   }

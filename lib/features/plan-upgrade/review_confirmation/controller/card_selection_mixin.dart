@@ -1,11 +1,11 @@
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:vin_sweep_application/configuration/app_colors.dart';
 import 'package:vin_sweep_application/features/home/tabs/menu/payment/pay-method/repository/payment_method_repository.dart';
 import 'package:vin_sweep_application/features/plan-upgrade/add_card/controller/add_card_controller.dart';
 import 'package:vin_sweep_application/features/plan-upgrade/add_card/model/saved_card_model.dart';
 import 'package:vin_sweep_application/features/plan-upgrade/add_card/view/add_card_view.dart';
 import 'package:vin_sweep_application/utils/helpers/common/repository_result.dart';
+
+import '../../../../utils/ui/custom_snakbar.dart';
 
 mixin CardSelectionMixin on GetxController {
   final RxList<SavedCardModel> cards = <SavedCardModel>[].obs;
@@ -51,16 +51,6 @@ mixin CardSelectionMixin on GetxController {
   }
 
   void showAppSnackbar(String title, String? message, {bool isError = false}) {
-    Get.snackbar(
-      title,
-      message?.isNotEmpty == true ? message! : 'Something went wrong',
-      snackPosition: SnackPosition.TOP,
-      backgroundColor: isError
-          ? AppColors().errorDialogColor
-          : AppColors().successDialogColor,
-      colorText: AppColors().baseColor,
-      margin: const EdgeInsets.all(12),
-      duration: const Duration(seconds: 5),
-    );
+    CustomSnakbar.show(title, message, isError: isError);
   }
 }

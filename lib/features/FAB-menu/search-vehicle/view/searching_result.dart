@@ -9,6 +9,7 @@ import '../../../../configuration/app_colors.dart';
 import '../../../../generated/l10n.dart';
 import '../../../../utils/ui/common/custom_scan_vin_number_header.dart';
 import '../../../../utils/ui/custom_button.dart';
+import '../../../../utils/ui/custom_tab_switcher.dart';
 import '../../../reports/model/pdf_report_response.dart';
 import '../../../reports/view/buy_report_view.dart';
 import '../controller/searching_mode_controller.dart';
@@ -101,7 +102,13 @@ class _SearchingResultState extends State<SearchingResult> {
                   child: Column(
                     children: [
                       const SizedBox(height: 30),
-                      _buildAuthSwitcher(context, modeController),
+                      CustomTabSwitcher(
+                        isLeftSelected: modeController.isInfo,
+                        leftLabel: S.of(context).generalInfoSwitcher,
+                        rightLabel: S.of(context).reportsSwitcher,
+                        onLeftTap: modeController.switchToInfo,
+                        onRightTap: modeController.switchToReport,
+                      ),
                       modeController.isInfo
                           ? GeneralInfoView(vehicleData: widget.vehicleData)
                           : ReportView(controller: reportsController),
@@ -128,76 +135,6 @@ class _SearchingResultState extends State<SearchingResult> {
             ),
           ],
         ),
-      ),
-    );
-  }
-
-  Widget _buildAuthSwitcher(
-    BuildContext context,
-    SearchingModeController controller,
-  ) {
-    return Container(
-      padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 9),
-      decoration: BoxDecoration(
-        color: AppColors().switcherBackgroundColor,
-        borderRadius: BorderRadius.circular(30),
-      ),
-      child: Stack(
-        children: [
-          AnimatedAlign(
-            duration: const Duration(milliseconds: 250),
-            curve: Curves.easeInOut,
-            alignment: controller.isInfo
-                ? Alignment.centerLeft
-                : Alignment.centerRight,
-            child: Container(
-              width: 43.w,
-              height: 4.5.h,
-              decoration: BoxDecoration(
-                color: AppColors().baseColor,
-                borderRadius: BorderRadius.circular(30),
-              ),
-            ),
-          ),
-
-          Row(
-            children: [
-              Expanded(
-                child: GestureDetector(
-                  onTap: controller.switchToInfo,
-                  child: Container(
-                    height: 45,
-                    alignment: Alignment.center,
-                    child: Text(
-                      S.of(context).generalInfoSwitcher,
-                      style: TextStyle(
-                        color: AppColors().accentColor,
-                        fontSize: 16,
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-
-              Expanded(
-                child: GestureDetector(
-                  onTap: controller.switchToReport,
-                  child: Container(
-                    height: 45,
-                    alignment: Alignment.center,
-                    child: Text(
-                      S.of(context).reportsSwitcher,
-                      style: TextStyle(
-                        color: AppColors().accentColor,
-                        fontSize: 16,
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ],
       ),
     );
   }

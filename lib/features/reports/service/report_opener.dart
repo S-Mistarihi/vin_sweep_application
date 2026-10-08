@@ -2,15 +2,15 @@ import 'dart:convert';
 import 'dart:io';
 import 'dart:typed_data';
 
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:open_filex/open_filex.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:vin_sweep_application/configuration/api_end_points.dart';
-import 'package:vin_sweep_application/configuration/app_colors.dart';
 import 'package:vin_sweep_application/features/reports/model/pdf_report_response.dart';
 import 'package:vin_sweep_application/utils/helpers/common/repository_result.dart';
 import 'package:vin_sweep_application/utils/helpers/http/http_wrapper.dart';
+
+import '../../../utils/ui/custom_snakbar.dart';
 
 class ReportOpener {
   static final Set<String> _busy = {};
@@ -132,13 +132,9 @@ class ReportOpener {
   }
 
   static void _error(String message) {
-    Get.snackbar(
+    CustomSnakbar.error(
       'Report',
       message,
-      snackPosition: SnackPosition.TOP,
-      backgroundColor: AppColors().errorDialogColor,
-      colorText: AppColors().baseColor,
-      margin: const EdgeInsets.all(12),
       duration: const Duration(seconds: 5),
     );
   }

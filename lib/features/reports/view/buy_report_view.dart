@@ -10,8 +10,8 @@ import 'package:vin_sweep_application/features/reports/controller/buy_report_con
 import 'package:vin_sweep_application/features/reports/view/widget/report_summary_card.dart';
 import 'package:vin_sweep_application/generated/l10n.dart';
 import 'package:vin_sweep_application/utils/ui/common/custom_main_header.dart';
-import 'package:vin_sweep_application/utils/ui/custom_button.dart';
 
+import '../../../utils/ui/custom_dual_button.dart';
 import '../../coupon/view/coupon_section.dart';
 import '../../coupon/view/price_breakdown_card.dart';
 
@@ -155,36 +155,13 @@ class _BuyReportViewState extends State<BuyReportView> {
   }
 
   Widget _buildButtons() {
-    return Row(
-      children: [
-        Expanded(
-          child: CustomButton(
-            onPressed: () => Get.back(),
-            text: S.of(context).cancelButton,
-            backgroundColor: AppColors().buttonWithoutBackground,
-            foregroundColor: AppColors().buttonWithoutBackgroundText,
-            textSize: 20,
-            fontWeight: FontWeight.normal,
-            horizontalPadding: 60,
-            verticalPadding: 13,
-          ),
-        ),
-        const SizedBox(width: 14),
-        Expanded(
-          child: Obx(
-            () => CustomButton(
-              onPressed: controller.confirm,
-              text: controller.confirmLabel,
-              backgroundColor: AppColors().buttonWithBackground,
-              foregroundColor: AppColors().buttonWithBackgroundText,
-              textSize: 20,
-              fontWeight: FontWeight.normal,
-              horizontalPadding: 60,
-              verticalPadding: 13,
-            ),
-          ),
-        ),
-      ],
+    return Obx(
+      () => CustomDualButton(
+        cancelText: S.of(context).cancelButton,
+        confirmText: controller.confirmLabel,
+        onCancel: () => Get.back(),
+        onConfirm: controller.confirm,
+      ),
     );
   }
 }

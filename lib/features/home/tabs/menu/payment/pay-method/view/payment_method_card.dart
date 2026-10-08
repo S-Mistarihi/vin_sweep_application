@@ -7,6 +7,7 @@ import 'package:vin_sweep_application/configuration/app_assets.dart';
 import '../../../../../../../configuration/app_colors.dart';
 import '../../../../../../../generated/l10n.dart';
 import '../../../../../../../utils/ui/app_confirmation_dialog.dart';
+import '../../../../../../../utils/ui/common/custom_copyright.dart';
 import '../model/payment_method_response.dart';
 
 class PaymentMethodCard extends StatelessWidget {
@@ -178,14 +179,7 @@ class PaymentMethodCard extends StatelessWidget {
             ),
           ),
           SizedBox(height: 3.h),
-          Align(
-            alignment: Alignment.center,
-            child: SvgPicture.asset(
-              AppAssets().copyRightIcon,
-              width: 212,
-              height: 12,
-            ),
-          ),
+          Align(alignment: Alignment.center, child: const CustomCopyright()),
           SizedBox(height: 3.h),
         ],
       ),

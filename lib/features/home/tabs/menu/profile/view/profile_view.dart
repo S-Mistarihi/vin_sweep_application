@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
 import 'package:vin_sweep_application/features/home/tabs/menu/profile/controller/profile_controller.dart';
@@ -10,6 +9,7 @@ import '../../../../../../configuration/app_assets.dart';
 import '../../../../../../configuration/app_colors.dart';
 import '../../../../../../configuration/current_session.dart';
 import '../../../../../../generated/l10n.dart';
+import '../../../../../../utils/ui/common/custom_copyright.dart';
 import '../../../../../../utils/ui/common/custom_main_sub_header.dart';
 import '../../../../../../utils/ui/custom_button.dart';
 import '../../../../../../utils/ui/custom_field_label.dart';
@@ -146,11 +146,7 @@ class ProfileView extends StatelessWidget {
                     verticalPadding: 12,
                   ),
                   SizedBox(height: 3.h),
-                  SvgPicture.asset(
-                    AppAssets().copyRightIcon,
-                    width: 212,
-                    height: 12,
-                  ),
+                  const CustomCopyright(),
                 ],
               ),
             ),

@@ -5,11 +5,12 @@ import 'package:sizer/sizer.dart';
 import 'package:vin_sweep_application/features/plan-upgrade/review_confirmation/view/widget/payment_methods_section.dart';
 import 'package:vin_sweep_application/features/plan-upgrade/review_confirmation/view/widget/plan_summary_card.dart';
 import 'package:vin_sweep_application/utils/ui/common/custom_main_header.dart';
-import 'package:vin_sweep_application/utils/ui/custom_button.dart';
 
 import '../../../../../../configuration/app_assets.dart';
 import '../../../../../../configuration/app_colors.dart';
 import '../../../../generated/l10n.dart';
+import '../../../../utils/ui/custom_checkbox.dart';
+import '../../../../utils/ui/custom_dual_button.dart';
 import '../../../home/tabs/menu/plans/model/plans_response.dart';
 import '../controller/review_confirmation_controller.dart';
 
@@ -113,63 +114,24 @@ class _ReviewConfirmationViewState extends State<ReviewConfirmationView> {
 
   Widget _buildTerms() {
     return Obx(
-      () => Row(
-        children: [
-          SizedBox(
-            width: 24,
-            height: 24,
-            child: Checkbox(
-              value: controller.acceptedTerms.value,
-              onChanged: (v) => controller.acceptedTerms.value = v ?? false,
-              activeColor: AppColors().cardCheckedBox,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(7),
-              ),
-            ),
-          ),
-          const SizedBox(width: 12),
-          Text(
-            S.of(context).acceptTermsAndConditions,
-            style: TextStyle(
-              color: AppColors().accentColor,
-              fontSize: 16,
-              fontWeight: FontWeight.normal,
-            ),
-          ),
-        ],
+      () => CustomCheckbox(
+        value: controller.acceptedTerms.value,
+        onChanged: (v) => controller.acceptedTerms.value = v,
+        label: S.of(context).acceptTermsAndConditions,
+        activeColor: AppColors().cardCheckedBox,
+        borderRadius: 7,
+        size: 24,
+        labelColor: AppColors().accentColor,
       ),
     );
   }
 
   Widget _buildButtons() {
-    return Row(
-      children: [
-        Expanded(
-          child: CustomButton(
-            onPressed: () => Get.back(),
-            text: S.of(context).cancelButton,
-            backgroundColor: AppColors().buttonWithoutBackground,
-            foregroundColor: AppColors().buttonWithoutBackgroundText,
-            textSize: 20,
-            fontWeight: FontWeight.normal,
-            horizontalPadding: 60,
-            verticalPadding: 13,
-          ),
-        ),
-        const SizedBox(width: 14),
-        Expanded(
-          child: CustomButton(
-            onPressed: controller.confirm,
-            text: 'Confirm',
-            backgroundColor: AppColors().buttonWithBackground,
-            foregroundColor: AppColors().buttonWithBackgroundText,
-            textSize: 20,
-            fontWeight: FontWeight.normal,
-            horizontalPadding: 60,
-            verticalPadding: 13,
-          ),
-        ),
-      ],
+    return CustomDualButton(
+      cancelText: S.of(context).cancelButton,
+      confirmText: S.of(context).confirmButton,
+      onCancel: () => Get.back(),
+      onConfirm: controller.confirm,
     );
   }
 }

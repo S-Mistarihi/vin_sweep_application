@@ -1098,6 +1098,11 @@ class S {
       args: [],
     );
   }
+
+  /// `Confirm`
+  String get confirmButton {
+    return Intl.message('Confirm', name: 'confirmButton', desc: '', args: []);
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:sizer/sizer.dart';
@@ -9,6 +8,7 @@ import 'package:vin_sweep_application/utils/ui/common/custom_main_sub_header.dar
 import 'package:vin_sweep_application/utils/ui/custom_button.dart';
 import '../../../../configuration/app_assets.dart';
 import '../../../../generated/l10n.dart';
+import '../../../../utils/ui/common/custom_copyright.dart';
 import '../../../../utils/ui/custom_field_label.dart';
 import '../controller/otp_controller.dart';
 import '../model/verify_otp_response.dart';
@@ -155,11 +155,7 @@ class OtpView extends StatelessWidget {
                     ),
                   ),
                   SizedBox(height: 2.5.h),
-                  SvgPicture.asset(
-                    AppAssets().copyRightIcon,
-                    width: 212,
-                    height: 12,
-                  ),
+                  const CustomCopyright(),
                   SizedBox(height: 7.h),
                 ],
               ),

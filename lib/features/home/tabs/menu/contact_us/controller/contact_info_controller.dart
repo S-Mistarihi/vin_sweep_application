@@ -1,10 +1,9 @@
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:vin_sweep_application/configuration/current_session.dart';
 import 'package:vin_sweep_application/utils/helpers/common/repository_result.dart';
 
-import '../../../../../../configuration/app_colors.dart';
+import '../../../../../../utils/ui/custom_snakbar.dart';
 import '../repository/contact_info_repository.dart';
 
 class ContactInfoController extends GetxController {
@@ -33,15 +32,7 @@ class ContactInfoController extends GetxController {
   }
 
   void showErrorToast([String? message]) {
-    Get.snackbar(
-      'Failed',
-      message?.isNotEmpty == true ? message! : 'Loading failed',
-      snackPosition: SnackPosition.TOP,
-      backgroundColor: AppColors().errorDialogColor,
-      colorText: AppColors().baseColor,
-      margin: const EdgeInsets.all(12),
-      duration: const Duration(seconds: 10),
-    );
+    CustomSnakbar.error('Failed', message, fallback: 'Loading failed');
   }
 
   Future<void> openUrl(String? url, {String? unavailableMessage}) async {

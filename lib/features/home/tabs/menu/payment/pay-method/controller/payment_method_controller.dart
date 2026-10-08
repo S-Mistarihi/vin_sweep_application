@@ -1,9 +1,8 @@
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:vin_sweep_application/features/home/tabs/menu/payment/pay-method/repository/payment_method_repository.dart'; // عدّل المسار حسب مشروعك
 import 'package:vin_sweep_application/utils/helpers/common/repository_result.dart';
 
-import '../../../../../../../configuration/app_colors.dart';
+import '../../../../../../../utils/ui/custom_snakbar.dart';
 import '../model/payment_method_response.dart';
 
 class PaymentMethodController extends GetxController {
@@ -73,16 +72,10 @@ class PaymentMethodController extends GetxController {
   }
 
   void _showError([String? message]) {
-    Get.snackbar(
+    CustomSnakbar.error(
       'Error',
-      message?.isNotEmpty == true
-          ? message!
-          : 'Failed set/delete payment method',
-      snackPosition: SnackPosition.TOP,
-      backgroundColor: AppColors().errorDialogColor,
-      colorText: AppColors().baseColor,
-      margin: const EdgeInsets.all(12),
-      duration: const Duration(seconds: 10),
+      message,
+      fallback: 'Failed set/delete payment method',
     );
   }
 }

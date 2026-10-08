@@ -5,6 +5,7 @@ import 'package:vin_sweep_application/configuration/app_assets.dart';
 import 'package:vin_sweep_application/configuration/app_colors.dart';
 import 'package:vin_sweep_application/features/home/tabs/menu/plans/model/plans_response.dart';
 import 'package:vin_sweep_application/utils/ui/custom_button.dart';
+import 'package:vin_sweep_application/utils/ui/custom_switch.dart';
 
 import '../../../../../../../generated/l10n.dart';
 
@@ -177,23 +178,11 @@ class CustomCard extends StatelessWidget {
     );
   }
 
-  Row _buildSwitcherButton(BuildContext context) {
-    return Row(
-      children: [
-        Text(
-          S.of(context).autoRenweSwitch,
-          style: TextStyle(color: AppColors().accentColor, fontSize: 16),
-        ),
-        Spacer(),
-        Switch(
-          value: isAutoRenew,
-          onChanged: onAutoRenewChanged,
-          inactiveTrackColor: AppColors().inactiveTrackSwitchColor,
-          inactiveThumbColor: AppColors().baseColor,
-          activeTrackColor: AppColors().firstHeaderShadowColor,
-          activeThumbColor: AppColors().baseColor,
-        ),
-      ],
+  CustomSwitch _buildSwitcherButton(BuildContext context) {
+    return CustomSwitch(
+      value: isAutoRenew,
+      onChanged: onAutoRenewChanged,
+      label: S.of(context).autoRenweSwitch,
     );
   }
 
