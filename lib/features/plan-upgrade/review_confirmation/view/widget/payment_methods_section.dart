@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
 import 'package:vin_sweep_application/features/home/tabs/menu/plans/model/plans_response.dart';
 import 'package:vin_sweep_application/features/plan-upgrade/review_confirmation/view/widget/payment_method_tile.dart';
 
 import '../../../../../configuration/app_colors.dart';
 import '../../../../../generated/l10n.dart';
+import '../../../../../utils/ui/custom_loading_indicator.dart';
 import '../../controller/card_selection_mixin.dart';
 import 'add_card_tile.dart';
 
@@ -35,12 +35,7 @@ class PaymentMethodsSection extends StatelessWidget {
           if (controller.isLoadingCards.value) {
             return Padding(
               padding: const EdgeInsets.symmetric(vertical: 24),
-              child: Center(
-                child: SpinKitSquareCircle(
-                  color: AppColors().buttonWithBackground,
-                  size: 50.0,
-                ),
-              ),
+              child: CustomLoadingIndicator(isLoadMore: true),
             );
           }
 

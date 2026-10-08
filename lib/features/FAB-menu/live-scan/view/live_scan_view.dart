@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:vin_sweep_application/configuration/app_colors.dart';
 
 import '../../../../generated/l10n.dart';
+import '../../../../utils/ui/custom_loading_indicator.dart';
 import '../controller/live_scan_controller.dart';
 
 class LiveScanView extends StatefulWidget {
@@ -46,11 +47,7 @@ class _LiveScanViewState extends State<LiveScanView>
           return _buildError();
         }
         if (!controller.isCameraInitialized.value) {
-          return Center(
-            child: CircularProgressIndicator(
-              color: AppColors().buttonWithBackground,
-            ),
-          );
+          return CustomLoadingIndicator(isLoadMore: true);
         }
         return _buildScanner();
       }),
@@ -103,12 +100,10 @@ class _LiveScanViewState extends State<LiveScanView>
 
         return Stack(
           children: [
-            // الكاميرا بدون تمطيط
             Positioned.fill(
               child: FittedBox(
                 fit: BoxFit.cover,
                 child: SizedBox(
-                  // previewSize بيجي landscape فنبدل العرض والارتفاع
                   width: previewSize.height,
                   height: previewSize.width,
                   child: CameraPreview(camera),
@@ -116,12 +111,10 @@ class _LiveScanViewState extends State<LiveScanView>
               ),
             ),
 
-            // تعتيم حول منطقة السكان
             Positioned.fill(
               child: CustomPaint(painter: _ScanOverlayPainter(cutout)),
             ),
 
-            // إطار + الخط الأحمر المتحرك
             Positioned.fromRect(
               rect: cutout,
               child: Stack(
@@ -140,7 +133,7 @@ class _LiveScanViewState extends State<LiveScanView>
                   ),
                   AnimatedBuilder(
                     animation: lineController,
-                    builder: (_, __) => Positioned(
+                    builder: (_, _) => Positioned(
                       top: lineController.value * (_boxHeight - 2),
                       left: 0,
                       right: 0,
@@ -163,7 +156,6 @@ class _LiveScanViewState extends State<LiveScanView>
               ),
             ),
 
-            // الشريط العلوي: إغلاق + فلاش + تعليمات
             SafeArea(
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 8),
@@ -206,7 +198,6 @@ class _LiveScanViewState extends State<LiveScanView>
               ),
             ),
 
-            // الحالة
             Positioned(
               bottom: 70,
               left: 0,

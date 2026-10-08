@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
 import 'package:vin_sweep_application/features/home/tabs/home/model/plan_card_info.dart';
@@ -12,6 +11,7 @@ import '../../../../../../configuration/app_assets.dart';
 import '../../../../../../configuration/app_colors.dart';
 import '../../../../../../generated/l10n.dart';
 import '../../../../../../utils/ui/common/custom_main_header.dart';
+import '../../../../../../utils/ui/custom_loading_indicator.dart';
 import '../../../../../plan-upgrade/review_confirmation/view/review_confirmation_view.dart';
 
 class PlansView extends StatefulWidget {
@@ -69,12 +69,7 @@ class _PlansViewState extends State<PlansView> {
             bottom: 0,
             child: Obx(() {
               if (controller.isLoading.value) {
-                return Center(
-                  child: SpinKitSquareCircle(
-                    color: AppColors().buttonWithBackground,
-                    size: 50.0,
-                  ),
-                );
+                return CustomLoadingIndicator(isLoadMore: true);
               }
 
               if (controller.plans.isEmpty) {

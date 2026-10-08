@@ -7,6 +7,8 @@ import 'package:vin_sweep_application/configuration/app_colors.dart';
 import 'package:vin_sweep_application/features/home/tabs/home/controller/home_controller.dart';
 import 'package:vin_sweep_application/features/home/tabs/home/view/widget/scan_item_card.dart';
 
+import '../../../../../../utils/ui/custom_loading_indicator.dart';
+
 /// scans list with cases: load & error & empty & no found search & list found
 class ScansListView extends StatelessWidget {
   const ScansListView({super.key, this.limit, this.bottomPadding = 24});
@@ -29,7 +31,7 @@ class ScansListView extends StatelessWidget {
       if (loading && total == 0) {
         content = _scrollable([
           SizedBox(height: 8.h),
-          const Center(child: CircularProgressIndicator()),
+          CustomLoadingIndicator(isLoadMore: true),
         ]);
       } else if (error != null && total == 0) {
         content = _scrollable([

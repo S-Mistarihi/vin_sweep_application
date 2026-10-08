@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
 import 'package:vin_sweep_application/configuration/app_assets.dart';
@@ -12,6 +11,7 @@ import 'package:vin_sweep_application/generated/l10n.dart';
 import 'package:vin_sweep_application/utils/ui/common/custom_main_header.dart';
 
 import '../../../utils/ui/custom_dual_button.dart';
+import '../../../utils/ui/custom_loading_indicator.dart';
 import '../../coupon/view/coupon_section.dart';
 import '../../coupon/view/price_breakdown_card.dart';
 
@@ -114,12 +114,7 @@ class _BuyReportViewState extends State<BuyReportView> {
                     width: double.infinity,
                     height: double.infinity,
                     color: Colors.black38,
-                    child: Center(
-                      child: SpinKitSquareCircle(
-                        color: AppColors().buttonWithBackground,
-                        size: 50.0,
-                      ),
-                    ),
+                    child: CustomLoadingIndicator(isLoadMore: true),
                   )
                 : const SizedBox.shrink(),
           ),

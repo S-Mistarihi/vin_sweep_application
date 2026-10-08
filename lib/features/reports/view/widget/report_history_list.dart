@@ -11,6 +11,8 @@ import 'package:vin_sweep_application/features/reports/model/pdf_report_response
 import 'package:vin_sweep_application/features/reports/service/report_opener.dart';
 import 'package:vin_sweep_application/features/reports/view/widget/report_history_tile.dart';
 
+import '../../../../utils/ui/custom_loading_indicator.dart';
+
 class ReportHistoryList extends StatelessWidget {
   const ReportHistoryList({super.key, this.limit, this.bottomPadding = 24});
 
@@ -29,7 +31,6 @@ class ReportHistoryList extends StatelessWidget {
       final error = c.error.value;
       final total = c.reports.length;
 
-      // VIN -> اسم السيارة (من search-history). بيتحدث لما تتحمل الأسماء
       final names = <String, String>{
         for (final s in (home?.scans ?? const <ScanHistoryItem>[]))
           s.vin: s.title,
@@ -41,7 +42,7 @@ class ReportHistoryList extends StatelessWidget {
       if (loading && total == 0) {
         content = _scrollable([
           SizedBox(height: 8.h),
-          const Center(child: CircularProgressIndicator()),
+          CustomLoadingIndicator(isLoadMore: true),
         ]);
       } else if (error != null && total == 0) {
         content = _scrollable([

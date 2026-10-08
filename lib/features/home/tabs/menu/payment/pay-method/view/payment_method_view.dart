@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
 import 'package:vin_sweep_application/configuration/app_colors.dart';
@@ -8,6 +7,7 @@ import 'package:vin_sweep_application/features/home/tabs/menu/payment/pay-method
 import 'package:vin_sweep_application/utils/ui/custom_button.dart';
 
 import '../../../../../../../generated/l10n.dart';
+import '../../../../../../../utils/ui/custom_loading_indicator.dart';
 
 class PaymentMethodView extends StatelessWidget {
   const PaymentMethodView({super.key});
@@ -20,12 +20,7 @@ class PaymentMethodView extends StatelessWidget {
       if (controller.isLoading.value) {
         return Padding(
           padding: EdgeInsets.only(top: 25.h),
-          child: Center(
-            child: SpinKitSquareCircle(
-              color: AppColors().buttonWithBackground,
-              size: 50.0,
-            ),
-          ),
+          child: CustomLoadingIndicator(isLoadMore: true),
         );
       }
 
