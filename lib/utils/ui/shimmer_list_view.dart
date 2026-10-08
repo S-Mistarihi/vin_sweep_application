@@ -1,15 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
-import 'package:sizer/sizer.dart';
 
 class ShimmerListView extends StatelessWidget {
   final int size;
+  final double itemHeight;
+  final double radius;
+  final double spacing;
+  final EdgeInsets padding;
+  final bool shrinkWrap;
+  final bool scrollable;
   final Color baseColor;
   final Color heightlightColor;
 
   ShimmerListView({
     super.key,
     this.size = 10,
+    this.itemHeight = 80,
+    this.radius = 12,
+    this.spacing = 12,
+    this.padding = const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+    this.shrinkWrap = true,
+    this.scrollable = false,
     Color? heightlightColor,
     Color? baseColor,
   }) : heightlightColor = heightlightColor ?? Colors.grey.shade200,
@@ -17,26 +28,23 @@ class ShimmerListView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      itemBuilder: (_, index) {
-        return _shimmerItem();
-      },
-      itemCount: size,
-      shrinkWrap: true,
-    );
-  }
-
-  Widget _shimmerItem() {
     return Shimmer.fromColors(
       baseColor: baseColor,
       highlightColor: heightlightColor,
-      child: Container(
-        width: 100.w,
-        height: 80,
-        margin: EdgeInsets.symmetric(horizontal: 10, vertical: 6),
-        decoration: BoxDecoration(
-          color: baseColor,
-          borderRadius: BorderRadius.circular(12),
+      child: ListView.separated(
+        padding: padding,
+        shrinkWrap: shrinkWrap,
+        physics: scrollable
+            ? const AlwaysScrollableScrollPhysics()
+            : const NeverScrollableScrollPhysics(),
+        itemCount: size,
+        separatorBuilder: (_, _) => SizedBox(height: spacing),
+        itemBuilder: (_, _) => Container(
+          height: itemHeight,
+          decoration: BoxDecoration(
+            color: baseColor,
+            borderRadius: BorderRadius.circular(radius),
+          ),
         ),
       ),
     );

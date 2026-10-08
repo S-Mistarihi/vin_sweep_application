@@ -4,10 +4,10 @@ import 'package:sizer/sizer.dart';
 import 'package:vin_sweep_application/configuration/app_colors.dart';
 import 'package:vin_sweep_application/features/home/tabs/menu/payment/pay-method/controller/payment_method_controller.dart';
 import 'package:vin_sweep_application/features/home/tabs/menu/payment/pay-method/view/payment_method_card.dart';
+import 'package:vin_sweep_application/features/home/tabs/menu/payment/pay-method/view/payment_method_skeleton.dart';
 import 'package:vin_sweep_application/utils/ui/custom_button.dart';
 
 import '../../../../../../../generated/l10n.dart';
-import '../../../../../../../utils/ui/custom_loading_indicator.dart';
 
 class PaymentMethodView extends StatelessWidget {
   const PaymentMethodView({super.key});
@@ -18,10 +18,7 @@ class PaymentMethodView extends StatelessWidget {
 
     return Obx(() {
       if (controller.isLoading.value) {
-        return Padding(
-          padding: EdgeInsets.only(top: 25.h),
-          child: CustomLoadingIndicator(isLoadMore: true),
-        );
+        return const PaymentMethodsSkeleton();
       }
 
       if (controller.errorMessage.value != null) {

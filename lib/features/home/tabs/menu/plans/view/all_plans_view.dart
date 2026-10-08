@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
 import 'package:vin_sweep_application/features/home/tabs/menu/plans/controller/plans_controller.dart';
@@ -11,6 +10,7 @@ import '../../../../../../configuration/app_assets.dart';
 import '../../../../../../configuration/app_colors.dart';
 import '../../../../../../generated/l10n.dart';
 import '../../../../../../utils/ui/common/custom_main_header.dart';
+import '../../../../../../utils/ui/shimmer_list_view.dart';
 import '../../../../../plan-upgrade/review_confirmation/view/review_confirmation_view.dart';
 
 class AllPlansView extends StatelessWidget {
@@ -55,11 +55,12 @@ class AllPlansView extends StatelessWidget {
               ),
               child: Obx(() {
                 if (controller.isLoading.value && controller.plans.isEmpty) {
-                  return Center(
-                    child: SpinKitSquareCircle(
-                      color: AppColors().buttonWithBackground,
-                      size: 50.0,
-                    ),
+                  return ShimmerListView(
+                    size: 3,
+                    itemHeight: 280,
+                    radius: 24,
+                    spacing: 20,
+                    padding: const EdgeInsets.fromLTRB(24, 24, 24, 32),
                   );
                 }
 

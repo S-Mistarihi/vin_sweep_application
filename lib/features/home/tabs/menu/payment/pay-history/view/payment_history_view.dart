@@ -7,7 +7,7 @@ import 'package:vin_sweep_application/features/home/tabs/menu/payment/pay-histor
 
 import '../../../../../../../generated/l10n.dart';
 import '../../../../../../../utils/ui/custom_button.dart';
-import '../../../../../../../utils/ui/custom_loading_indicator.dart';
+import '../../../../../../../utils/ui/shimmer_list_view.dart';
 
 class PaymentHistoryView extends StatelessWidget {
   const PaymentHistoryView({super.key});
@@ -18,9 +18,12 @@ class PaymentHistoryView extends StatelessWidget {
 
     return Obx(() {
       if (controller.isLoading.value) {
-        return Padding(
-          padding: EdgeInsets.only(top: 25.h),
-          child: CustomLoadingIndicator(isLoadMore: true),
+        return ShimmerListView(
+          size: 3,
+          itemHeight: 80,
+          radius: 23,
+          spacing: 14,
+          padding: const EdgeInsets.only(top: 20),
         );
       }
 

@@ -11,7 +11,7 @@ import 'package:vin_sweep_application/features/reports/model/pdf_report_response
 import 'package:vin_sweep_application/features/reports/service/report_opener.dart';
 import 'package:vin_sweep_application/features/reports/view/widget/report_history_tile.dart';
 
-import '../../../../utils/ui/custom_loading_indicator.dart';
+import '../../../../utils/ui/shimmer_list_view.dart';
 
 class ReportHistoryList extends StatelessWidget {
   const ReportHistoryList({super.key, this.limit, this.bottomPadding = 24});
@@ -40,10 +40,14 @@ class ReportHistoryList extends StatelessWidget {
 
       Widget content;
       if (loading && total == 0) {
-        content = _scrollable([
-          SizedBox(height: 8.h),
-          CustomLoadingIndicator(isLoadMore: true),
-        ]);
+        content = ShimmerListView(
+          size: 6,
+          itemHeight: 80,
+          radius: 23,
+          spacing: 14,
+          scrollable: true,
+          padding: EdgeInsets.fromLTRB(24, 8, 24, bottomPadding),
+        );
       } else if (error != null && total == 0) {
         content = _scrollable([
           SizedBox(height: 6.h),

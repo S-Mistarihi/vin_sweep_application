@@ -7,7 +7,7 @@ import 'package:vin_sweep_application/configuration/app_colors.dart';
 import 'package:vin_sweep_application/features/home/tabs/home/controller/home_controller.dart';
 import 'package:vin_sweep_application/features/home/tabs/home/model/plan_card_info.dart';
 
-import '../../../../../../utils/ui/custom_loading_indicator.dart';
+import 'active_plan_skeleton.dart';
 
 class HomePlanCard extends StatelessWidget {
   const HomePlanCard({super.key});
@@ -40,7 +40,7 @@ class HomePlanCard extends StatelessWidget {
   Widget _body(HomeController c) {
     //Loading state
     if (c.isLoadingPlan.value && c.subscription.value == null) {
-      return CustomLoadingIndicator(isLoadMore: true);
+      return const ActivePlanSkeleton();
     }
 
     //Error state

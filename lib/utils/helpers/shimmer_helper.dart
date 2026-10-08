@@ -3,9 +3,11 @@ import 'package:shimmer/shimmer.dart';
 import 'package:vin_sweep_application/utils/ui/shimmer_list_view.dart';
 
 mixin ShimmerHelper {
-  Widget getShimmerList() {
-    return ShimmerListView();
-  }
+  Widget getShimmerList({
+    int size = 10,
+    double itemHeight = 80,
+    double radius = 12,
+  }) => ShimmerListView(size: size, itemHeight: itemHeight, radius: radius);
 
   Widget getSimmerImage() {
     return Shimmer.fromColors(
