@@ -15,7 +15,7 @@ abstract class ReportRepository {
   Future<RepositoryResult<ReportPaymentIntent>> createPdfPaymentIntent({
     required BuildContext context,
     required String vin,
-    String? paymentMethodId,
+    required String paymentMethodId,
     bool savePaymentMethod = false,
     String? discountCouponCode,
     bool showLoading = false,
@@ -31,7 +31,7 @@ abstract class ReportRepository {
   Future<RepositoryResult<PdfReportDetails>> generateReport({
     required BuildContext context,
     required String vin,
-    String? paymentMethodId,
+    required String paymentMethodId,
     bool savePaymentMethod = false,
     String? discountCouponCode,
     bool showLoading = false,
@@ -55,7 +55,7 @@ class ApiReportRepository extends ReportRepository {
   Future<RepositoryResult<ReportPaymentIntent>> createPdfPaymentIntent({
     required BuildContext context,
     required String vin,
-    String? paymentMethodId,
+    required String paymentMethodId,
     bool savePaymentMethod = false,
     String? discountCouponCode,
     bool showLoading = false,
@@ -108,7 +108,7 @@ class ApiReportRepository extends ReportRepository {
   Future<RepositoryResult<PdfReportDetails>> generateReport({
     required BuildContext context,
     required String vin,
-    String? paymentMethodId,
+    required String paymentMethodId,
     bool savePaymentMethod = false,
     String? discountCouponCode,
     bool showLoading = false,
@@ -278,7 +278,7 @@ class DemoReportRepository extends ReportRepository {
   Future<RepositoryResult<ReportPaymentIntent>> createPdfPaymentIntent({
     required BuildContext context,
     required String vin,
-    String? paymentMethodId,
+    required String paymentMethodId,
     bool savePaymentMethod = false,
     String? discountCouponCode,
     bool showLoading = false,
@@ -321,7 +321,7 @@ class DemoReportRepository extends ReportRepository {
   Future<RepositoryResult<PdfReportDetails>> generateReport({
     required BuildContext context,
     required String vin,
-    String? paymentMethodId,
+    required String paymentMethodId,
     bool savePaymentMethod = false,
     String? discountCouponCode,
     bool showLoading = false,

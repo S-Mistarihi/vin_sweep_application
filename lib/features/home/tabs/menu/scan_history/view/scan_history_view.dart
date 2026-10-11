@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
 import 'package:vin_sweep_application/utils/ui/common/custom_main_header.dart';
+import 'package:vin_sweep_application/utils/ui/custom_switch.dart';
 
 import '../../../../../../configuration/app_assets.dart';
 import '../../../../../../configuration/app_colors.dart';
@@ -21,7 +22,7 @@ class _ScanHistoryViewState extends State<ScanHistoryView> {
 
   @override
   void dispose() {
-    controller.clearSearch(); // commen with home query
+    controller.resetFilters(); // commen with home query
     super.dispose();
   }
 
@@ -56,6 +57,15 @@ class _ScanHistoryViewState extends State<ScanHistoryView> {
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 24.0),
                     child: ScanSearchBar(),
+                  ),
+                  const SizedBox(height: 8),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                    child: CustomSwitch(
+                      value: controller.withReportsOnly.value,
+                      onChanged: (v) => controller.withReportsOnly.value = v,
+                      label: 'With reports only',
+                    ),
                   ),
                   const SizedBox(height: 8),
                   const Expanded(child: ScansListView(bottomPadding: 24)),

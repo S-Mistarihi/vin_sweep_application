@@ -48,10 +48,12 @@ class PaymentMethodTile extends StatelessWidget {
               height: 24,
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                color: selected ? AppColors().accentColor : Colors.transparent,
+                color: selected
+                    ? AppColors().firstHeaderShadowColor
+                    : Colors.transparent,
                 border: Border.all(
                   color: selected
-                      ? AppColors().accentColor
+                      ? AppColors().firstHeaderShadowColor
                       : AppColors().switcherBackgroundColor,
                   width: 2,
                 ),

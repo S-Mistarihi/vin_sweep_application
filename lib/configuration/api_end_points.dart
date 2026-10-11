@@ -54,9 +54,16 @@ class ApiEndPoints {
       '$baseUrl${version}vehicle/confirm-pdf-report-payment';
   static final String generatePdfReport =
       '$baseUrl${version}vehicle/generate-pdf-report';
+
   static String getPdfReportsByVin(String vin) =>
-      '$baseUrl${version}pdf-reports/vin/$vin';
+      '$baseUrl${version}pdf-reports/vin?vin=${Uri.encodeQueryComponent(vin)}';
   static final String getPdfReport = '$baseUrl${version}pdf-reports';
+
+  static String getPdfReportByUuid(String reportUuid) =>
+      '$baseUrl${version}pdf-reports?reportUuid=${Uri.encodeQueryComponent(reportUuid)}';
+
+  static String downloadPdfReport(String reportUuid) =>
+      '$baseUrl${version}pdf-reports/download?reportUuid=${Uri.encodeQueryComponent(reportUuid)}';
 
   //coupon
   static final String validateCoupon =

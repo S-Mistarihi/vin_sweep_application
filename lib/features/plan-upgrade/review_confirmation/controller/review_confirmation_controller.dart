@@ -46,7 +46,6 @@ class ReviewConfirmationController extends GetxController
     }
     if (plan.id == null) return;
 
-    isSubmitting.value = true;
     final result = card.isSaved
         ? await _payWithSavedCard(card)
         : await _payWithNewCard(card);
@@ -75,7 +74,7 @@ class ReviewConfirmationController extends GetxController
       paymentMethodId: card.id,
       saveCard: false,
       autoRenew: false,
-      showLoading: false,
+      showLoading: true,
     );
   }
 

@@ -92,11 +92,7 @@ class _BuyReportViewState extends State<BuyReportView> {
                           const SizedBox(height: 12),
                           PriceBreakdownCard(controller: couponController),
                           const SizedBox(height: 24),
-                          Obx(
-                            () => controller.needsPayment
-                                ? PaymentMethodsSection(controller: controller)
-                                : const SizedBox.shrink(),
-                          ),
+                          PaymentMethodsSection(controller: controller),
                           const SizedBox(height: 24),
                         ],
                       ),

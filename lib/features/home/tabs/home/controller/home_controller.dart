@@ -21,6 +21,8 @@ class HomeController extends GetxController {
   final RxnString scansError = RxnString();
   final RxString query = ''.obs;
 
+  final RxBool withReportsOnly = false.obs;
+
   static const int latestCount = 5;
 
   @override
@@ -116,6 +118,11 @@ class HomeController extends GetxController {
   }
 
   void clearSearch() => query.value = '';
+
+  void resetFilters() {
+    clearSearch();
+    withReportsOnly.value = false;
+  }
 
   void openPlans() => PlansNavigator.openMyPlans();
 

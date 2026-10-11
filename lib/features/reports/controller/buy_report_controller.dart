@@ -26,8 +26,6 @@ class BuyReportController extends GetxController with CardSelectionMixin {
   final Rxn<ReportPricing> pricing = Rxn<ReportPricing>();
   final RxBool isLoadingPricing = false.obs;
 
-  final RxBool _backendRequiresPayment = false.obs;
-
   // ───────── Payment ─────────
   final RxBool isSubmitting = false.obs;
   String? _paidIntentId;
@@ -55,7 +53,6 @@ class BuyReportController extends GetxController with CardSelectionMixin {
   }
 
   bool get needsPayment {
-    if (_backendRequiresPayment.value) return true;
     if (usesPackage) return false;
     final total = totalAmount;
     return total == null || total > 0;
@@ -82,8 +79,8 @@ class BuyReportController extends GetxController with CardSelectionMixin {
     final context = Get.context!;
 
     final (subRes, plansRes) = await (
-      createPlansRepository().getCurrentUserPlan(context: context),
-      createPlansRepository().getPlans(context: context),
+    createPlansRepository().getCurrentUserPlan(context: context),
+    createPlansRepository().getPlans(context: context),
     ).wait;
 
     UserPlanResponse? sub;
@@ -102,7 +99,7 @@ class BuyReportController extends GetxController with CardSelectionMixin {
     if (isSubmitting.value || isLoadingPricing.value) return;
 
     final card = selectedCard;
-    if (needsPayment && card == null) {
+    if (card == null) {
       showAppSnackbar('Payment method', 'Please select a card', isError: true);
       return;
     }
@@ -141,8 +138,8 @@ class BuyReportController extends GetxController with CardSelectionMixin {
 
   // ───────── Purchase Flow ─────────
   Future<RepositoryResult<PdfReportDetails>> _purchase(
-    SavedCardModel? card,
-  ) async {
+      SavedCardModel card,
+      ) async {
     final context = Get.context!;
 
     // Payment succeeded previously,
@@ -151,14 +148,13 @@ class BuyReportController extends GetxController with CardSelectionMixin {
 
     final code = couponController.couponCode;
 
-    final sendCard = needsPayment ? card : null;
-    final save = sendCard?.saveForFuture ?? false;
+    final save = card.saveForFuture;
 
     // 1) Create Payment Intent
     final intentResult = await createReportRepository().createPdfPaymentIntent(
       context: context,
       vin: vin,
-      paymentMethodId: sendCard?.id,
+      paymentMethodId: card.id,
       savePaymentMethod: save,
       discountCouponCode: code,
     );
@@ -178,20 +174,13 @@ class BuyReportController extends GetxController with CardSelectionMixin {
       return createReportRepository().generateReport(
         context: Get.context!,
         vin: vin,
-        paymentMethodId: sendCard?.id,
+        paymentMethodId: card.id,
         savePaymentMethod: save,
         discountCouponCode: code,
       );
     }
 
     // 3) Payment is required
-    if (card == null) {
-      _backendRequiresPayment.value = true;
-      return Failure(
-        MappingException('Payment is required. Please select a card.'),
-      );
-    }
-
     if (intent.clientSecret.isEmpty) {
       return Failure(MappingException('Invalid payment intent'));
     }
@@ -225,8 +214,8 @@ class BuyReportController extends GetxController with CardSelectionMixin {
 
   // ───────── Confirm Paid Payment ─────────
   Future<RepositoryResult<PdfReportDetails>> _confirmPaid(
-    String paymentIntentId,
-  ) async {
+      String paymentIntentId,
+      ) async {
     final result = await createReportRepository().confirmPdfPayment(
       context: Get.context!,
       paymentIntentId: paymentIntentId,

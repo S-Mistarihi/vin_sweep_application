@@ -18,7 +18,7 @@ class PlanListCard extends StatelessWidget {
   final bool isCurrent;
   final VoidCallback onSelect;
 
-  static const double badgeHeight = 32;
+  static const double badgeHeight = 36;
 
   @override
   Widget build(BuildContext context) {
@@ -174,7 +174,7 @@ class PlanListCard extends StatelessWidget {
           ? CustomButton(
               onPressed: null,
               text: 'Current Plan',
-              backgroundColor: AppColors().buttonWithBackground.withOpacity(.5),
+              backgroundColor: AppColors().baseColor.withOpacity(.2),
               foregroundColor: AppColors().baseColor,
               textSize: 20,
               fontWeight: FontWeight.bold,

@@ -17,7 +17,7 @@ void main() async {
 
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
-  Stripe.publishableKey = 'pk_test_xxxxxxxxxxxxxxxxxxxxxxxx';
+  Stripe.publishableKey = CacheKeys.publishableKey;
   await Stripe.instance.applySettings();
 
   Locale deviceLocale = widgetsBinding.platformDispatcher.locale;

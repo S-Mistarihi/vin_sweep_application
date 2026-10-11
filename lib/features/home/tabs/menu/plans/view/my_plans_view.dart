@@ -51,10 +51,10 @@ class _MyPlansViewState extends State<MyPlansView> {
             headerSpace: 25,
             headerMainText: S.of(context).myPlansTitle,
             leftIcon: AppAssets().backIcon,
-            size: 100,
+            size: 130,
           ),
           Positioned(
-            top: 6.h,
+            top: 6.8.h,
             right: 20,
             child: GestureDetector(
               behavior: HitTestBehavior.opaque,
