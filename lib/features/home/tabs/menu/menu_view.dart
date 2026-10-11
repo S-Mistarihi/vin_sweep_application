@@ -5,6 +5,8 @@ import 'package:sizer/sizer.dart';
 import 'package:vin_sweep_application/configuration/app_assets.dart';
 import 'package:vin_sweep_application/configuration/app_colors.dart';
 import 'package:vin_sweep_application/features/auth/auth_view.dart';
+import 'package:vin_sweep_application/features/home/tabs/menu/about/controller/about_us_controller.dart';
+import 'package:vin_sweep_application/features/home/tabs/menu/about/view/about_us_view.dart';
 import 'package:vin_sweep_application/features/home/tabs/menu/change_password/view/change_password_view.dart';
 import 'package:vin_sweep_application/features/home/tabs/menu/contact_us/controller/contact_info_controller.dart';
 import 'package:vin_sweep_application/features/home/tabs/menu/contact_us/view/contact_us_view.dart';
@@ -93,7 +95,10 @@ class MenuView extends StatelessWidget {
               context: context,
               icon: AppAssets().aboutUsIcon,
               name: S.of(context).aboutUs,
-              onTap: () {},
+              onTap: () {
+                Get.put(AboutUsController());
+                Get.to(AboutUsView(), transition: Transition.rightToLeft);
+              },
             ),
             _buildMenuItem(
               context: context,
@@ -144,9 +149,9 @@ class MenuView extends StatelessWidget {
               Spacer(),
               SvgPicture.asset(
                 name == S.of(context).aboutUs ||
-                    name == S.of(context).refundPolicy ||
-                    name == S.of(context).termsConditions ||
-                    name == S.of(context).privacyPolicy
+                        name == S.of(context).refundPolicy ||
+                        name == S.of(context).termsConditions ||
+                        name == S.of(context).privacyPolicy
                     ? AppAssets().linkIcon
                     : AppAssets().arrowIcon,
               ),

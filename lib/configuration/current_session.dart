@@ -31,4 +31,6 @@ class CurrentSession {
   }
 
   ContactInfoModel? infoModel;
+
+  String? aboutUs;
 }
