@@ -15,6 +15,10 @@ class CustomDualButton extends StatelessWidget {
     this.fontWeight = FontWeight.normal,
     this.spacing = 14,
     this.confirmOpacity = 1,
+    this.confirmBackgroundColor,
+    this.confirmForegroundColor,
+    this.cancelBorderColor,
+    this.confirmBorderColor,
   });
 
   final String cancelText;
@@ -24,6 +28,11 @@ class CustomDualButton extends StatelessWidget {
 
   final Color? cancelBackgroundColor;
   final Color? cancelForegroundColor;
+  final Color? cancelBorderColor;
+
+  final Color? confirmBackgroundColor;
+  final Color? confirmForegroundColor;
+  final Color? confirmBorderColor;
 
   final double textSize;
   final FontWeight fontWeight;
@@ -48,6 +57,7 @@ class CustomDualButton extends StatelessWidget {
             fontWeight: fontWeight,
             horizontalPadding: 60,
             verticalPadding: 13,
+            borderColor: cancelBorderColor ?? Color(0xff1D416F),
           ),
         ),
         SizedBox(width: spacing),
@@ -57,12 +67,16 @@ class CustomDualButton extends StatelessWidget {
             child: CustomButton(
               onPressed: onConfirm,
               text: confirmText,
-              backgroundColor: AppColors().buttonWithBackground,
-              foregroundColor: AppColors().buttonWithBackgroundText,
+              backgroundColor:
+                  confirmBackgroundColor ?? AppColors().buttonWithBackground,
+              foregroundColor:
+                  confirmForegroundColor ??
+                  AppColors().buttonWithBackgroundText,
               textSize: textSize,
               fontWeight: fontWeight,
               horizontalPadding: 60,
               verticalPadding: 13,
+              borderColor: confirmBorderColor ?? Color(0xff1D416F),
             ),
           ),
         ),

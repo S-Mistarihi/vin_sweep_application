@@ -11,7 +11,7 @@ class CustomButton extends StatelessWidget {
     required this.fontWeight,
     required this.horizontalPadding,
     required this.verticalPadding,
-    this.borderColor = const Color(0xff1D416F),
+    this.borderColor,
   });
 
   final void Function()? onPressed;
@@ -22,7 +22,7 @@ class CustomButton extends StatelessWidget {
   final FontWeight fontWeight;
   final double horizontalPadding;
   final double verticalPadding;
-  final Color borderColor;
+  final Color? borderColor;
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +32,7 @@ class CustomButton extends StatelessWidget {
         backgroundColor: backgroundColor,
         foregroundColor: foregroundColor,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
-        side: BorderSide(color: borderColor, width: 1.5),
+        side: BorderSide(color: borderColor ?? Color(0xff1D416F), width: 1.5),
         alignment: Alignment.center,
         textStyle: TextStyle(fontSize: textSize, fontWeight: fontWeight),
         enableFeedback: true,

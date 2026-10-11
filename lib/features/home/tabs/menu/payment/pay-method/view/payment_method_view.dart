@@ -67,14 +67,6 @@ class PaymentMethodView extends StatelessWidget {
       return Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // const SizedBox(height: 24),
-          // Text(
-          //   'Select Default',
-          //   style: TextStyle(
-          //     color: AppColors().buttonWithBackground,
-          //     fontSize: 16,
-          //   ),
-          // ),
           ListView.separated(
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
@@ -85,7 +77,10 @@ class PaymentMethodView extends StatelessWidget {
               return PaymentMethodCard(
                 method: method,
                 onSetDefault: () => controller.setDefault(method),
-                onDelete: () => controller.deleteMethod(method),
+                onDelete: () {
+                  Get.back();
+                  controller.deleteMethod(method);
+                },
               );
             },
           ),

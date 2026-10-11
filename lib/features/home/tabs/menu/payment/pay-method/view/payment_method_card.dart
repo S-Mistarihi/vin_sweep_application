@@ -96,7 +96,7 @@ class PaymentMethodCard extends StatelessWidget {
         children: [
           Container(
             width: 100.w,
-            height: 15.h,
+            height: 10.h,
             decoration: BoxDecoration(
               color: AppColors().closeIconDialogColor,
               borderRadius: BorderRadius.vertical(top: Radius.circular(40)),
@@ -117,20 +117,14 @@ class PaymentMethodCard extends StatelessWidget {
                   InkWell(
                     onTap: () => Get.back(),
                     child: Container(
-                      width: 40,
-                      height: 40,
+                      width: 32,
+                      height: 32,
+                      padding: EdgeInsets.all(10),
                       decoration: BoxDecoration(
                         color: AppColors().generalInfoContainerBorder,
                         shape: BoxShape.circle,
                       ),
-                      child: Transform.scale(
-                        scale: .5,
-                        child: SvgPicture.asset(
-                          AppAssets().closeIcon,
-                          width: 12,
-                          height: 12,
-                        ),
-                      ),
+                      child: SvgPicture.asset(AppAssets().closeIcon),
                     ),
                   ),
                 ],
@@ -188,9 +182,11 @@ class PaymentMethodCard extends StatelessWidget {
 
   void _showDeleteDialog() {
     AppConfirmationDialog.show(
-      title: S.of(Get.context!).deletePaymentMethod,
-      message: 'Are you sure you want to delete\n${method.maskedNumber}?',
-      confirmText: S.of(Get.context!).deleteButton,
+      message:
+          'Are you sure you want to delete the\ncard${method.maskedNumber}?',
+      desc:
+          'Deleting this card means it will be permanently removed and unavailable for future use',
+      confirmText: 'Yes',
       onConfirm: onDelete,
     );
   }

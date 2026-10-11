@@ -76,4 +76,6 @@ class AppColors {
   Color firstColorActivePlan = const Color(0xff6873C8);
   Color secondColorActivePlan = const Color(0xff343A64);
   Color seeAllColor = const Color(0xff538DB2);
+
+  Color deleteDialog = const Color(0xffCE2729);
 }

@@ -25,7 +25,7 @@ class PaymentMethodController extends GetxController {
 
     final result = await createPaymentMethodRepository().getPaymentMethod(
       context: context,
-      forceRefresh: forceRefresh.value
+      forceRefresh: forceRefresh.value,
     );
     switch (result) {
       case Success(:final data):
