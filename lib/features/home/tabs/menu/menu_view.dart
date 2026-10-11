@@ -4,7 +4,6 @@ import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
 import 'package:vin_sweep_application/configuration/app_assets.dart';
 import 'package:vin_sweep_application/configuration/app_colors.dart';
-import 'package:vin_sweep_application/features/auth/auth_view.dart';
 import 'package:vin_sweep_application/features/home/tabs/menu/about/controller/about_us_controller.dart';
 import 'package:vin_sweep_application/features/home/tabs/menu/about/view/about_us_view.dart';
 import 'package:vin_sweep_application/features/home/tabs/menu/change_password/view/change_password_view.dart';
@@ -15,6 +14,7 @@ import 'package:vin_sweep_application/features/home/tabs/menu/plans/plans_naviga
 import 'package:vin_sweep_application/features/home/tabs/menu/profile/controller/profile_controller.dart';
 import 'package:vin_sweep_application/features/home/tabs/menu/profile/view/profile_view.dart';
 import 'package:vin_sweep_application/features/home/tabs/menu/scan_history/view/scan_history_view.dart';
+import 'package:vin_sweep_application/utils/helpers/logout_session_helper.dart';
 
 import '../../../../generated/l10n.dart';
 
@@ -47,7 +47,7 @@ class MenuView extends StatelessWidget {
               icon: AppAssets().profileIcon,
               name: S.of(context).profile,
               onTap: () {
-                ProfileController controller = Get.put(ProfileController());
+                Get.put(ProfileController());
                 Get.to(ProfileView(), transition: Transition.rightToLeft);
               },
             ),
@@ -76,9 +76,7 @@ class MenuView extends StatelessWidget {
               icon: AppAssets().contactUsIcon,
               name: S.of(context).contactUs,
               onTap: () {
-                ContactInfoController controller = Get.put(
-                  ContactInfoController(),
-                );
+                Get.put(ContactInfoController());
                 Get.to(ContactUsView(), transition: Transition.rightToLeft);
               },
             ),
@@ -166,7 +164,7 @@ class MenuView extends StatelessWidget {
 
   Widget _buildLogoutButton() {
     return TextButton(
-      onPressed: () => Get.offAll(AuthView()),
+      onPressed: () => LogoutSessionHelper.confirmLogout(),
       style: TextButton.styleFrom(
         backgroundColor: Colors.transparent,
         foregroundColor: AppColors().logoutButton,

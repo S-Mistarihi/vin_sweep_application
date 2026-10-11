@@ -6,7 +6,7 @@ import 'package:vin_sweep_application/configuration/app_assets.dart';
 
 import '../../../../../../../configuration/app_colors.dart';
 import '../../../../../../../generated/l10n.dart';
-import '../../../../../../../utils/ui/app_confirmation_dialog.dart';
+import '../../../../../../../utils/ui/app_confirmation_sheet.dart';
 import '../../../../../../../utils/ui/common/custom_copyright.dart';
 import '../model/payment_method_response.dart';
 
@@ -181,7 +181,7 @@ class PaymentMethodCard extends StatelessWidget {
   }
 
   void _showDeleteDialog() {
-    AppConfirmationDialog.show(
+    AppConfirmationSheet.show(
       message:
           'Are you sure you want to delete the\ncard${method.maskedNumber}?',
       desc:
