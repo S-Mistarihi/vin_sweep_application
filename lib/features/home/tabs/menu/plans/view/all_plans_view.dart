@@ -17,6 +17,7 @@ class AllPlansView extends StatelessWidget {
   const AllPlansView({super.key});
 
   Future<void> _select(PlansController controller, PlanModel plan) async {
+
     final result = await Get.to<UserPlanResponse>(
       () => ReviewConfirmationView(plan: plan),
     );

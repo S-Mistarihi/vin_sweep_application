@@ -12,7 +12,6 @@ class ProfileController extends GetxController {
   final TextEditingController phoneController = TextEditingController();
   final TextEditingController zipCodeController = TextEditingController();
   final FocusNode nameFocusNode = FocusNode();
-  final FocusNode phoneFocusNode = FocusNode();
   final FocusNode zipCodeFocusNode = FocusNode();
 
   @override

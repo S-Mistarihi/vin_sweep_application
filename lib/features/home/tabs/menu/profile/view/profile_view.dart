@@ -95,23 +95,6 @@ class ProfileView extends StatelessWidget {
                         ),
                         SizedBox(height: 24),
                         CustomFieldLabel(
-                          icon: AppAssets().icPhone,
-                          text: S.of(context).phoneLabel,
-                        ),
-                        const SizedBox(height: 8),
-                        CustomTextFormField().buildCustomTextFormField(
-                          controller: controller.phoneController,
-                          focusNode: controller.phoneFocusNode,
-                          onFieldSubmitted: (value) =>
-                              controller.zipCodeFocusNode.requestFocus(),
-                          keyboardType: TextInputType.phone,
-                          textInputAction: TextInputAction.next,
-                          inputFormatters: [
-                            LengthLimitingTextInputFormatter(10),
-                          ],
-                        ),
-                        SizedBox(height: 24),
-                        CustomFieldLabel(
                           icon: AppAssets().zipIconTextField,
                           text: S.of(context).zipCodeLabel,
                         ),

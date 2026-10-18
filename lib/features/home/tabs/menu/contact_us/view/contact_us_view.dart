@@ -46,7 +46,7 @@ class ContactUsView extends StatelessWidget {
                   _buildContactCard(
                     svgImage: AppAssets().icPhone,
                     text: 'Call Us',
-                    onTap: () => controller.callUs,
+                    onTap: () => controller.callUs(),
                   ),
                   SizedBox(height: 12),
                   _buildContactCard(

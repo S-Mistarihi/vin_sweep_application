@@ -22,29 +22,27 @@ class LogoutSessionHelper {
     AppConfirmationDialog.show(
       title: 'Logout',
       desc: 'Are you sure you want to log out?',
-      cancelText: 'Cancel',
+      cancelText: 'Exit',
       okText: 'Ok',
       onCancel: () => Get.back(),
-      onConfirm: () => logout,
+      onConfirm: () => logout(),
     );
   }
 
   static Future<void> logout() async {
-    try {
-      await _secureStorage.delete(key: CacheKeys.password);
-    } catch (_) {
-      CurrentSession().clear();
+    await _secureStorage.delete(key: CacheKeys.password);
 
-      _drop<HomeController>();
-      _drop<PlansController>();
-      _drop<ReportsHistoryController>();
-      _drop<ProfileController>();
-      _drop<PaymentMethodController>();
-      _drop<PaymentHistoryController>();
-      _drop<PaymentModeController>();
+    CurrentSession().clear();
 
-      Get.offAll(() => AuthView());
-    }
+    _drop<HomeController>();
+    _drop<PlansController>();
+    _drop<ReportsHistoryController>();
+    _drop<ProfileController>();
+    _drop<PaymentMethodController>();
+    _drop<PaymentHistoryController>();
+    _drop<PaymentModeController>();
+
+    Get.offAll(() => AuthView());
   }
 
   static void _drop<T>() {
