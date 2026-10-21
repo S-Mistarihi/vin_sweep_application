@@ -75,7 +75,7 @@ class ChangePasswordController extends GetxController {
     switch (result) {
       case Failure(:final exception):
         _showError(exception);
-      case Success(:final data):
+      case Success():
         await _secureStorage.write(
           key: CacheKeys.password,
           value: newPasswordController.text,

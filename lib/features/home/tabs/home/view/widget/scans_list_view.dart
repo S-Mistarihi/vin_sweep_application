@@ -24,7 +24,7 @@ class ScansListView extends StatelessWidget {
       final loading = c.isLoadingScans.value;
       final error = c.scansError.value;
       final total = c.scans.length;
-      final searching = c.query.value.trim().isNotEmpty;
+      final searching = c.query.value.trim().isNotEmpty || c.hasActiveFilter;
       final filtered = c.filteredScans;
 
       Widget content;

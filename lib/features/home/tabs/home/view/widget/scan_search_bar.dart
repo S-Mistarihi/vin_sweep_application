@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:vin_sweep_application/configuration/app_assets.dart';
 import 'package:vin_sweep_application/configuration/app_colors.dart';
@@ -48,7 +47,7 @@ class _ScanSearchBarState extends State<ScanSearchBar> {
         const SizedBox(width: 12),
         InkWell(
           borderRadius: BorderRadius.circular(16),
-          onTap: widget.onFilterTap,
+          onTap: widget.onFilterTap ?? c.openFilter,
           child: Container(
             width: 48,
             height: 48,
@@ -56,7 +55,28 @@ class _ScanSearchBarState extends State<ScanSearchBar> {
               color: AppColors().switcherBackgroundColor,
               borderRadius: BorderRadius.circular(16),
             ),
-            child: Icon(Icons.tune, color: AppColors().firstHeaderShadowColor),
+            child: Stack(
+              alignment: Alignment.center,
+              children: [
+                Icon(Icons.tune, color: AppColors().firstHeaderShadowColor),
+                Positioned(
+                  top: 10,
+                  right: 10,
+                  child: Obx(
+                        () => c.hasActiveFilter
+                        ? Container(
+                      width: 9,
+                      height: 9,
+                      decoration: BoxDecoration(
+                        color: AppColors().cardPopularBack,
+                        shape: BoxShape.circle,
+                      ),
+                    )
+                        : const SizedBox.shrink(),
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ],

@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:get/get.dart';
 import 'package:vin_sweep_application/features/home/tabs/home/controller/home_controller.dart';
@@ -150,6 +149,16 @@ class BuyReportController extends GetxController with CardSelectionMixin {
     final code = couponController.couponCode;
 
     final save = card.saveForFuture;
+
+    if (usesPackage) {
+      return createReportRepository().generateReport(
+        context: context,
+        vin: vin,
+        paymentMethodId: card.id,
+        savePaymentMethod: save,
+        discountCouponCode: code,
+      );
+    }
 
     // 1) Create Payment Intent
     final intentResult = await createReportRepository().createPdfPaymentIntent(

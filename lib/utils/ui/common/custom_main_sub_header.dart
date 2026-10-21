@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:sizer/sizer.dart';
-import 'package:vin_sweep_application/configuration/app_assets.dart';
 
 import '../../../configuration/app_colors.dart';
-import '../../../generated/l10n.dart';
 
 class CustomMainSubHeader extends StatelessWidget {
   final double headerSpace;

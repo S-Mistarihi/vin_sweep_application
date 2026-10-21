@@ -58,14 +58,17 @@ class PayMethod {
 }
 
 extension PayMethodX on PayMethod {
-  /// **** **** **** 1234
-  /// اسأل الباك وين آخر 4 أرقام: بالـ metadata ولا بالـ displayName
-  String get maskedNumber {
-    final source = metadata.isNotEmpty ? metadata : displayName;
-    final digits = source.replaceAll(RegExp(r'\D'), '');
-    final last4 = digits.length >= 4
-        ? digits.substring(digits.length - 4)
-        : digits;
-    return '**** **** **** $last4';
+  /// {"last4":"4242","expMonth":12,"expYear":2035,"brand":"visa",...}
+  String get last4 {
+    try {
+      final m = jsonDecode(metadata);
+      if (m is Map && m['last4'] != null) return m['last4'].toString();
+    } catch (_) {}
+
+    final digits = displayName.replaceAll(RegExp(r'\D'), '');
+    return digits.length >= 4 ? digits.substring(digits.length - 4) : digits;
   }
+
+  /// **** **** **** 4242
+  String get maskedNumber => '**** **** **** $last4';
 }

@@ -8,6 +8,10 @@ import 'package:vin_sweep_application/features/home/tabs/menu/plans/repository/p
 import 'package:vin_sweep_application/features/home/tabs/menu/plans/plans_navigator.dart';
 import 'package:vin_sweep_application/utils/helpers/common/repository_result.dart';
 
+import '../../../../../utils/ui/filter-button/date_period.dart';
+import '../../../../../utils/ui/filter-button/filter_dialog.dart';
+import '../../../../../utils/ui/filter-button/scan_sort.dart';
+
 class HomeController extends GetxController {
   // ───────── Plan ─────────
   final Rxn<UserPlanResponse> subscription = Rxn<UserPlanResponse>();
@@ -22,6 +26,12 @@ class HomeController extends GetxController {
   final RxString query = ''.obs;
 
   final RxBool withReportsOnly = false.obs;
+
+  final Rx<ScanSort> scanSort = ScanSort.newest.obs;
+  final Rx<DatePeriod> scanPeriod = DatePeriod.all.obs;
+
+  bool get hasActiveFilter =>
+      scanSort.value != ScanSort.newest || scanPeriod.value != DatePeriod.all;
 
   static const int latestCount = 5;
 
@@ -42,14 +52,48 @@ class HomeController extends GetxController {
 
   List<ScanHistoryItem> get filteredScans {
     final q = query.value.trim().toLowerCase();
-    if (q.isEmpty) return scans.toList();
-    return scans
-        .where(
-          (s) =>
-      s.title.toLowerCase().contains(q) ||
-          s.vin.toLowerCase().contains(q),
-    )
-        .toList();
+    final onlyWithReports = withReportsOnly.value;
+    final cutoff = scanPeriod.value.cutoff(DateTime.now());
+
+    final list = scans.where((s) {
+      if (onlyWithReports && !s.hasReports) return false;
+      if (cutoff != null) {
+        final t = s.searchTime?.toLocal();
+        if (t == null || t.isBefore(cutoff)) return false;
+      }
+      if (q.isEmpty) return true;
+      return s.title.toLowerCase().contains(q) ||
+          s.vin.toLowerCase().contains(q);
+    }).toList();
+
+    switch (scanSort.value) {
+      case ScanSort.newest:
+        break;
+      case ScanSort.oldest:
+        list.sort(
+              (a, b) => (a.searchTime ?? DateTime(0)).compareTo(
+            b.searchTime ?? DateTime(0),
+          ),
+        );
+      case ScanSort.makeAZ:
+        list.sort((a, b) {
+          final c = a.vehicleMake.toLowerCase().compareTo(
+            b.vehicleMake.toLowerCase(),
+          );
+          return c != 0
+              ? c
+              : a.vehicleModel.toLowerCase().compareTo(
+            b.vehicleModel.toLowerCase(),
+          );
+        });
+      case ScanSort.yearNewest:
+        list.sort(
+              (a, b) => (int.tryParse(b.vehicleModelYear) ?? 0).compareTo(
+            int.tryParse(a.vehicleModelYear) ?? 0,
+          ),
+        );
+    }
+    return list;
   }
 
   Future<void> refreshAll() => Future.wait([loadPlan(), loadScans()]);
@@ -122,6 +166,27 @@ class HomeController extends GetxController {
   void resetFilters() {
     clearSearch();
     withReportsOnly.value = false;
+  }
+
+  Future<void> openFilter() async {
+    final r = await FilterDialog.show(
+      title: 'Filter', // TODO: l10n
+      groups: [
+        FilterGroupSpec(
+          'Sort by',
+          ScanSort.values.map((e) => e.label).toList(),
+          scanSort.value.index,
+        ),
+        FilterGroupSpec(
+          'Period',
+          DatePeriod.values.map((e) => e.label).toList(),
+          scanPeriod.value.index,
+        ),
+      ],
+    );
+    if (r == null) return;
+    scanSort.value = ScanSort.values[r[0]];
+    scanPeriod.value = DatePeriod.values[r[1]];
   }
 
   void openPlans() => PlansNavigator.openMyPlans();
