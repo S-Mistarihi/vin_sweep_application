@@ -7,6 +7,8 @@ import 'package:vin_sweep_application/configuration/app_colors.dart';
 import 'package:vin_sweep_application/features/home/tabs/home/controller/home_controller.dart';
 import 'package:vin_sweep_application/features/home/tabs/home/model/plan_card_info.dart';
 
+import '../../../../../../generated/l10n.dart';
+import '../../../../../../utils/ui/custom_button.dart';
 import 'active_plan_skeleton.dart';
 
 class HomePlanCard extends StatelessWidget {
@@ -32,12 +34,12 @@ class HomePlanCard extends StatelessWidget {
             ),
           ],
         ),
-        child: Obx(() => _body(c)),
+        child: Obx(() => _body(c, context)),
       ),
     );
   }
 
-  Widget _body(HomeController c) {
+  Widget _body(HomeController c, BuildContext context) {
     //Loading state
     if (c.isLoadingPlan.value && c.subscription.value == null) {
       return const ActivePlanSkeleton();
@@ -49,11 +51,20 @@ class HomePlanCard extends StatelessWidget {
         children: [
           Expanded(
             child: Text(
-              "Couldn't load your plan",
+              S.of(context).couldntLoadYourPlan,
               style: TextStyle(color: AppColors().errorText, fontSize: 14),
             ),
           ),
-          TextButton(onPressed: c.loadPlan, child: const Text('Retry')),
+          CustomButton(
+            onPressed: c.loadPlan,
+            text: S.of(context).retryButton,
+            backgroundColor: AppColors().buttonWithBackground,
+            foregroundColor: AppColors().buttonWithBackgroundText,
+            textSize: 20,
+            fontWeight: FontWeight.bold,
+            horizontalPadding: 95,
+            verticalPadding: 12,
+          ),
         ],
       );
     }
@@ -64,9 +75,10 @@ class HomePlanCard extends StatelessWidget {
       case HomePlanVariant.none:
         return _emptyState(
           c,
-          title: 'No active plan',
-          subtitle: 'Choose a plan to start generating reports',
-          button: 'Choose a Plan',
+          title: S.of(context).noActivePlan,
+          subtitle: S.of(context).chooseAPlanToStartGeneratingReports,
+          button: S.of(context).chooseAPlan,
+          context: context,
         );
       //Expired State
       case HomePlanVariant.expired:
@@ -74,24 +86,25 @@ class HomePlanCard extends StatelessWidget {
           c,
           title: info.title,
           subtitle: info.subtitle,
-          button: 'Renew Plan',
+          button: S.of(context).renewPlan,
           expired: true,
+          context: context,
         );
       //Active State [starter/ basic/ business/ premium]
       default:
-        return _activeState(info);
+        return _activeState(info, context);
     }
   }
 
   /// ───────── rendering card if plan is effective ─────────
-  Widget _activeState(PlanCardInfo info) {
+  Widget _activeState(PlanCardInfo info, BuildContext context) {
     final isStarter = info.variant == HomePlanVariant.starter;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         //
-        _header(info),
+        _header(info, context),
         const Spacer(),
         //starter plan effective
         if (isStarter) ...[
@@ -106,7 +119,7 @@ class HomePlanCard extends StatelessWidget {
           ),
           const SizedBox(height: 8),
           _statRow(
-            'Remaining',
+            S.of(context).remaining,
             '${info.remaining}/${info.total}',
             valueColor: info.isOutOfReports
                 ? AppColors().errorText
@@ -116,13 +129,13 @@ class HomePlanCard extends StatelessWidget {
           //Basic/Business plan effective
           Divider(color: AppColors().cardPlanBorder, thickness: 2),
           const SizedBox(height: 8),
-          _statRow('Reports Bought', '${info.generated}'),
+          _statRow(S.of(context).reportsBought, '${info.generated}'),
         ],
       ],
     );
   }
 
-  Widget _header(PlanCardInfo info) {
+  Widget _header(PlanCardInfo info, BuildContext context) {
     final bg = _iconColors(info.variant);
     return Row(
       children: [
@@ -166,7 +179,11 @@ class HomePlanCard extends StatelessWidget {
             ],
           ),
         ),
-        _badge('Active', AppColors().activePlanBg, AppColors().activePlanFg),
+        _badge(
+          S.of(context).active,
+          AppColors().activePlanBg,
+          AppColors().activePlanFg,
+        ),
       ],
     );
   }
@@ -178,6 +195,7 @@ class HomePlanCard extends StatelessWidget {
     String? subtitle,
     required String button,
     bool expired = false,
+    required BuildContext context,
   }) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -227,7 +245,7 @@ class HomePlanCard extends StatelessWidget {
             ),
             if (expired)
               _badge(
-                'Expired',
+                S.of(context).expired,
                 AppColors().errorDialogColor,
                 AppColors().activePlanFg,
               ),

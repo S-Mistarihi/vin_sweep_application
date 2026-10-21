@@ -10,6 +10,7 @@ import 'package:vin_sweep_application/utils/ui/common/custom_main_header.dart';
 
 import '../../../../../configuration/app_assets.dart';
 import '../../../../../configuration/app_colors.dart';
+import '../../../../../generated/l10n.dart';
 import '../../../../../utils/ui/common/custom_copyright.dart';
 import '../../../../../utils/ui/custom_button.dart';
 import '../../../../../utils/ui/custom_tab_switcher.dart';
@@ -41,7 +42,7 @@ class PaymentView extends StatelessWidget {
             CustomMainHeader(
               headerSpace: 25,
               size: 105,
-              headerMainText: 'Payments Info',
+              headerMainText: S.of(context).paymentsInfo,
               leftIcon: AppAssets().backIcon,
             ),
             Positioned(
@@ -65,8 +66,8 @@ class PaymentView extends StatelessWidget {
                       const SizedBox(height: 30),
                       CustomTabSwitcher(
                         isLeftSelected: controller.isPayMethod,
-                        leftLabel: 'Payment Methods',
-                        rightLabel: 'Payment History',
+                        leftLabel: S.of(context).paymentMethods,
+                        rightLabel: S.of(context).paymentHistory,
                         onLeftTap: controller.switchToMethod,
                         onRightTap: controller.switchToHistory,
                       ),
@@ -87,7 +88,7 @@ class PaymentView extends StatelessWidget {
                 children: [
                   CustomButton(
                     onPressed: () => _onAddPaymentMethod(controller),
-                    text: 'Add Payment Method',
+                    text: S.of(context).addPaymentMethod,
                     backgroundColor: AppColors().buttonWithBackground,
                     foregroundColor: AppColors().buttonWithBackgroundText,
                     textSize: 20,

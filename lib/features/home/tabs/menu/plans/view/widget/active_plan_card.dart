@@ -7,6 +7,8 @@ import 'package:vin_sweep_application/features/home/tabs/home/model/plan_card_in
 import 'package:vin_sweep_application/features/home/tabs/menu/plans/plans_navigator.dart';
 import 'package:vin_sweep_application/utils/ui/custom_button.dart';
 
+import '../../../../../../../generated/l10n.dart';
+
 class ActivePlanCard extends StatelessWidget {
   const ActivePlanCard({super.key});
 
@@ -44,7 +46,7 @@ class ActivePlanCard extends StatelessWidget {
             children: [
               Expanded(
                 child: Text(
-                  "Couldn't load your plan",
+                  S.of(context).couldntLoadYourPlan,
                   style: TextStyle(
                     color: AppColors().textFieldLabelColor,
                     fontSize: 18,
@@ -53,7 +55,7 @@ class ActivePlanCard extends StatelessWidget {
               ),
               CustomButton(
                 onPressed: c.loadPlan,
-                text: 'Retry',
+                text: S.of(context).retryButton,
                 backgroundColor: AppColors().buttonWithBackground,
                 foregroundColor: AppColors().buttonWithBackgroundText,
                 textSize: 20,
@@ -87,7 +89,7 @@ class ActivePlanCard extends StatelessWidget {
             Expanded(
               child: Text(
                 info.variant == HomePlanVariant.none
-                    ? 'No active plan'
+                    ? S.of(Get.context!).noActivePlan
                     : info.title,
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
@@ -100,7 +102,9 @@ class ActivePlanCard extends StatelessWidget {
             ),
             if (info.variant != HomePlanVariant.none)
               _badge(
-                info.variant == HomePlanVariant.expired ? 'Expired' : 'Active',
+                info.variant == HomePlanVariant.expired
+                    ? S.of(Get.context!).expired
+                    : S.of(Get.context!).active,
                 expired: info.variant == HomePlanVariant.expired,
               ),
           ],
@@ -124,9 +128,12 @@ class ActivePlanCard extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 10),
-          _statRow('Remaining', '${info.remaining}/${info.total}'),
+          _statRow(
+            S.of(Get.context!).remaining,
+            '${info.remaining}/${info.total}',
+          ),
         ] else if (!inactive) ...[
-          _statRow('Reports Bought', '${info.generated}'),
+          _statRow(S.of(Get.context!).reportsBought, '${info.generated}'),
         ],
         if (showUpgrade) ...[
           const SizedBox(height: 16),
@@ -144,10 +151,10 @@ class ActivePlanCard extends StatelessWidget {
               ),
               child: Text(
                 info.variant == HomePlanVariant.none
-                    ? 'Choose a Plan'
+                    ? S.of(Get.context!).chooseAPlan
                     : info.variant == HomePlanVariant.expired
-                    ? 'Renew Plan'
-                    : 'Upgrade',
+                    ? S.of(Get.context!).renewPlan
+                    : S.of(Get.context!).upgrade,
                 style: TextStyle(fontSize: 16, color: AppColors().baseColor),
               ),
             ),

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:vin_sweep_application/configuration/app_colors.dart';
 
+import '../../../../../../../generated/l10n.dart';
+
 class VehicleDetailItem extends StatelessWidget {
   const VehicleDetailItem({
     super.key,
@@ -37,7 +39,9 @@ class VehicleDetailItem extends StatelessWidget {
             borderRadius: BorderRadius.circular(14),
           ),
           child: Text(
-            hasValue ? value! : 'Information not available for this detail',
+            hasValue
+                ? value!
+                : S.of(context).informationNotAvailableForThisDetail,
             style: TextStyle(
               fontSize: 14,
               color: hasValue

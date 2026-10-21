@@ -7,6 +7,7 @@ import 'package:vin_sweep_application/configuration/app_assets.dart';
 import 'package:vin_sweep_application/features/home/tabs/menu/change_password/controller/change_password_controller.dart';
 
 import '../../../../../../configuration/app_colors.dart';
+import '../../../../../../generated/l10n.dart';
 import '../../../../../../utils/ui/common/custom_copyright.dart';
 import '../../../../../../utils/ui/common/custom_main_sub_header.dart';
 import '../../../../../../utils/ui/custom_button.dart';
@@ -28,9 +29,10 @@ class ChangePasswordView extends StatelessWidget {
         children: [
           CustomMainSubHeader(
             headerSpace: 25,
-            headerMainText: 'Change Password',
-            headerSubText:
-                'Please enter your current password and new password',
+            headerMainText: S.of(context).changePassword,
+            headerSubText: S
+                .of(context)
+                .pleaseEnterYourCurrentPasswordAndNewPassword,
             leftIcon: AppAssets().backIcon,
           ),
           Positioned(
@@ -57,7 +59,7 @@ class ChangePasswordView extends StatelessWidget {
                         const SizedBox(height: 32),
                         CustomFieldLabel(
                           icon: AppAssets().passwordIconTextField,
-                          text: 'Current Password',
+                          text: S.of(context).currentPassword,
                         ),
                         const SizedBox(height: 8),
                         Obx(
@@ -88,7 +90,7 @@ class ChangePasswordView extends StatelessWidget {
                         const SizedBox(height: 24),
                         CustomFieldLabel(
                           icon: AppAssets().passwordIconTextField,
-                          text: 'New Password',
+                          text: S.of(context).newPassword,
                         ),
                         const SizedBox(height: 8),
                         Obx(
@@ -119,7 +121,7 @@ class ChangePasswordView extends StatelessWidget {
                         const SizedBox(height: 24),
                         CustomFieldLabel(
                           icon: AppAssets().passwordIconTextField,
-                          text: 'Re-Type New Password',
+                          text: S.of(context).retypeNewPassword,
                         ),
                         const SizedBox(height: 8),
                         Obx(
@@ -157,7 +159,7 @@ class ChangePasswordView extends StatelessWidget {
                         controller.onChangePressed();
                       }
                     },
-                    text: 'Change',
+                    text: S.of(context).changeButton,
                     backgroundColor: AppColors().buttonWithBackground,
                     foregroundColor: AppColors().buttonWithBackgroundText,
                     textSize: 20,

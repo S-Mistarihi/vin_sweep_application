@@ -3,6 +3,7 @@ import 'package:vin_sweep_application/features/plan-upgrade/add_card/model/saved
 import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:vin_sweep_application/features/plan-upgrade/add_card/repository/card_repository.dart';
 
+import '../../../../generated/l10n.dart';
 import '../../../../utils/helpers/common/repository_result.dart';
 import '../../../../utils/ui/custom_snakbar.dart';
 import '../model/payment_intent_response.dart';
@@ -71,14 +72,14 @@ class AddCardController extends GetxController {
       }
     } on StripeException catch (e) {
       showAppSnackbar(
-        'Card error',
+        S.of(Get.context!).cardError,
         e.error.localizedMessage ?? e.error.message,
         isError: true,
       );
     } on _CardFlowException catch (e) {
-      showAppSnackbar('Failed', e.message, isError: true);
+      showAppSnackbar(S.of(Get.context!).failed, e.message, isError: true);
     } catch (_) {
-      showAppSnackbar('Failed', null, isError: true);
+      showAppSnackbar(S.of(Get.context!).failed, null, isError: true);
     }
 
     isLoading.value = false;

@@ -4,6 +4,8 @@ import 'package:get/get.dart';
 import 'package:vin_sweep_application/configuration/app_assets.dart';
 import 'package:vin_sweep_application/configuration/app_colors.dart';
 
+import '../../../generated/l10n.dart';
+
 class SearchFilterBar extends StatefulWidget {
   const SearchFilterBar({super.key, required this.query, this.onFilterTap});
 
@@ -41,7 +43,7 @@ class _SearchFilterBarState extends State<SearchFilterBar> {
             onTapOutside: (_) => FocusManager.instance.primaryFocus?.unfocus(),
             style: TextStyle(color: AppColors().accentColor, fontSize: 14),
             decoration: InputDecoration(
-              hintText: 'Search',
+              hintText: S.of(context).search,
               hintStyle: TextStyle(
                 color: AppColors().textFieldLabelColor,
                 fontSize: 14,

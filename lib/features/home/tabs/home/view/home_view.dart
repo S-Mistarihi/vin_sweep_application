@@ -10,6 +10,7 @@ import 'package:vin_sweep_application/features/home/tabs/home/view/widget/scan_s
 import 'package:vin_sweep_application/features/home/tabs/home/view/widget/scans_list_view.dart';
 import 'package:vin_sweep_application/features/home/tabs/menu/scan_history/view/scan_history_view.dart';
 
+import '../../../../../generated/l10n.dart';
 import '../model/plan_card_info.dart';
 
 class HomeView extends StatelessWidget {
@@ -43,7 +44,7 @@ class HomeView extends StatelessWidget {
               () => Row(
                 children: [
                   Text(
-                    'Latest Scans',
+                    S.of(context).latestScans,
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       color: AppColors().accentColor,
@@ -55,7 +56,7 @@ class HomeView extends StatelessWidget {
                     GestureDetector(
                       onTap: () => Get.to(() => const ScanHistoryView()),
                       child: Text(
-                        'See All',
+                        S.of(context).seeAll,
                         style: TextStyle(
                           color: AppColors().smallTextColor,
                           fontSize: 14,

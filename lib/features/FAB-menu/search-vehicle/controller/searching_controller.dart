@@ -59,7 +59,7 @@ class SearchingController extends GetxController {
     CustomSnakbar.error(
       S.of(Get.context!).warning,
       message,
-      fallback: 'Incorrect vin number',
+      fallback: S.of(Get.context!).incorrectVinNumber,
     );
   }
 

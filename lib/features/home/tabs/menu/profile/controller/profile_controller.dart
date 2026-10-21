@@ -5,6 +5,7 @@ import 'package:vin_sweep_application/features/auth/login/model/login_response.d
 import 'package:vin_sweep_application/features/home/tabs/menu/profile/repository/profile_repository.dart';
 import 'package:vin_sweep_application/utils/helpers/common/repository_result.dart';
 
+import '../../../../../../generated/l10n.dart';
 import '../../../../../../utils/ui/custom_snakbar.dart';
 
 class ProfileController extends GetxController {
@@ -31,16 +32,16 @@ class ProfileController extends GetxController {
     final context = Get.context!;
 
     if (nameController.text.trim().isEmpty) {
-      showErrorToast('Please enter your name');
+      showErrorToast(S.of(context).pleaseEnterYourName);
       return;
     }
     if (zipCodeController.text.trim().isEmpty) {
-      showErrorToast('Please enter your ZIP code');
+      showErrorToast(S.of(context).pleaseEnterYourZipCode);
       return;
     }
     final zipCode = int.tryParse(zipCodeController.text.trim());
     if (zipCode == null) {
-      showErrorToast('Please enter a valid ZIP code');
+      showErrorToast(S.of(context).pleaseEnterAValidZipCode);
       return;
     }
 
@@ -57,8 +58,8 @@ class ProfileController extends GetxController {
       case Success(:final data):
         _updateCurrentSession(data);
         CustomSnakbar.success(
-          'Success',
-          'Profile updated successfully',
+          S.of(Get.context!).success,
+          S.of(Get.context!).profileUpdatedSuccessfully,
           duration: const Duration(seconds: 4),
         );
         break;
@@ -73,9 +74,9 @@ class ProfileController extends GetxController {
 
   void showErrorToast([String? message]) {
     CustomSnakbar.error(
-      'Failed',
+      S.of(Get.context!).failed,
       message,
-      fallback: 'Something went wrong',
+      fallback: S.of(Get.context!).somethingWentWrong,
       duration: const Duration(seconds: 5),
     );
   }

@@ -5,6 +5,8 @@ import 'package:vin_sweep_application/features/coupon/controller/coupon_controll
 import 'package:vin_sweep_application/utils/ui/custom_button.dart';
 import 'package:vin_sweep_application/utils/ui/custom_text_field.dart';
 
+import '../../../generated/l10n.dart';
+
 class CouponSection extends StatelessWidget {
   const CouponSection({super.key, required this.controller});
 
@@ -19,7 +21,7 @@ class CouponSection extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Discount Coupon',
+            S.of(context).discountCoupon,
             style: TextStyle(
               color: AppColors().accentColor,
               fontSize: 18,
@@ -37,7 +39,7 @@ class CouponSection extends StatelessWidget {
                     controller: controller.couponText,
                     onSubmitted: (_) => controller.applyCoupon(),
                     textCapitalization: TextCapitalization.characters,
-                    hintText: 'Enter coupon code',
+                    hintText: S.of(context).enterCouponCode,
                   ),
                 ),
                 const SizedBox(width: 10),
@@ -47,7 +49,7 @@ class CouponSection extends StatelessWidget {
                     onPressed: controller.isApplyingCoupon.value
                         ? null
                         : controller.applyCoupon,
-                    text: 'Apply',
+                    text: S.of(context).apply,
                     backgroundColor: AppColors().buttonWithBackground,
                     foregroundColor: AppColors().buttonWithBackgroundText,
                     textSize: 16,

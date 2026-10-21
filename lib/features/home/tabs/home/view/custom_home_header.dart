@@ -7,6 +7,7 @@ import 'package:vin_sweep_application/utils/helpers/date_time_helper.dart';
 import '../../../../../configuration/app_assets.dart';
 import '../../../../../configuration/app_colors.dart';
 import '../../../../../configuration/current_session.dart';
+import '../../../../../generated/l10n.dart';
 
 class CustomHomeHeader extends StatelessWidget {
   const CustomHomeHeader({
@@ -43,7 +44,7 @@ class CustomHomeHeader extends StatelessWidget {
               children: [
                 SizedBox(height: 5.h),
                 Text(
-                  'Home',
+                  S.of(context).home,
                   style: TextStyle(
                     color: AppColors().baseColor,
                     fontWeight: FontWeight.bold,
@@ -57,7 +58,7 @@ class CustomHomeHeader extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'Welcome $firstName,',
+                          S.of(context).welcome(firstName),
                           style: TextStyle(
                             color: AppColors().baseColor,
                             fontSize: 24,
@@ -66,7 +67,13 @@ class CustomHomeHeader extends StatelessWidget {
                         ),
                         SizedBox(height: 8),
                         Text(
-                          'Last Login: ${DateTimeHelper.formateLastLogin(user?.lastLogin)}',
+                          S
+                              .of(context)
+                              .lastLogin(
+                                DateTimeHelper.formateLastLogin(
+                                  user?.lastLogin,
+                                ),
+                              ),
                           style: TextStyle(
                             color: AppColors().baseColor,
                             fontSize: 13,
@@ -100,7 +107,7 @@ class CustomHomeHeader extends StatelessWidget {
                 Align(
                   alignment: Alignment.bottomRight,
                   child: Text(
-                    'Total Sweeps',
+                    S.of(context).totalSweeps,
                     style: TextStyle(
                       color: AppColors().baseColor,
                       fontSize: 15,

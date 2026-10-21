@@ -2,6 +2,7 @@ import 'package:get/get.dart';
 import 'package:vin_sweep_application/features/home/tabs/menu/payment/pay-method/repository/payment_method_repository.dart'; // عدّل المسار حسب مشروعك
 import 'package:vin_sweep_application/utils/helpers/common/repository_result.dart';
 
+import '../../../../../../../generated/l10n.dart';
 import '../../../../../../../utils/ui/custom_snakbar.dart';
 import '../model/payment_method_response.dart';
 
@@ -73,9 +74,9 @@ class PaymentMethodController extends GetxController {
 
   void _showError([String? message]) {
     CustomSnakbar.error(
-      'Error',
+      S.of(Get.context!).error,
       message,
-      fallback: 'Failed set/delete payment method',
+      fallback: S.of(Get.context!).failedSetdeletePaymentMethod,
     );
   }
 }

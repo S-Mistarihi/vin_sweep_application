@@ -60,7 +60,7 @@ class _MyPlansViewState extends State<MyPlansView> {
               behavior: HitTestBehavior.opaque,
               onTap: PlansNavigator.openAllPlans,
               child: Text(
-                'View all Plans',
+                S.of(context).viewAllPlans,
                 style: TextStyle(color: AppColors().baseColor, fontSize: 14),
               ),
             ),
@@ -93,7 +93,7 @@ class _MyPlansViewState extends State<MyPlansView> {
                       () => Row(
                         children: [
                           Text(
-                            'History',
+                            S.of(context).history,
                             style: TextStyle(
                               color: AppColors().accentColor,
                               fontSize: 18,
@@ -106,7 +106,7 @@ class _MyPlansViewState extends State<MyPlansView> {
                               onTap: () =>
                                   Get.to(() => const ReportsHistoryView()),
                               child: Text(
-                                'See All',
+                                S.of(context).seeAll,
                                 style: TextStyle(
                                   color: AppColors().seeAllColor,
                                   fontSize: 16,

@@ -28,14 +28,10 @@ class LiveScanController extends GetxController {
   DateTime? _lastProcessedTime;
   DateTime? _lastCandidateTime;
 
-  // تصويت بين الفريمات: كل VIN وكم مرة انقرأ
   final Map<String, int> _votes = {};
 
-  // VIN صحيح (check digit مضبوط): بنقبله من أول قراءة، زي كودك
   static const int _validVotes = 1;
 
-  // VIN بطول 17 بس بدون check digit صحيح (isBackup): لازم 4 مرات
-  // المستخدم بقدر يعدله بصفحة النتيجة
   static const int _backupVotes = 4;
 
   @override
@@ -43,7 +39,6 @@ class LiveScanController extends GetxController {
     super.onInit();
     _textRecognizer = TextRecognizer(script: TextRecognitionScript.latin);
     initializeCamera();
-    //Future.delayed(const Duration(seconds: 2), () => Get.back<String>(result: '5GTEN13E888105458'));
   }
 
   // ---------------------------------------------------------------------------
@@ -83,7 +78,7 @@ class LiveScanController extends GetxController {
         await controller.setFocusMode(FocusMode.auto);
         await controller.setExposureMode(ExposureMode.auto);
       } catch (_) {
-        // بعض الأجهزة ما بتدعم هاي الخيارات
+        //some devices dont support these options
       }
 
       isCameraInitialized.value = true;
@@ -156,14 +151,11 @@ class LiveScanController extends GetxController {
   Future<void> _handleText(RecognizedText text) async {
     final now = DateTime.now();
 
-    // إذا مرت 3 ثواني بدون أي مرشح نبدأ التصويت من جديد
     if (_lastCandidateTime != null &&
         now.difference(_lastCandidateTime!).inSeconds >= 3) {
       _votes.clear();
     }
 
-    // isLiveScan: false => الـ manager بجرب البحث داخل السطر (sliding window)
-    // إذا ما لقي VIN صحيح، بدون أي تعديل على الـ manager نفسه
     final List<VinReaderModel> vins = VinReaderManager().detectVins(
       text,
       isLiveScan: false,
@@ -171,11 +163,9 @@ class LiveScanController extends GetxController {
 
     if (vins.isEmpty) return;
 
-    // VIN الصحيحة أولاً
     vins.sort((a, b) => (a.isBackup ? 1 : 0).compareTo(b.isBackup ? 1 : 0));
 
     for (final VinReaderModel m in vins) {
-      // الـ backup لازم يكون 17 خانة عشان نقبله
       if (m.isBackup && m.vin.length != 17) continue;
 
       _lastCandidateTime = now;
@@ -206,7 +196,6 @@ class LiveScanController extends GetxController {
 
     await _stopStream();
 
-    // نخلي المستخدم يشوف "VIN detected ✓" لحظة
     await Future.delayed(const Duration(milliseconds: 600));
 
     if (!_closed) {
@@ -228,7 +217,6 @@ class LiveScanController extends GetxController {
     InputImageRotation? rotation;
 
     if (Platform.isIOS) {
-      // على iOS الدوران = sensorOrientation مباشرة
       rotation = InputImageRotationValue.fromRawValue(sensor);
     } else if (Platform.isAndroid) {
       const orientations = {

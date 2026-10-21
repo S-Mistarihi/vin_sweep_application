@@ -7,6 +7,7 @@ import 'package:lottie/lottie.dart';
 
 import '../../configuration/app_assets.dart';
 import '../../configuration/app_colors.dart';
+import '../../generated/l10n.dart';
 import 'custom_button.dart';
 
 class CustomDialog {
@@ -79,7 +80,7 @@ class CustomDialog {
               const SizedBox(height: 40),
               CustomButton(
                 onPressed: () => Get.back(),
-                text: 'Done',
+                text: S.of(Get.context!).done,
                 backgroundColor: AppColors().errorDialogColor,
                 foregroundColor: AppColors().baseColor,
                 textSize: 20,

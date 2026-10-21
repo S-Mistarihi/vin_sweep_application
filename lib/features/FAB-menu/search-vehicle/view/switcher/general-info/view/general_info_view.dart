@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../../../../../../configuration/app_colors.dart';
+import '../../../../../../../generated/l10n.dart';
 import '../../../../model/vehicle_response.dart';
 import '../controller/general_info_controller.dart';
 import 'vehicle_category_section.dart';
@@ -38,7 +39,7 @@ class GeneralInfoView extends StatelessWidget {
               ),
             ),
             child: Text(
-              'This section includes free data like make, model, engine type, and body style.',
+              S.of(context).thisSectionIncludesFreeDataLikeMakeModelEngineType,
               style: TextStyle(color: AppColors().accentColor, fontSize: 15),
             ),
           ),
@@ -59,8 +60,8 @@ class GeneralInfoView extends StatelessWidget {
               onTap: controller.toggleGeneralExpansion,
               child: Text(
                 controller.isGeneralExpanded.value
-                    ? '˄  Collapse'
-                    : '˅  Expanded',
+                    ? S.of(context).collapse
+                    : S.of(context).expanded,
                 style: TextStyle(
                   color: AppColors().smallTextColor,
                   fontSize: 22,

@@ -6,6 +6,7 @@ import 'package:vin_sweep_application/features/home/tabs/menu/contact_us/control
 
 import '../../../../../../configuration/app_assets.dart';
 import '../../../../../../configuration/app_colors.dart';
+import '../../../../../../generated/l10n.dart';
 import '../../../../../../utils/ui/common/custom_main_sub_header.dart';
 
 class ContactUsView extends StatelessWidget {
@@ -20,9 +21,10 @@ class ContactUsView extends StatelessWidget {
         children: [
           CustomMainSubHeader(
             headerSpace: 25,
-            headerMainText: 'Contact Us',
-            headerSubText:
-                'Please select the suitable way for you to reach us.',
+            headerMainText: S.of(context).contactUs,
+            headerSubText: S
+                .of(context)
+                .pleaseSelectTheSuitableWayForYouToReachUs,
             leftIcon: AppAssets().backIcon,
           ),
           Positioned(
@@ -45,25 +47,25 @@ class ContactUsView extends StatelessWidget {
                   SizedBox(height: 2.h),
                   _buildContactCard(
                     svgImage: AppAssets().icPhone,
-                    text: 'Call Us',
+                    text: S.of(context).callUs,
                     onTap: () => controller.callUs(),
                   ),
                   SizedBox(height: 12),
                   _buildContactCard(
                     svgImage: AppAssets().icWhats,
-                    text: 'Whatsapp',
+                    text: S.of(context).whatsapp,
                     onTap: () => controller.openWhatsapp(),
                   ),
                   SizedBox(height: 12),
                   _buildContactCard(
                     svgImage: AppAssets().icMail,
-                    text: 'Email',
+                    text: S.of(context).email,
                     onTap: () => controller.sendEmail(),
                   ),
                   SizedBox(height: 12),
                   _buildContactCard(
                     svgImage: AppAssets().icWebsite,
-                    text: 'Website',
+                    text: S.of(context).website,
                     onTap: () => controller.openWebsite(),
                   ),
                   SizedBox(height: 8.h),

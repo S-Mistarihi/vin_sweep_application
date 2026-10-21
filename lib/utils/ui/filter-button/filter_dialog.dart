@@ -3,6 +3,8 @@ import 'package:get/get.dart';
 import 'package:vin_sweep_application/configuration/app_colors.dart';
 import 'package:vin_sweep_application/utils/ui/custom_dual_button.dart';
 
+import '../../../generated/l10n.dart';
+
 class FilterGroupSpec {
   const FilterGroupSpec(this.title, this.options, this.selected);
 
@@ -75,8 +77,8 @@ class _FilterDialogViewState extends State<_FilterDialogView> {
             const SizedBox(height: 22),
 
             CustomDualButton(
-              cancelText: 'Reset',
-              confirmText: 'Apply',
+              cancelText: S.of(context).reset,
+              confirmText: S.of(context).apply,
               onCancel: () {
                 Get.back(result: List<int>.filled(widget.groups.length, 0));
               },

@@ -4,6 +4,8 @@ import 'package:vin_sweep_application/configuration/app_assets.dart';
 import 'package:vin_sweep_application/configuration/app_colors.dart';
 import 'package:vin_sweep_application/features/reports/model/pdf_report_response.dart';
 
+import '../../../../../../../generated/l10n.dart';
+
 class ReportTile extends StatelessWidget {
   const ReportTile({super.key, required this.report, this.onTap});
 
@@ -47,7 +49,7 @@ class ReportTile extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    report.fileName ?? 'Vehicle Report',
+                    report.fileName ?? S.of(context).vehicleReport,
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(

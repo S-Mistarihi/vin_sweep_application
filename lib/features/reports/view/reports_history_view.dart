@@ -8,6 +8,8 @@ import 'package:vin_sweep_application/features/reports/view/widget/report_histor
 import 'package:vin_sweep_application/utils/ui/common/custom_main_header.dart';
 import 'package:vin_sweep_application/utils/ui/common/search_filter_bar.dart';
 
+import '../../../generated/l10n.dart';
+
 class ReportsHistoryView extends StatefulWidget {
   const ReportsHistoryView({super.key});
 
@@ -33,7 +35,7 @@ class _ReportsHistoryViewState extends State<ReportsHistoryView> {
         children: [
           CustomMainHeader(
             headerSpace: 25,
-            headerMainText: 'Reports History',
+            headerMainText: S.of(context).reportsHistory,
             leftIcon: AppAssets().backIcon,
             size: 110,
           ),

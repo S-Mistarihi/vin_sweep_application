@@ -1103,6 +1103,965 @@ class S {
   String get confirmButton {
     return Intl.message('Confirm', name: 'confirmButton', desc: '', args: []);
   }
+
+  /// `Home`
+  String get home {
+    return Intl.message('Home', name: 'home', desc: '', args: []);
+  }
+
+  /// `Welcome {firstName},`
+  String welcome(String firstName) {
+    return Intl.message(
+      'Welcome $firstName,',
+      name: 'welcome',
+      desc: '',
+      args: [firstName],
+    );
+  }
+
+  /// `Last Login: {date}`
+  String lastLogin(String date) {
+    return Intl.message(
+      'Last Login: $date',
+      name: 'lastLogin',
+      desc: '',
+      args: [date],
+    );
+  }
+
+  /// `Total Sweeps`
+  String get totalSweeps {
+    return Intl.message(
+      'Total Sweeps',
+      name: 'totalSweeps',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Latest Scans`
+  String get latestScans {
+    return Intl.message(
+      'Latest Scans',
+      name: 'latestScans',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `See All`
+  String get seeAll {
+    return Intl.message('See All', name: 'seeAll', desc: '', args: []);
+  }
+
+  /// `No Scans Yet`
+  String get noScansYet {
+    return Intl.message('No Scans Yet', name: 'noScansYet', desc: '', args: []);
+  }
+
+  /// `The list is currently empty`
+  String get theListIsCurrentlyEmpty {
+    return Intl.message(
+      'The list is currently empty',
+      name: 'theListIsCurrentlyEmpty',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No results found`
+  String get noResultsFound {
+    return Intl.message(
+      'No results found',
+      name: 'noResultsFound',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Couldn't load your plan`
+  String get couldntLoadYourPlan {
+    return Intl.message(
+      'Couldn\'t load your plan',
+      name: 'couldntLoadYourPlan',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No active plan`
+  String get noActivePlan {
+    return Intl.message(
+      'No active plan',
+      name: 'noActivePlan',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Choose a plan to start generating reports`
+  String get chooseAPlanToStartGeneratingReports {
+    return Intl.message(
+      'Choose a plan to start generating reports',
+      name: 'chooseAPlanToStartGeneratingReports',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Choose a Plan`
+  String get chooseAPlan {
+    return Intl.message(
+      'Choose a Plan',
+      name: 'chooseAPlan',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Renew Plan`
+  String get renewPlan {
+    return Intl.message('Renew Plan', name: 'renewPlan', desc: '', args: []);
+  }
+
+  /// `Remaining`
+  String get remaining {
+    return Intl.message('Remaining', name: 'remaining', desc: '', args: []);
+  }
+
+  /// `Reports Bought`
+  String get reportsBought {
+    return Intl.message(
+      'Reports Bought',
+      name: 'reportsBought',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Active`
+  String get active {
+    return Intl.message('Active', name: 'active', desc: '', args: []);
+  }
+
+  /// `Expired`
+  String get expired {
+    return Intl.message('Expired', name: 'expired', desc: '', args: []);
+  }
+
+  /// `Learn more about VINSweep.`
+  String get learnMoreAboutVinsweep {
+    return Intl.message(
+      'Learn more about VINSweep.',
+      name: 'learnMoreAboutVinsweep',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `VINSweep`
+  String get vinsweep {
+    return Intl.message('VINSweep', name: 'vinsweep', desc: '', args: []);
+  }
+
+  /// `Please enter your current password and new password`
+  String get pleaseEnterYourCurrentPasswordAndNewPassword {
+    return Intl.message(
+      'Please enter your current password and new password',
+      name: 'pleaseEnterYourCurrentPasswordAndNewPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Current Password`
+  String get currentPassword {
+    return Intl.message(
+      'Current Password',
+      name: 'currentPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `New Password`
+  String get newPassword {
+    return Intl.message(
+      'New Password',
+      name: 'newPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Re-Type New Password`
+  String get retypeNewPassword {
+    return Intl.message(
+      'Re-Type New Password',
+      name: 'retypeNewPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Change`
+  String get changeButton {
+    return Intl.message('Change', name: 'changeButton', desc: '', args: []);
+  }
+
+  /// `Please select the suitable way for you to reach us.`
+  String get pleaseSelectTheSuitableWayForYouToReachUs {
+    return Intl.message(
+      'Please select the suitable way for you to reach us.',
+      name: 'pleaseSelectTheSuitableWayForYouToReachUs',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Call Us`
+  String get callUs {
+    return Intl.message('Call Us', name: 'callUs', desc: '', args: []);
+  }
+
+  /// `Whatsapp`
+  String get whatsapp {
+    return Intl.message('Whatsapp', name: 'whatsapp', desc: '', args: []);
+  }
+
+  /// `Email`
+  String get email {
+    return Intl.message('Email', name: 'email', desc: '', args: []);
+  }
+
+  /// `Website`
+  String get website {
+    return Intl.message('Website', name: 'website', desc: '', args: []);
+  }
+
+  /// `Failed`
+  String get failed {
+    return Intl.message('Failed', name: 'failed', desc: '', args: []);
+  }
+
+  /// `Loading failed`
+  String get loadingFailed {
+    return Intl.message(
+      'Loading failed',
+      name: 'loadingFailed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `This contact option is not available`
+  String get thisContactOptionIsNotAvailable {
+    return Intl.message(
+      'This contact option is not available',
+      name: 'thisContactOptionIsNotAvailable',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Invalid link`
+  String get invalidLink {
+    return Intl.message(
+      'Invalid link',
+      name: 'invalidLink',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Could not open this link`
+  String get couldNotOpenThisLink {
+    return Intl.message(
+      'Could not open this link',
+      name: 'couldNotOpenThisLink',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Phone number is not available`
+  String get phoneNumberIsNotAvailable {
+    return Intl.message(
+      'Phone number is not available',
+      name: 'phoneNumberIsNotAvailable',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Could not open phone`
+  String get couldNotOpenPhone {
+    return Intl.message(
+      'Could not open phone',
+      name: 'couldNotOpenPhone',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Whatsapp is not available`
+  String get whatsappIsNotAvailable {
+    return Intl.message(
+      'Whatsapp is not available',
+      name: 'whatsappIsNotAvailable',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Email is not available`
+  String get emailIsNotAvailable {
+    return Intl.message(
+      'Email is not available',
+      name: 'emailIsNotAvailable',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Could not open email`
+  String get couldNotOpenEmail {
+    return Intl.message(
+      'Could not open email',
+      name: 'couldNotOpenEmail',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Website is not available`
+  String get websiteIsNotAvailable {
+    return Intl.message(
+      'Website is not available',
+      name: 'websiteIsNotAvailable',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Instagram is not available`
+  String get instagramIsNotAvailable {
+    return Intl.message(
+      'Instagram is not available',
+      name: 'instagramIsNotAvailable',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `TikTok is not available`
+  String get tiktokIsNotAvailable {
+    return Intl.message(
+      'TikTok is not available',
+      name: 'tiktokIsNotAvailable',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Twitter is not available`
+  String get twitterIsNotAvailable {
+    return Intl.message(
+      'Twitter is not available',
+      name: 'twitterIsNotAvailable',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Facebook is not available`
+  String get facebookIsNotAvailable {
+    return Intl.message(
+      'Facebook is not available',
+      name: 'facebookIsNotAvailable',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `YouTube is not available`
+  String get youtubeIsNotAvailable {
+    return Intl.message(
+      'YouTube is not available',
+      name: 'youtubeIsNotAvailable',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Payment Methods`
+  String get paymentMethods {
+    return Intl.message(
+      'Payment Methods',
+      name: 'paymentMethods',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Payment History`
+  String get paymentHistory {
+    return Intl.message(
+      'Payment History',
+      name: 'paymentHistory',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add Payment Method`
+  String get addPaymentMethod {
+    return Intl.message(
+      'Add Payment Method',
+      name: 'addPaymentMethod',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Are you sure you want to delete the card {cardNumber}?`
+  String confirmDeleteCard(String cardNumber) {
+    return Intl.message(
+      'Are you sure you want to delete the card $cardNumber?',
+      name: 'confirmDeleteCard',
+      desc: '',
+      args: [cardNumber],
+    );
+  }
+
+  /// `Deleting this card means it will be permanently removed and unavailable for future use`
+  String get deleteCardDescription {
+    return Intl.message(
+      'Deleting this card means it will be permanently removed and unavailable for future use',
+      name: 'deleteCardDescription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Yes`
+  String get yesButton {
+    return Intl.message('Yes', name: 'yesButton', desc: '', args: []);
+  }
+
+  /// `Error`
+  String get error {
+    return Intl.message('Error', name: 'error', desc: '', args: []);
+  }
+
+  /// `Failed set/delete payment method`
+  String get failedSetdeletePaymentMethod {
+    return Intl.message(
+      'Failed set/delete payment method',
+      name: 'failedSetdeletePaymentMethod',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `View all Plans`
+  String get viewAllPlans {
+    return Intl.message(
+      'View all Plans',
+      name: 'viewAllPlans',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `History`
+  String get history {
+    return Intl.message('History', name: 'history', desc: '', args: []);
+  }
+
+  /// `All Plans`
+  String get allPlans {
+    return Intl.message('All Plans', name: 'allPlans', desc: '', args: []);
+  }
+
+  /// `Current Plan`
+  String get currentPlan {
+    return Intl.message(
+      'Current Plan',
+      name: 'currentPlan',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select`
+  String get select {
+    return Intl.message('Select', name: 'select', desc: '', args: []);
+  }
+
+  /// `Upgrade`
+  String get upgrade {
+    return Intl.message('Upgrade', name: 'upgrade', desc: '', args: []);
+  }
+
+  /// `You can only edit your name and ZIP code`
+  String get youCanOnlyEditYourNameAndZipCode {
+    return Intl.message(
+      'You can only edit your name and ZIP code',
+      name: 'youCanOnlyEditYourNameAndZipCode',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Save`
+  String get save {
+    return Intl.message('Save', name: 'save', desc: '', args: []);
+  }
+
+  /// `Please enter your name`
+  String get pleaseEnterYourName {
+    return Intl.message(
+      'Please enter your name',
+      name: 'pleaseEnterYourName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter your ZIP code`
+  String get pleaseEnterYourZipCode {
+    return Intl.message(
+      'Please enter your ZIP code',
+      name: 'pleaseEnterYourZipCode',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter a valid ZIP code`
+  String get pleaseEnterAValidZipCode {
+    return Intl.message(
+      'Please enter a valid ZIP code',
+      name: 'pleaseEnterAValidZipCode',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Success`
+  String get success {
+    return Intl.message('Success', name: 'success', desc: '', args: []);
+  }
+
+  /// `Profile updated successfully`
+  String get profileUpdatedSuccessfully {
+    return Intl.message(
+      'Profile updated successfully',
+      name: 'profileUpdatedSuccessfully',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Something went wrong`
+  String get somethingWentWrong {
+    return Intl.message(
+      'Something went wrong',
+      name: 'somethingWentWrong',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `With reports only`
+  String get withReportsOnly {
+    return Intl.message(
+      'With reports only',
+      name: 'withReportsOnly',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Filter`
+  String get filter {
+    return Intl.message('Filter', name: 'filter', desc: '', args: []);
+  }
+
+  /// `Sort by`
+  String get sortBy {
+    return Intl.message('Sort by', name: 'sortBy', desc: '', args: []);
+  }
+
+  /// `Period`
+  String get period {
+    return Intl.message('Period', name: 'period', desc: '', args: []);
+  }
+
+  /// `Enter Vehicle VIN Number`
+  String get enterVehicleVinNumber {
+    return Intl.message(
+      'Enter Vehicle VIN Number',
+      name: 'enterVehicleVinNumber',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter the vehicle VIN number, it is a serial number and contains 17 character alphanumeric`
+  String get enterTheVehicleVinNumberItIsASerialNumber {
+    return Intl.message(
+      'Enter the vehicle VIN number, it is a serial number and contains 17 character alphanumeric',
+      name: 'enterTheVehicleVinNumberItIsASerialNumber',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Bought reports include accident history, mileage records, previous ownership, and more.`
+  String
+  get boughtReportsIncludeAccidentHistoryMileageRecordsPreviousOwnershipAnd {
+    return Intl.message(
+      'Bought reports include accident history, mileage records, previous ownership, and more.',
+      name:
+          'boughtReportsIncludeAccidentHistoryMileageRecordsPreviousOwnershipAnd',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No reports yet for this vehicle`
+  String get noReportsYetForThisVehicle {
+    return Intl.message(
+      'No reports yet for this vehicle',
+      name: 'noReportsYetForThisVehicle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Reports include accident history, mileage verification, previous owners, and more.`
+  String
+  get reportsIncludeAccidentHistoryMileageVerificationPreviousOwnersAndMore {
+    return Intl.message(
+      'Reports include accident history, mileage verification, previous owners, and more.',
+      name:
+          'reportsIncludeAccidentHistoryMileageVerificationPreviousOwnersAndMore',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Vehicle Report`
+  String get vehicleReport {
+    return Intl.message(
+      'Vehicle Report',
+      name: 'vehicleReport',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Incorrect vin number`
+  String get incorrectVinNumber {
+    return Intl.message(
+      'Incorrect vin number',
+      name: 'incorrectVinNumber',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Discount Coupon`
+  String get discountCoupon {
+    return Intl.message(
+      'Discount Coupon',
+      name: 'discountCoupon',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter coupon code`
+  String get enterCouponCode {
+    return Intl.message(
+      'Enter coupon code',
+      name: 'enterCouponCode',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Apply`
+  String get apply {
+    return Intl.message('Apply', name: 'apply', desc: '', args: []);
+  }
+
+  /// `Original price`
+  String get originalPrice {
+    return Intl.message(
+      'Original price',
+      name: 'originalPrice',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Discount`
+  String get discount {
+    return Intl.message('Discount', name: 'discount', desc: '', args: []);
+  }
+
+  /// `Total`
+  String get total {
+    return Intl.message('Total', name: 'total', desc: '', args: []);
+  }
+
+  /// `Invalid coupon code`
+  String get invalidCouponCode {
+    return Intl.message(
+      'Invalid coupon code',
+      name: 'invalidCouponCode',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add Card`
+  String get addCard {
+    return Intl.message('Add Card', name: 'addCard', desc: '', args: []);
+  }
+
+  /// `Add Card information`
+  String get addCardInformation {
+    return Intl.message(
+      'Add Card information',
+      name: 'addCardInformation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Card Info`
+  String get cardInfo {
+    return Intl.message('Card Info', name: 'cardInfo', desc: '', args: []);
+  }
+
+  /// `Save card`
+  String get saveCard {
+    return Intl.message('Save card', name: 'saveCard', desc: '', args: []);
+  }
+
+  /// `Card error`
+  String get cardError {
+    return Intl.message('Card error', name: 'cardError', desc: '', args: []);
+  }
+
+  /// `Please select a card`
+  String get pleaseSelectACard {
+    return Intl.message(
+      'Please select a card',
+      name: 'pleaseSelectACard',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Terms`
+  String get terms {
+    return Intl.message('Terms', name: 'terms', desc: '', args: []);
+  }
+
+  /// `Please accept the terms and conditions`
+  String get pleaseAcceptTheTermsAndConditions {
+    return Intl.message(
+      'Please accept the terms and conditions',
+      name: 'pleaseAcceptTheTermsAndConditions',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Payment failed`
+  String get paymentFailed {
+    return Intl.message(
+      'Payment failed',
+      name: 'paymentFailed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Subscription successful`
+  String get subscriptionSuccessful {
+    return Intl.message(
+      'Subscription successful',
+      name: 'subscriptionSuccessful',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Payment was not completed`
+  String get paymentWasNotCompleted {
+    return Intl.message(
+      'Payment was not completed',
+      name: 'paymentWasNotCompleted',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Reports History`
+  String get reportsHistory {
+    return Intl.message(
+      'Reports History',
+      name: 'reportsHistory',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Vehicle`
+  String get vehicle {
+    return Intl.message('Vehicle', name: 'vehicle', desc: '', args: []);
+  }
+
+  /// `VIN`
+  String get vin {
+    return Intl.message('VIN', name: 'vin', desc: '', args: []);
+  }
+
+  /// `No reports yet`
+  String get noReportsYet {
+    return Intl.message(
+      'No reports yet',
+      name: 'noReportsYet',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Reports you buy will appear here`
+  String get reportsYouBuyWillAppearHere {
+    return Intl.message(
+      'Reports you buy will appear here',
+      name: 'reportsYouBuyWillAppearHere',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Report link is not available yet`
+  String get reportLinkIsNotAvailableYet {
+    return Intl.message(
+      'Report link is not available yet',
+      name: 'reportLinkIsNotAvailableYet',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Invalid report link`
+  String get invalidReportLink {
+    return Intl.message(
+      'Invalid report link',
+      name: 'invalidReportLink',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The downloaded file is not a valid PDF`
+  String get theDownloadedFileIsNotAValidPdf {
+    return Intl.message(
+      'The downloaded file is not a valid PDF',
+      name: 'theDownloadedFileIsNotAValidPdf',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No app found to open PDF files`
+  String get noAppFoundToOpenPdfFiles {
+    return Intl.message(
+      'No app found to open PDF files',
+      name: 'noAppFoundToOpenPdfFiles',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Could not open the report`
+  String get couldNotOpenTheReport {
+    return Intl.message(
+      'Could not open the report',
+      name: 'couldNotOpenTheReport',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Report`
+  String get report {
+    return Intl.message('Report', name: 'report', desc: '', args: []);
+  }
+
+  /// `Purchase failed`
+  String get purchaseFailed {
+    return Intl.message(
+      'Purchase failed',
+      name: 'purchaseFailed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Report purchased`
+  String get reportPurchased {
+    return Intl.message(
+      'Report purchased',
+      name: 'reportPurchased',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your vehicle report is ready.`
+  String get yourVehicleReportIsReady {
+    return Intl.message(
+      'Your vehicle report is ready.',
+      name: 'yourVehicleReportIsReady',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Invalid payment intent`
+  String get invalidPaymentIntent {
+    return Intl.message(
+      'Invalid payment intent',
+      name: 'invalidPaymentIntent',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Done`
+  String get done {
+    return Intl.message('Done', name: 'done', desc: '', args: []);
+  }
+
+  /// `Reset`
+  String get reset {
+    return Intl.message('Reset', name: 'reset', desc: '', args: []);
+  }
+
+  /// `Search`
+  String get search {
+    return Intl.message('Search', name: 'search', desc: '', args: []);
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

@@ -7,6 +7,7 @@ import 'package:vin_sweep_application/configuration/app_colors.dart';
 import 'package:vin_sweep_application/features/home/tabs/home/controller/home_controller.dart';
 import 'package:vin_sweep_application/features/home/tabs/home/view/widget/scan_item_card.dart';
 
+import '../../../../../../generated/l10n.dart';
 import '../../../../../../utils/ui/shimmer_list_view.dart';
 
 /// scans list with cases: load & error & empty & no found search & list found
@@ -45,17 +46,24 @@ class ScansListView extends StatelessWidget {
             textAlign: TextAlign.center,
             style: TextStyle(color: AppColors().errorText, fontSize: 16),
           ),
-          TextButton(onPressed: c.loadScans, child: const Text('Retry')),
+          TextButton(
+            onPressed: c.loadScans,
+            child: Text(S.of(context).retryButton),
+          ),
         ]);
       } else if (total == 0) {
         content = _scrollable([
           SizedBox(height: 2.h),
           SvgPicture.asset(AppAssets().emptyHomeScreen, height: 26.h),
           SizedBox(height: 2.h),
-          _centerText('No Scans Yet', AppColors().mainColorWithNoScans, 20),
+          _centerText(
+            S.of(context).noScansYet,
+            AppColors().mainColorWithNoScans,
+            20,
+          ),
           const SizedBox(height: 8),
           _centerText(
-            'The list is currently empty',
+            S.of(context).theListIsCurrentlyEmpty,
             AppColors().textFieldLabelColor,
             16,
           ),
@@ -63,7 +71,11 @@ class ScansListView extends StatelessWidget {
       } else if (filtered.isEmpty) {
         content = _scrollable([
           SizedBox(height: 8.h),
-          _centerText('No results found', AppColors().textFieldLabelColor, 16),
+          _centerText(
+            S.of(context).noResultsFound,
+            AppColors().textFieldLabelColor,
+            16,
+          ),
         ]);
       } else {
         final items = (!searching && limit != null)

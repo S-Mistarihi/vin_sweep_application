@@ -8,6 +8,7 @@ import 'package:vin_sweep_application/features/home/tabs/menu/plans/repository/p
 import 'package:vin_sweep_application/features/home/tabs/menu/plans/plans_navigator.dart';
 import 'package:vin_sweep_application/utils/helpers/common/repository_result.dart';
 
+import '../../../../../generated/l10n.dart';
 import '../../../../../utils/ui/filter-button/date_period.dart';
 import '../../../../../utils/ui/filter-button/filter_dialog.dart';
 import '../../../../../utils/ui/filter-button/scan_sort.dart';
@@ -71,7 +72,7 @@ class HomeController extends GetxController {
         break;
       case ScanSort.oldest:
         list.sort(
-              (a, b) => (a.searchTime ?? DateTime(0)).compareTo(
+          (a, b) => (a.searchTime ?? DateTime(0)).compareTo(
             b.searchTime ?? DateTime(0),
           ),
         );
@@ -83,12 +84,12 @@ class HomeController extends GetxController {
           return c != 0
               ? c
               : a.vehicleModel.toLowerCase().compareTo(
-            b.vehicleModel.toLowerCase(),
-          );
+                  b.vehicleModel.toLowerCase(),
+                );
         });
       case ScanSort.yearNewest:
         list.sort(
-              (a, b) => (int.tryParse(b.vehicleModelYear) ?? 0).compareTo(
+          (a, b) => (int.tryParse(b.vehicleModelYear) ?? 0).compareTo(
             int.tryParse(a.vehicleModelYear) ?? 0,
           ),
         );
@@ -148,10 +149,10 @@ class HomeController extends GetxController {
       case Failure(:final exception):
         scansError.value = exception.message;
       case Success(:final data):
-      // newest first
+        // newest first
         final sorted = [...data]
           ..sort(
-                (a, b) => (b.searchTime ?? DateTime(0)).compareTo(
+            (a, b) => (b.searchTime ?? DateTime(0)).compareTo(
               a.searchTime ?? DateTime(0),
             ),
           );
@@ -170,15 +171,15 @@ class HomeController extends GetxController {
 
   Future<void> openFilter() async {
     final r = await FilterDialog.show(
-      title: 'Filter', // TODO: l10n
+      title: S.of(Get.context!).filter,
       groups: [
         FilterGroupSpec(
-          'Sort by',
+          S.of(Get.context!).sortBy,
           ScanSort.values.map((e) => e.label).toList(),
           scanSort.value.index,
         ),
         FilterGroupSpec(
-          'Period',
+          S.of(Get.context!).period,
           DatePeriod.values.map((e) => e.label).toList(),
           scanPeriod.value.index,
         ),

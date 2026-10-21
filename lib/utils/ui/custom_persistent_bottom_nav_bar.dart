@@ -13,6 +13,7 @@ import 'package:vin_sweep_application/features/home/tabs/menu/menu_view.dart';
 import '../../features/FAB-menu/enter-vin/view/enter_vin_view.dart';
 import '../../features/FAB-menu/live-scan/view/live_scan_view.dart';
 import '../../features/FAB-menu/scan-vin/view/scan_vin_view.dart';
+import '../../generated/l10n.dart';
 
 class CustomPersistentBottomNavBar extends StatelessWidget {
   CustomPersistentBottomNavBar({super.key});
@@ -24,13 +25,11 @@ class CustomPersistentBottomNavBar extends StatelessWidget {
     FabModel(
       assetPath: AppAssets().scanFab,
       onTap: () async {
-        // 1) افتح الكاميرا واستنى الـ VIN
         final String? vin = await Get.to<String>(
           () => const LiveScanView(),
           transition: Transition.downToUp,
         );
 
-        // 2) إذا انقرأ VIN افتح صفحة النتيجة (الحقل + Re-scan + Search)
         if (vin != null && vin.isNotEmpty) {
           Get.to(() => ScanVinView(initialVin: vin));
         }
@@ -92,7 +91,7 @@ class CustomPersistentBottomNavBar extends StatelessWidget {
                         child: SvgPicture.asset(AppAssets().homeIcon),
                       ),
                     ),
-                    title: 'Home',
+                    title: S.of(context).home,
                     activeColorPrimary: AppColors().baseColor,
                     inactiveColorPrimary: AppColors().baseColor.withOpacity(
                       0.8,
@@ -106,7 +105,7 @@ class CustomPersistentBottomNavBar extends StatelessWidget {
                         child: SvgPicture.asset(AppAssets().menuIcon),
                       ),
                     ),
-                    title: 'Menu',
+                    title: S.of(context).menu,
                     activeColorPrimary: AppColors().baseColor,
                     inactiveColorPrimary: AppColors().baseColor.withOpacity(
                       0.8,

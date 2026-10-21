@@ -12,6 +12,7 @@ import 'package:vin_sweep_application/utils/helpers/common/exception/repository_
 import 'package:vin_sweep_application/utils/helpers/common/repository_result.dart';
 import 'package:vin_sweep_application/utils/ui/custom_dialog.dart';
 
+import '../../../generated/l10n.dart';
 import '../../coupon/controller/coupon_controller.dart';
 import '../../plan-upgrade/review_confirmation/controller/card_selection_mixin.dart';
 import '../model/report_payment_intent_model.dart';
@@ -79,8 +80,8 @@ class BuyReportController extends GetxController with CardSelectionMixin {
     final context = Get.context!;
 
     final (subRes, plansRes) = await (
-    createPlansRepository().getCurrentUserPlan(context: context),
-    createPlansRepository().getPlans(context: context),
+      createPlansRepository().getCurrentUserPlan(context: context),
+      createPlansRepository().getPlans(context: context),
     ).wait;
 
     UserPlanResponse? sub;
@@ -100,7 +101,11 @@ class BuyReportController extends GetxController with CardSelectionMixin {
 
     final card = selectedCard;
     if (card == null) {
-      showAppSnackbar('Payment method', 'Please select a card', isError: true);
+      showAppSnackbar(
+        S.of(Get.context!).paymentMethod,
+        S.of(Get.context!).pleaseSelectACard,
+        isError: true,
+      );
       return;
     }
 
@@ -115,7 +120,7 @@ class BuyReportController extends GetxController with CardSelectionMixin {
             : '';
 
         showAppSnackbar(
-          'Purchase failed',
+          S.of(Get.context!).purchaseFailed,
           '${exception.message}$extra',
           isError: true,
         );
@@ -126,10 +131,10 @@ class BuyReportController extends GetxController with CardSelectionMixin {
         }
 
         await CustomDialog.showSuccessDialog(
-          title: 'Report purchased',
+          title: S.of(Get.context!).reportPurchased,
           description: (data.message?.isNotEmpty ?? false)
               ? data.message!
-              : 'Your vehicle report is ready.',
+              : S.of(Get.context!).yourVehicleReportIsReady,
         );
 
         Get.back(result: data);
@@ -138,8 +143,8 @@ class BuyReportController extends GetxController with CardSelectionMixin {
 
   // ───────── Purchase Flow ─────────
   Future<RepositoryResult<PdfReportDetails>> _purchase(
-      SavedCardModel card,
-      ) async {
+    SavedCardModel card,
+  ) async {
     final context = Get.context!;
 
     // Payment succeeded previously,
@@ -192,7 +197,7 @@ class BuyReportController extends GetxController with CardSelectionMixin {
 
     // 3) Payment is required
     if (intent.clientSecret.isEmpty) {
-      return Failure(MappingException('Invalid payment intent'));
+      return Failure(MappingException(S.of(Get.context!).invalidPaymentIntent));
     }
 
     try {
@@ -206,12 +211,16 @@ class BuyReportController extends GetxController with CardSelectionMixin {
       );
 
       if (pi.status != PaymentIntentsStatus.Succeeded) {
-        return Failure(MappingException('Payment was not completed'));
+        return Failure(
+          MappingException(S.of(Get.context!).paymentWasNotCompleted),
+        );
       }
     } on StripeException catch (e) {
       return Failure(
         MappingException(
-          e.error.localizedMessage ?? e.error.message ?? 'Payment failed',
+          e.error.localizedMessage ??
+              e.error.message ??
+              S.of(Get.context!).paymentFailed,
         ),
       );
     }
@@ -224,8 +233,8 @@ class BuyReportController extends GetxController with CardSelectionMixin {
 
   // ───────── Confirm Paid Payment ─────────
   Future<RepositoryResult<PdfReportDetails>> _confirmPaid(
-      String paymentIntentId,
-      ) async {
+    String paymentIntentId,
+  ) async {
     final result = await createReportRepository().confirmPdfPayment(
       context: Get.context!,
       paymentIntentId: paymentIntentId,

@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:vin_sweep_application/features/coupon/repository/coupon_repository.dart';
 import 'package:vin_sweep_application/utils/helpers/common/repository_result.dart';
 
+import '../../../generated/l10n.dart';
 import '../model/coupon_response.dart';
 
 class CouponController extends GetxController {
@@ -47,7 +48,7 @@ class CouponController extends GetxController {
           coupon.value = null;
           couponError.value = data.message.isNotEmpty
               ? data.message
-              : 'Invalid coupon code';
+              : S.of(Get.context!).invalidCouponCode;
         }
     }
   }

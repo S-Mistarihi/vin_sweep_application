@@ -23,9 +23,10 @@ class EnterVinView extends StatelessWidget {
         children: [
           CustomMainSubHeader(
             headerSpace: 25,
-            headerMainText: 'Enter Vehicle VIN Number',
-            headerSubText:
-                'Enter the vehicle VIN number, it is a serial number and contains 17 character alphanumeric',
+            headerMainText: S.of(context).enterVehicleVinNumber,
+            headerSubText: S
+                .of(context)
+                .enterTheVehicleVinNumberItIsASerialNumber,
             leftIcon: AppAssets().closeIcon,
           ),
           Positioned(

@@ -42,7 +42,7 @@ class _AddCardViewState extends State<AddCardView> {
         children: [
           CustomMainHeader(
             headerSpace: 25,
-            headerMainText: 'Add Card',
+            headerMainText: S.of(context).addCard,
             leftIcon: AppAssets().backIcon,
             size: 120,
           ),
@@ -66,7 +66,7 @@ class _AddCardViewState extends State<AddCardView> {
                 children: [
                   SizedBox(height: 24),
                   Text(
-                    'Add Card information',
+                    S.of(context).addCardInformation,
                     style: TextStyle(
                       color: AppColors().accentColor,
                       fontSize: 18,
@@ -75,7 +75,7 @@ class _AddCardViewState extends State<AddCardView> {
                   ),
                   const SizedBox(height: 12),
                   Text(
-                    'Card Info',
+                    S.of(context).cardInfo,
                     style: TextStyle(
                       color: AppColors().textFieldLabelColor,
                       fontSize: 16,
@@ -110,7 +110,7 @@ class _AddCardViewState extends State<AddCardView> {
                       () => CustomCheckbox(
                         value: controller.saveCard.value,
                         onChanged: (v) => controller.saveCard.value = v,
-                        label: 'Save card',
+                        label: S.of(context).saveCard,
                         activeColor: AppColors().firstHeaderShadowColor,
                         borderRadius: 5,
                         labelColor: AppColors().accentColor,

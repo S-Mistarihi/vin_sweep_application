@@ -27,8 +27,8 @@ class ProfileView extends StatelessWidget {
         children: [
           CustomMainSubHeader(
             headerSpace: 25,
-            headerMainText: 'Profile',
-            headerSubText: 'You can only edit your name and ZIP code',
+            headerMainText: S.of(context).profile,
+            headerSubText: S.of(context).youCanOnlyEditYourNameAndZipCode,
             leftIcon: AppAssets().backIcon,
           ),
           Positioned(
@@ -120,7 +120,7 @@ class ProfileView extends StatelessWidget {
                         controller.onSavePressed();
                       }
                     },
-                    text: 'Save',
+                    text: S.of(context).save,
                     backgroundColor: AppColors().buttonWithBackground,
                     foregroundColor: AppColors().buttonWithBackgroundText,
                     textSize: 20,

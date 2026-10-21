@@ -10,6 +10,7 @@ import 'package:vin_sweep_application/features/reports/model/pdf_report_response
 import 'package:vin_sweep_application/utils/helpers/common/repository_result.dart';
 import 'package:vin_sweep_application/utils/helpers/http/http_wrapper.dart';
 
+import '../../../generated/l10n.dart';
 import '../../../utils/ui/custom_snakbar.dart';
 
 class ReportOpener {
@@ -18,7 +19,7 @@ class ReportOpener {
   static Future<void> open(PdfReportDetails report) async {
     final raw = report.downloadUrl?.trim();
     if (raw == null || raw.isEmpty) {
-      _error('Report link is not available yet');
+      _error(S.of(Get.context!).reportLinkIsNotAvailableYet);
       return;
     }
 
@@ -28,7 +29,7 @@ class ReportOpener {
       if (!u.hasScheme) u = Uri.parse(baseUrl).resolveUri(u);
       uri = u;
     } catch (_) {
-      _error('Invalid report link');
+      _error(S.of(Get.context!).invalidReportLink);
       return;
     }
 
@@ -59,7 +60,7 @@ class ReportOpener {
       case Success(:final data):
         final bytes = _extractPdfBytes(data.body);
         if (bytes == null) {
-          _error('The downloaded file is not a valid PDF');
+          _error(S.of(Get.context!).theDownloadedFileIsNotAValidPdf);
           return;
         }
 
@@ -74,10 +75,10 @@ class ReportOpener {
             type: 'application/pdf',
           );
           if (opened.type != ResultType.done) {
-            _error('No app found to open PDF files');
+            _error(S.of(Get.context!).noAppFoundToOpenPdfFiles);
           }
         } catch (_) {
-          _error('Could not open the report');
+          _error(S.of(Get.context!).couldNotOpenTheReport);
         }
     }
   }
@@ -85,9 +86,9 @@ class ReportOpener {
   static Future<void> _launchExternal(Uri uri) async {
     try {
       final ok = await launchUrl(uri, mode: LaunchMode.externalApplication);
-      if (!ok) _error('Could not open the report');
+      if (!ok) _error(S.of(Get.context!).couldNotOpenTheReport);
     } catch (_) {
-      _error('Could not open the report');
+      _error(S.of(Get.context!).couldNotOpenTheReport);
     }
   }
 
@@ -133,7 +134,7 @@ class ReportOpener {
 
   static void _error(String message) {
     CustomSnakbar.error(
-      'Report',
+      S.of(Get.context!).report,
       message,
       duration: const Duration(seconds: 5),
     );

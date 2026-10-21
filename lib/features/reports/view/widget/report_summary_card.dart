@@ -3,6 +3,8 @@ import 'package:get/get.dart';
 import 'package:vin_sweep_application/configuration/app_colors.dart';
 import 'package:vin_sweep_application/features/reports/controller/buy_report_controller.dart';
 
+import '../../../../generated/l10n.dart';
+
 class ReportSummaryCard extends StatelessWidget {
   const ReportSummaryCard({super.key, required this.controller});
 
@@ -24,11 +26,11 @@ class ReportSummaryCard extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                _label('Vehicle'),
+                _label(S.of(context).vehicle),
                 const SizedBox(height: 2),
                 _value(controller.vehicleName),
                 const SizedBox(height: 14),
-                _label('VIN'),
+                _label(S.of(context).vin),
                 const SizedBox(height: 2),
                 _value(controller.vin),
               ],

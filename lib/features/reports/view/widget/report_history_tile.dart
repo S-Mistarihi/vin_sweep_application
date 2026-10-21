@@ -43,7 +43,6 @@ class ReportHistoryTile extends StatelessWidget {
                 color: const Color(0xff6A8CAF),
                 borderRadius: BorderRadius.circular(10),
               ),
-              // TODO: أيقونة PDF من التصميم
               child: Transform.scale(
                 scale: .6,
                 child: SvgPicture.asset(AppAssets().pdfIcon),

@@ -6,6 +6,7 @@ import 'package:vin_sweep_application/utils/ui/custom_switch.dart';
 
 import '../../../../../../configuration/app_assets.dart';
 import '../../../../../../configuration/app_colors.dart';
+import '../../../../../../generated/l10n.dart';
 import '../../../home/controller/home_controller.dart';
 import '../../../home/view/widget/scan_search_bar.dart';
 import '../../../home/view/widget/scans_list_view.dart';
@@ -33,7 +34,7 @@ class _ScanHistoryViewState extends State<ScanHistoryView> {
         children: [
           CustomMainHeader(
             headerSpace: 25,
-            headerMainText: 'Scans History',
+            headerMainText: S.of(context).scansHistory,
             leftIcon: AppAssets().backIcon,
             size: 110,
           ),
@@ -64,7 +65,7 @@ class _ScanHistoryViewState extends State<ScanHistoryView> {
                     child: CustomSwitch(
                       value: controller.withReportsOnly.value,
                       onChanged: (v) => controller.withReportsOnly.value = v,
-                      label: 'With reports only',
+                      label: S.of(context).withReportsOnly,
                     ),
                   ),
                   const SizedBox(height: 8),

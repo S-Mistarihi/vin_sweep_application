@@ -5,6 +5,7 @@ import 'package:vin_sweep_application/features/FAB-menu/search-vehicle/view/swit
 
 import '../../../../../../../configuration/app_assets.dart';
 import '../../../../../../../configuration/app_colors.dart';
+import '../../../../../../../generated/l10n.dart';
 import '../../../../../../reports/service/report_opener.dart';
 import '../../../../controller/vehicle_reports_controller.dart';
 
@@ -16,7 +17,7 @@ class ReportView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final reports = controller.reports.toList();
-    if (reports.isEmpty) return _contentWithNoReportBuy();
+    if (reports.isEmpty) return _contentWithNoReportBuy(context);
 
     return Column(
       children: [
@@ -33,7 +34,9 @@ class ReportView extends StatelessWidget {
             ),
           ),
           child: Text(
-            'Bought reports include accident history, mileage records, previous ownership, and more.',
+            S
+                .of(context)
+                .boughtReportsIncludeAccidentHistoryMileageRecordsPreviousOwnershipAnd,
             style: TextStyle(color: AppColors().accentColor, fontSize: 15),
           ),
         ),
@@ -49,14 +52,14 @@ class ReportView extends StatelessWidget {
     );
   }
 
-  Widget _contentWithNoReportBuy() {
+  Widget _contentWithNoReportBuy(BuildContext context) {
     return Column(
       children: [
         SizedBox(height: 12.h),
         SvgPicture.asset(AppAssets().noReport),
         const SizedBox(height: 40),
         Text(
-          'No reports yet for this vehicle',
+          S.of(context).noReportsYetForThisVehicle,
           style: TextStyle(
             fontSize: 24,
             fontWeight: FontWeight.bold,
@@ -65,7 +68,9 @@ class ReportView extends StatelessWidget {
         ),
         const SizedBox(height: 16),
         Text(
-          'Reports include accident history, mileage verification, previous owners, and more.',
+          S
+              .of(context)
+              .reportsIncludeAccidentHistoryMileageVerificationPreviousOwnersAndMore,
           textAlign: TextAlign.center,
           style: TextStyle(fontSize: 15, color: AppColors().subIntroText),
         ),

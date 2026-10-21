@@ -181,12 +181,13 @@ class PaymentMethodCard extends StatelessWidget {
   }
 
   void _showDeleteDialog() {
+    final context = Get.context!;
+    final l10n = S.of(context);
+
     AppConfirmationSheet.show(
-      message:
-          'Are you sure you want to delete the\ncard${method.maskedNumber}?',
-      desc:
-          'Deleting this card means it will be permanently removed and unavailable for future use',
-      confirmText: 'Yes',
+      message: l10n.confirmDeleteCard(method.maskedNumber),
+      desc: l10n.deleteCardDescription,
+      confirmText: l10n.yesButton,
       onConfirm: onDelete,
     );
   }

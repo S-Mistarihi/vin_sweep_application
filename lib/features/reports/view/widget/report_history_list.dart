@@ -11,6 +11,7 @@ import 'package:vin_sweep_application/features/reports/model/pdf_report_response
 import 'package:vin_sweep_application/features/reports/service/report_opener.dart';
 import 'package:vin_sweep_application/features/reports/view/widget/report_history_tile.dart';
 
+import '../../../../generated/l10n.dart';
 import '../../../../utils/ui/shimmer_list_view.dart';
 
 class ReportHistoryList extends StatelessWidget {
@@ -63,10 +64,10 @@ class ReportHistoryList extends StatelessWidget {
           SizedBox(height: 2.h),
           SvgPicture.asset(AppAssets().noReport, height: 22.h),
           SizedBox(height: 2.h),
-          _centerText('No reports yet', AppColors().accentColor, 20),
+          _centerText(S.of(context).noReportsYet, AppColors().accentColor, 20),
           const SizedBox(height: 8),
           _centerText(
-            'Reports you buy will appear here',
+            S.of(context).reportsYouBuyWillAppearHere,
             AppColors().textFieldLabelColor,
             15,
           ),
@@ -74,10 +75,13 @@ class ReportHistoryList extends StatelessWidget {
       } else if (groups.isEmpty) {
         content = _scrollable([
           SizedBox(height: 8.h),
-          _centerText('No results found', AppColors().textFieldLabelColor, 16),
+          _centerText(
+            S.of(context).noResultsFound,
+            AppColors().textFieldLabelColor,
+            16,
+          ),
         ]);
       } else {
-        // تسطيح: عنوان تاريخ أو تقرير
         final rows = <Object>[];
         for (final g in groups) {
           rows.add(g.label);
@@ -108,7 +112,9 @@ class ReportHistoryList extends StatelessWidget {
             return Padding(
               padding: const EdgeInsets.only(bottom: 12),
               child: ReportHistoryTile(
-                title: names[vin] ?? (vin.isEmpty ? 'Vehicle report' : vin),
+                title:
+                    names[vin] ??
+                    (vin.isEmpty ? S.of(context).vehicleReport : vin),
                 vin: vin,
                 onTap: () => ReportOpener.open(report),
               ),

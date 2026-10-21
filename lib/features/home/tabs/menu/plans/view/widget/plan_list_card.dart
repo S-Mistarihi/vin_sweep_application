@@ -173,7 +173,7 @@ class PlanListCard extends StatelessWidget {
       child: dark
           ? CustomButton(
               onPressed: null,
-              text: 'Current Plan',
+              text: S.of(context).currentPlan,
               backgroundColor: AppColors().baseColor.withOpacity(.2),
               foregroundColor: AppColors().baseColor,
               textSize: 20,
@@ -183,7 +183,9 @@ class PlanListCard extends StatelessWidget {
             )
           : CustomButton(
               onPressed: onSelect,
-              text: plan.planType == 'BASIC' ? 'Select' : 'Upgrade',
+              text: plan.planType == 'BASIC'
+                  ? S.of(context).select
+                  : S.of(context).upgrade,
               backgroundColor: AppColors().buttonWithoutBackground,
               foregroundColor: AppColors().buttonWithoutBackgroundText,
               textSize: 20,

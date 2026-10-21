@@ -37,24 +37,24 @@ class PaymentMethodCardSkeleton extends StatelessWidget {
       child: ShimmerScope(
         child: Row(
           children: [
-            const ShimmerBox(width: 46, height: 46, radius: 12), // أيقونة الكرت
+            const ShimmerBox(width: 46, height: 46, radius: 12),
             const SizedBox(width: 18),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const ShimmerBox(width: 90, height: 14), // اسم الكرت
+                  const ShimmerBox(width: 90, height: 14),
                   const SizedBox(height: 13),
-                  const ShimmerBox(width: 150, height: 18), // الرقم المخفي
+                  const ShimmerBox(width: 150, height: 18),
                   if (showDefault) ...[
                     const SizedBox(height: 12),
-                    const ShimmerBox(width: 50, height: 12), // Default
+                    const ShimmerBox(width: 50, height: 12),
                   ] else
                     const SizedBox(height: 6),
                 ],
               ),
             ),
-            const ShimmerBox(width: 6, height: 24, radius: 3), // أيقونة القائمة
+            const ShimmerBox(width: 6, height: 24, radius: 3),
           ],
         ),
       ),

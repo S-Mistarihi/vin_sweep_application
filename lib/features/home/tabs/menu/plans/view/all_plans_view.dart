@@ -17,7 +17,6 @@ class AllPlansView extends StatelessWidget {
   const AllPlansView({super.key});
 
   Future<void> _select(PlansController controller, PlanModel plan) async {
-
     final result = await Get.to<UserPlanResponse>(
       () => ReviewConfirmationView(plan: plan),
     );
@@ -36,7 +35,7 @@ class AllPlansView extends StatelessWidget {
         children: [
           CustomMainHeader(
             headerSpace: 25,
-            headerMainText: 'All Plans',
+            headerMainText: S.of(context).allPlans,
             leftIcon: AppAssets().backIcon,
             size: 120,
           ),

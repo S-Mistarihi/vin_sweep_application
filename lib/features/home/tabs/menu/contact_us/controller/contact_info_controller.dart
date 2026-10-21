@@ -3,6 +3,7 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:vin_sweep_application/configuration/current_session.dart';
 import 'package:vin_sweep_application/utils/helpers/common/repository_result.dart';
 
+import '../../../../../../generated/l10n.dart';
 import '../../../../../../utils/ui/custom_snakbar.dart';
 import '../repository/contact_info_repository.dart';
 
@@ -32,13 +33,18 @@ class ContactInfoController extends GetxController {
   }
 
   void showErrorToast([String? message]) {
-    CustomSnakbar.error('Failed', message, fallback: 'Loading failed');
+    CustomSnakbar.error(
+      S.of(Get.context!).failed,
+      message,
+      fallback: S.of(Get.context!).loadingFailed,
+    );
   }
 
   Future<void> openUrl(String? url, {String? unavailableMessage}) async {
     if (url == null || url.trim().isEmpty) {
       showErrorToast(
-        unavailableMessage ?? 'This contact option is not available',
+        unavailableMessage ??
+            S.of(Get.context!).thisContactOptionIsNotAvailable,
       );
       return;
     }
@@ -48,15 +54,15 @@ class ContactInfoController extends GetxController {
 
     final uri = Uri.tryParse(link);
     if (uri == null || uri.host.isEmpty) {
-      showErrorToast('Invalid link');
+      showErrorToast(S.of(Get.context!).invalidLink);
       return;
     }
 
     try {
       final opened = await launchUrl(uri, mode: LaunchMode.externalApplication);
-      if (!opened) showErrorToast('Could not open this link');
+      if (!opened) showErrorToast(S.of(Get.context!).couldNotOpenThisLink);
     } catch (_) {
-      showErrorToast('Could not open this link');
+      showErrorToast(S.of(Get.context!).couldNotOpenThisLink);
     }
   }
 
@@ -64,7 +70,7 @@ class ContactInfoController extends GetxController {
     final phone = CurrentSession().infoModel?.result?.phoneNumber;
 
     if (phone == null || phone.trim().isEmpty) {
-      showErrorToast('Phone number is not available');
+      showErrorToast(S.of(Get.context!).phoneNumberIsNotAvailable);
       return;
     }
 
@@ -74,9 +80,9 @@ class ContactInfoController extends GetxController {
 
     try {
       final opened = await launchUrl(uri);
-      if (!opened) showErrorToast('Could not open phone');
+      if (!opened) showErrorToast(S.of(Get.context!).couldNotOpenPhone);
     } catch (_) {
-      showErrorToast('Could not open phone');
+      showErrorToast(S.of(Get.context!).couldNotOpenPhone);
     }
   }
 
@@ -84,7 +90,7 @@ class ContactInfoController extends GetxController {
     final whatsapp = CurrentSession().infoModel?.result?.whatsapp?.trim();
 
     if (whatsapp == null || whatsapp.isEmpty) {
-      showErrorToast('Whatsapp is not available');
+      showErrorToast(S.of(Get.context!).whatsappIsNotAvailable);
       return;
     }
 
@@ -101,7 +107,7 @@ class ContactInfoController extends GetxController {
     final email = CurrentSession().infoModel?.result?.email?.trim();
 
     if (email == null || email.isEmpty) {
-      showErrorToast('Email is not available');
+      showErrorToast(S.of(Get.context!).emailIsNotAvailable);
       return;
     }
 
@@ -109,51 +115,51 @@ class ContactInfoController extends GetxController {
 
     try {
       final opened = await launchUrl(uri, mode: LaunchMode.externalApplication);
-      if (!opened) showErrorToast('Could not open email');
+      if (!opened) showErrorToast(S.of(Get.context!).couldNotOpenEmail);
     } catch (_) {
-      showErrorToast('Could not open email');
+      showErrorToast(S.of(Get.context!).couldNotOpenEmail);
     }
   }
 
   Future<void> openWebsite() async {
     await openUrl(
       CurrentSession().infoModel?.result?.websiteUrl,
-      unavailableMessage: 'Website is not available',
+      unavailableMessage: S.of(Get.context!).websiteIsNotAvailable,
     );
   }
 
   Future<void> openInstagram() async {
     await openUrl(
       CurrentSession().infoModel?.result?.instagram,
-      unavailableMessage: 'Instagram is not available',
+      unavailableMessage: S.of(Get.context!).instagramIsNotAvailable,
     );
   }
 
   Future<void> openTikTok() async {
     await openUrl(
       CurrentSession().infoModel?.result?.tiktok,
-      unavailableMessage: 'TikTok is not available',
+      unavailableMessage: S.of(Get.context!).tiktokIsNotAvailable,
     );
   }
 
   Future<void> openTwitter() async {
     await openUrl(
       CurrentSession().infoModel?.result?.twitter,
-      unavailableMessage: 'Twitter is not available',
+      unavailableMessage: S.of(Get.context!).twitterIsNotAvailable,
     );
   }
 
   Future<void> openFacebook() async {
     await openUrl(
       CurrentSession().infoModel?.result?.facebook,
-      unavailableMessage: 'Facebook is not available',
+      unavailableMessage: S.of(Get.context!).facebookIsNotAvailable,
     );
   }
 
   Future<void> openYoutube() async {
     await openUrl(
       CurrentSession().infoModel?.result?.youtube,
-      unavailableMessage: 'YouTube is not available',
+      unavailableMessage: S.of(Get.context!).youtubeIsNotAvailable,
     );
   }
 }

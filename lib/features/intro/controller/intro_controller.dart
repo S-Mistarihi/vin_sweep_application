@@ -5,6 +5,7 @@ import 'package:vin_sweep_application/configuration/app_assets.dart';
 import 'package:vin_sweep_application/configuration/cache_keys.dart';
 import 'package:vin_sweep_application/configuration/current_session.dart';
 import 'package:vin_sweep_application/features/auth/auth_view.dart';
+import 'package:vin_sweep_application/generated/l10n.dart';
 import '../model/intro_model.dart';
 
 class IntroController extends GetxController {
@@ -27,21 +28,18 @@ class IntroController extends GetxController {
     CurrentSession().intro = [
       IntroModel(
         image: AppAssets().introScreen1,
-        title: 'Easily Scan Any Vehicle Type for Details',
-        description:
-            'Supports sedans, hatchbacks, trucks, and more. Get information on any vehicle type easily.',
+        title: S.of(Get.context!).titleIntro1,
+        description: S.of(Get.context!).descriptionIntro1,
       ),
       IntroModel(
         image: AppAssets().introScreen2,
-        title: 'Enter VIN by Camera, Image, or Manually',
-        description:
-            'Quickly get information about any vehicle by entering the VIN manually, scanning an image, or tacking a photo.',
+        title: S.of(Get.context!).titleIntro2,
+        description: S.of(Get.context!).descriptionIntro2,
       ),
       IntroModel(
         image: AppAssets().introScreen3,
-        title: 'Get Detailed and Accurate Vehicle Information',
-        description:
-            'Retrieve comprehensive details about any vehicle, including make, models, year, and specifications.',
+        title: S.of(Get.context!).titleIntro3,
+        description: S.of(Get.context!).descriptionIntro3,
       ),
     ];
   }

@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
 import 'package:vin_sweep_application/configuration/app_assets.dart';
 import 'package:vin_sweep_application/configuration/app_colors.dart';
+import 'package:vin_sweep_application/generated/l10n.dart';
 import 'package:vin_sweep_application/utils/ui/common/custom_copyright.dart';
 import 'package:vin_sweep_application/utils/ui/custom_dual_button.dart';
 
@@ -85,7 +86,7 @@ class AppConfirmationSheet {
               ),
               SizedBox(height: 4.5.h),
               CustomDualButton(
-                cancelText: 'Cancel',
+                cancelText: S.of(Get.context!).cancelButton,
                 confirmText: confirmText,
                 onCancel: () => Get.back(),
                 onConfirm: onConfirm,

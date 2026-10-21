@@ -31,8 +31,8 @@ class AboutUsView extends StatelessWidget {
         children: [
           CustomMainSubHeader(
             headerSpace: 25,
-            headerMainText: 'About Us',
-            headerSubText: 'Learn more about VINSweep.',
+            headerMainText: S.of(context).aboutUs,
+            headerSubText: S.of(context).learnMoreAboutVinsweep,
             leftIcon: AppAssets().backIcon,
           ),
           Positioned(
@@ -81,14 +81,14 @@ class AboutUsView extends StatelessWidget {
       child: Column(
         children: [
           SizedBox(height: 3.h),
-          _buildBadge(),
+          _buildBadge(context),
           const SizedBox(height: 24),
           if (paragraphs.isNotEmpty) _buildIntro(paragraphs.first),
           ...paragraphs.skip(1).map(_buildParagraph),
           SizedBox(height: 3.h),
           CustomButton(
             onPressed: _openContactUs,
-            text: 'Contact Us',
+            text: S.of(context).contactUs,
             backgroundColor: AppColors().buttonWithBackground,
             foregroundColor: AppColors().buttonWithBackgroundText,
             textSize: 20,
@@ -104,7 +104,7 @@ class AboutUsView extends StatelessWidget {
     );
   }
 
-  Widget _buildBadge() {
+  Widget _buildBadge(BuildContext context) {
     return Column(
       children: [
         Container(
@@ -120,7 +120,7 @@ class AboutUsView extends StatelessWidget {
         ),
         const SizedBox(height: 14),
         Text(
-          'VINSweep',
+          S.of(context).vinsweep,
           style: TextStyle(
             color: AppColors().accentColor,
             fontSize: 28,
@@ -149,8 +149,8 @@ class AboutUsView extends StatelessWidget {
         borderRadius: BorderRadius.circular(16),
         border: Border.all(
           color: AppColors().generalInfoContainerBorder,
-          width: 2
-        )
+          width: 2,
+        ),
       ),
       child: Text(
         text,

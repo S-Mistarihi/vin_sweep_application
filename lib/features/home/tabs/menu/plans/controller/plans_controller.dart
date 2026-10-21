@@ -5,6 +5,7 @@ import 'package:vin_sweep_application/features/home/tabs/menu/plans/model/user_p
 import 'package:vin_sweep_application/features/home/tabs/menu/plans/repository/plans_repository.dart';
 import 'package:vin_sweep_application/utils/helpers/common/repository_result.dart';
 
+import '../../../../../../generated/l10n.dart';
 import '../../../../../../utils/ui/custom_snakbar.dart';
 
 class PlansController extends GetxController {
@@ -45,7 +46,7 @@ class PlansController extends GetxController {
     );
     switch (result) {
       case Failure(:final exception):
-        _toast('Failed', exception.message, isError: true);
+        _toast(S.of(Get.context!).failed, exception.message, isError: true);
       case Success(:final data):
         plans.assignAll(data.plans ?? []);
     }
@@ -57,7 +58,7 @@ class PlansController extends GetxController {
     );
     switch (result) {
       case Failure(:final exception):
-        _toast('Failed', exception.message, isError: true);
+        _toast(S.of(Get.context!).failed, exception.message, isError: true);
       case Success(:final data):
         currentSubscription.value = data;
         isAutoRenew.value = data?.autoRenew ?? false;
@@ -96,7 +97,7 @@ class PlansController extends GetxController {
         break;
       case Failure(:final exception):
         isAutoRenew.value = previous;
-        _toast('Failed', exception.message, isError: true);
+        _toast(S.of(Get.context!).failed, exception.message, isError: true);
     }
   }
 

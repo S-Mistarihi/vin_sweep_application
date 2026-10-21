@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:vin_sweep_application/configuration/app_colors.dart';
 import 'package:vin_sweep_application/features/reports/model/report_pricing.dart';
 
+import '../../../generated/l10n.dart';
 import '../controller/coupon_controller.dart';
 
 class PriceBreakdownCard extends StatelessWidget {
@@ -26,15 +27,22 @@ class PriceBreakdownCard extends StatelessWidget {
         ),
         child: Column(
           children: [
-            _row('Original price', ReportPricing.money(c.originalAmount)),
+            _row(
+              S.of(context).originalPrice,
+              ReportPricing.money(c.originalAmount),
+            ),
             const SizedBox(height: 8),
             _row(
-              'Discount',
+              S.of(context).discount,
               '-${ReportPricing.money(c.discountAmount)}',
               valueColor: AppColors().cardPlanCheck,
             ),
             Divider(height: 24, color: AppColors().cardPlanBorder),
-            _row('Total', ReportPricing.money(c.finalAmount), bold: true),
+            _row(
+              S.of(context).total,
+              ReportPricing.money(c.finalAmount),
+              bold: true,
+            ),
           ],
         ),
       );

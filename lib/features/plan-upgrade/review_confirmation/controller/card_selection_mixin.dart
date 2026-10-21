@@ -5,6 +5,7 @@ import 'package:vin_sweep_application/features/plan-upgrade/add_card/model/saved
 import 'package:vin_sweep_application/features/plan-upgrade/add_card/view/add_card_view.dart';
 import 'package:vin_sweep_application/utils/helpers/common/repository_result.dart';
 
+import '../../../../generated/l10n.dart';
 import '../../../../utils/ui/custom_snakbar.dart';
 
 mixin CardSelectionMixin on GetxController {
@@ -26,7 +27,11 @@ mixin CardSelectionMixin on GetxController {
 
     switch (result) {
       case Failure(:final exception):
-        showAppSnackbar('Failed', exception.message, isError: true);
+        showAppSnackbar(
+          S.of(Get.context!).failed,
+          exception.message,
+          isError: true,
+        );
       case Success(:final data):
         final usable = data.where((m) => !m.expired).toList();
         cards.assignAll(usable.map((m) => m.toSavedCard()));

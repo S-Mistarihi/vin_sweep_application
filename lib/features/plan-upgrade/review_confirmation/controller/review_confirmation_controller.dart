@@ -6,6 +6,7 @@ import 'package:vin_sweep_application/features/plan-upgrade/add_card/model/saved
 import 'package:vin_sweep_application/features/plan-upgrade/review_confirmation/controller/card_selection_mixin.dart';
 import 'package:vin_sweep_application/utils/ui/custom_dialog.dart';
 
+import '../../../../generated/l10n.dart';
 import '../../../../utils/helpers/common/exception/repository_exception.dart';
 import '../../../../utils/helpers/common/repository_result.dart';
 import '../../../home/tabs/menu/plans/model/plans_response.dart';
@@ -33,13 +34,17 @@ class ReviewConfirmationController extends GetxController
 
     final card = selectedCard;
     if (card == null) {
-      showAppSnackbar('Payment method', 'Please select a card', isError: true);
+      showAppSnackbar(
+        S.of(Get.context!).paymentMethod,
+        S.of(Get.context!).pleaseSelectACard,
+        isError: true,
+      );
       return;
     }
     if (!acceptedTerms.value) {
       showAppSnackbar(
-        'Terms',
-        'Please accept the terms and conditions',
+        S.of(Get.context!).terms,
+        S.of(Get.context!).pleaseAcceptTheTermsAndConditions,
         isError: true,
       );
       return;
@@ -53,10 +58,14 @@ class ReviewConfirmationController extends GetxController
 
     switch (result) {
       case Failure(:final exception):
-        showAppSnackbar('Payment failed', exception.message, isError: true);
+        showAppSnackbar(
+          S.of(Get.context!).paymentFailed,
+          exception.message,
+          isError: true,
+        );
       case Success(:final data):
         await CustomDialog.showSuccessDialog(
-          title: 'Subscription successful',
+          title: S.of(Get.context!).subscriptionSuccessful,
           description:
               'You are now subscribed to ${plan.headlinePrimary ?? plan.name ?? 'the plan'}.',
         );
@@ -115,12 +124,16 @@ class ReviewConfirmationController extends GetxController
       );
 
       if (pi.status != PaymentIntentsStatus.Succeeded) {
-        return Failure(MappingException('Payment was not completed'));
+        return Failure(
+          MappingException(S.of(Get.context!).paymentWasNotCompleted),
+        );
       }
     } on StripeException catch (e) {
       return Failure(
         MappingException(
-          e.error.localizedMessage ?? e.error.message ?? 'Payment failed',
+          e.error.localizedMessage ??
+              e.error.message ??
+              S.of(Get.context!).paymentFailed,
         ),
       );
     }

@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:vin_sweep_application/configuration/app_assets.dart';
 import 'package:vin_sweep_application/configuration/app_colors.dart';
 import 'package:vin_sweep_application/features/home/tabs/home/controller/home_controller.dart';
+import 'package:vin_sweep_application/generated/l10n.dart';
 import 'package:vin_sweep_application/utils/ui/custom_text_field.dart';
 
 /// search bar + filter button
@@ -40,7 +41,7 @@ class _ScanSearchBarState extends State<ScanSearchBar> {
           child: CustomTextField().buildCustomTextField(
             controller: text,
             onChanged: (v) => c.query.value = v,
-            hintText: 'Search',
+            hintText: S.of(context).searchLabel,
             iconNameAsset: AppAssets().searchIcon,
           ),
         ),
@@ -63,15 +64,15 @@ class _ScanSearchBarState extends State<ScanSearchBar> {
                   top: 10,
                   right: 10,
                   child: Obx(
-                        () => c.hasActiveFilter
+                    () => c.hasActiveFilter
                         ? Container(
-                      width: 9,
-                      height: 9,
-                      decoration: BoxDecoration(
-                        color: AppColors().cardPopularBack,
-                        shape: BoxShape.circle,
-                      ),
-                    )
+                            width: 9,
+                            height: 9,
+                            decoration: BoxDecoration(
+                              color: AppColors().cardPopularBack,
+                              shape: BoxShape.circle,
+                            ),
+                          )
                         : const SizedBox.shrink(),
                   ),
                 ),

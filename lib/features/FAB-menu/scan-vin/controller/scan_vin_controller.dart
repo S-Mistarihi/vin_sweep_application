@@ -5,7 +5,6 @@ import '../../../../generated/l10n.dart';
 import '../../live-scan/view/live_scan_view.dart';
 import '../../search-vehicle/view/searching_view.dart';
 
-/// كنترولر صفحة النتيجة (حقل الـ VIN + Re-scan + Search)
 class ScanVinController extends GetxController {
   ScanVinController(this.initialVin);
 
@@ -23,7 +22,6 @@ class ScanVinController extends GetxController {
     vinNumberController = TextEditingController(text: initialVin);
   }
 
-  /// يفتح الكاميرا من جديد ويحدّث الحقل بالرقم الجديد
   Future<void> rescan() async {
     final String? newVin = await Get.to<String>(() => const LiveScanView());
 
