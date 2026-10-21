@@ -58,7 +58,11 @@ class _ReportsHistoryViewState extends State<ReportsHistoryView> {
                   const SizedBox(height: 24),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 24),
-                    child: SearchFilterBar(query: controller.query),
+                    child: SearchFilterBar(
+                      query: controller.query,
+                      onFilterTap: controller.openFilter,
+                      isFilterActive: () => controller.hasActiveFilter,
+                    ),
                   ),
                   const SizedBox(height: 8),
                   const Expanded(child: ReportHistoryList(bottomPadding: 24)),

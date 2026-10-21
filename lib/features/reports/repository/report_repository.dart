@@ -382,6 +382,10 @@ class DemoReportRepository extends ReportRepository {
   }
 }
 
+const bool kMockReports = bool.fromEnvironment('MOCK_REPORTS');
+
 ReportRepository createReportRepository() {
-  return AppConfig().isDemo ? DemoReportRepository() : ApiReportRepository();
+  return (AppConfig().isDemo || kMockReports)
+      ? DemoReportRepository()
+      : ApiReportRepository();
 }

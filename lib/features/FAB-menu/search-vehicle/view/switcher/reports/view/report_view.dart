@@ -40,7 +40,7 @@ class ReportView extends StatelessWidget {
             style: TextStyle(color: AppColors().accentColor, fontSize: 15),
           ),
         ),
-
+        SizedBox(height: 20,),
         ...reports.map(
           (r) => Padding(
             padding: const EdgeInsets.only(bottom: 14),

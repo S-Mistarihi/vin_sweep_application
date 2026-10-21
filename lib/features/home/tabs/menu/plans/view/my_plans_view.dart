@@ -120,7 +120,11 @@ class _MyPlansViewState extends State<MyPlansView> {
                   const SizedBox(height: 12),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 24),
-                    child: SearchFilterBar(query: history.query),
+                    child: SearchFilterBar(
+                      query: history.query,
+                      onFilterTap: history.openFilter,
+                      isFilterActive: () => history.hasActiveFilter,
+                    ),
                   ),
                   const SizedBox(height: 8),
                   const Expanded(

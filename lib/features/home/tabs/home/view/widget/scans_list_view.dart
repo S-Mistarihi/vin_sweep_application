@@ -8,6 +8,7 @@ import 'package:vin_sweep_application/features/home/tabs/home/controller/home_co
 import 'package:vin_sweep_application/features/home/tabs/home/view/widget/scan_item_card.dart';
 
 import '../../../../../../generated/l10n.dart';
+import '../../../../../../utils/ui/custom_button.dart';
 import '../../../../../../utils/ui/shimmer_list_view.dart';
 
 /// scans list with cases: load & error & empty & no found search & list found
@@ -46,9 +47,15 @@ class ScansListView extends StatelessWidget {
             textAlign: TextAlign.center,
             style: TextStyle(color: AppColors().errorText, fontSize: 16),
           ),
-          TextButton(
+          CustomButton(
             onPressed: c.loadScans,
-            child: Text(S.of(context).retryButton),
+            text: S.of(context).retryButton,
+            backgroundColor: AppColors().buttonWithBackground,
+            foregroundColor: AppColors().buttonWithBackgroundText,
+            textSize: 20,
+            fontWeight: FontWeight.bold,
+            horizontalPadding: 95,
+            verticalPadding: 12,
           ),
         ]);
       } else if (total == 0) {

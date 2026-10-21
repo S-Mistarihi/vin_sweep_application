@@ -7,11 +7,18 @@ import 'package:vin_sweep_application/configuration/app_colors.dart';
 import '../../../generated/l10n.dart';
 
 class SearchFilterBar extends StatefulWidget {
-  const SearchFilterBar({super.key, required this.query, this.onFilterTap});
+  const SearchFilterBar({
+    super.key,
+    required this.query,
+    this.onFilterTap,
+    this.isFilterActive,
+  });
 
   final RxString query;
 
   final VoidCallback? onFilterTap;
+
+  final bool Function()? isFilterActive;
 
   @override
   State<SearchFilterBar> createState() => _SearchFilterBarState();
@@ -73,7 +80,28 @@ class _SearchFilterBarState extends State<SearchFilterBar> {
               color: AppColors().switcherBackgroundColor,
               borderRadius: BorderRadius.circular(16),
             ),
-            child: Icon(Icons.tune, color: AppColors().buttonWithBackground),
+            child: Stack(
+              alignment: Alignment.center,
+              children: [
+                Icon(Icons.tune, color: AppColors().buttonWithBackground),
+                Positioned(
+                  top: 10,
+                  right: 10,
+                  child: Obx(
+                    () => (widget.isFilterActive?.call() ?? false)
+                        ? Container(
+                            width: 9,
+                            height: 9,
+                            decoration: BoxDecoration(
+                              color: AppColors().cardPopularBack,
+                              shape: BoxShape.circle,
+                            ),
+                          )
+                        : const SizedBox.shrink(),
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ],
