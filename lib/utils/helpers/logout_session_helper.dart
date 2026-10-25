@@ -31,6 +31,7 @@ class LogoutSessionHelper {
 
   static Future<void> logout() async {
     await _secureStorage.delete(key: CacheKeys.password);
+    await _secureStorage.delete(key: CacheKeys.userData);
 
     CurrentSession().clear();
 

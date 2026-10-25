@@ -1,7 +1,10 @@
+import 'dart:convert';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get/get.dart';
 import 'package:vin_sweep_application/configuration/cache_keys.dart';
+import 'package:vin_sweep_application/features/auth/auth_view.dart';
 import 'package:vin_sweep_application/features/home/bottom_view.dart';
 
 import '../../../../configuration/current_session.dart';
@@ -66,8 +69,6 @@ class LoginController extends GetxController {
     _clearErrors();
   }
 
-
-
   Future<void> onLoginPressed() async {
     _clearErrors();
     final context = Get.context!;
@@ -97,6 +98,11 @@ class LoginController extends GetxController {
       case Failure():
         Get.find<AuthController>().showErrorToast();
       case Success(:final data):
+        await _secureStorage.write(
+          key: CacheKeys.userData,
+          value: jsonEncode(data.toJson()),
+        );
+
         if (isRememberMeChecked.value) {
           await _saveCredentials();
         } else {
@@ -105,6 +111,7 @@ class LoginController extends GetxController {
         }
         CurrentSession().userModel = data;
         Get.offAll(() => const BottomView());
+        break;
     }
   }
 

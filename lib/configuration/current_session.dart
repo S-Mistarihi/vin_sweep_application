@@ -26,6 +26,8 @@ class CurrentSession {
 
   UserModel? getUser() => _userModel;
 
+  bool isAuth() => _userModel != null;
+
   void clear() {
     _userModel = null;
   }
