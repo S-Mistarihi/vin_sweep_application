@@ -45,6 +45,9 @@ class BuyReportController extends GetxController with CardSelectionMixin {
   // ───────── Price Getters ─────────
   bool get usesPackage => pricing.value?.usesPackage ?? false;
 
+  /// PACKAGE / SUBSCRIPTION: generate مباشرة. BASIC: intent -> Stripe -> confirm
+  bool get usesDirectGenerate => pricing.value?.directGenerate ?? false;
+
   double? get baseAmount => pricing.value?.amount;
 
   // final price after applyed coupon
@@ -110,7 +113,14 @@ class BuyReportController extends GetxController with CardSelectionMixin {
     }
 
     isSubmitting.value = true;
-    final result = await _purchase(card);
+    var result = await _purchase(card);
+
+    // 4023 قبل أي دفع: المزوّد ما عنده سجل لهاد الـ VIN. رسالة أوضح من "Invalid Vehicle Number"
+    if (result case Failure(
+      :final exception,
+    ) when _paidIntentId == null && _isInvalidVin(exception.message)) {
+      result = Failure(MappingException(_noReportMessage));
+    }
     isSubmitting.value = false;
 
     switch (result) {
@@ -155,7 +165,7 @@ class BuyReportController extends GetxController with CardSelectionMixin {
 
     final save = card.saveForFuture;
 
-    if (usesPackage) {
+    if (usesDirectGenerate) {
       return createReportRepository().generateReport(
         context: context,
         vin: vin,
@@ -245,4 +255,10 @@ class BuyReportController extends GetxController with CardSelectionMixin {
 
     return result;
   }
+
+  static const String _noReportMessage =
+      'No history report is available for this VIN. You were not charged.';
+
+  bool _isInvalidVin(String message) =>
+      message.toLowerCase().contains('invalid vehicle number');
 }

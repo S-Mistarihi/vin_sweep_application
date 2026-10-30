@@ -1,74 +1,44 @@
-import 'dart:convert';
+
 import 'dart:io';
-import 'dart:typed_data';
 
 import 'package:get/get.dart';
 import 'package:open_filex/open_filex.dart';
-import 'package:url_launcher/url_launcher.dart';
-import 'package:vin_sweep_application/configuration/api_end_points.dart';
 import 'package:vin_sweep_application/features/reports/model/pdf_report_response.dart';
 import 'package:vin_sweep_application/utils/helpers/common/repository_result.dart';
-import 'package:vin_sweep_application/utils/helpers/http/http_wrapper.dart';
 
 import '../../../generated/l10n.dart';
 import '../../../utils/ui/custom_snakbar.dart';
+import '../../pdf-report/service/report_file_service.dart';
+import '../../pdf-report/view/pdf_report_view.dart';
 
 class ReportOpener {
   static final Set<String> _busy = {};
 
-  static Future<void> open(PdfReportDetails report) async {
-    final raw = report.downloadUrl?.trim();
-    if (raw == null || raw.isEmpty) {
-      _error(S.of(Get.context!).reportLinkIsNotAvailableYet);
-      return;
-    }
-
-    final Uri uri;
-    try {
-      var u = Uri.parse(raw);
-      if (!u.hasScheme) u = Uri.parse(baseUrl).resolveUri(u);
-      uri = u;
-    } catch (_) {
-      _error(S.of(Get.context!).invalidReportLink);
-      return;
-    }
-
-    if (uri.host != Uri.parse(baseUrl).host) {
-      await _launchExternal(uri);
-      return;
-    }
-
-    if (!_busy.add(raw)) return;
-    try {
-      await _downloadAndOpen(uri, report);
-    } finally {
-      _busy.remove(raw);
-    }
+  static void open(PdfReportDetails report) {
+    Get.to(
+      () => PdfReportView(report: report),
+      transition: Transition.rightToLeft,
+    );
   }
 
-  static Future<void> _downloadAndOpen(Uri uri, PdfReportDetails report) async {
-    final result = await HttpWrapper(
-      url: uri.toString(),
-      context: Get.context,
-      showLoading: true,
-      headers: {'Accept': '*/*'},
-    ).getFile();
+  static Future<void> openExternal(PdfReportDetails report) async {
+    final key = report.downloadUrl ?? '${report.reportId}';
+    if (!_busy.add(key)) return;
 
-    switch (result) {
-      case Failure(:final exception):
-        _error(exception.message);
-      case Success(:final data):
-        final bytes = _extractPdfBytes(data.body);
-        if (bytes == null) {
-          _error(S.of(Get.context!).theDownloadedFileIsNotAValidPdf);
-          return;
-        }
+    try {
+      final result = await ReportFileService.fetchPdf(
+        report,
+        showLoading: true,
+      );
 
-        try {
+      switch (result) {
+        case Failure(:final exception):
+          _error(exception.message);
+        case Success(:final data):
           final file = File(
-            '${Directory.systemTemp.path}/${_safeName(report)}',
+            '${Directory.systemTemp.path}/${ReportFileService.safeName(report)}',
           );
-          await file.writeAsBytes(bytes, flush: true);
+          await file.writeAsBytes(data, flush: true);
 
           final opened = await OpenFilex.open(
             file.path,
@@ -77,59 +47,12 @@ class ReportOpener {
           if (opened.type != ResultType.done) {
             _error(S.of(Get.context!).noAppFoundToOpenPdfFiles);
           }
-        } catch (_) {
-          _error(S.of(Get.context!).couldNotOpenTheReport);
-        }
-    }
-  }
-
-  static Future<void> _launchExternal(Uri uri) async {
-    try {
-      final ok = await launchUrl(uri, mode: LaunchMode.externalApplication);
-      if (!ok) _error(S.of(Get.context!).couldNotOpenTheReport);
+      }
     } catch (_) {
       _error(S.of(Get.context!).couldNotOpenTheReport);
+    } finally {
+      _busy.remove(key);
     }
-  }
-
-  static bool _isPdf(Uint8List b) =>
-      b.length >= 4 &&
-      b[0] == 0x25 &&
-      b[1] == 0x50 &&
-      b[2] == 0x44 &&
-      b[3] == 0x46;
-
-  static Uint8List? _extractPdfBytes(Uint8List? body) {
-    if (body == null || body.isEmpty) return null;
-    if (_isPdf(body)) return body;
-
-    try {
-      final decoded = jsonDecode(utf8.decode(body));
-      Uint8List? candidate;
-
-      if (decoded is List && decoded.isNotEmpty) {
-        if (decoded.every((e) => e is int)) {
-          candidate = Uint8List.fromList(decoded.cast<int>());
-        } else if (decoded.first is String) {
-          candidate = base64Decode(decoded.join());
-        }
-      } else if (decoded is Map) {
-        final v = decoded['result'] ?? decoded['data'];
-        if (v is String) candidate = base64Decode(v);
-      }
-
-      if (candidate != null && _isPdf(candidate)) return candidate;
-    } catch (_) {}
-    return null;
-  }
-
-  static String _safeName(PdfReportDetails r) {
-    var name = (r.fileName?.trim().isNotEmpty ?? false)
-        ? r.fileName!.trim()
-        : 'report_${r.reportId ?? DateTime.now().millisecondsSinceEpoch}.pdf';
-    name = name.replaceAll(RegExp(r'[^\w.\- ]'), '_');
-    if (!name.toLowerCase().endsWith('.pdf')) name = '$name.pdf';
-    return name;
   }
 
   static void _error(String message) {

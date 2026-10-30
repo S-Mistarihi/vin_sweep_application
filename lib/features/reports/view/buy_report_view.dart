@@ -152,6 +152,7 @@ class _BuyReportViewState extends State<BuyReportView> {
         confirmText: controller.confirmLabel,
         onCancel: () => Get.back(),
         onConfirm: controller.confirm,
+        textSize: 17,
       ),
     );
   }

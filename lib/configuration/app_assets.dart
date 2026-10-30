@@ -79,4 +79,25 @@ class AppAssets {
   String addPayCard = 'assets/payment/ic-addCard.svg';
 
   String pdfIcon = 'assets/report/pdf.svg';
+
+  String engineIcon = 'assets/categories/engine.svg';
+  String generalIcon = 'assets/categories/general_info.svg';
+  String mechanicalBatteryIcon = 'assets/categories/mechanical_battery.svg';
+  String mechanicalTransmissionIcon = 'assets/categories/transmission.svg';
+  String interiorIcon = 'assets/categories/Interior.svg';
+  String interiorSeatIcon = 'assets/categories/interior_seat.svg';
+  String exteriorBodyIcon = 'assets/categories/exterior_body.svg';
+  String exteriorDimensionIcon = 'assets/categories/exterior_dimension.svg';
+  String exteriorWheelTireIcon = 'assets/categories/wheel.svg';
+  String mechanicalBreakIcon = 'assets/categories/brake.svg';
+  String airBagIcon = 'assets/categories/air_bag.svg';
+  String activeSafetyIcon = 'assets/categories/active_safety.svg';
+  String activeSafetySafeIcon =
+      'assets/categories/active_safety_safe_distance.svg';
+  String backingUpIcon = 'assets/categories/backing_up_parking.svg';
+  String collisionIcon = 'assets/categories/collision_prevention.svg';
+  String laneSideIcon = 'assets/categories/lane_side_assist.svg';
+  String lightingIcon = 'assets/categories/lighting_technology.svg';
+  String notifIcon = 'assets/categories/notif_911.svg';
+  String passiveSafetyIcon = 'assets/categories/passive_safety_system.svg';
 }

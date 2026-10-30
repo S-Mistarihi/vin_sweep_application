@@ -14,6 +14,17 @@ class VehicleReportsController extends GetxController {
   final String vin;
   final RxList<PdfReportDetails> reports = <PdfReportDetails>[].obs;
 
+  PdfReportDetails? get latestReport {
+    if (reports.isEmpty) return null;
+    final list = [...reports]
+      ..sort(
+        (a, b) => (b.generatedAt ?? DateTime(0)).compareTo(
+          a.generatedAt ?? DateTime(0),
+        ),
+      );
+    return list.first;
+  }
+
   void addReport(PdfReportDetails report) {
     reports.removeWhere(
       (r) => r.reportId != null && r.reportId == report.reportId,

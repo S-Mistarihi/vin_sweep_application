@@ -7,12 +7,14 @@ class ReportPricing {
   final bool usesPackage;
   final int? packageRemaining;
   final String planLabel;
+  final bool directGenerate;
 
   const ReportPricing({
     this.amount,
     this.usesPackage = false,
     this.packageRemaining,
     this.planLabel = '',
+    this.directGenerate = false,
   });
 
   factory ReportPricing.from({
@@ -29,6 +31,7 @@ class ReportPricing {
         amount: 0,
         usesPackage: true,
         packageRemaining: sub.reportsRemaining,
+        directGenerate: true,
         planLabel: plan?.headlinePrimary ?? plan?.name ?? 'Package',
       );
     }
@@ -38,6 +41,7 @@ class ReportPricing {
       return ReportPricing(
         amount: plan?.reportPrice,
         planLabel: plan?.headlinePrimary ?? plan?.name ?? 'Subscription',
+        directGenerate: true,
       );
     }
 

@@ -1,3 +1,4 @@
+import 'package:vin_sweep_application/features/reports/service/report_opener.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
@@ -59,7 +60,18 @@ class _SearchingResultState extends State<SearchingResult> {
     super.dispose();
   }
 
-  Future<void> _onBuyReport() async {
+  /// زر "Get Vehicle History Report":
+  ///  - في تقرير جاهز لهاد الـ VIN: بنفتحه مباشرة بدون دفع
+  ///  - ما في: شاشة الشراء (لحظة الدفع = زر Confirm). عند النجاح بنفتح
+  ///    شاشة PDF Report بالتقرير الجديد، وزر Download PDF هناك بيحفظ الملف بس.
+  Future<void> _onGetReport() async {
+    final existing = reportsController.latestReport;
+    if (existing != null) {
+      modeController.switchToReport();
+      ReportOpener.open(existing);
+      return;
+    }
+
     final report = await Get.to<PdfReportDetails>(
       () =>
           BuyReportView(vin: widget.vinNumber, vehicleName: widget.vehicleName),
@@ -67,8 +79,9 @@ class _SearchingResultState extends State<SearchingResult> {
     if (report == null) return;
 
     reportsController.addReport(report);
-    modeController.switchToReport();
+    modeController.switchToReport(); // الرجوع من شاشة PDF بيوصل لتاب Reports
     reportsController.refreshReports();
+    ReportOpener.open(report);
   }
 
   @override
@@ -99,6 +112,7 @@ class _SearchingResultState extends State<SearchingResult> {
                   ),
                 ),
                 child: SingleChildScrollView(
+                  physics: AlwaysScrollableScrollPhysics(),
                   child: Column(
                     children: [
                       const SizedBox(height: 30),
@@ -117,23 +131,43 @@ class _SearchingResultState extends State<SearchingResult> {
                 ),
               ),
             ),
-            Positioned(
-              top: 90.h,
-              right: 6.w,
-              left: 6.w,
-              bottom: 5.h,
+          ],
+        ),
+      ),
+      bottomNavigationBar: Container(
+        decoration: BoxDecoration(
+          color: AppColors().baseColor,
+          borderRadius: const BorderRadius.only(
+            topLeft: Radius.circular(40),
+            topRight: Radius.circular(40),
+          ),
+          boxShadow: [
+            BoxShadow(
+              color: AppColors().cardPlanShadow,
+              blurRadius: 12,
+              offset: const Offset(0, -4),
+            ),
+          ],
+        ),
+        child: SafeArea(
+          top: false,
+          child: Padding(
+            padding: const EdgeInsets.fromLTRB(16, 45, 16, 32),
+            child: SizedBox(
+              width: 100.w,
               child: CustomButton(
-                onPressed: _onBuyReport,
-                text: S.of(context).buyReportButton,
+                onPressed: _onGetReport,
+                text: 'Get Vehicle History Report',
+                // TODO: l10n
                 backgroundColor: AppColors().buttonWithBackground,
                 foregroundColor: AppColors().buttonWithBackgroundText,
                 textSize: 20,
                 fontWeight: FontWeight.bold,
-                horizontalPadding: 128,
+                horizontalPadding: 0,
                 verticalPadding: 12,
               ),
             ),
-          ],
+          ),
         ),
       ),
     );

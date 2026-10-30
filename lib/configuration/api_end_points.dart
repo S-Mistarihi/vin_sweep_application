@@ -57,7 +57,7 @@ class ApiEndPoints {
       '$baseUrl${version}vehicle/generate-pdf-report';
 
   static String getPdfReportsByVin(String vin) =>
-      '$baseUrl${version}pdf-reports/vin?vin=${Uri.encodeComponent(vin)}';
+      '$baseUrl${version}pdf-reports/vin/${Uri.encodeComponent(vin)}';
   static final String getPdfReport = '$baseUrl${version}pdf-reports';
 
   static String getPdfReportByUuid(String reportUuid) =>
