@@ -172,23 +172,23 @@
 
   <tr>
     <td align="center">
-      <strong>16. Success Payment</strong><br/><br/>
+      <strong>16. Success</strong><br/><br/>
       <img src="assets/screenshots/17.png" width="150"/>
     </td>
     <td align="center">
-      <strong>16. Plans Upgrade</strong><br/><br/>
+      <strong>17. Plans Upgrade</strong><br/><br/>
       <img src="assets/screenshots/19.png" width="150"/>
     </td>
     <td align="center">
-      <strong>17. Home Upgrade</strong><br/><br/>
+      <strong>18. Home Upgrade</strong><br/><br/>
       <img src="assets/screenshots/18.png" width="150"/>
     </td>
     <td align="center">
-      <strong>18. Menu</strong><br/><br/>
+      <strong>19. Menu</strong><br/><br/>
       <img src="assets/screenshots/20.png" width="150"/>
     </td>
     <td align="center">
-      <strong>18. Bubble Button</strong><br/><br/>
+      <strong>20. Bubble Button</strong><br/><br/>
       <img src="assets/screenshots/21.png" width="150"/>
     </td>
   </tr>
