@@ -57,12 +57,26 @@ class CustomHomeHeader extends StatelessWidget {
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
-                          S.of(context).welcome(firstName),
-                          style: TextStyle(
-                            color: AppColors().baseColor,
-                            fontSize: 24,
-                            fontWeight: FontWeight.bold,
+                        RichText(
+                          text: TextSpan(
+                            children: [
+                              TextSpan(
+                                text: 'Welcome ',
+                                style: TextStyle(
+                                  color: AppColors().baseColor,
+                                  fontSize: 24,
+                                  fontWeight: FontWeight.normal,
+                                ),
+                              ),
+                              TextSpan(
+                                text: '$firstName ,',
+                                style: TextStyle(
+                                  color: AppColors().baseColor,
+                                  fontSize: 28,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ],
                           ),
                         ),
                         SizedBox(height: 8),
